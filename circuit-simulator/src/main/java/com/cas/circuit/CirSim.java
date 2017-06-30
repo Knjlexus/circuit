@@ -59,8 +59,6 @@ import com.cas.circuit.util.CircuitUtil;
 
 public class CirSim extends Frame implements ComponentListener, ActionListener, AdjustmentListener, MouseMotionListener, MouseListener, ItemListener, KeyListener {
 
-	private CirSimLogic logic;
-
 	public static final int sourceRadius = 7;
 	public static final double freqMult = 3.14159265 * 2 * 4;
 
