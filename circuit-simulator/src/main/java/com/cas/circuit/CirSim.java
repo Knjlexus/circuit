@@ -1,6 +1,8 @@
 package com.cas.circuit;
 // CirSim.java (c) 2010 by Paul Falstad
 
+import static java.lang.Math.PI;
+
 // For information about the theory behind this, see Electronic Circuit & System Simulation Methods by Pillage
 
 import java.awt.Button;
@@ -63,7 +65,6 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 	public static final double freqMult = 3.14159265 * 2 * 4;
 
 	static Container main;
-	public static final double pi = 3.14159265358979323846;
 	public static final int MODE_ADD_ELM = 0;
 
 	public static final int MODE_DRAG_ALL = 1;
@@ -1167,7 +1168,6 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 		if (mouseElm != null && !mouseElm.isSelected()) {
 			mouseElm.setSelected(me = true);
 		}
-
 		// snap grid, unless we're only dragging text elements
 		int i;
 		for (i = 0; i != elmList.size(); i++) {
@@ -1320,8 +1320,9 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 	}
 
 	public CircuitElm getElm(int n) {
-		if (n >= elmList.size())
+		if (n >= elmList.size()) {
 			return null;
+		}
 		return elmList.elementAt(n);
 	}
 
@@ -1341,7 +1342,7 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 			// 电容亦称作“电容量”，是指在给定电位差下的电荷储藏量，记为C，国际单位是法拉（F）。
 			// 一般来说，电荷在电场中会受力而移动，当导体之间有了介质，则阻碍了电荷移动而使得电荷累积在导体上，造成电荷的累积储存，储存的电荷量则称为电容。
 			// 因电容是电子设备中大量使用的电子元件之一，所以广泛应用于隔直、耦合、旁路、滤波、调谐回路、能量转换、控制电路等方面。
-			return "res.f = " + CircuitUtil.getUnitText(1 / (2 * pi * Math.sqrt(ie.inductance * ce.capacitance)), "Hz");
+			return "res.f = " + CircuitUtil.getUnitText(1 / (2 * PI * Math.sqrt(ie.inductance * ce.capacitance)), "Hz");
 		}
 		if (hintType == HINT_RC) {
 			if (!(c1 instanceof ResistorElm))
@@ -1359,7 +1360,7 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 				return null;
 			ResistorElm re = (ResistorElm) c1;
 			CapacitorElm ce = (CapacitorElm) c2;
-			return "f.3db = " + CircuitUtil.getUnitText(1 / (2 * pi * re.resistance * ce.capacitance), "Hz");
+			return "f.3db = " + CircuitUtil.getUnitText(1 / (2 * PI * re.resistance * ce.capacitance), "Hz");
 		}
 		if (hintType == HINT_3DB_L) {
 			if (!(c1 instanceof ResistorElm))
@@ -1368,7 +1369,7 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 				return null;
 			ResistorElm re = (ResistorElm) c1;
 			InductorElm ie = (InductorElm) c2;
-			return "f.3db = " + CircuitUtil.getUnitText(re.resistance / (2 * pi * ie.inductance), "Hz");
+			return "f.3db = " + CircuitUtil.getUnitText(re.resistance / (2 * PI * ie.inductance), "Hz");
 		}
 		if (hintType == HINT_TWINT) {
 			if (!(c1 instanceof ResistorElm))
@@ -1377,7 +1378,7 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 				return null;
 			ResistorElm re = (ResistorElm) c1;
 			CapacitorElm ce = (CapacitorElm) c2;
-			return "fc = " + CircuitUtil.getUnitText(1 / (2 * pi * re.resistance * ce.capacitance), "Hz");
+			return "fc = " + CircuitUtil.getUnitText(1 / (2 * PI * re.resistance * ce.capacitance), "Hz");
 		}
 		return null;
 	}
@@ -1404,8 +1405,9 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 
 	int getrand(int x) {
 		int q = random.nextInt();
-		if (q < 0)
+		if (q < 0) {
 			q = -q;
+		}
 		return q % x;
 	}
 
@@ -1414,8 +1416,7 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 		int stackptr = 0;
 		stack[stackptr++] = menu;
 		try {
-			// hausen: if setuplist.txt does not exist in the same
-			// directory, try reading from the jar file
+			// hausen: if setuplist.txt does not exist in the same directory, try reading from the jar file
 			ByteArrayOutputStream ba = null;
 			try {
 				URL url = new URL(getCodeBase() + "setuplist.txt");
@@ -1424,17 +1425,15 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 				URL url = getClass().getClassLoader().getResource("setuplist.txt");
 				ba = readUrlData(url);
 			}
-			// /hausen
 
 			byte b[] = ba.toByteArray();
 			int len = ba.size();
-			int p;
 			if (len == 0 || b[0] != '#') {
 				// got a redirect, try again
 				getSetupList(menu, true);
 				return;
 			}
-			for (p = 0; p < len;) {
+			for (int p = 0; p < len;) {
 				int l;
 				for (l = 0; l != len - p; l++)
 					if (b[l + p] == '\n') {
@@ -1442,9 +1441,9 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 						break;
 					}
 				String line = new String(b, p, l - 1);
-				if (line.charAt(0) == '#')
+				if (line.charAt(0) == '#') {
 					;
-				else if (line.charAt(0) == '+') {
+				} else if (line.charAt(0) == '+') {
 					Menu n = new Menu(line.substring(1));
 					menu.add(n);
 					menu = stack[stackptr++] = n;
@@ -1455,8 +1454,9 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 					if (i > 0) {
 						String title = line.substring(i + 1);
 						boolean first = false;
-						if (line.charAt(0) == '>')
+						if (line.charAt(0) == '>') {
 							first = true;
+						}
 						String file = line.substring(first ? 1 : 0, i);
 						menu.add(getMenuItem(title, "setup " + file));
 						if (first && startCircuit == null) {
@@ -1484,20 +1484,19 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 
 	void handleResize() {
 		winSize = cv.getSize();
-		if (winSize.width == 0)
+		if (winSize.width == 0) {
 			return;
+		}
 		dbimage = main.createImage(winSize.width, winSize.height);
 		int h = winSize.height / 5;
-		/*
-		 * if (h < 128 && winSize.height > 300) h = 128;
-		 */
+//		if (h < 128 && winSize.height > 300) {
+//			h = 128;
+//		}
 		circuitArea = new Rectangle(0, 0, winSize.width, winSize.height - h);
-		int i;
 		int minx = 1000, maxx = 0, miny = 1000, maxy = 0;
-		for (i = 0; i != elmList.size(); i++) {
+		for (int i = 0; i != elmList.size(); i++) {
 			CircuitElm ce = getElm(i);
-			// centered text causes problems when trying to center the circuit,
-			// so we special-case it here
+			// centered text causes problems when trying to center the circuit, so we special-case it here
 			if (!ce.isCenteredText()) {
 				minx = min(ce.x, min(ce.x2, minx));
 				maxx = max(ce.x, max(ce.x2, maxx));
@@ -1508,11 +1507,13 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 		// center circuit; we don't use snapGrid() because that rounds
 		int dx = gridMask & ((circuitArea.width - (maxx - minx)) / 2 - minx);
 		int dy = gridMask & ((circuitArea.height - (maxy - miny)) / 2 - miny);
-		if (dx + minx < 0)
+		if (dx + minx < 0) {
 			dx = gridMask & (-minx);
-		if (dy + miny < 0)
+		}
+		if (dy + miny < 0) {
 			dy = gridMask & (-miny);
-		for (i = 0; i != elmList.size(); i++) {
+		}
+		for (int i = 0; i != elmList.size(); i++) {
 			CircuitElm ce = getElm(i);
 			ce.move(dx, dy);
 		}
@@ -1642,13 +1643,15 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 	private void initUI(boolean printable, boolean convention, boolean euro) {
 		mainMenu = new PopupMenu();
 		MenuBar mb = null;
-		if (useFrame)
+		if (useFrame) {
 			mb = new MenuBar();
+		}
 		Menu m = new Menu("File");
-		if (useFrame)
+		if (useFrame) {
 			mb.add(m);
-		else
+		} else {
 			mainMenu.add(m);
+		}
 		m.add(importItem = getMenuItem("Import"));
 		m.add(exportItem = getMenuItem("Export"));
 		// m.add(exportLinkItem = getMenuItem("Export Link"));
@@ -1656,6 +1659,88 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 		m.add(exitItem = getMenuItem("Exit"));
 
 		m = new Menu("Edit");
+		if (useFrame) {
+			mb.add(m);
+		} else {
+			mainMenu.add(m);
+		}
+		createEditItems(m);
+
+		m = new Menu("Scope");
+		if (useFrame) {
+			mb.add(m);
+		} else {
+			mainMenu.add(m);
+		}
+		m.add(getMenuItem("Stack All", "stackAll"));
+		m.add(getMenuItem("Unstack All", "unstackAll"));
+
+		optionsMenu = m = new Menu("Options");
+		if (useFrame) {
+			mb.add(m);
+		} else {
+			mainMenu.add(m);
+		}
+		createOptionItems(printable, convention, euro, m);
+
+//		
+		m.add(optionsItem = getMenuItem("Other Options..."));
+
+		Menu circuitsMenu = new Menu("Circuits");
+		if (useFrame) {
+			mb.add(circuitsMenu);
+		} else {
+			mainMenu.add(circuitsMenu);
+		}
+
+		createPopupMenu();
+
+		main.add(mainMenu);
+
+		createSettingPane();
+
+		main.add(new Label("www.falstad.com"));
+
+		if (useFrame) {
+			main.add(new Label(""));
+		}
+		Font f = new Font("SansSerif", 0, 10);
+		Label l;
+		l = new Label("Current Circuit:");
+		l.setFont(f);
+		titleLabel = new Label("Label");
+		titleLabel.setFont(f);
+		if (useFrame) {
+			main.add(l);
+			main.add(titleLabel);
+		}
+
+		setGrid();
+		elmList = new Vector<CircuitElm>();
+		// setupList = new Vector();
+		undoStack = new Vector<String>();
+		redoStack = new Vector<String>();
+
+		scopes = new Scope[20];
+		scopeColCount = new int[20];
+		scopeCount = 0;
+
+		random = new Random();
+		cv.setBackground(Color.black);
+		cv.setForeground(Color.lightGray);
+
+		createEditPopupMenu();
+
+		scopeMenu = buildScopeMenu(false);
+		transScopeMenu = buildScopeMenu(true);
+
+		getSetupList(circuitsMenu, false);
+		if (useFrame) {
+			setMenuBar(mb);
+		}
+	}
+
+	private void createEditItems(Menu m) {
 		m.add(undoItem = getMenuItem("Undo"));
 		undoItem.setShortcut(new MenuShortcut(KeyEvent.VK_Z));
 		m.add(redoItem = getMenuItem("Redo"));
@@ -1670,24 +1755,9 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 		pasteItem.setEnabled(false);
 		m.add(selectAllItem = getMenuItem("Select All"));
 		selectAllItem.setShortcut(new MenuShortcut(KeyEvent.VK_A));
-		if (useFrame)
-			mb.add(m);
-		else
-			mainMenu.add(m);
+	}
 
-		m = new Menu("Scope");
-		if (useFrame)
-			mb.add(m);
-		else
-			mainMenu.add(m);
-		m.add(getMenuItem("Stack All", "stackAll"));
-		m.add(getMenuItem("Unstack All", "unstackAll"));
-
-		optionsMenu = m = new Menu("Options");
-		if (useFrame)
-			mb.add(m);
-		else
-			mainMenu.add(m);
+	private void createOptionItems(boolean printable, boolean convention, boolean euro, Menu m) {
 		m.add(dotsCheckItem = getCheckItem("Show Current"));
 		dotsCheckItem.setState(false); // hausen: changed from true to false
 		m.add(voltsCheckItem = getCheckItem("Show Voltage"));
@@ -1716,15 +1786,47 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 				System.err.println("ideal wires: " + WireElm.ideal);
 			}
 		});
+	}
 
-		m.add(optionsItem = getMenuItem("Other Options..."));
+	private void createEditPopupMenu() {
+		elmMenu = new PopupMenu();
+		elmMenu.add(elmEditMenuItem = getMenuItem("Edit"));
+		elmMenu.add(elmScopeMenuItem = getMenuItem("View in Scope"));
+		elmMenu.add(elmCutMenuItem = getMenuItem("Cut"));
+		elmMenu.add(elmCopyMenuItem = getMenuItem("Copy"));
+		elmMenu.add(elmDeleteMenuItem = getMenuItem("Delete"));
+		main.add(elmMenu);
+	}
 
-		Menu circuitsMenu = new Menu("Circuits");
-		if (useFrame)
-			mb.add(circuitsMenu);
-		else
-			mainMenu.add(circuitsMenu);
+	private void createSettingPane() {
+		main.add(resetButton = new Button("Reset"));
+		resetButton.addActionListener(this);
+		dumpMatrixButton = new Button("Dump Matrix");
+		// main.add(dumpMatrixButton);
+		dumpMatrixButton.addActionListener(this);
+		stoppedCheck = new Checkbox("Stopped");
+		stoppedCheck.addItemListener(this);
+		main.add(stoppedCheck);
 
+		main.add(new Label("Simulation Speed", Label.CENTER));
+
+		// was max of 140
+		main.add(speedBar = new Scrollbar(Scrollbar.HORIZONTAL, 3, 1, 0, 260));
+		speedBar.addAdjustmentListener(this);
+
+		main.add(new Label("Current Speed", Label.CENTER));
+		currentBar = new Scrollbar(Scrollbar.HORIZONTAL, 50, 1, 1, 100);
+		currentBar.addAdjustmentListener(this);
+		main.add(currentBar);
+
+		main.add(powerLabel = new Label("Power Brightness", Label.CENTER));
+		main.add(powerBar = new Scrollbar(Scrollbar.HORIZONTAL, 50, 1, 1, 100));
+		powerBar.addAdjustmentListener(this);
+		powerBar.setEnabled(false);
+		powerLabel.setEnabled(false);
+	}
+
+	private void createPopupMenu() {
 		mainMenu.add(getClassCheckItem("Add Wire", "WireElm"));
 		mainMenu.add(getClassCheckItem("Add Resistor", "ResistorElm"));
 
@@ -1824,77 +1926,6 @@ public class CirSim extends Frame implements ComponentListener, ActionListener, 
 		otherMenu.add(getCheckItem("Drag Post (" + ctrlMetaKey + "-drag)", "DragPost"));
 
 		mainMenu.add(getCheckItem("Select/Drag Selected (space or Shift-drag)", "Select"));
-		main.add(mainMenu);
-
-		main.add(resetButton = new Button("Reset"));
-		resetButton.addActionListener(this);
-		dumpMatrixButton = new Button("Dump Matrix");
-		// main.add(dumpMatrixButton);
-		dumpMatrixButton.addActionListener(this);
-		stoppedCheck = new Checkbox("Stopped");
-		stoppedCheck.addItemListener(this);
-		main.add(stoppedCheck);
-
-		main.add(new Label("Simulation Speed", Label.CENTER));
-
-		// was max of 140
-		main.add(speedBar = new Scrollbar(Scrollbar.HORIZONTAL, 3, 1, 0, 260));
-		speedBar.addAdjustmentListener(this);
-
-		main.add(new Label("Current Speed", Label.CENTER));
-		currentBar = new Scrollbar(Scrollbar.HORIZONTAL, 50, 1, 1, 100);
-		currentBar.addAdjustmentListener(this);
-		main.add(currentBar);
-
-		main.add(powerLabel = new Label("Power Brightness", Label.CENTER));
-		main.add(powerBar = new Scrollbar(Scrollbar.HORIZONTAL, 50, 1, 1, 100));
-		powerBar.addAdjustmentListener(this);
-		powerBar.setEnabled(false);
-		powerLabel.setEnabled(false);
-
-		main.add(new Label("www.falstad.com"));
-
-		if (useFrame)
-			main.add(new Label(""));
-		Font f = new Font("SansSerif", 0, 10);
-		Label l;
-		l = new Label("Current Circuit:");
-		l.setFont(f);
-		titleLabel = new Label("Label");
-		titleLabel.setFont(f);
-		if (useFrame) {
-			main.add(l);
-			main.add(titleLabel);
-		}
-
-		setGrid();
-		elmList = new Vector<CircuitElm>();
-		// setupList = new Vector();
-		undoStack = new Vector<String>();
-		redoStack = new Vector<String>();
-
-		scopes = new Scope[20];
-		scopeColCount = new int[20];
-		scopeCount = 0;
-
-		random = new Random();
-		cv.setBackground(Color.black);
-		cv.setForeground(Color.lightGray);
-
-		elmMenu = new PopupMenu();
-		elmMenu.add(elmEditMenuItem = getMenuItem("Edit"));
-		elmMenu.add(elmScopeMenuItem = getMenuItem("View in Scope"));
-		elmMenu.add(elmCutMenuItem = getMenuItem("Cut"));
-		elmMenu.add(elmCopyMenuItem = getMenuItem("Copy"));
-		elmMenu.add(elmDeleteMenuItem = getMenuItem("Delete"));
-		main.add(elmMenu);
-
-		scopeMenu = buildScopeMenu(false);
-		transScopeMenu = buildScopeMenu(true);
-
-		getSetupList(circuitsMenu, false);
-		if (useFrame)
-			setMenuBar(mb);
 	}
 
 	@Override
