@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.util.StringTokenizer;
 
 class TimerElm extends ChipElm {
@@ -11,9 +12,7 @@ class TimerElm extends ChipElm {
 	final int N_OUT = 5;
 	final int N_RST = 6;
 
-	int getDefaultFlags() {
-		return FLAG_RESET;
-	}
+	boolean setOut, out;
 
 	public TimerElm(int xx, int yy) {
 		super(xx, yy);
@@ -23,10 +22,63 @@ class TimerElm extends ChipElm {
 		super(xa, ya, xb, yb, f, st);
 	}
 
+	@Override
+	void calculateCurrent() {
+		// need current for V, discharge, control; output current is
+		// calculated for us, and other pins have no current
+		pins[N_VIN].current = (volts[N_CTL] - volts[N_VIN]) / 5000;
+		pins[N_CTL].current = -volts[N_CTL] / 10000 - pins[N_VIN].current;
+		pins[N_DIS].current = (!out && !setOut) ? -volts[N_DIS] / 10 : 0;
+	}
+
+	@Override
+	void doStep() {
+		// if output is low, discharge pin 0. we use a small
+		// resistor because it's easier, and sometimes people tie
+		// the discharge pin to the trigger and threshold pins.
+		// We check setOut to properly emulate the case where
+		// trigger is low and threshold is high.
+		if (!out && !setOut)
+			sim.stampResistor(nodes[N_DIS], 0, 10);
+		// output
+		sim.updateVoltageSource(0, nodes[N_OUT], pins[N_OUT].voltSource, out ? volts[N_VIN] : 0);
+	}
+
+	@Override
 	String getChipName() {
 		return "555 Timer";
 	}
 
+	@Override
+	int getDefaultFlags() {
+		return FLAG_RESET;
+	}
+
+	@Override
+	int getDumpType() {
+		return 165;
+	}
+
+	@Override
+	int getPostCount() {
+		return hasReset() ? 7 : 6;
+	}
+
+	@Override
+	int getVoltageSourceCount() {
+		return 1;
+	}
+
+	boolean hasReset() {
+		return (flags & FLAG_RESET) != 0;
+	}
+
+	@Override
+	boolean nonLinear() {
+		return true;
+	}
+
+	@Override
 	void setupPins() {
 		sizeX = 3;
 		sizeY = 5;
@@ -42,14 +94,7 @@ class TimerElm extends ChipElm {
 		pins[N_RST] = new Pin(1, SIDE_E, "rst");
 	}
 
-	boolean nonLinear() {
-		return true;
-	}
-
-	boolean hasReset() {
-		return (flags & FLAG_RESET) != 0;
-	}
-
+	@Override
 	void stamp() {
 		// stamp voltage divider to put ctl pin at 2/3 V
 		sim.stampResistor(nodes[N_VIN], nodes[N_CTL], 5000);
@@ -60,16 +105,7 @@ class TimerElm extends ChipElm {
 		sim.stampNonLinear(nodes[N_DIS]);
 	}
 
-	void calculateCurrent() {
-		// need current for V, discharge, control; output current is
-		// calculated for us, and other pins have no current
-		pins[N_VIN].current = (volts[N_CTL] - volts[N_VIN]) / 5000;
-		pins[N_CTL].current = -volts[N_CTL] / 10000 - pins[N_VIN].current;
-		pins[N_DIS].current = (!out && !setOut) ? -volts[N_DIS] / 10 : 0;
-	}
-
-	boolean setOut, out;
-
+	@Override
 	void startIteration() {
 		out = volts[N_OUT] > volts[N_VIN] / 2;
 		setOut = false;
@@ -78,29 +114,5 @@ class TimerElm extends ChipElm {
 			setOut = out = true;
 		if (volts[N_THRES] > volts[N_CTL] || (hasReset() && volts[N_RST] < .7))
 			out = false;
-	}
-
-	void doStep() {
-		// if output is low, discharge pin 0. we use a small
-		// resistor because it's easier, and sometimes people tie
-		// the discharge pin to the trigger and threshold pins.
-		// We check setOut to properly emulate the case where
-		// trigger is low and threshold is high.
-		if (!out && !setOut)
-			sim.stampResistor(nodes[N_DIS], 0, 10);
-		// output
-		sim.updateVoltageSource(0, nodes[N_OUT], pins[N_OUT].voltSource, out ? volts[N_VIN] : 0);
-	}
-
-	int getPostCount() {
-		return hasReset() ? 7 : 6;
-	}
-
-	int getVoltageSourceCount() {
-		return 1;
-	}
-
-	int getDumpType() {
-		return 165;
 	}
 }

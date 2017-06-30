@@ -1,14 +1,23 @@
 package com.cas.circuit;
+
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class DiodeElm extends CircuitElm {
-	Diode diode;
 	static final int FLAG_FWDROP = 1;
+	Diode diode;
 	final double defaultdrop = .805904783;
 	double fwdrop, zvoltage;
+
+	final int hs = 8;
+
+	Polygon poly;
+
+	Point cathode[];
 
 	public DiodeElm(int xx, int yy) {
 		super(xx, yy);
@@ -32,46 +41,21 @@ class DiodeElm extends CircuitElm {
 		setup();
 	}
 
-	boolean nonLinear() {
-		return true;
+	@Override
+	void calculateCurrent() {
+		current = diode.calculateCurrent(volts[0] - volts[1]);
 	}
 
-	void setup() {
-		diode.setup(fwdrop, zvoltage);
+	@Override
+	void doStep() {
+		diode.doStep(volts[0] - volts[1]);
 	}
 
-	int getDumpType() {
-		return 'd';
-	}
-
-	String dump() {
-		flags |= FLAG_FWDROP;
-		return super.dump() + " " + fwdrop;
-	}
-
-	final int hs = 8;
-	Polygon poly;
-	Point cathode[];
-
-	void setPoints() {
-		super.setPoints();
-		calcLeads(16);
-		cathode = newPointArray(2);
-		Point pa[] = newPointArray(2);
-		interpPoint2(lead1, lead2, pa[0], pa[1], 0, hs);
-		interpPoint2(lead1, lead2, cathode[0], cathode[1], 1, hs);
-		poly = createPolygon(pa[0], pa[1], lead2);
-	}
-
+	@Override
 	void draw(Graphics g) {
 		drawDiode(g);
 		doDots(g);
 		drawPosts(g);
-	}
-
-	void reset() {
-		diode.reset();
-		volts[0] = volts[1] = curcount = 0;
 	}
 
 	void drawDiode(Graphics g) {
@@ -89,41 +73,75 @@ class DiodeElm extends CircuitElm {
 
 		// draw thing arrow is pointing to
 		setVoltageColor(g, v2);
-		drawThickLine(g, cathode[0], cathode[1]);
+		CircuitUtil.drawThickLine(g, cathode[0], cathode[1]);
 	}
 
-	void stamp() {
-		diode.stamp(nodes[0], nodes[1]);
+	@Override
+	String dump() {
+		flags |= FLAG_FWDROP;
+		return super.dump() + " " + fwdrop;
 	}
 
-	void doStep() {
-		diode.doStep(volts[0] - volts[1]);
+	@Override
+	int getDumpType() {
+		return 'd';
 	}
 
-	void calculateCurrent() {
-		current = diode.calculateCurrent(volts[0] - volts[1]);
-	}
-
-	void getInfo(String arr[]) {
-		arr[0] = "diode";
-		arr[1] = "I = " + getCurrentText(getCurrent());
-		arr[2] = "Vd = " + getVoltageText(getVoltageDiff());
-		arr[3] = "P = " + getUnitText(getPower(), "W");
-		arr[4] = "Vf = " + getVoltageText(fwdrop);
-	}
-
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0)
 			return new EditInfo("Fwd Voltage @ 1A", fwdrop, 10, 1000);
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = "diode";
+		arr[1] = "I = " + CircuitUtil.getCurrentText(getCurrent());
+		arr[2] = "Vd = " + CircuitUtil.getVoltageText(getVoltageDiff());
+		arr[3] = "P = " + CircuitUtil.getUnitText(getPower(), "W");
+		arr[4] = "Vf = " + CircuitUtil.getVoltageText(fwdrop);
+	}
+
+	@Override
+	int getShortcut() {
+		return 'd';
+	}
+
+	@Override
+	boolean nonLinear() {
+		return true;
+	}
+
+	@Override
+	void reset() {
+		diode.reset();
+		volts[0] = volts[1] = curcount = 0;
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		fwdrop = ei.value;
 		setup();
 	}
 
-	int getShortcut() {
-		return 'd';
+	@Override
+	void setPoints() {
+		super.setPoints();
+		calcLeads(16);
+		cathode = newPointArray(2);
+		Point pa[] = newPointArray(2);
+		CircuitUtil.interpPoint2(lead1, lead2, pa[0], pa[1], 0, hs);
+		CircuitUtil.interpPoint2(lead1, lead2, cathode[0], cathode[1], 1, hs);
+		poly = CircuitUtil.createPolygon(pa[0], pa[1], lead2);
+	}
+
+	void setup() {
+		diode.setup(fwdrop, zvoltage);
+	}
+
+	@Override
+	void stamp() {
+		diode.stamp(nodes[0], nodes[1]);
 	}
 }

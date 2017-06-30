@@ -1,10 +1,15 @@
 package com.cas.circuit;
+
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class ResistorElm extends CircuitElm {
 	double resistance;
+
+	Point ps3, ps4;
 
 	public ResistorElm(int xx, int yy) {
 		super(xx, yy);
@@ -16,23 +21,13 @@ class ResistorElm extends CircuitElm {
 		resistance = new Double(st.nextToken()).doubleValue();
 	}
 
-	int getDumpType() {
-		return 'r';
+	@Override
+	void calculateCurrent() {
+		current = (volts[0] - volts[1]) / resistance;
+		// System.out.print(this + " res current set to " + current + "\n");
 	}
 
-	String dump() {
-		return super.dump() + " " + resistance;
-	}
-
-	Point ps3, ps4;
-
-	void setPoints() {
-		super.setPoints();
-		calcLeads(32);
-		ps3 = new Point();
-		ps4 = new Point();
-	}
-
+	@Override
 	void draw(Graphics g) {
 		int segments = 16;
 		int i;
@@ -61,51 +56,46 @@ class ResistorElm extends CircuitElm {
 				}
 				double v = v1 + (v2 - v1) * i / segments;
 				setVoltageColor(g, v);
-				interpPoint(lead1, lead2, ps1, i * segf, hs * ox);
-				interpPoint(lead1, lead2, ps2, (i + 1) * segf, hs * nx);
-				drawThickLine(g, ps1, ps2);
+				CircuitUtil.interpPoint(lead1, lead2, ps1, i * segf, hs * ox);
+				CircuitUtil.interpPoint(lead1, lead2, ps2, (i + 1) * segf, hs * nx);
+				CircuitUtil.drawThickLine(g, ps1, ps2);
 				ox = nx;
 			}
 		} else {
 			// draw rectangle
 			setVoltageColor(g, v1);
-			interpPoint2(lead1, lead2, ps1, ps2, 0, hs);
-			drawThickLine(g, ps1, ps2);
+			CircuitUtil.interpPoint2(lead1, lead2, ps1, ps2, 0, hs);
+			CircuitUtil.drawThickLine(g, ps1, ps2);
 			for (i = 0; i != segments; i++) {
 				double v = v1 + (v2 - v1) * i / segments;
 				setVoltageColor(g, v);
-				interpPoint2(lead1, lead2, ps1, ps2, i * segf, hs);
-				interpPoint2(lead1, lead2, ps3, ps4, (i + 1) * segf, hs);
-				drawThickLine(g, ps1, ps3);
-				drawThickLine(g, ps2, ps4);
+				CircuitUtil.interpPoint2(lead1, lead2, ps1, ps2, i * segf, hs);
+				CircuitUtil.interpPoint2(lead1, lead2, ps3, ps4, (i + 1) * segf, hs);
+				CircuitUtil.drawThickLine(g, ps1, ps3);
+				CircuitUtil.drawThickLine(g, ps2, ps4);
 			}
-			interpPoint2(lead1, lead2, ps1, ps2, 1, hs);
-			drawThickLine(g, ps1, ps2);
+			CircuitUtil.interpPoint2(lead1, lead2, ps1, ps2, 1, hs);
+			CircuitUtil.drawThickLine(g, ps1, ps2);
 		}
 		if (sim.showValuesCheckItem.getState()) {
-			String s = getShortUnitText(resistance, "");
+			String s = CircuitUtil.getShortUnitText(resistance, "");
 			drawValues(g, s, hs);
 		}
 		doDots(g);
 		drawPosts(g);
 	}
 
-	void calculateCurrent() {
-		current = (volts[0] - volts[1]) / resistance;
-		// System.out.print(this + " res current set to " + current + "\n");
+	@Override
+	String dump() {
+		return super.dump() + " " + resistance;
 	}
 
-	void stamp() {
-		sim.stampResistor(nodes[0], nodes[1], resistance);
+	@Override
+	int getDumpType() {
+		return 'r';
 	}
 
-	void getInfo(String arr[]) {
-		arr[0] = "resistor";
-		getBasicInfo(arr);
-		arr[3] = "R = " + getUnitText(resistance, sim.ohmString);
-		arr[4] = "P = " + getUnitText(getPower(), "W");
-	}
-
+	@Override
 	public EditInfo getEditInfo(int n) {
 		// ohmString doesn't work here on linux
 		if (n == 0)
@@ -113,12 +103,35 @@ class ResistorElm extends CircuitElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = "resistor";
+		getBasicInfo(arr);
+		arr[3] = "R = " + CircuitUtil.getUnitText(resistance, CirSim.ohmString);
+		arr[4] = "P = " + CircuitUtil.getUnitText(getPower(), "W");
+	}
+
+	@Override
+	int getShortcut() {
+		return 'r';
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (ei.value > 0)
 			resistance = ei.value;
 	}
 
-	int getShortcut() {
-		return 'r';
+	@Override
+	void setPoints() {
+		super.setPoints();
+		calcLeads(32);
+		ps3 = new Point();
+		ps4 = new Point();
+	}
+
+	@Override
+	void stamp() {
+		sim.stampResistor(nodes[0], nodes[1], resistance);
 	}
 }

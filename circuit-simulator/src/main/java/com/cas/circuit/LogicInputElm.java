@@ -1,9 +1,12 @@
 package com.cas.circuit;
+
 import java.awt.Checkbox;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.util.StringTokenizer;
+
+import com.cas.circuit.util.CircuitUtil;
 
 class LogicInputElm extends SwitchElm {
 	final int FLAG_TERNARY = 1;
@@ -31,32 +34,7 @@ class LogicInputElm extends SwitchElm {
 			posCount = 3;
 	}
 
-	boolean isTernary() {
-		return (flags & FLAG_TERNARY) != 0;
-	}
-
-	boolean isNumeric() {
-		return (flags & (FLAG_TERNARY | FLAG_NUMERIC)) != 0;
-	}
-
-	int getDumpType() {
-		return 'L';
-	}
-
-	String dump() {
-		return super.dump() + " " + hiV + " " + loV;
-	}
-
-	int getPostCount() {
-		return 1;
-	}
-
-	void setPoints() {
-		super.setPoints();
-		lead1 = interpPoint(point1, point2, 1 - 12 / dn);
-		arrowPoly = calcArrowReverse(point1, lead1, 8, 8);
-	}
-
+	@Override
 	void draw(Graphics g) {
 		Font f = new Font("SansSerif", Font.BOLD, 20);
 		g.setFont(f);
@@ -67,45 +45,24 @@ class LogicInputElm extends SwitchElm {
 		setBbox(point1, lead1, 0);
 		drawCenteredText(g, s, x2, y2, true);
 		setVoltageColor(g, volts[0]);
-		drawThickLine(g, point1, lead1);
+		CircuitUtil.drawThickLine(g, point1, lead1);
 		g.fillPolygon(arrowPoly);
 		updateDotCount();
 		drawDots(g, point1, lead1, curcount);
 		drawPosts(g);
 	}
 
-	void setCurrent(int vs, double c) {
-		current = -c;
+	@Override
+	String dump() {
+		return super.dump() + " " + hiV + " " + loV;
 	}
 
-	void stamp() {
-		double v = (position == 0) ? loV : hiV;
-		if (isTernary())
-			v = position * 2.5;
-		sim.stampVoltageSource(0, nodes[0], voltSource, v);
+	@Override
+	int getDumpType() {
+		return 'L';
 	}
 
-	int getVoltageSourceCount() {
-		return 1;
-	}
-
-	double getVoltageDiff() {
-		return volts[0];
-	}
-
-	void getInfo(String arr[]) {
-		arr[0] = "logic input";
-		arr[1] = (position == 0) ? "low" : "high";
-		if (isNumeric())
-			arr[1] = "" + position;
-		arr[1] += " (" + getVoltageText(volts[0]) + ")";
-		arr[2] = "I = " + getCurrentText(getCurrent());
-	}
-
-	boolean hasGroundConnection(int n1) {
-		return true;
-	}
-
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0) {
 			EditInfo ei = new EditInfo("", 0, 0, 0);
@@ -119,6 +76,55 @@ class LogicInputElm extends SwitchElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = "logic input";
+		arr[1] = (position == 0) ? "low" : "high";
+		if (isNumeric())
+			arr[1] = "" + position;
+		arr[1] += " (" + CircuitUtil.getVoltageText(volts[0]) + ")";
+		arr[2] = "I = " + CircuitUtil.getCurrentText(getCurrent());
+	}
+
+	@Override
+	int getPostCount() {
+		return 1;
+	}
+
+	@Override
+	int getShortcut() {
+		return 'i';
+	}
+
+	@Override
+	double getVoltageDiff() {
+		return volts[0];
+	}
+
+	@Override
+	int getVoltageSourceCount() {
+		return 1;
+	}
+
+	@Override
+	boolean hasGroundConnection(int n1) {
+		return true;
+	}
+
+	boolean isNumeric() {
+		return (flags & (FLAG_TERNARY | FLAG_NUMERIC)) != 0;
+	}
+
+	boolean isTernary() {
+		return (flags & FLAG_TERNARY) != 0;
+	}
+
+	@Override
+	void setCurrent(int vs, double c) {
+		current = -c;
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (n == 0)
 			momentary = ei.checkbox.getState();
@@ -128,7 +134,18 @@ class LogicInputElm extends SwitchElm {
 			loV = ei.value;
 	}
 
-	int getShortcut() {
-		return 'i';
+	@Override
+	void setPoints() {
+		super.setPoints();
+		lead1 = CircuitUtil.interpPoint(point1, point2, 1 - 12 / dn);
+		arrowPoly = calcArrowReverse(point1, lead1, 8, 8);
+	}
+
+	@Override
+	void stamp() {
+		double v = (position == 0) ? loV : hiV;
+		if (isTernary())
+			v = position * 2.5;
+		sim.stampVoltageSource(0, nodes[0], voltSource, v);
 	}
 }

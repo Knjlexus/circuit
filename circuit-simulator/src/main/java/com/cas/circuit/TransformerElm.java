@@ -1,15 +1,25 @@
 package com.cas.circuit;
+
+import static java.lang.Math.abs;
+import static java.lang.Math.max;
+
 import java.awt.Checkbox;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class TransformerElm extends CircuitElm {
+	public static final int FLAG_BACK_EULER = 2;
 	double inductance, ratio, couplingCoef;
 	Point ptEnds[], ptCoil[], ptCore[];
 	double current[], curcount[];
 	int width;
-	public static final int FLAG_BACK_EULER = 2;
+
+	double a1, a2, a3, a4;
+
+	double curSourceValue1, curSourceValue2;
 
 	public TransformerElm(int xx, int yy) {
 		super(xx, yy);
@@ -39,6 +49,21 @@ class TransformerElm extends CircuitElm {
 		noDiagonal = true;
 	}
 
+	@Override
+	protected void calculateCurrent() {
+		double voltdiff1 = volts[0] - volts[2];
+		double voltdiff2 = volts[1] - volts[3];
+		current[0] = voltdiff1 * a1 + voltdiff2 * a2 + curSourceValue1;
+		current[1] = voltdiff1 * a3 + voltdiff2 * a4 + curSourceValue2;
+	}
+
+	@Override
+	void doStep() {
+		sim.stampCurrentSource(nodes[0], nodes[2], curSourceValue1);
+		sim.stampCurrentSource(nodes[1], nodes[3], curSourceValue2);
+	}
+
+	@Override
 	void drag(int xx, int yy) {
 		xx = sim.snapGrid(xx);
 		yy = sim.snapGrid(yy);
@@ -50,23 +75,12 @@ class TransformerElm extends CircuitElm {
 		setPoints();
 	}
 
-	int getDumpType() {
-		return 'T';
-	}
-
-	String dump() {
-		return super.dump() + " " + inductance + " " + ratio + " " + current[0] + " " + current[1] + " " + couplingCoef;
-	}
-
-	boolean isTrapezoidal() {
-		return (flags & FLAG_BACK_EULER) == 0;
-	}
-
+	@Override
 	void draw(Graphics g) {
 		int i;
 		for (i = 0; i != 4; i++) {
 			setVoltageColor(g, volts[i]);
-			drawThickLine(g, ptEnds[i], ptCoil[i]);
+			CircuitUtil.drawThickLine(g, ptEnds[i], ptCoil[i]);
 		}
 		for (i = 0; i != 2; i++) {
 			setPowerColor(g, current[i] * (volts[i] - volts[i + 2]));
@@ -74,7 +88,7 @@ class TransformerElm extends CircuitElm {
 		}
 		g.setColor(needsHighlight() ? selectColor : lightGrayColor);
 		for (i = 0; i != 2; i++) {
-			drawThickLine(g, ptCore[i], ptCore[i + 2]);
+			CircuitUtil.drawThickLine(g, ptCore[i], ptCore[i + 2]);
 			curcount[i] = updateDotCount(current[i], curcount[i]);
 		}
 		for (i = 0; i != 2; i++) {
@@ -87,6 +101,88 @@ class TransformerElm extends CircuitElm {
 		setBbox(ptEnds[0], ptEnds[3], 0);
 	}
 
+	@Override
+	String dump() {
+		return super.dump() + " " + inductance + " " + ratio + " " + current[0] + " " + current[1] + " " + couplingCoef;
+	}
+
+	@Override
+	boolean getConnection(int n1, int n2) {
+		if (CircuitUtil.comparePair(n1, n2, 0, 2))
+			return true;
+		if (CircuitUtil.comparePair(n1, n2, 1, 3))
+			return true;
+		return false;
+	}
+
+	@Override
+	int getDumpType() {
+		return 'T';
+	}
+
+	@Override
+	public EditInfo getEditInfo(int n) {
+		if (n == 0)
+			return new EditInfo("Primary Inductance (H)", inductance, .01, 5);
+		if (n == 1)
+			return new EditInfo("Ratio", ratio, 1, 10).setDimensionless();
+		if (n == 2)
+			return new EditInfo("Coupling Coefficient", couplingCoef, 0, 1).setDimensionless();
+		if (n == 3) {
+			EditInfo ei = new EditInfo("", 0, -1, -1);
+			ei.checkbox = new Checkbox("Trapezoidal Approximation", isTrapezoidal());
+			return ei;
+		}
+		return null;
+	}
+
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = "transformer";
+		arr[1] = "L = " + CircuitUtil.getUnitText(inductance, "H");
+		arr[2] = "Ratio = 1:" + ratio;
+		arr[3] = "Vd1 = " + CircuitUtil.getVoltageText(volts[0] - volts[2]);
+		arr[4] = "Vd2 = " + CircuitUtil.getVoltageText(volts[1] - volts[3]);
+		arr[5] = "I1 = " + CircuitUtil.getCurrentText(current[0]);
+		arr[6] = "I2 = " + CircuitUtil.getCurrentText(current[1]);
+	}
+
+	@Override
+	Point getPost(int n) {
+		return ptEnds[n];
+	}
+
+	@Override
+	int getPostCount() {
+		return 4;
+	}
+
+	boolean isTrapezoidal() {
+		return (flags & FLAG_BACK_EULER) == 0;
+	}
+
+	@Override
+	void reset() {
+		current[0] = current[1] = volts[0] = volts[1] = volts[2] = volts[3] = curcount[0] = curcount[1] = 0;
+	}
+
+	@Override
+	public void setEditValue(int n, EditInfo ei) {
+		if (n == 0)
+			inductance = ei.value;
+		if (n == 1)
+			ratio = ei.value;
+		if (n == 2 && ei.value > 0 && ei.value < 1)
+			couplingCoef = ei.value;
+		if (n == 3) {
+			if (ei.checkbox.getState())
+				flags &= ~Inductor.FLAG_BACK_EULER;
+			else
+				flags |= Inductor.FLAG_BACK_EULER;
+		}
+	}
+
+	@Override
 	void setPoints() {
 		super.setPoints();
 		point2.y = point1.y;
@@ -95,33 +191,20 @@ class TransformerElm extends CircuitElm {
 		ptCore = newPointArray(4);
 		ptEnds[0] = point1;
 		ptEnds[1] = point2;
-		interpPoint(point1, point2, ptEnds[2], 0, -dsign * width);
-		interpPoint(point1, point2, ptEnds[3], 1, -dsign * width);
+		CircuitUtil.interpPoint(point1, point2, ptEnds[2], 0, -dsign * width);
+		CircuitUtil.interpPoint(point1, point2, ptEnds[3], 1, -dsign * width);
 		double ce = .5 - 12 / dn;
 		double cd = .5 - 2 / dn;
 		int i;
 		for (i = 0; i != 4; i += 2) {
-			interpPoint(ptEnds[i], ptEnds[i + 1], ptCoil[i], ce);
-			interpPoint(ptEnds[i], ptEnds[i + 1], ptCoil[i + 1], 1 - ce);
-			interpPoint(ptEnds[i], ptEnds[i + 1], ptCore[i], cd);
-			interpPoint(ptEnds[i], ptEnds[i + 1], ptCore[i + 1], 1 - cd);
+			CircuitUtil.interpPoint(ptEnds[i], ptEnds[i + 1], ptCoil[i], ce);
+			CircuitUtil.interpPoint(ptEnds[i], ptEnds[i + 1], ptCoil[i + 1], 1 - ce);
+			CircuitUtil.interpPoint(ptEnds[i], ptEnds[i + 1], ptCore[i], cd);
+			CircuitUtil.interpPoint(ptEnds[i], ptEnds[i + 1], ptCore[i + 1], 1 - cd);
 		}
 	}
 
-	Point getPost(int n) {
-		return ptEnds[n];
-	}
-
-	int getPostCount() {
-		return 4;
-	}
-
-	void reset() {
-		current[0] = current[1] = volts[0] = volts[1] = volts[2] = volts[3] = curcount[0] = curcount[1] = 0;
-	}
-
-	double a1, a2, a3, a4;
-
+	@Override
 	void stamp() {
 		// equations for transformer:
 		// v1 = L1 di1/dt + M di2/dt
@@ -170,6 +253,7 @@ class TransformerElm extends CircuitElm {
 		sim.stampRightSide(nodes[3]);
 	}
 
+	@Override
 	void startIteration() {
 		double voltdiff1 = volts[0] - volts[2];
 		double voltdiff2 = volts[1] - volts[3];
@@ -179,68 +263,6 @@ class TransformerElm extends CircuitElm {
 		} else {
 			curSourceValue1 = current[0];
 			curSourceValue2 = current[1];
-		}
-	}
-
-	double curSourceValue1, curSourceValue2;
-
-	void doStep() {
-		sim.stampCurrentSource(nodes[0], nodes[2], curSourceValue1);
-		sim.stampCurrentSource(nodes[1], nodes[3], curSourceValue2);
-	}
-
-	void calculateCurrent() {
-		double voltdiff1 = volts[0] - volts[2];
-		double voltdiff2 = volts[1] - volts[3];
-		current[0] = voltdiff1 * a1 + voltdiff2 * a2 + curSourceValue1;
-		current[1] = voltdiff1 * a3 + voltdiff2 * a4 + curSourceValue2;
-	}
-
-	void getInfo(String arr[]) {
-		arr[0] = "transformer";
-		arr[1] = "L = " + getUnitText(inductance, "H");
-		arr[2] = "Ratio = 1:" + ratio;
-		arr[3] = "Vd1 = " + getVoltageText(volts[0] - volts[2]);
-		arr[4] = "Vd2 = " + getVoltageText(volts[1] - volts[3]);
-		arr[5] = "I1 = " + getCurrentText(current[0]);
-		arr[6] = "I2 = " + getCurrentText(current[1]);
-	}
-
-	boolean getConnection(int n1, int n2) {
-		if (comparePair(n1, n2, 0, 2))
-			return true;
-		if (comparePair(n1, n2, 1, 3))
-			return true;
-		return false;
-	}
-
-	public EditInfo getEditInfo(int n) {
-		if (n == 0)
-			return new EditInfo("Primary Inductance (H)", inductance, .01, 5);
-		if (n == 1)
-			return new EditInfo("Ratio", ratio, 1, 10).setDimensionless();
-		if (n == 2)
-			return new EditInfo("Coupling Coefficient", couplingCoef, 0, 1).setDimensionless();
-		if (n == 3) {
-			EditInfo ei = new EditInfo("", 0, -1, -1);
-			ei.checkbox = new Checkbox("Trapezoidal Approximation", isTrapezoidal());
-			return ei;
-		}
-		return null;
-	}
-
-	public void setEditValue(int n, EditInfo ei) {
-		if (n == 0)
-			inductance = ei.value;
-		if (n == 1)
-			ratio = ei.value;
-		if (n == 2 && ei.value > 0 && ei.value < 1)
-			couplingCoef = ei.value;
-		if (n == 3) {
-			if (ei.checkbox.getState())
-				flags &= ~Inductor.FLAG_BACK_EULER;
-			else
-				flags |= Inductor.FLAG_BACK_EULER;
 		}
 	}
 }

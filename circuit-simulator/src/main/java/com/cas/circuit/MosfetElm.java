@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,12 +7,30 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class MosfetElm extends CircuitElm {
 	int pnp;
 	int FLAG_PNP = 1;
 	int FLAG_SHOWVT = 2;
 	int FLAG_DIGITAL = 4;
 	double vt;
+
+	final int hs = 16;
+
+	int pcircler;
+
+	Point src[], drn[], gate[], pcircle;
+
+	Polygon arrowPoly;
+
+	double lastv1, lastv2;
+
+	double ids;
+
+	int mode = 0;
+
+	double gm = 0;
 
 	MosfetElm(int xx, int yy, boolean pnpflag) {
 		super(xx, yy);
@@ -32,154 +51,12 @@ class MosfetElm extends CircuitElm {
 		}
 	}
 
-	double getDefaultThreshold() {
-		return 1.5;
-	}
-
-	double getBeta() {
-		return .02;
-	}
-
-	boolean nonLinear() {
+	@Override
+	protected boolean canViewInScope() {
 		return true;
 	}
 
-	boolean drawDigital() {
-		return (flags & FLAG_DIGITAL) != 0;
-	}
-
-	void reset() {
-		lastv1 = lastv2 = volts[0] = volts[1] = volts[2] = curcount = 0;
-	}
-
-	String dump() {
-		return super.dump() + " " + vt;
-	}
-
-	int getDumpType() {
-		return 'f';
-	}
-
-	final int hs = 16;
-
-	void draw(Graphics g) {
-		setBbox(point1, point2, hs);
-		setVoltageColor(g, volts[1]);
-		drawThickLine(g, src[0], src[1]);
-		setVoltageColor(g, volts[2]);
-		drawThickLine(g, drn[0], drn[1]);
-		int segments = 6;
-		int i;
-		setPowerColor(g, true);
-		double segf = 1. / segments;
-		for (i = 0; i != segments; i++) {
-			double v = volts[1] + (volts[2] - volts[1]) * i / segments;
-			setVoltageColor(g, v);
-			interpPoint(src[1], drn[1], ps1, i * segf);
-			interpPoint(src[1], drn[1], ps2, (i + 1) * segf);
-			drawThickLine(g, ps1, ps2);
-		}
-		setVoltageColor(g, volts[1]);
-		drawThickLine(g, src[1], src[2]);
-		setVoltageColor(g, volts[2]);
-		drawThickLine(g, drn[1], drn[2]);
-		if (!drawDigital()) {
-			setVoltageColor(g, pnp == 1 ? volts[1] : volts[2]);
-			g.fillPolygon(arrowPoly);
-		}
-		if (sim.powerCheckItem.getState())
-			g.setColor(Color.gray);
-		setVoltageColor(g, volts[0]);
-		drawThickLine(g, point1, gate[1]);
-		drawThickLine(g, gate[0], gate[2]);
-		if (drawDigital() && pnp == -1)
-			drawThickCircle(g, pcircle.x, pcircle.y, pcircler);
-		if ((flags & FLAG_SHOWVT) != 0) {
-			String s = "" + (vt * pnp);
-			g.setColor(whiteColor);
-			g.setFont(unitsFont);
-			drawCenteredText(g, s, x2 + 2, y2, false);
-		}
-		if ((needsHighlight() || sim.dragElm == this) && dy == 0) {
-			g.setColor(Color.white);
-			g.setFont(unitsFont);
-			int ds = sign(dx);
-			g.drawString("G", gate[1].x - 10 * ds, gate[1].y - 5);
-			g.drawString(pnp == -1 ? "D" : "S", src[0].x - 3 + 9 * ds, src[0].y + 4); // x+6
-																						// if
-																						// ds=1,
-																						// -12
-																						// if
-																						// -1
-			g.drawString(pnp == -1 ? "S" : "D", drn[0].x - 3 + 9 * ds, drn[0].y + 4);
-		}
-		curcount = updateDotCount(-ids, curcount);
-		drawDots(g, src[0], src[1], curcount);
-		drawDots(g, src[1], drn[1], curcount);
-		drawDots(g, drn[1], drn[0], curcount);
-		drawPosts(g);
-	}
-
-	Point getPost(int n) {
-		return (n == 0) ? point1 : (n == 1) ? src[0] : drn[0];
-	}
-
-	double getCurrent() {
-		return ids;
-	}
-
-	double getPower() {
-		return ids * (volts[2] - volts[1]);
-	}
-
-	int getPostCount() {
-		return 3;
-	}
-
-	int pcircler;
-	Point src[], drn[], gate[], pcircle;
-	Polygon arrowPoly;
-
-	void setPoints() {
-		super.setPoints();
-
-		// find the coordinates of the various points we need to draw
-		// the MOSFET.
-		int hs2 = hs * dsign;
-		src = newPointArray(3);
-		drn = newPointArray(3);
-		interpPoint2(point1, point2, src[0], drn[0], 1, -hs2);
-		interpPoint2(point1, point2, src[1], drn[1], 1 - 22 / dn, -hs2);
-		interpPoint2(point1, point2, src[2], drn[2], 1 - 22 / dn, -hs2 * 4 / 3);
-
-		gate = newPointArray(3);
-		interpPoint2(point1, point2, gate[0], gate[2], 1 - 28 / dn, hs2 / 2); // was
-																				// 1-20/dn
-		interpPoint(gate[0], gate[2], gate[1], .5);
-
-		if (!drawDigital()) {
-			if (pnp == 1)
-				arrowPoly = calcArrow(src[1], src[0], 10, 4);
-			else
-				arrowPoly = calcArrow(drn[0], drn[1], 12, 5);
-		} else if (pnp == -1) {
-			interpPoint(point1, point2, gate[1], 1 - 36 / dn);
-			int dist = (dsign < 0) ? 32 : 31;
-			pcircle = interpPoint(point1, point2, 1 - dist / dn);
-			pcircler = 3;
-		}
-	}
-
-	double lastv1, lastv2;
-	double ids;
-	int mode = 0;
-	double gm = 0;
-
-	void stamp() {
-		sim.stampNonLinear(nodes[1]);
-		sim.stampNonLinear(nodes[2]);
-	}
-
+	@Override
 	void doStep() {
 		double vs[] = new double[3];
 		vs[0] = volts[0];
@@ -256,32 +133,98 @@ class MosfetElm extends CircuitElm {
 			ids = -ids;
 	}
 
-	void getFetInfo(String arr[], String n) {
-		arr[0] = ((pnp == -1) ? "p-" : "n-") + n;
-		arr[0] += " (Vt = " + getVoltageText(pnp * vt) + ")";
-		arr[1] = ((pnp == 1) ? "Ids = " : "Isd = ") + getCurrentText(ids);
-		arr[2] = "Vgs = " + getVoltageText(volts[0] - volts[pnp == -1 ? 2 : 1]);
-		arr[3] = ((pnp == 1) ? "Vds = " : "Vsd = ") + getVoltageText(volts[2] - volts[1]);
-		arr[4] = (mode == 0) ? "off" : (mode == 1) ? "linear" : "saturation";
-		arr[5] = "gm = " + getUnitText(gm, "A/V");
+	@Override
+	void draw(Graphics g) {
+		setBbox(point1, point2, hs);
+		setVoltageColor(g, volts[1]);
+		CircuitUtil.drawThickLine(g, src[0], src[1]);
+		setVoltageColor(g, volts[2]);
+		CircuitUtil.drawThickLine(g, drn[0], drn[1]);
+		int segments = 6;
+		int i;
+		setPowerColor(g, true);
+		double segf = 1. / segments;
+		for (i = 0; i != segments; i++) {
+			double v = volts[1] + (volts[2] - volts[1]) * i / segments;
+			setVoltageColor(g, v);
+			CircuitUtil.interpPoint(src[1], drn[1], ps1, i * segf);
+			CircuitUtil.interpPoint(src[1], drn[1], ps2, (i + 1) * segf);
+			CircuitUtil.drawThickLine(g, ps1, ps2);
+		}
+		setVoltageColor(g, volts[1]);
+		CircuitUtil.drawThickLine(g, src[1], src[2]);
+		setVoltageColor(g, volts[2]);
+		CircuitUtil.drawThickLine(g, drn[1], drn[2]);
+		if (!drawDigital()) {
+			setVoltageColor(g, pnp == 1 ? volts[1] : volts[2]);
+			g.fillPolygon(arrowPoly);
+		}
+		if (sim.powerCheckItem.getState())
+			g.setColor(Color.gray);
+		setVoltageColor(g, volts[0]);
+		CircuitUtil.drawThickLine(g, point1, gate[1]);
+		CircuitUtil.drawThickLine(g, gate[0], gate[2]);
+		if (drawDigital() && pnp == -1)
+			CircuitUtil.drawThickCircle(g, pcircle.x, pcircle.y, pcircler);
+		if ((flags & FLAG_SHOWVT) != 0) {
+			String s = "" + (vt * pnp);
+			g.setColor(whiteColor);
+			g.setFont(unitsFont);
+			drawCenteredText(g, s, x2 + 2, y2, false);
+		}
+		if ((needsHighlight() || sim.dragElm == this) && dy == 0) {
+			g.setColor(Color.white);
+			g.setFont(unitsFont);
+			int ds = CircuitUtil.sign(dx);
+			g.drawString("G", gate[1].x - 10 * ds, gate[1].y - 5);
+			g.drawString(pnp == -1 ? "D" : "S", src[0].x - 3 + 9 * ds, src[0].y + 4); // x+6
+																						// if
+																						// ds=1,
+																						// -12
+																						// if
+																						// -1
+			g.drawString(pnp == -1 ? "S" : "D", drn[0].x - 3 + 9 * ds, drn[0].y + 4);
+		}
+		curcount = updateDotCount(-ids, curcount);
+		drawDots(g, src[0], src[1], curcount);
+		drawDots(g, src[1], drn[1], curcount);
+		drawDots(g, drn[1], drn[0], curcount);
+		drawPosts(g);
 	}
 
-	void getInfo(String arr[]) {
-		getFetInfo(arr, "MOSFET");
+	boolean drawDigital() {
+		return (flags & FLAG_DIGITAL) != 0;
 	}
 
-	boolean canViewInScope() {
-		return true;
+	@Override
+	String dump() {
+		return super.dump() + " " + vt;
 	}
 
-	double getVoltageDiff() {
-		return volts[2] - volts[1];
+	double getBeta() {
+		return .02;
 	}
 
+	@Override
 	boolean getConnection(int n1, int n2) {
 		return !(n1 == 0 || n2 == 0);
 	}
 
+	@Override
+	double getCurrent() {
+		return ids;
+	}
+
+	double getDefaultThreshold() {
+		return 1.5;
+	}
+
+	@Override
+	int getDumpType() {
+		return 'f';
+	}
+
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0)
 			return new EditInfo("Threshold Voltage", pnp * vt, .01, 5);
@@ -294,6 +237,52 @@ class MosfetElm extends CircuitElm {
 		return null;
 	}
 
+	void getFetInfo(String arr[], String n) {
+		arr[0] = ((pnp == -1) ? "p-" : "n-") + n;
+		arr[0] += " (Vt = " + CircuitUtil.getVoltageText(pnp * vt) + ")";
+		arr[1] = ((pnp == 1) ? "Ids = " : "Isd = ") + CircuitUtil.getCurrentText(ids);
+		arr[2] = "Vgs = " + CircuitUtil.getVoltageText(volts[0] - volts[pnp == -1 ? 2 : 1]);
+		arr[3] = ((pnp == 1) ? "Vds = " : "Vsd = ") + CircuitUtil.getVoltageText(volts[2] - volts[1]);
+		arr[4] = (mode == 0) ? "off" : (mode == 1) ? "linear" : "saturation";
+		arr[5] = "gm = " + CircuitUtil.getUnitText(gm, "A/V");
+	}
+
+	@Override
+	void getInfo(String arr[]) {
+		getFetInfo(arr, "MOSFET");
+	}
+
+	@Override
+	Point getPost(int n) {
+		return (n == 0) ? point1 : (n == 1) ? src[0] : drn[0];
+	}
+
+	@Override
+	int getPostCount() {
+		return 3;
+	}
+
+	@Override
+	double getPower() {
+		return ids * (volts[2] - volts[1]);
+	}
+
+	@Override
+	double getVoltageDiff() {
+		return volts[2] - volts[1];
+	}
+
+	@Override
+	boolean nonLinear() {
+		return true;
+	}
+
+	@Override
+	void reset() {
+		lastv1 = lastv2 = volts[0] = volts[1] = volts[2] = curcount = 0;
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (n == 0)
 			vt = pnp * ei.value;
@@ -301,5 +290,41 @@ class MosfetElm extends CircuitElm {
 			flags = (ei.checkbox.getState()) ? (flags | FLAG_DIGITAL) : (flags & ~FLAG_DIGITAL);
 			setPoints();
 		}
+	}
+
+	@Override
+	void setPoints() {
+		super.setPoints();
+
+		// find the coordinates of the various points we need to draw
+		// the MOSFET.
+		int hs2 = hs * dsign;
+		src = newPointArray(3);
+		drn = newPointArray(3);
+		CircuitUtil.interpPoint2(point1, point2, src[0], drn[0], 1, -hs2);
+		CircuitUtil.interpPoint2(point1, point2, src[1], drn[1], 1 - 22 / dn, -hs2);
+		CircuitUtil.interpPoint2(point1, point2, src[2], drn[2], 1 - 22 / dn, -hs2 * 4 / 3);
+
+		gate = newPointArray(3);
+		CircuitUtil.interpPoint2(point1, point2, gate[0], gate[2], 1 - 28 / dn, hs2 / 2); // was 1-20/dn
+		CircuitUtil.interpPoint(gate[0], gate[2], gate[1], .5);
+
+		if (!drawDigital()) {
+			if (pnp == 1)
+				arrowPoly = calcArrow(src[1], src[0], 10, 4);
+			else
+				arrowPoly = calcArrow(drn[0], drn[1], 12, 5);
+		} else if (pnp == -1) {
+			CircuitUtil.interpPoint(point1, point2, gate[1], 1 - 36 / dn);
+			int dist = (dsign < 0) ? 32 : 31;
+			pcircle = CircuitUtil.interpPoint(point1, point2, 1 - dist / dn);
+			pcircler = 3;
+		}
+	}
+
+	@Override
+	void stamp() {
+		sim.stampNonLinear(nodes[1]);
+		sim.stampNonLinear(nodes[2]);
 	}
 }

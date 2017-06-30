@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.awt.Button;
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -32,22 +33,13 @@ class ImportExportClipboardDialog extends Dialog implements ImportExportDialog, 
 		importButton.addActionListener(this);
 		add(closeButton = new Button("Close"));
 		closeButton.addActionListener(this);
-		Point x = cframe.main.getLocationOnScreen();
+		Point x = CirSim.main.getLocationOnScreen();
 		resize(400, 300);
 		Dimension d = getSize();
 		setLocation(x.x + (cframe.winSize.width - d.width) / 2, x.y + (cframe.winSize.height - d.height) / 2);
 	}
 
-	public void setDump(String dump) {
-		text.setText(dump);
-	}
-
-	public void execute() {
-		if (type == Action.EXPORT)
-			text.selectAll();
-		setVisible(true);
-	}
-
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		int i;
 		Object src = e.getSource();
@@ -65,14 +57,27 @@ class ImportExportClipboardDialog extends Dialog implements ImportExportDialog, 
 			setVisible(false);
 	}
 
+	@Override
+	public void execute() {
+		if (type == Action.EXPORT)
+			text.selectAll();
+		setVisible(true);
+	}
+
+	@Override
 	public boolean handleEvent(Event ev) {
 		if (ev.id == Event.WINDOW_DESTROY) {
 			CirSim.main.requestFocus();
 			setVisible(false);
-			cframe.impDialog = null;
+			CirSim.impDialog = null;
 			return true;
 		}
 		return super.handleEvent(ev);
+	}
+
+	@Override
+	public void setDump(String dump) {
+		text.setText(dump);
 	}
 
 }

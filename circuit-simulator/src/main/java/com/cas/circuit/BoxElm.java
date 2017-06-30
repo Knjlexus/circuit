@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.StringTokenizer;
@@ -26,19 +27,13 @@ class BoxElm extends GraphicElm {
 		setBbox(x, y, x2, y2);
 	}
 
-	String dump() {
-		return super.dump();
-	}
-
-	int getDumpType() {
-		return 'b';
-	}
-
+	@Override
 	void drag(int xx, int yy) {
 		x = xx;
 		y = yy;
 	}
 
+	@Override
 	void draw(Graphics g) {
 		// g.setColor(needsHighlight() ? selectColor : lightGrayColor);
 		g.setColor(needsHighlight() ? selectColor : Color.GRAY);
@@ -53,18 +48,31 @@ class BoxElm extends GraphicElm {
 			g.fillRect(x2, y2, x - x2, y - y2);
 	}
 
+	@Override
+	String dump() {
+		return super.dump();
+	}
+
+	@Override
+	int getDumpType() {
+		return 'b';
+	}
+
+	@Override
 	public EditInfo getEditInfo(int n) {
 		return null;
 	}
 
-	public void setEditValue(int n, EditInfo ei) {
-	}
-
+	@Override
 	void getInfo(String arr[]) {
 	}
 
 	@Override
 	int getShortcut() {
 		return 0;
+	}
+
+	@Override
+	public void setEditValue(int n, EditInfo ei) {
 	}
 }

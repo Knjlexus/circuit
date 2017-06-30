@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 public class ImportExportDialogFactory {
 	public static ImportExportDialog Create(CirSim f, ImportExportDialog.Action type) {
 		if (f.applet != null) {

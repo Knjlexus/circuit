@@ -10,11 +10,15 @@ import java.awt.Point;
 import java.awt.Scrollbar;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class ThermistorElm extends CircuitElm {
 	double minresistance, maxresistance;
 	double resistance;
 	Scrollbar slider;
 	Label label;
+
+	Point ps3, ps4;
 
 	public ThermistorElm(int xx, int yy) {
 		super(xx, yy);
@@ -30,39 +34,31 @@ class ThermistorElm extends CircuitElm {
 		createSlider();
 	}
 
-	boolean nonLinear() {
-		return true;
+	@Override
+	void calculateCurrent() {
+		double vd = volts[0] - volts[1];
+		current = vd / resistance;
 	}
-
-	int getDumpType() {
-		return 188;
-	}
-
-	String dump() {
-		return super.dump() + " " + minresistance + " " + maxresistance;
-	}
-
-	Point ps3, ps4;
 
 	void createSlider() {
-		sim.main.add(label = new Label("Temperature", Label.CENTER));
+		CirSim.main.add(label = new Label("Temperature", Label.CENTER));
 		int value = 50;
-		sim.main.add(slider = new Scrollbar(Scrollbar.HORIZONTAL, value, 1, 0, 101));
-		sim.main.validate();
+		CirSim.main.add(slider = new Scrollbar(Scrollbar.HORIZONTAL, value, 1, 0, 101));
+		CirSim.main.validate();
 	}
 
-	void setPoints() {
-		super.setPoints();
-		calcLeads(32);
-		ps3 = new Point();
-		ps4 = new Point();
-	}
-
+	@Override
 	void delete() {
-		sim.main.remove(label);
-		sim.main.remove(slider);
+		CirSim.main.remove(label);
+		CirSim.main.remove(slider);
 	}
 
+	@Override
+	void doStep() {
+		sim.stampResistor(nodes[0], nodes[1], resistance);
+	}
+
+	@Override
 	void draw(Graphics g) {
 		int i;
 		double v1 = volts[0];
@@ -75,36 +71,17 @@ class ThermistorElm extends CircuitElm {
 		drawPosts(g);
 	}
 
-	void calculateCurrent() {
-		double vd = volts[0] - volts[1];
-		current = vd / resistance;
+	@Override
+	String dump() {
+		return super.dump() + " " + minresistance + " " + maxresistance;
 	}
 
-	void startIteration() {
-		double vd = volts[0] - volts[1];
-		// FIXME set resistance as appropriate, using slider.getValue()
-		resistance = minresistance;
-		// System.out.print(this + " res current set to " + current + "\n");
+	@Override
+	int getDumpType() {
+		return 188;
 	}
 
-	void doStep() {
-		sim.stampResistor(nodes[0], nodes[1], resistance);
-	}
-
-	void stamp() {
-		sim.stampNonLinear(nodes[0]);
-		sim.stampNonLinear(nodes[1]);
-	}
-
-	void getInfo(String arr[]) {
-		// FIXME
-		arr[0] = "spark gap";
-		getBasicInfo(arr);
-		arr[3] = "R = " + getUnitText(resistance, sim.ohmString);
-		arr[4] = "Ron = " + getUnitText(minresistance, sim.ohmString);
-		arr[5] = "Roff = " + getUnitText(maxresistance, sim.ohmString);
-	}
-
+	@Override
 	public EditInfo getEditInfo(int n) {
 		// ohmString doesn't work here on linux
 		if (n == 0)
@@ -114,10 +91,48 @@ class ThermistorElm extends CircuitElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		// FIXME
+		arr[0] = "spark gap";
+		getBasicInfo(arr);
+		arr[3] = "R = " + CircuitUtil.getUnitText(resistance, CirSim.ohmString);
+		arr[4] = "Ron = " + CircuitUtil.getUnitText(minresistance, CirSim.ohmString);
+		arr[5] = "Roff = " + CircuitUtil.getUnitText(maxresistance, CirSim.ohmString);
+	}
+
+	@Override
+	boolean nonLinear() {
+		return true;
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (ei.value > 0 && n == 0)
 			minresistance = ei.value;
 		if (ei.value > 0 && n == 1)
 			maxresistance = ei.value;
+	}
+
+	@Override
+	void setPoints() {
+		super.setPoints();
+		calcLeads(32);
+		ps3 = new Point();
+		ps4 = new Point();
+	}
+
+	@Override
+	void stamp() {
+		sim.stampNonLinear(nodes[0]);
+		sim.stampNonLinear(nodes[1]);
+	}
+
+	@Override
+	void startIteration() {
+		double vd = volts[0] - volts[1];
+		// FIXME set resistance as appropriate, using slider.getValue()
+		resistance = minresistance;
+		// System.out.print(this + " res current set to " + current + "\n");
 	}
 }

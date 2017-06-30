@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.awt.Button;
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -15,16 +16,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-interface Editable {
-	EditInfo getEditInfo(int n);
-
-	void setEditValue(int n, EditInfo ei);
-}
-
-class EditDialog extends Dialog implements AdjustmentListener, ActionListener, ItemListener {
+public class EditDialog extends Dialog implements AdjustmentListener, ActionListener, ItemListener {
 	Editable elm;
 	CirSim cframe;
 	Button applyButton, okButton;
@@ -39,7 +33,7 @@ class EditDialog extends Dialog implements AdjustmentListener, ActionListener, I
 		elm = ce;
 		setLayout(new EditDialogLayout());
 		einfos = new EditInfo[10];
-		noCommaFormat = DecimalFormat.getInstance();
+		noCommaFormat = NumberFormat.getInstance();
 		noCommaFormat.setMaximumFractionDigits(10);
 		noCommaFormat.setGroupingUsed(false);
 		int i;
@@ -72,38 +66,126 @@ class EditDialog extends Dialog implements AdjustmentListener, ActionListener, I
 		applyButton.addActionListener(this);
 		add(okButton = new Button("OK"));
 		okButton.addActionListener(this);
-		Point x = cframe.main.getLocationOnScreen();
+		Point x = CirSim.main.getLocationOnScreen();
 		Dimension d = getSize();
 		setLocation(x.x + (cframe.winSize.width - d.width) / 2, x.y + (cframe.winSize.height - d.height) / 2);
 		addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent we) {
 				closeDialog();
 			}
 		});
 	}
 
-	String unitString(EditInfo ei) {
-		double v = ei.value;
-		double va = Math.abs(v);
-		if (ei.dimensionless)
-			return noCommaFormat.format(v);
-		if (v == 0)
-			return "0";
-		if (va < 1e-9)
-			return noCommaFormat.format(v * 1e12) + "p";
-		if (va < 1e-6)
-			return noCommaFormat.format(v * 1e9) + "n";
-		if (va < 1e-3)
-			return noCommaFormat.format(v * 1e6) + "u";
-		if (va < 1 && !ei.forceLargeM)
-			return noCommaFormat.format(v * 1e3) + "m";
-		if (va < 1e3)
-			return noCommaFormat.format(v);
-		if (va < 1e6)
-			return noCommaFormat.format(v * 1e-3) + "k";
-		if (va < 1e9)
-			return noCommaFormat.format(v * 1e-6) + "M";
-		return noCommaFormat.format(v * 1e-9) + "G";
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		int i;
+		Object src = e.getSource();
+		for (i = 0; i != einfocount; i++) {
+			EditInfo ei = einfos[i];
+			if (src == ei.textf) {
+				if (ei.text == null) {
+					try {
+						double d = parseUnits(ei);
+						ei.value = d;
+					} catch (Exception ex) {
+						/* ignored */ }
+				}
+				elm.setEditValue(i, ei);
+				if (ei.text == null)
+					setBar(ei);
+				cframe.needAnalyze();
+			}
+		}
+		if (e.getSource() == okButton) {
+			apply();
+			closeDialog();
+		}
+		if (e.getSource() == applyButton)
+			apply();
+	}
+
+	@Override
+	public void adjustmentValueChanged(AdjustmentEvent e) {
+		Object src = e.getSource();
+		int i;
+		for (i = 0; i != einfocount; i++) {
+			EditInfo ei = einfos[i];
+			if (ei.bar == src) {
+				double v = ei.bar.getValue() / 1000.;
+				if (v < 0)
+					v = 0;
+				if (v > 1)
+					v = 1;
+				ei.value = (ei.maxval - ei.minval) * v + ei.minval;
+				/*
+				 * if (ei.maxval-ei.minval > 100) ei.value =
+				 * Math.round(ei.value); else ei.value =
+				 * Math.round(ei.value*100)/100.;
+				 */
+				ei.value = Math.round(ei.value / ei.minval) * ei.minval;
+				elm.setEditValue(i, ei);
+				ei.textf.setText(unitString(ei));
+				cframe.needAnalyze();
+			}
+		}
+	}
+
+	void apply() {
+		for (int i = 0; i != einfocount; i++) {
+			EditInfo ei = einfos[i];
+			if (ei.textf == null)
+				continue;
+			if (ei.text == null) {
+				try {
+					double d = parseUnits(ei);
+					ei.value = d;
+				} catch (Exception ex) {
+					/* ignored */
+				}
+			}
+			elm.setEditValue(i, ei);
+			if (ei.text == null) {
+				setBar(ei);
+			}
+		}
+		cframe.needAnalyze();
+	}
+
+	protected void closeDialog() {
+		CirSim.main.requestFocus();
+		setVisible(false);
+		CirSim.editDialog = null;
+	}
+
+	@Override
+	public boolean handleEvent(Event ev) {
+		if (ev.id == Event.WINDOW_DESTROY) {
+			closeDialog();
+			return true;
+		}
+		return super.handleEvent(ev);
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		Object src = e.getItemSelectable();
+		boolean changed = false;
+		for (int i = 0; i != einfocount; i++) {
+			EditInfo ei = einfos[i];
+			if (ei.choice == src || ei.checkbox == src) {
+				elm.setEditValue(i, ei);
+				if (ei.newDialog) {
+					changed = true;
+				}
+				cframe.needAnalyze();
+			}
+		}
+		if (changed) {
+			setVisible(false);
+			CirSim.editDialog = new EditDialog(elm, cframe);
+			CirSim.editDialog.show();
+		}
 	}
 
 	double parseUnits(EditInfo ei) throws java.text.ParseException {
@@ -148,114 +230,32 @@ class EditDialog extends Dialog implements AdjustmentListener, ActionListener, I
 		return noCommaFormat.parse(s).doubleValue() * mult;
 	}
 
-	void apply() {
-		int i;
-		for (i = 0; i != einfocount; i++) {
-			EditInfo ei = einfos[i];
-			if (ei.textf == null)
-				continue;
-			if (ei.text == null) {
-				try {
-					double d = parseUnits(ei);
-					ei.value = d;
-				} catch (Exception ex) {
-					/* ignored */ }
-			}
-			elm.setEditValue(i, ei);
-			if (ei.text == null)
-				setBar(ei);
-		}
-		cframe.needAnalyze();
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		int i;
-		Object src = e.getSource();
-		for (i = 0; i != einfocount; i++) {
-			EditInfo ei = einfos[i];
-			if (src == ei.textf) {
-				if (ei.text == null) {
-					try {
-						double d = parseUnits(ei);
-						ei.value = d;
-					} catch (Exception ex) {
-						/* ignored */ }
-				}
-				elm.setEditValue(i, ei);
-				if (ei.text == null)
-					setBar(ei);
-				cframe.needAnalyze();
-			}
-		}
-		if (e.getSource() == okButton) {
-			apply();
-			closeDialog();
-		}
-		if (e.getSource() == applyButton)
-			apply();
-	}
-
-	public void adjustmentValueChanged(AdjustmentEvent e) {
-		Object src = e.getSource();
-		int i;
-		for (i = 0; i != einfocount; i++) {
-			EditInfo ei = einfos[i];
-			if (ei.bar == src) {
-				double v = ei.bar.getValue() / 1000.;
-				if (v < 0)
-					v = 0;
-				if (v > 1)
-					v = 1;
-				ei.value = (ei.maxval - ei.minval) * v + ei.minval;
-				/*
-				 * if (ei.maxval-ei.minval > 100) ei.value =
-				 * Math.round(ei.value); else ei.value =
-				 * Math.round(ei.value*100)/100.;
-				 */
-				ei.value = Math.round(ei.value / ei.minval) * ei.minval;
-				elm.setEditValue(i, ei);
-				ei.textf.setText(unitString(ei));
-				cframe.needAnalyze();
-			}
-		}
-	}
-
-	public void itemStateChanged(ItemEvent e) {
-		Object src = e.getItemSelectable();
-		int i;
-		boolean changed = false;
-		for (i = 0; i != einfocount; i++) {
-			EditInfo ei = einfos[i];
-			if (ei.choice == src || ei.checkbox == src) {
-				elm.setEditValue(i, ei);
-				if (ei.newDialog)
-					changed = true;
-				cframe.needAnalyze();
-			}
-		}
-		if (changed) {
-			setVisible(false);
-			cframe.editDialog = new EditDialog(elm, cframe);
-			cframe.editDialog.show();
-		}
-	}
-
-	public boolean handleEvent(Event ev) {
-		if (ev.id == Event.WINDOW_DESTROY) {
-			closeDialog();
-			return true;
-		}
-		return super.handleEvent(ev);
-	}
-
 	void setBar(EditInfo ei) {
 		int x = (int) (barmax * (ei.value - ei.minval) / (ei.maxval - ei.minval));
 		ei.bar.setValue(x);
 	}
 
-	protected void closeDialog() {
-		cframe.main.requestFocus();
-		setVisible(false);
-		cframe.editDialog = null;
+	String unitString(EditInfo ei) {
+		double v = ei.value;
+		double va = Math.abs(v);
+		if (ei.dimensionless)
+			return noCommaFormat.format(v);
+		if (v == 0)
+			return "0";
+		if (va < 1e-9)
+			return noCommaFormat.format(v * 1e12) + "p";
+		if (va < 1e-6)
+			return noCommaFormat.format(v * 1e9) + "n";
+		if (va < 1e-3)
+			return noCommaFormat.format(v * 1e6) + "u";
+		if (va < 1 && !ei.forceLargeM)
+			return noCommaFormat.format(v * 1e3) + "m";
+		if (va < 1e3)
+			return noCommaFormat.format(v);
+		if (va < 1e6)
+			return noCommaFormat.format(v * 1e-3) + "k";
+		if (va < 1e9)
+			return noCommaFormat.format(v * 1e-6) + "M";
+		return noCommaFormat.format(v * 1e-9) + "G";
 	}
 }

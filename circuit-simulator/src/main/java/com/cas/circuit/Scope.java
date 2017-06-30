@@ -1,4 +1,7 @@
 package com.cas.circuit;
+
+import static java.lang.Math.abs;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.PopupMenu;
@@ -10,8 +13,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class Scope {
-	final int FLAG_YELM = 32;
 	static final int VAL_POWER = 1;
 	static final int VAL_IB = 1;
 	static final int VAL_IC = 2;
@@ -20,6 +24,7 @@ class Scope {
 	static final int VAL_VBC = 5;
 	static final int VAL_VCE = 6;
 	static final int VAL_R = 2;
+	final int FLAG_YELM = 32;
 	double minV[], maxV[], minMaxV;
 	double minI[], maxI[], minMaxI;
 	int scopePointCount = 128;
@@ -42,166 +47,8 @@ class Scope {
 		sim = s;
 	}
 
-	void showCurrent(boolean b) {
-		showI = b;
-		value = ivalue = 0;
-	}
-
-	void showVoltage(boolean b) {
-		showV = b;
-		value = ivalue = 0;
-	}
-
-	void showMax(boolean b) {
-		showMax = b;
-	}
-
-	void showMin(boolean b) {
-		showMin = b;
-	}
-
-	void showFreq(boolean b) {
-		showFreq = b;
-	}
-
-	void setLockScale(boolean b) {
-		lockScale = b;
-	}
-
-	void resetGraph() {
-		scopePointCount = 1;
-		while (scopePointCount <= rect.width)
-			scopePointCount *= 2;
-		minV = new double[scopePointCount];
-		maxV = new double[scopePointCount];
-		minI = new double[scopePointCount];
-		maxI = new double[scopePointCount];
-		ptr = ctr = 0;
-		allocImage();
-	}
-
 	boolean active() {
 		return elm != null;
-	}
-
-	void reset() {
-		resetGraph();
-		minMaxV = 5;
-		minMaxI = .1;
-		speed = 64;
-		showI = showV = showMax = true;
-		showFreq = lockScale = showMin = false;
-		plot2d = false;
-		// no showI for Output
-		if (elm != null && (elm instanceof OutputElm || elm instanceof LogicOutputElm || elm instanceof ProbeElm))
-			showI = false;
-		value = ivalue = 0;
-		if (elm instanceof TransistorElm)
-			value = VAL_VCE;
-	}
-
-	void setRect(Rectangle r) {
-		rect = r;
-		resetGraph();
-	}
-
-	int getWidth() {
-		return rect.width;
-	}
-
-	int rightEdge() {
-		return rect.x + rect.width;
-	}
-
-	void setElm(CircuitElm ce) {
-		elm = ce;
-		reset();
-	}
-
-	void timeStep() {
-		if (elm == null)
-			return;
-		double v = elm.getScopeValue(value);
-		if (v < minV[ptr])
-			minV[ptr] = v;
-		if (v > maxV[ptr])
-			maxV[ptr] = v;
-		double i = 0;
-		if (value == 0 || ivalue != 0) {
-			i = (ivalue == 0) ? elm.getCurrent() : elm.getScopeValue(ivalue);
-			if (i < minI[ptr])
-				minI[ptr] = i;
-			if (i > maxI[ptr])
-				maxI[ptr] = i;
-		}
-
-		if (plot2d && dpixels != null) {
-			boolean newscale = false;
-			while (v > minMaxV || v < -minMaxV) {
-				minMaxV *= 2;
-				newscale = true;
-			}
-			double yval = i;
-			if (plotXY)
-				yval = (yElm == null) ? 0 : yElm.getVoltageDiff();
-			while (yval > minMaxI || yval < -minMaxI) {
-				minMaxI *= 2;
-				newscale = true;
-			}
-			if (newscale)
-				clear2dView();
-			double xa = v / minMaxV;
-			double ya = yval / minMaxI;
-			int x = (int) (rect.width * (1 + xa) * .499);
-			int y = (int) (rect.height * (1 - ya) * .499);
-			drawTo(x, y);
-		} else {
-			ctr++;
-			if (ctr >= speed) {
-				ptr = (ptr + 1) & (scopePointCount - 1);
-				minV[ptr] = maxV[ptr] = v;
-				minI[ptr] = maxI[ptr] = i;
-				ctr = 0;
-			}
-		}
-	}
-
-	void drawTo(int x2, int y2) {
-		if (draw_ox == -1) {
-			draw_ox = x2;
-			draw_oy = y2;
-		}
-		// need to draw a line from x1,y1 to x2,y2
-		if (draw_ox == x2 && draw_oy == y2) {
-			dpixels[x2 + rect.width * y2] = 1;
-		} else if (CircuitElm.abs(y2 - draw_oy) > CircuitElm.abs(x2 - draw_ox)) {
-			// y difference is greater, so we step along y's
-			// from min to max y and calculate x for each step
-			double sgn = CircuitElm.sign(y2 - draw_oy);
-			int x, y;
-			for (y = draw_oy; y != y2 + sgn; y += sgn) {
-				x = draw_ox + (x2 - draw_ox) * (y - draw_oy) / (y2 - draw_oy);
-				dpixels[x + rect.width * y] = 1;
-			}
-		} else {
-			// x difference is greater, so we step along x's
-			// from min to max x and calculate y for each step
-			double sgn = CircuitElm.sign(x2 - draw_ox);
-			int x, y;
-			for (x = draw_ox; x != x2 + sgn; x += sgn) {
-				y = draw_oy + (y2 - draw_oy) * (x - draw_ox) / (x2 - draw_ox);
-				dpixels[x + rect.width * y] = 1;
-			}
-		}
-		draw_ox = x2;
-		draw_oy = y2;
-	}
-
-	void clear2dView() {
-		int i;
-		for (i = 0; i != dpixels.length; i++)
-			dpixels[i] = 0;
-		draw_ox = draw_oy = -1;
 	}
 
 	void adjustScale(double x) {
@@ -209,33 +56,54 @@ class Scope {
 		minMaxI *= x;
 	}
 
-	void draw2d(Graphics g) {
-		int i;
-		if (pixels == null || dpixels == null)
+	void allocImage() {
+		pixels = null;
+		int w = rect.width;
+		int h = rect.height;
+		if (w == 0 || h == 0)
 			return;
-		int col = (sim.printableCheckItem.getState()) ? 0xFFFFFFFF : 0;
-		for (i = 0; i != pixels.length; i++)
-			pixels[i] = col;
-		for (i = 0; i != rect.width; i++)
-			pixels[i + rect.width * (rect.height / 2)] = 0xFF00FF00;
-		int ycol = (plotXY) ? 0xFF00FF00 : 0xFFFFFF00;
-		for (i = 0; i != rect.height; i++)
-			pixels[rect.width / 2 + rect.width * i] = ycol;
-		for (i = 0; i != pixels.length; i++) {
-			int q = (int) (255 * dpixels[i]);
-			if (q > 0)
-				pixels[i] = 0xFF000000 | (0x10101 * q);
-			dpixels[i] *= .997;
+		if (sim.useBufferedImage) {
+			try {
+				/*
+				 * simulate the following code using reflection: dbimage = new
+				 * BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
+				 * DataBuffer db = (DataBuffer)(((BufferedImage)dbimage).
+				 * getRaster().getDataBuffer()); DataBufferInt dbi =
+				 * (DataBufferInt) db; pixels = dbi.getData();
+				 */
+				Class biclass = Class.forName("java.awt.image.BufferedImage");
+				Class dbiclass = Class.forName("java.awt.image.DataBufferInt");
+				Class rasclass = Class.forName("java.awt.image.Raster");
+				Constructor cstr = biclass.getConstructor(new Class[] { int.class, int.class, int.class });
+				image = (Image) cstr.newInstance(new Object[] { new Integer(w), new Integer(h), new Integer(BufferedImage.TYPE_INT_RGB) });
+				Method m = biclass.getMethod("getRaster");
+				Object ras = m.invoke(image);
+				Object db = rasclass.getMethod("getDataBuffer").invoke(ras);
+				pixels = (int[]) dbiclass.getMethod("getData").invoke(db);
+			} catch (Exception ee) {
+				// ee.printStackTrace();
+				System.out.println("BufferedImage failed");
+			}
 		}
-		g.drawImage(image, rect.x, rect.y, null);
-		g.setColor(elm.whiteColor);
-		g.fillOval(rect.x + draw_ox - 2, rect.y + draw_oy - 2, 5, 5);
-		int yt = rect.y + 10;
-		int x = rect.x;
-		if (text != null && rect.y + rect.height > yt + 5) {
-			g.drawString(text, x, yt);
-			yt += 15;
+		if (pixels == null) {
+			pixels = new int[w * h];
+			int i;
+			for (i = 0; i != w * h; i++)
+				pixels[i] = 0xFF000000;
+			imageSource = new MemoryImageSource(w, h, pixels, 0, w);
+			imageSource.setAnimated(true);
+			imageSource.setFullBufferUpdates(true);
+			image = sim.cv.createImage(imageSource);
 		}
+		dpixels = new float[w * h];
+		draw_ox = draw_oy = -1;
+	}
+
+	void clear2dView() {
+		int i;
+		for (i = 0; i != dpixels.length; i++)
+			dpixels[i] = 0;
+		draw_ox = draw_oy = -1;
 	}
 
 	void draw(Graphics g) {
@@ -451,33 +319,33 @@ class Scope {
 			// System.out.println(freq + " " + periodstd + " " + periodct);
 		}
 		g.drawImage(image, rect.x, rect.y, null);
-		g.setColor(elm.whiteColor);
+		g.setColor(CircuitElm.whiteColor);
 		int yt = rect.y + 10;
 		x += rect.x;
 		if (showMax) {
 			if (value != 0)
-				g.drawString(elm.getUnitText(realMaxV, elm.getScopeUnits(value)), x, yt);
+				g.drawString(CircuitUtil.getUnitText(realMaxV, elm.getScopeUnits(value)), x, yt);
 			else if (showV)
-				g.drawString(elm.getVoltageText(realMaxV), x, yt);
+				g.drawString(CircuitUtil.getVoltageText(realMaxV), x, yt);
 			else if (showI)
-				g.drawString(elm.getCurrentText(realMaxI), x, yt);
+				g.drawString(CircuitUtil.getCurrentText(realMaxI), x, yt);
 			yt += 15;
 		}
 		if (showMin) {
 			int ym = rect.y + rect.height - 5;
 			if (value != 0)
-				g.drawString(elm.getUnitText(realMinV, elm.getScopeUnits(value)), x, ym);
+				g.drawString(CircuitUtil.getUnitText(realMinV, elm.getScopeUnits(value)), x, ym);
 			else if (showV)
-				g.drawString(elm.getVoltageText(realMinV), x, ym);
+				g.drawString(CircuitUtil.getVoltageText(realMinV), x, ym);
 			else if (showI)
-				g.drawString(elm.getCurrentText(realMinI), x, ym);
+				g.drawString(CircuitUtil.getCurrentText(realMinI), x, ym);
 		}
 		if (text != null && rect.y + rect.height > yt + 5) {
 			g.drawString(text, x, yt);
 			yt += 15;
 		}
 		if (showFreq && freq != 0 && rect.y + rect.height > yt + 5)
-			g.drawString(elm.getUnitText(freq, "Hz"), x, yt);
+			g.drawString(CircuitUtil.getUnitText(freq, "Hz"), x, yt);
 		if (ptr > 5 && !lockScale) {
 			if (!gotI && minMaxI > 1e-4)
 				minMaxI /= 2;
@@ -486,16 +354,85 @@ class Scope {
 		}
 	}
 
-	void speedUp() {
-		if (speed > 1) {
-			speed /= 2;
-			resetGraph();
+	void draw2d(Graphics g) {
+		int i;
+		if (pixels == null || dpixels == null)
+			return;
+		int col = (sim.printableCheckItem.getState()) ? 0xFFFFFFFF : 0;
+		for (i = 0; i != pixels.length; i++)
+			pixels[i] = col;
+		for (i = 0; i != rect.width; i++)
+			pixels[i + rect.width * (rect.height / 2)] = 0xFF00FF00;
+		int ycol = (plotXY) ? 0xFF00FF00 : 0xFFFFFF00;
+		for (i = 0; i != rect.height; i++)
+			pixels[rect.width / 2 + rect.width * i] = ycol;
+		for (i = 0; i != pixels.length; i++) {
+			int q = (int) (255 * dpixels[i]);
+			if (q > 0)
+				pixels[i] = 0xFF000000 | (0x10101 * q);
+			dpixels[i] *= .997;
+		}
+		g.drawImage(image, rect.x, rect.y, null);
+		g.setColor(CircuitElm.whiteColor);
+		g.fillOval(rect.x + draw_ox - 2, rect.y + draw_oy - 2, 5, 5);
+		int yt = rect.y + 10;
+		int x = rect.x;
+		if (text != null && rect.y + rect.height > yt + 5) {
+			g.drawString(text, x, yt);
+			yt += 15;
 		}
 	}
 
-	void slowDown() {
-		speed *= 2;
-		resetGraph();
+	void drawTo(int x2, int y2) {
+		if (draw_ox == -1) {
+			draw_ox = x2;
+			draw_oy = y2;
+		}
+		// need to draw a line from x1,y1 to x2,y2
+		if (draw_ox == x2 && draw_oy == y2) {
+			dpixels[x2 + rect.width * y2] = 1;
+		} else if (abs(y2 - draw_oy) > abs(x2 - draw_ox)) {
+			// y difference is greater, so we step along y's
+			// from min to max y and calculate x for each step
+			double sgn = CircuitUtil.sign(y2 - draw_oy);
+			int x, y;
+			for (y = draw_oy; y != y2 + sgn; y += sgn) {
+				x = draw_ox + (x2 - draw_ox) * (y - draw_oy) / (y2 - draw_oy);
+				dpixels[x + rect.width * y] = 1;
+			}
+		} else {
+			// x difference is greater, so we step along x's
+			// from min to max x and calculate y for each step
+			double sgn = CircuitUtil.sign(x2 - draw_ox);
+			int x, y;
+			for (x = draw_ox; x != x2 + sgn; x += sgn) {
+				y = draw_oy + (y2 - draw_oy) * (x - draw_ox) / (x2 - draw_ox);
+				dpixels[x + rect.width * y] = 1;
+			}
+		}
+		draw_ox = x2;
+		draw_oy = y2;
+	}
+
+	String dump() {
+		if (elm == null)
+			return null;
+		int flags = (showI ? 1 : 0) | (showV ? 2 : 0) | (showMax ? 0 : 4) | // showMax
+																			// used
+																			// to
+																			// be
+																			// always
+																			// on
+				(showFreq ? 8 : 0) | (lockScale ? 16 : 0) | (plot2d ? 64 : 0) | (plotXY ? 128 : 0) | (showMin ? 256 : 0);
+		flags |= FLAG_YELM; // yelm present
+		int eno = sim.locateElm(elm);
+		if (eno < 0)
+			return null;
+		int yno = yElm == null ? -1 : sim.locateElm(yElm);
+		String x = "o " + eno + " " + speed + " " + value + " " + flags + " " + minMaxV + " " + minMaxI + " " + position + " " + yno;
+		if (text != null)
+			x += " " + text;
+		return x;
 	}
 
 	PopupMenu getMenu() {
@@ -526,119 +463,8 @@ class Scope {
 		}
 	}
 
-	void setValue(int x) {
-		reset();
-		value = x;
-	}
-
-	String dump() {
-		if (elm == null)
-			return null;
-		int flags = (showI ? 1 : 0) | (showV ? 2 : 0) | (showMax ? 0 : 4) | // showMax
-																			// used
-																			// to
-																			// be
-																			// always
-																			// on
-				(showFreq ? 8 : 0) | (lockScale ? 16 : 0) | (plot2d ? 64 : 0) | (plotXY ? 128 : 0)
-				| (showMin ? 256 : 0);
-		flags |= FLAG_YELM; // yelm present
-		int eno = sim.locateElm(elm);
-		if (eno < 0)
-			return null;
-		int yno = yElm == null ? -1 : sim.locateElm(yElm);
-		String x = "o " + eno + " " + speed + " " + value + " " + flags + " " + minMaxV + " " + minMaxI + " " + position
-				+ " " + yno;
-		if (text != null)
-			x += " " + text;
-		return x;
-	}
-
-	void undump(StringTokenizer st) {
-		reset();
-		int e = new Integer(st.nextToken()).intValue();
-		if (e == -1)
-			return;
-		elm = sim.getElm(e);
-		speed = new Integer(st.nextToken()).intValue();
-		value = new Integer(st.nextToken()).intValue();
-		int flags = new Integer(st.nextToken()).intValue();
-		minMaxV = new Double(st.nextToken()).doubleValue();
-		minMaxI = new Double(st.nextToken()).doubleValue();
-		if (minMaxV == 0)
-			minMaxV = .5;
-		if (minMaxI == 0)
-			minMaxI = 1;
-		text = null;
-		yElm = null;
-		try {
-			position = new Integer(st.nextToken()).intValue();
-			int ye = -1;
-			if ((flags & FLAG_YELM) != 0) {
-				ye = new Integer(st.nextToken()).intValue();
-				if (ye != -1)
-					yElm = sim.getElm(ye);
-			}
-			while (st.hasMoreTokens()) {
-				if (text == null)
-					text = st.nextToken();
-				else
-					text += " " + st.nextToken();
-			}
-		} catch (Exception ee) {
-		}
-		showI = (flags & 1) != 0;
-		showV = (flags & 2) != 0;
-		showMax = (flags & 4) == 0;
-		showFreq = (flags & 8) != 0;
-		lockScale = (flags & 16) != 0;
-		plot2d = (flags & 64) != 0;
-		plotXY = (flags & 128) != 0;
-		showMin = (flags & 256) != 0;
-	}
-
-	void allocImage() {
-		pixels = null;
-		int w = rect.width;
-		int h = rect.height;
-		if (w == 0 || h == 0)
-			return;
-		if (sim.useBufferedImage) {
-			try {
-				/*
-				 * simulate the following code using reflection: dbimage = new
-				 * BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
-				 * DataBuffer db = (DataBuffer)(((BufferedImage)dbimage).
-				 * getRaster().getDataBuffer()); DataBufferInt dbi =
-				 * (DataBufferInt) db; pixels = dbi.getData();
-				 */
-				Class biclass = Class.forName("java.awt.image.BufferedImage");
-				Class dbiclass = Class.forName("java.awt.image.DataBufferInt");
-				Class rasclass = Class.forName("java.awt.image.Raster");
-				Constructor cstr = biclass.getConstructor(new Class[] { int.class, int.class, int.class });
-				image = (Image) cstr.newInstance(
-						new Object[] { new Integer(w), new Integer(h), new Integer(BufferedImage.TYPE_INT_RGB) });
-				Method m = biclass.getMethod("getRaster");
-				Object ras = m.invoke(image);
-				Object db = rasclass.getMethod("getDataBuffer").invoke(ras);
-				pixels = (int[]) dbiclass.getMethod("getData").invoke(db);
-			} catch (Exception ee) {
-				// ee.printStackTrace();
-				System.out.println("BufferedImage failed");
-			}
-		}
-		if (pixels == null) {
-			pixels = new int[w * h];
-			int i;
-			for (i = 0; i != w * h; i++)
-				pixels[i] = 0xFF000000;
-			imageSource = new MemoryImageSource(w, h, pixels, 0, w);
-			imageSource.setAnimated(true);
-			imageSource.setFullBufferUpdates(true);
-			image = sim.cv.createImage(imageSource);
-		}
-		dpixels = new float[w * h];
-		draw_ox = draw_oy = -1;
+	int getWidth() {
+		return rect.width;
 	}
 
 	void handleMenu(ItemEvent e, Object mi) {
@@ -689,6 +515,38 @@ class Scope {
 			setValue(VAL_R);
 	}
 
+	void reset() {
+		resetGraph();
+		minMaxV = 5;
+		minMaxI = .1;
+		speed = 64;
+		showI = showV = showMax = true;
+		showFreq = lockScale = showMin = false;
+		plot2d = false;
+		// no showI for Output
+		if (elm != null && (elm instanceof OutputElm || elm instanceof LogicOutputElm || elm instanceof ProbeElm))
+			showI = false;
+		value = ivalue = 0;
+		if (elm instanceof TransistorElm)
+			value = VAL_VCE;
+	}
+
+	void resetGraph() {
+		scopePointCount = 1;
+		while (scopePointCount <= rect.width)
+			scopePointCount *= 2;
+		minV = new double[scopePointCount];
+		maxV = new double[scopePointCount];
+		minI = new double[scopePointCount];
+		maxI = new double[scopePointCount];
+		ptr = ctr = 0;
+		allocImage();
+	}
+
+	int rightEdge() {
+		return rect.x + rect.width;
+	}
+
 	void select() {
 		sim.mouseElm = elm;
 		if (plotXY) {
@@ -712,5 +570,149 @@ class Scope {
 				return;
 			e = firstE = -1;
 		}
+	}
+
+	void setElm(CircuitElm ce) {
+		elm = ce;
+		reset();
+	}
+
+	void setLockScale(boolean b) {
+		lockScale = b;
+	}
+
+	void setRect(Rectangle r) {
+		rect = r;
+		resetGraph();
+	}
+
+	void setValue(int x) {
+		reset();
+		value = x;
+	}
+
+	void showCurrent(boolean b) {
+		showI = b;
+		value = ivalue = 0;
+	}
+
+	void showFreq(boolean b) {
+		showFreq = b;
+	}
+
+	void showMax(boolean b) {
+		showMax = b;
+	}
+
+	void showMin(boolean b) {
+		showMin = b;
+	}
+
+	void showVoltage(boolean b) {
+		showV = b;
+		value = ivalue = 0;
+	}
+
+	void slowDown() {
+		speed *= 2;
+		resetGraph();
+	}
+
+	void speedUp() {
+		if (speed > 1) {
+			speed /= 2;
+			resetGraph();
+		}
+	}
+
+	void timeStep() {
+		if (elm == null)
+			return;
+		double v = elm.getScopeValue(value);
+		if (v < minV[ptr])
+			minV[ptr] = v;
+		if (v > maxV[ptr])
+			maxV[ptr] = v;
+		double i = 0;
+		if (value == 0 || ivalue != 0) {
+			i = (ivalue == 0) ? elm.getCurrent() : elm.getScopeValue(ivalue);
+			if (i < minI[ptr])
+				minI[ptr] = i;
+			if (i > maxI[ptr])
+				maxI[ptr] = i;
+		}
+
+		if (plot2d && dpixels != null) {
+			boolean newscale = false;
+			while (v > minMaxV || v < -minMaxV) {
+				minMaxV *= 2;
+				newscale = true;
+			}
+			double yval = i;
+			if (plotXY)
+				yval = (yElm == null) ? 0 : yElm.getVoltageDiff();
+			while (yval > minMaxI || yval < -minMaxI) {
+				minMaxI *= 2;
+				newscale = true;
+			}
+			if (newscale)
+				clear2dView();
+			double xa = v / minMaxV;
+			double ya = yval / minMaxI;
+			int x = (int) (rect.width * (1 + xa) * .499);
+			int y = (int) (rect.height * (1 - ya) * .499);
+			drawTo(x, y);
+		} else {
+			ctr++;
+			if (ctr >= speed) {
+				ptr = (ptr + 1) & (scopePointCount - 1);
+				minV[ptr] = maxV[ptr] = v;
+				minI[ptr] = maxI[ptr] = i;
+				ctr = 0;
+			}
+		}
+	}
+
+	void undump(StringTokenizer st) {
+		reset();
+		int e = new Integer(st.nextToken()).intValue();
+		if (e == -1)
+			return;
+		elm = sim.getElm(e);
+		speed = new Integer(st.nextToken()).intValue();
+		value = new Integer(st.nextToken()).intValue();
+		int flags = new Integer(st.nextToken()).intValue();
+		minMaxV = new Double(st.nextToken()).doubleValue();
+		minMaxI = new Double(st.nextToken()).doubleValue();
+		if (minMaxV == 0)
+			minMaxV = .5;
+		if (minMaxI == 0)
+			minMaxI = 1;
+		text = null;
+		yElm = null;
+		try {
+			position = new Integer(st.nextToken()).intValue();
+			int ye = -1;
+			if ((flags & FLAG_YELM) != 0) {
+				ye = new Integer(st.nextToken()).intValue();
+				if (ye != -1)
+					yElm = sim.getElm(ye);
+			}
+			while (st.hasMoreTokens()) {
+				if (text == null)
+					text = st.nextToken();
+				else
+					text += " " + st.nextToken();
+			}
+		} catch (Exception ee) {
+		}
+		showI = (flags & 1) != 0;
+		showV = (flags & 2) != 0;
+		showMax = (flags & 4) == 0;
+		showFreq = (flags & 8) != 0;
+		lockScale = (flags & 16) != 0;
+		plot2d = (flags & 64) != 0;
+		plotXY = (flags & 128) != 0;
+		showMin = (flags & 256) != 0;
 	}
 }

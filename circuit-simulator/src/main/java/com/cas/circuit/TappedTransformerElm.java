@@ -1,12 +1,19 @@
 package com.cas.circuit;
+
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.StringTokenizer;
+
+import com.cas.circuit.util.CircuitUtil;
 
 class TappedTransformerElm extends CircuitElm {
 	double inductance, ratio;
 	Point ptEnds[], ptCoil[], ptCore[];
 	double current[], curcount[];
+
+	double a[];
+
+	double curSourceValue[], voltdiff[];
 
 	public TappedTransformerElm(int xx, int yy) {
 		super(xx, yy);
@@ -38,19 +45,32 @@ class TappedTransformerElm extends CircuitElm {
 		a = new double[9];
 	}
 
-	int getDumpType() {
-		return 169;
+	@Override
+	void calculateCurrent() {
+		voltdiff[0] = volts[0] - volts[1];
+		voltdiff[1] = volts[2] - volts[3];
+		voltdiff[2] = volts[3] - volts[4];
+		int i, j;
+		for (i = 0; i != 3; i++) {
+			current[i] = curSourceValue[i];
+			for (j = 0; j != 3; j++)
+				current[i] += a[i * 3 + j] * voltdiff[j];
+		}
 	}
 
-	String dump() {
-		return super.dump() + " " + inductance + " " + ratio + " " + current[0] + " " + current[1] + " " + current[2];
+	@Override
+	void doStep() {
+		sim.stampCurrentSource(nodes[0], nodes[1], curSourceValue[0]);
+		sim.stampCurrentSource(nodes[2], nodes[3], curSourceValue[1]);
+		sim.stampCurrentSource(nodes[3], nodes[4], curSourceValue[2]);
 	}
 
+	@Override
 	void draw(Graphics g) {
 		int i;
 		for (i = 0; i != 5; i++) {
 			setVoltageColor(g, volts[i]);
-			drawThickLine(g, ptEnds[i], ptCoil[i]);
+			CircuitUtil.drawThickLine(g, ptEnds[i], ptCoil[i]);
 		}
 		for (i = 0; i != 4; i++) {
 			if (i == 1)
@@ -60,7 +80,7 @@ class TappedTransformerElm extends CircuitElm {
 		}
 		g.setColor(needsHighlight() ? selectColor : lightGrayColor);
 		for (i = 0; i != 4; i += 2) {
-			drawThickLine(g, ptCore[i], ptCore[i + 1]);
+			CircuitUtil.drawThickLine(g, ptCore[i], ptCore[i + 1]);
 		}
 		// calc current of tap wire
 		current[3] = current[1] - current[2];
@@ -83,6 +103,73 @@ class TappedTransformerElm extends CircuitElm {
 		setBbox(ptEnds[0], ptEnds[4], 0);
 	}
 
+	@Override
+	String dump() {
+		return super.dump() + " " + inductance + " " + ratio + " " + current[0] + " " + current[1] + " " + current[2];
+	}
+
+	@Override
+	boolean getConnection(int n1, int n2) {
+		if (CircuitUtil.comparePair(n1, n2, 0, 1))
+			return true;
+		if (CircuitUtil.comparePair(n1, n2, 2, 3))
+			return true;
+		if (CircuitUtil.comparePair(n1, n2, 3, 4))
+			return true;
+		if (CircuitUtil.comparePair(n1, n2, 2, 4))
+			return true;
+		return false;
+	}
+
+	@Override
+	int getDumpType() {
+		return 169;
+	}
+
+	@Override
+	public EditInfo getEditInfo(int n) {
+		if (n == 0)
+			return new EditInfo("Primary Inductance (H)", inductance, .01, 5);
+		if (n == 1)
+			return new EditInfo("Ratio", ratio, 1, 10).setDimensionless();
+		return null;
+	}
+
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = "transformer";
+		arr[1] = "L = " + CircuitUtil.getUnitText(inductance, "H");
+		arr[2] = "Ratio = " + ratio;
+		// arr[3] = "I1 = " + CircuitUtil.getCurrentText(current1);
+		arr[3] = "Vd1 = " + CircuitUtil.getVoltageText(volts[0] - volts[2]);
+		// arr[5] = "I2 = " + CircuitUtil.getCurrentText(current2);
+		arr[4] = "Vd2 = " + CircuitUtil.getVoltageText(volts[1] - volts[3]);
+	}
+
+	@Override
+	Point getPost(int n) {
+		return ptEnds[n];
+	}
+
+	@Override
+	int getPostCount() {
+		return 5;
+	}
+
+	@Override
+	void reset() {
+		current[0] = current[1] = volts[0] = volts[1] = volts[2] = volts[3] = curcount[0] = curcount[1] = 0;
+	}
+
+	@Override
+	public void setEditValue(int n, EditInfo ei) {
+		if (n == 0)
+			inductance = ei.value;
+		if (n == 1)
+			ratio = ei.value;
+	}
+
+	@Override
 	void setPoints() {
 		super.setPoints();
 		int hs = 32;
@@ -91,38 +178,25 @@ class TappedTransformerElm extends CircuitElm {
 		ptCore = newPointArray(4);
 		ptEnds[0] = point1;
 		ptEnds[2] = point2;
-		interpPoint(point1, point2, ptEnds[1], 0, -hs * 2);
-		interpPoint(point1, point2, ptEnds[3], 1, -hs);
-		interpPoint(point1, point2, ptEnds[4], 1, -hs * 2);
+		CircuitUtil.interpPoint(point1, point2, ptEnds[1], 0, -hs * 2);
+		CircuitUtil.interpPoint(point1, point2, ptEnds[3], 1, -hs);
+		CircuitUtil.interpPoint(point1, point2, ptEnds[4], 1, -hs * 2);
 		double ce = .5 - 12 / dn;
 		double cd = .5 - 2 / dn;
 		int i;
-		interpPoint(ptEnds[0], ptEnds[2], ptCoil[0], ce);
-		interpPoint(ptEnds[0], ptEnds[2], ptCoil[1], ce, -hs * 2);
-		interpPoint(ptEnds[0], ptEnds[2], ptCoil[2], 1 - ce);
-		interpPoint(ptEnds[0], ptEnds[2], ptCoil[3], 1 - ce, -hs);
-		interpPoint(ptEnds[0], ptEnds[2], ptCoil[4], 1 - ce, -hs * 2);
+		CircuitUtil.interpPoint(ptEnds[0], ptEnds[2], ptCoil[0], ce);
+		CircuitUtil.interpPoint(ptEnds[0], ptEnds[2], ptCoil[1], ce, -hs * 2);
+		CircuitUtil.interpPoint(ptEnds[0], ptEnds[2], ptCoil[2], 1 - ce);
+		CircuitUtil.interpPoint(ptEnds[0], ptEnds[2], ptCoil[3], 1 - ce, -hs);
+		CircuitUtil.interpPoint(ptEnds[0], ptEnds[2], ptCoil[4], 1 - ce, -hs * 2);
 		for (i = 0; i != 2; i++) {
 			int b = -hs * i * 2;
-			interpPoint(ptEnds[0], ptEnds[2], ptCore[i], cd, b);
-			interpPoint(ptEnds[0], ptEnds[2], ptCore[i + 2], 1 - cd, b);
+			CircuitUtil.interpPoint(ptEnds[0], ptEnds[2], ptCore[i], cd, b);
+			CircuitUtil.interpPoint(ptEnds[0], ptEnds[2], ptCore[i + 2], 1 - cd, b);
 		}
 	}
 
-	Point getPost(int n) {
-		return ptEnds[n];
-	}
-
-	int getPostCount() {
-		return 5;
-	}
-
-	void reset() {
-		current[0] = current[1] = volts[0] = volts[1] = volts[2] = volts[3] = curcount[0] = curcount[1] = 0;
-	}
-
-	double a[];
-
+	@Override
 	void stamp() {
 		// equations for transformer:
 		// v1 = L1 di1/dt + M1 di2/dt + M1 di3/dt
@@ -179,6 +253,7 @@ class TappedTransformerElm extends CircuitElm {
 			sim.stampRightSide(nodes[i]);
 	}
 
+	@Override
 	void startIteration() {
 		voltdiff[0] = volts[0] - volts[1];
 		voltdiff[1] = volts[2] - volts[3];
@@ -189,62 +264,5 @@ class TappedTransformerElm extends CircuitElm {
 			for (j = 0; j != 3; j++)
 				curSourceValue[i] += a[i * 3 + j] * voltdiff[j];
 		}
-	}
-
-	double curSourceValue[], voltdiff[];
-
-	void doStep() {
-		sim.stampCurrentSource(nodes[0], nodes[1], curSourceValue[0]);
-		sim.stampCurrentSource(nodes[2], nodes[3], curSourceValue[1]);
-		sim.stampCurrentSource(nodes[3], nodes[4], curSourceValue[2]);
-	}
-
-	void calculateCurrent() {
-		voltdiff[0] = volts[0] - volts[1];
-		voltdiff[1] = volts[2] - volts[3];
-		voltdiff[2] = volts[3] - volts[4];
-		int i, j;
-		for (i = 0; i != 3; i++) {
-			current[i] = curSourceValue[i];
-			for (j = 0; j != 3; j++)
-				current[i] += a[i * 3 + j] * voltdiff[j];
-		}
-	}
-
-	void getInfo(String arr[]) {
-		arr[0] = "transformer";
-		arr[1] = "L = " + getUnitText(inductance, "H");
-		arr[2] = "Ratio = " + ratio;
-		// arr[3] = "I1 = " + getCurrentText(current1);
-		arr[3] = "Vd1 = " + getVoltageText(volts[0] - volts[2]);
-		// arr[5] = "I2 = " + getCurrentText(current2);
-		arr[4] = "Vd2 = " + getVoltageText(volts[1] - volts[3]);
-	}
-
-	boolean getConnection(int n1, int n2) {
-		if (comparePair(n1, n2, 0, 1))
-			return true;
-		if (comparePair(n1, n2, 2, 3))
-			return true;
-		if (comparePair(n1, n2, 3, 4))
-			return true;
-		if (comparePair(n1, n2, 2, 4))
-			return true;
-		return false;
-	}
-
-	public EditInfo getEditInfo(int n) {
-		if (n == 0)
-			return new EditInfo("Primary Inductance (H)", inductance, .01, 5);
-		if (n == 1)
-			return new EditInfo("Ratio", ratio, 1, 10).setDimensionless();
-		return null;
-	}
-
-	public void setEditValue(int n, EditInfo ei) {
-		if (n == 0)
-			inductance = ei.value;
-		if (n == 1)
-			ratio = ei.value;
 	}
 }

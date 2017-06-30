@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.awt.Label;
 import java.awt.Scrollbar;
 import java.util.StringTokenizer;
@@ -23,32 +24,31 @@ class VarRailElm extends RailElm {
 		createSlider();
 	}
 
+	void createSlider() {
+		waveform = WF_VAR;
+		CirSim.main.add(label = new Label(sliderText, Label.CENTER));
+		int value = (int) ((frequency - bias) * 100 / (maxVoltage - bias));
+		CirSim.main.add(slider = new Scrollbar(Scrollbar.HORIZONTAL, value, 1, 0, 101));
+		CirSim.main.validate();
+	}
+
+	@Override
+	void delete() {
+		CirSim.main.remove(label);
+		CirSim.main.remove(slider);
+	}
+
+	@Override
 	String dump() {
 		return super.dump() + " " + sliderText;
 	}
 
+	@Override
 	int getDumpType() {
 		return 172;
 	}
 
-	void createSlider() {
-		waveform = WF_VAR;
-		sim.main.add(label = new Label(sliderText, Label.CENTER));
-		int value = (int) ((frequency - bias) * 100 / (maxVoltage - bias));
-		sim.main.add(slider = new Scrollbar(Scrollbar.HORIZONTAL, value, 1, 0, 101));
-		sim.main.validate();
-	}
-
-	double getVoltage() {
-		frequency = slider.getValue() * (maxVoltage - bias) / 100. + bias;
-		return frequency;
-	}
-
-	void delete() {
-		sim.main.remove(label);
-		sim.main.remove(slider);
-	}
-
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0)
 			return new EditInfo("Min Voltage", bias, -20, 20);
@@ -62,6 +62,18 @@ class VarRailElm extends RailElm {
 		return null;
 	}
 
+	@Override
+	int getShortcut() {
+		return 0;
+	}
+
+	@Override
+	double getVoltage() {
+		frequency = slider.getValue() * (maxVoltage - bias) / 100. + bias;
+		return frequency;
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (n == 0)
 			bias = ei.value;
@@ -71,9 +83,5 @@ class VarRailElm extends RailElm {
 			sliderText = ei.textf.getText();
 			label.setText(sliderText);
 		}
-	}
-
-	int getShortcut() {
-		return 0;
 	}
 }

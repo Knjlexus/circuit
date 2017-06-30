@@ -1,13 +1,26 @@
 package com.cas.circuit;
+
+import static java.lang.Math.PI;
+
 import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class SweepElm extends CircuitElm {
 	double maxV, maxF, minF, sweepTime, frequency;
 	final int FLAG_LOG = 1;
 	final int FLAG_BIDIR = 2;
+
+	final int circleSize = 17;
+
+	double fadd, fmul, freqTime, savedTimeStep;
+
+	int dir = 1;
+
+	double v;
 
 	public SweepElm(int xx, int yy) {
 		super(xx, yy);
@@ -28,34 +41,21 @@ class SweepElm extends CircuitElm {
 		reset();
 	}
 
-	int getDumpType() {
-		return 170;
+	@Override
+	void doStep() {
+		sim.updateVoltageSource(0, nodes[0], voltSource, v);
 	}
 
-	int getPostCount() {
-		return 1;
-	}
-
-	final int circleSize = 17;
-
-	String dump() {
-		return super.dump() + " " + minF + " " + maxF + " " + maxV + " " + sweepTime;
-	}
-
-	void setPoints() {
-		super.setPoints();
-		lead1 = interpPoint(point1, point2, 1 - circleSize / dn);
-	}
-
+	@Override
 	void draw(Graphics g) {
 		setBbox(point1, point2, circleSize);
 		setVoltageColor(g, volts[0]);
-		drawThickLine(g, point1, lead1);
+		CircuitUtil.drawThickLine(g, point1, lead1);
 		g.setColor(needsHighlight() ? selectColor : Color.gray);
 		setPowerColor(g, false);
 		int xc = point2.x;
 		int yc = point2.y;
-		drawThickCircle(g, xc, yc, circleSize);
+		CircuitUtil.drawThickCircle(g, xc, yc, circleSize);
 		int wl = 8;
 		adjustBbox(xc - circleSize, yc - circleSize, xc + circleSize, yc + circleSize);
 		int i;
@@ -70,14 +70,14 @@ class SweepElm extends CircuitElm {
 		if (!sim.stoppedCheck.getState())
 			w = 1 + 2 * (frequency - minF) / (maxF - minF);
 		for (i = -xl; i <= xl; i++) {
-			int yy = yc + (int) (.95 * Math.sin(i * pi * w / xl) * wl);
+			int yy = yc + (int) (.95 * Math.sin(i * PI * w / xl) * wl);
 			if (ox != -1)
-				drawThickLine(g, ox, oy, xc + i, yy);
+				CircuitUtil.drawThickLine(g, ox, oy, xc + i, yy);
 			ox = xc + i;
 			oy = yy;
 		}
 		if (sim.showValuesCheckItem.getState()) {
-			String s = getShortUnitText(frequency, "Hz");
+			String s = CircuitUtil.getShortUnitText(frequency, "Hz");
 			if (dx == 0 || dy == 0)
 				drawValues(g, s, circleSize);
 		}
@@ -88,85 +88,17 @@ class SweepElm extends CircuitElm {
 			drawDots(g, point1, lead1, curcount);
 	}
 
-	void stamp() {
-		sim.stampVoltageSource(0, nodes[0], voltSource);
+	@Override
+	String dump() {
+		return super.dump() + " " + minF + " " + maxF + " " + maxV + " " + sweepTime;
 	}
 
-	double fadd, fmul, freqTime, savedTimeStep;
-	int dir = 1;
-
-	void setParams() {
-		if (frequency < minF || frequency > maxF) {
-			frequency = minF;
-			freqTime = 0;
-			dir = 1;
-		}
-		if ((flags & FLAG_LOG) == 0) {
-			fadd = dir * sim.timeStep * (maxF - minF) / sweepTime;
-			fmul = 1;
-		} else {
-			fadd = 0;
-			fmul = Math.pow(maxF / minF, dir * sim.timeStep / sweepTime);
-		}
-		savedTimeStep = sim.timeStep;
+	@Override
+	int getDumpType() {
+		return 170;
 	}
 
-	void reset() {
-		frequency = minF;
-		freqTime = 0;
-		dir = 1;
-		setParams();
-	}
-
-	double v;
-
-	void startIteration() {
-		// has timestep been changed?
-		if (sim.timeStep != savedTimeStep)
-			setParams();
-		v = Math.sin(freqTime) * maxV;
-		freqTime += frequency * 2 * pi * sim.timeStep;
-		frequency = frequency * fmul + fadd;
-		if (frequency >= maxF && dir == 1) {
-			if ((flags & FLAG_BIDIR) != 0) {
-				fadd = -fadd;
-				fmul = 1 / fmul;
-				dir = -1;
-			} else
-				frequency = minF;
-		}
-		if (frequency <= minF && dir == -1) {
-			fadd = -fadd;
-			fmul = 1 / fmul;
-			dir = 1;
-		}
-	}
-
-	void doStep() {
-		sim.updateVoltageSource(0, nodes[0], voltSource, v);
-	}
-
-	double getVoltageDiff() {
-		return volts[0];
-	}
-
-	int getVoltageSourceCount() {
-		return 1;
-	}
-
-	boolean hasGroundConnection(int n1) {
-		return true;
-	}
-
-	void getInfo(String arr[]) {
-		arr[0] = "sweep " + (((flags & FLAG_LOG) == 0) ? "(linear)" : "(log)");
-		arr[1] = "I = " + getCurrentDText(getCurrent());
-		arr[2] = "V = " + getVoltageText(volts[0]);
-		arr[3] = "f = " + getUnitText(frequency, "Hz");
-		arr[4] = "range = " + getUnitText(minF, "Hz") + " .. " + getUnitText(maxF, "Hz");
-		arr[5] = "time = " + getUnitText(sweepTime, "s");
-	}
-
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0)
 			return new EditInfo("Min Frequency (Hz)", minF, 0, 0);
@@ -189,6 +121,45 @@ class SweepElm extends CircuitElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = "sweep " + (((flags & FLAG_LOG) == 0) ? "(linear)" : "(log)");
+		arr[1] = "I = " + CircuitUtil.getCurrentDText(getCurrent());
+		arr[2] = "V = " + CircuitUtil.getVoltageText(volts[0]);
+		arr[3] = "f = " + CircuitUtil.getUnitText(frequency, "Hz");
+		arr[4] = "range = " + CircuitUtil.getUnitText(minF, "Hz") + " .. " + CircuitUtil.getUnitText(maxF, "Hz");
+		arr[5] = "time = " + CircuitUtil.getUnitText(sweepTime, "s");
+	}
+
+	@Override
+	int getPostCount() {
+		return 1;
+	}
+
+	@Override
+	double getVoltageDiff() {
+		return volts[0];
+	}
+
+	@Override
+	int getVoltageSourceCount() {
+		return 1;
+	}
+
+	@Override
+	boolean hasGroundConnection(int n1) {
+		return true;
+	}
+
+	@Override
+	void reset() {
+		frequency = minF;
+		freqTime = 0;
+		dir = 1;
+		setParams();
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		double maxfreq = 1 / (8 * sim.timeStep);
 		if (n == 0) {
@@ -216,5 +187,55 @@ class SweepElm extends CircuitElm {
 				flags |= FLAG_BIDIR;
 		}
 		setParams();
+	}
+
+	void setParams() {
+		if (frequency < minF || frequency > maxF) {
+			frequency = minF;
+			freqTime = 0;
+			dir = 1;
+		}
+		if ((flags & FLAG_LOG) == 0) {
+			fadd = dir * sim.timeStep * (maxF - minF) / sweepTime;
+			fmul = 1;
+		} else {
+			fadd = 0;
+			fmul = Math.pow(maxF / minF, dir * sim.timeStep / sweepTime);
+		}
+		savedTimeStep = sim.timeStep;
+	}
+
+	@Override
+	void setPoints() {
+		super.setPoints();
+		lead1 = CircuitUtil.interpPoint(point1, point2, 1 - circleSize / dn);
+	}
+
+	@Override
+	void stamp() {
+		sim.stampVoltageSource(0, nodes[0], voltSource);
+	}
+
+	@Override
+	void startIteration() {
+		// has timestep been changed?
+		if (sim.timeStep != savedTimeStep)
+			setParams();
+		v = Math.sin(freqTime) * maxV;
+		freqTime += frequency * 2 * PI * sim.timeStep;
+		frequency = frequency * fmul + fadd;
+		if (frequency >= maxF && dir == 1) {
+			if ((flags & FLAG_BIDIR) != 0) {
+				fadd = -fadd;
+				fmul = 1 / fmul;
+				dir = -1;
+			} else
+				frequency = minF;
+		}
+		if (frequency <= minF && dir == -1) {
+			fadd = -fadd;
+			fmul = 1 / fmul;
+			dir = 1;
+		}
 	}
 }

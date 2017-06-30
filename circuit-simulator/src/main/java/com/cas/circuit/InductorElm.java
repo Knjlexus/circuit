@@ -1,7 +1,10 @@
 package com.cas.circuit;
+
 import java.awt.Checkbox;
 import java.awt.Graphics;
 import java.util.StringTokenizer;
+
+import com.cas.circuit.util.CircuitUtil;
 
 class InductorElm extends CircuitElm {
 	Inductor ind;
@@ -22,19 +25,19 @@ class InductorElm extends CircuitElm {
 		ind.setup(inductance, current, flags);
 	}
 
-	int getDumpType() {
-		return 'l';
+	@Override
+	void calculateCurrent() {
+		double voltdiff = volts[0] - volts[1];
+		current = ind.calculateCurrent(voltdiff);
 	}
 
-	String dump() {
-		return super.dump() + " " + inductance + " " + current;
+	@Override
+	void doStep() {
+		double voltdiff = volts[0] - volts[1];
+		ind.doStep(voltdiff);
 	}
 
-	void setPoints() {
-		super.setPoints();
-		calcLeads(32);
-	}
-
+	@Override
 	void draw(Graphics g) {
 		double v1 = volts[0];
 		double v2 = volts[1];
@@ -45,47 +48,24 @@ class InductorElm extends CircuitElm {
 		setPowerColor(g, false);
 		drawCoil(g, 8, lead1, lead2, v1, v2);
 		if (sim.showValuesCheckItem.getState()) {
-			String s = getShortUnitText(inductance, "H");
+			String s = CircuitUtil.getShortUnitText(inductance, "H");
 			drawValues(g, s, hs);
 		}
 		doDots(g);
 		drawPosts(g);
 	}
 
-	void reset() {
-		current = volts[0] = volts[1] = curcount = 0;
-		ind.reset();
+	@Override
+	String dump() {
+		return super.dump() + " " + inductance + " " + current;
 	}
 
-	void stamp() {
-		ind.stamp(nodes[0], nodes[1]);
+	@Override
+	int getDumpType() {
+		return 'l';
 	}
 
-	void startIteration() {
-		ind.startIteration(volts[0] - volts[1]);
-	}
-
-	boolean nonLinear() {
-		return ind.nonLinear();
-	}
-
-	void calculateCurrent() {
-		double voltdiff = volts[0] - volts[1];
-		current = ind.calculateCurrent(voltdiff);
-	}
-
-	void doStep() {
-		double voltdiff = volts[0] - volts[1];
-		ind.doStep(voltdiff);
-	}
-
-	void getInfo(String arr[]) {
-		arr[0] = "inductor";
-		getBasicInfo(arr);
-		arr[3] = "L = " + getUnitText(inductance, "H");
-		arr[4] = "P = " + getUnitText(getPower(), "W");
-	}
-
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0)
 			return new EditInfo("Inductance (H)", inductance, 0, 0);
@@ -97,6 +77,26 @@ class InductorElm extends CircuitElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = "inductor";
+		getBasicInfo(arr);
+		arr[3] = "L = " + CircuitUtil.getUnitText(inductance, "H");
+		arr[4] = "P = " + CircuitUtil.getUnitText(getPower(), "W");
+	}
+
+	@Override
+	boolean nonLinear() {
+		return ind.nonLinear();
+	}
+
+	@Override
+	void reset() {
+		current = volts[0] = volts[1] = curcount = 0;
+		ind.reset();
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (n == 0)
 			inductance = ei.value;
@@ -107,5 +107,21 @@ class InductorElm extends CircuitElm {
 				flags |= Inductor.FLAG_BACK_EULER;
 		}
 		ind.setup(inductance, current, flags);
+	}
+
+	@Override
+	void setPoints() {
+		super.setPoints();
+		calcLeads(32);
+	}
+
+	@Override
+	void stamp() {
+		ind.stamp(nodes[0], nodes[1]);
+	}
+
+	@Override
+	void startIteration() {
+		ind.startIteration(volts[0] - volts[1]);
 	}
 }

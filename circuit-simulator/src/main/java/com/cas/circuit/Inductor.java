@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 class Inductor {
 	public static final int FLAG_BACK_EULER = 2;
 	int nodes[];
@@ -14,18 +15,35 @@ class Inductor {
 		nodes = new int[2];
 	}
 
-	void setup(double ic, double cr, int f) {
-		inductance = ic;
-		current = cr;
-		flags = f;
+	double calculateCurrent(double voltdiff) {
+		// we check compResistance because this might get called
+		// before stamp(), which sets compResistance, causing
+		// infinite current
+		if (compResistance > 0)
+			current = voltdiff / compResistance + curSourceValue;
+		return current;
+	}
+
+	void doStep(double voltdiff) {
+		sim.stampCurrentSource(nodes[0], nodes[1], curSourceValue);
 	}
 
 	boolean isTrapezoidal() {
 		return (flags & FLAG_BACK_EULER) == 0;
 	}
 
+	boolean nonLinear() {
+		return false;
+	}
+
 	void reset() {
 		current = 0;
+	}
+
+	void setup(double ic, double cr, int f) {
+		inductance = ic;
+		current = cr;
+		flags = f;
 	}
 
 	void stamp(int n0, int n1) {
@@ -45,27 +63,10 @@ class Inductor {
 		sim.stampRightSide(nodes[1]);
 	}
 
-	boolean nonLinear() {
-		return false;
-	}
-
 	void startIteration(double voltdiff) {
 		if (isTrapezoidal())
 			curSourceValue = voltdiff / compResistance + current;
 		else // backward euler
 			curSourceValue = current;
-	}
-
-	double calculateCurrent(double voltdiff) {
-		// we check compResistance because this might get called
-		// before stamp(), which sets compResistance, causing
-		// infinite current
-		if (compResistance > 0)
-			current = voltdiff / compResistance + curSourceValue;
-		return current;
-	}
-
-	void doStep(double voltdiff) {
-		sim.stampCurrentSource(nodes[0], nodes[1], curSourceValue);
 	}
 }

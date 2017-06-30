@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Component;
@@ -13,20 +14,11 @@ class EditDialogLayout implements LayoutManager {
 	public EditDialogLayout() {
 	}
 
+	@Override
 	public void addLayoutComponent(String name, Component c) {
 	}
 
-	public void removeLayoutComponent(Component c) {
-	}
-
-	public Dimension preferredLayoutSize(Container target) {
-		return new Dimension(500, 500);
-	}
-
-	public Dimension minimumLayoutSize(Container target) {
-		return new Dimension(100, 100);
-	}
-
+	@Override
 	public void layoutContainer(Container target) {
 		Insets insets = target.insets();
 		int targetw = target.size().width - insets.left - insets.right;
@@ -72,5 +64,19 @@ class EditDialogLayout implements LayoutManager {
 		}
 		if (target.size().height < h)
 			target.resize(pw + insets.right, h + insets.bottom);
+	}
+
+	@Override
+	public Dimension minimumLayoutSize(Container target) {
+		return new Dimension(100, 100);
+	}
+
+	@Override
+	public Dimension preferredLayoutSize(Container target) {
+		return new Dimension(500, 500);
+	}
+
+	@Override
+	public void removeLayoutComponent(Component c) {
 	}
 };

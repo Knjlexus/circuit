@@ -1,11 +1,16 @@
 package com.cas.circuit;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class LEDElm extends DiodeElm {
 	double colorR, colorG, colorB;
+
+	Point ledLead1, ledLead2, ledCenter;
 
 	public LEDElm(int xx, int yy) {
 		super(xx, yy);
@@ -25,37 +30,20 @@ class LEDElm extends DiodeElm {
 		colorB = new Double(st.nextToken()).doubleValue();
 	}
 
-	int getDumpType() {
-		return 162;
-	}
-
-	String dump() {
-		return super.dump() + " " + colorR + " " + colorG + " " + colorB;
-	}
-
-	Point ledLead1, ledLead2, ledCenter;
-
-	void setPoints() {
-		super.setPoints();
-		int cr = 12;
-		ledLead1 = interpPoint(point1, point2, .5 - cr / dn);
-		ledLead2 = interpPoint(point1, point2, .5 + cr / dn);
-		ledCenter = interpPoint(point1, point2, .5);
-	}
-
+	@Override
 	void draw(Graphics g) {
 		if (needsHighlight() || this == sim.dragElm) {
 			super.draw(g);
 			return;
 		}
 		setVoltageColor(g, volts[0]);
-		drawThickLine(g, point1, ledLead1);
+		CircuitUtil.drawThickLine(g, point1, ledLead1);
 		setVoltageColor(g, volts[1]);
-		drawThickLine(g, ledLead2, point2);
+		CircuitUtil.drawThickLine(g, ledLead2, point2);
 
 		g.setColor(Color.gray);
 		int cr = 12;
-		drawThickCircle(g, ledCenter.x, ledCenter.y, cr);
+		CircuitUtil.drawThickCircle(g, ledCenter.x, ledCenter.y, cr);
 		cr -= 4;
 		double w = 255 * current / .01;
 		if (w > 255)
@@ -70,11 +58,17 @@ class LEDElm extends DiodeElm {
 		drawPosts(g);
 	}
 
-	void getInfo(String arr[]) {
-		super.getInfo(arr);
-		arr[0] = "LED";
+	@Override
+	String dump() {
+		return super.dump() + " " + colorR + " " + colorG + " " + colorB;
 	}
 
+	@Override
+	int getDumpType() {
+		return 162;
+	}
+
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0)
 			return super.getEditInfo(n);
@@ -87,6 +81,18 @@ class LEDElm extends DiodeElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		super.getInfo(arr);
+		arr[0] = "LED";
+	}
+
+	@Override
+	int getShortcut() {
+		return 'l';
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (n == 0)
 			super.setEditValue(0, ei);
@@ -98,7 +104,12 @@ class LEDElm extends DiodeElm {
 			colorB = ei.value;
 	}
 
-	int getShortcut() {
-		return 'l';
+	@Override
+	void setPoints() {
+		super.setPoints();
+		int cr = 12;
+		ledLead1 = CircuitUtil.interpPoint(point1, point2, .5 - cr / dn);
+		ledLead2 = CircuitUtil.interpPoint(point1, point2, .5 + cr / dn);
+		ledCenter = CircuitUtil.interpPoint(point1, point2, .5);
 	}
 }

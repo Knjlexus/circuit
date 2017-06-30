@@ -1,10 +1,31 @@
 package com.cas.circuit;
+
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class TunnelDiodeElm extends CircuitElm {
+	static final double pvp = .1;
+
+	static final double pip = 4.7e-3;
+
+	static final double pvv = .37;
+
+	static final double pvt = .026;
+
+	static final double pvpp = .525;
+
+	static final double piv = 370e-6;
+	final int hs = 8;
+	Polygon poly;
+
+	Point cathode[];
+
+	double lastvoltdiff;
+
 	public TunnelDiodeElm(int xx, int yy) {
 		super(xx, yy);
 		setup();
@@ -15,32 +36,31 @@ class TunnelDiodeElm extends CircuitElm {
 		setup();
 	}
 
-	boolean nonLinear() {
-		return true;
+	@Override
+	void calculateCurrent() {
+		double voltdiff = volts[0] - volts[1];
+		current = pip * Math.exp(-pvpp / pvt) * (Math.exp(voltdiff / pvt) - 1) + pip * (voltdiff / pvp) * Math.exp(1 - voltdiff / pvp) + piv * Math.exp(voltdiff - pvv);
 	}
 
-	void setup() {
+	@Override
+	void doStep() {
+		double voltdiff = volts[0] - volts[1];
+		if (Math.abs(voltdiff - lastvoltdiff) > .01)
+			sim.converged = false;
+		// System.out.println(voltdiff + " " + lastvoltdiff + " " +
+		// Math.abs(voltdiff-lastvoltdiff));
+		voltdiff = limitStep(voltdiff, lastvoltdiff);
+		lastvoltdiff = voltdiff;
+
+		double i = pip * Math.exp(-pvpp / pvt) * (Math.exp(voltdiff / pvt) - 1) + pip * (voltdiff / pvp) * Math.exp(1 - voltdiff / pvp) + piv * Math.exp(voltdiff - pvv);
+
+		double geq = pip * Math.exp(-pvpp / pvt) * Math.exp(voltdiff / pvt) / pvt + pip * Math.exp(1 - voltdiff / pvp) / pvp - Math.exp(1 - voltdiff / pvp) * pip * voltdiff / (pvp * pvp) + Math.exp(voltdiff - pvv) * piv;
+		double nc = i - geq * voltdiff;
+		sim.stampConductance(nodes[0], nodes[1], geq);
+		sim.stampCurrentSource(nodes[0], nodes[1], nc);
 	}
 
-	int getDumpType() {
-		return 175;
-	}
-
-	final int hs = 8;
-	Polygon poly;
-	Point cathode[];
-
-	void setPoints() {
-		super.setPoints();
-		calcLeads(16);
-		cathode = newPointArray(4);
-		Point pa[] = newPointArray(2);
-		interpPoint2(lead1, lead2, pa[0], pa[1], 0, hs);
-		interpPoint2(lead1, lead2, cathode[0], cathode[1], 1, hs);
-		interpPoint2(lead1, lead2, cathode[2], cathode[3], .8, hs);
-		poly = createPolygon(pa[0], pa[1], lead2);
-	}
-
+	@Override
 	void draw(Graphics g) {
 		setBbox(point1, point2, hs);
 
@@ -56,19 +76,26 @@ class TunnelDiodeElm extends CircuitElm {
 
 		// draw thing arrow is pointing to
 		setVoltageColor(g, v2);
-		drawThickLine(g, cathode[0], cathode[1]);
-		drawThickLine(g, cathode[2], cathode[0]);
-		drawThickLine(g, cathode[3], cathode[1]);
+		CircuitUtil.drawThickLine(g, cathode[0], cathode[1]);
+		CircuitUtil.drawThickLine(g, cathode[2], cathode[0]);
+		CircuitUtil.drawThickLine(g, cathode[3], cathode[1]);
 
 		doDots(g);
 		drawPosts(g);
 	}
 
-	void reset() {
-		lastvoltdiff = volts[0] = volts[1] = curcount = 0;
+	@Override
+	int getDumpType() {
+		return 175;
 	}
 
-	double lastvoltdiff;
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = "tunnel diode";
+		arr[1] = "I = " + CircuitUtil.getCurrentText(getCurrent());
+		arr[2] = "Vd = " + CircuitUtil.getVoltageText(getVoltageDiff());
+		arr[3] = "P = " + CircuitUtil.getUnitText(getPower(), "W");
+	}
 
 	double limitStep(double vnew, double vold) {
 		// Prevent voltage changes of more than 1V when iterating. Wow, I
@@ -81,48 +108,34 @@ class TunnelDiodeElm extends CircuitElm {
 		return vnew;
 	}
 
+	@Override
+	boolean nonLinear() {
+		return true;
+	}
+
+	@Override
+	void reset() {
+		lastvoltdiff = volts[0] = volts[1] = curcount = 0;
+	}
+
+	@Override
+	void setPoints() {
+		super.setPoints();
+		calcLeads(16);
+		cathode = newPointArray(4);
+		Point pa[] = newPointArray(2);
+		CircuitUtil.interpPoint2(lead1, lead2, pa[0], pa[1], 0, hs);
+		CircuitUtil.interpPoint2(lead1, lead2, cathode[0], cathode[1], 1, hs);
+		CircuitUtil.interpPoint2(lead1, lead2, cathode[2], cathode[3], .8, hs);
+		poly = CircuitUtil.createPolygon(pa[0], pa[1], lead2);
+	}
+
+	void setup() {
+	}
+
+	@Override
 	void stamp() {
 		sim.stampNonLinear(nodes[0]);
 		sim.stampNonLinear(nodes[1]);
-	}
-
-	static final double pvp = .1;
-	static final double pip = 4.7e-3;
-	static final double pvv = .37;
-	static final double pvt = .026;
-	static final double pvpp = .525;
-	static final double piv = 370e-6;
-
-	void doStep() {
-		double voltdiff = volts[0] - volts[1];
-		if (Math.abs(voltdiff - lastvoltdiff) > .01)
-			sim.converged = false;
-		// System.out.println(voltdiff + " " + lastvoltdiff + " " +
-		// Math.abs(voltdiff-lastvoltdiff));
-		voltdiff = limitStep(voltdiff, lastvoltdiff);
-		lastvoltdiff = voltdiff;
-
-		double i = pip * Math.exp(-pvpp / pvt) * (Math.exp(voltdiff / pvt) - 1)
-				+ pip * (voltdiff / pvp) * Math.exp(1 - voltdiff / pvp) + piv * Math.exp(voltdiff - pvv);
-
-		double geq = pip * Math.exp(-pvpp / pvt) * Math.exp(voltdiff / pvt) / pvt
-				+ pip * Math.exp(1 - voltdiff / pvp) / pvp - Math.exp(1 - voltdiff / pvp) * pip * voltdiff / (pvp * pvp)
-				+ Math.exp(voltdiff - pvv) * piv;
-		double nc = i - geq * voltdiff;
-		sim.stampConductance(nodes[0], nodes[1], geq);
-		sim.stampCurrentSource(nodes[0], nodes[1], nc);
-	}
-
-	void calculateCurrent() {
-		double voltdiff = volts[0] - volts[1];
-		current = pip * Math.exp(-pvpp / pvt) * (Math.exp(voltdiff / pvt) - 1)
-				+ pip * (voltdiff / pvp) * Math.exp(1 - voltdiff / pvp) + piv * Math.exp(voltdiff - pvv);
-	}
-
-	void getInfo(String arr[]) {
-		arr[0] = "tunnel diode";
-		arr[1] = "I = " + getCurrentText(getCurrent());
-		arr[2] = "Vd = " + getVoltageText(getVoltageDiff());
-		arr[3] = "P = " + getUnitText(getPower(), "W");
 	}
 }

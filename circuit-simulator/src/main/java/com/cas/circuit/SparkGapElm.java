@@ -1,12 +1,17 @@
 package com.cas.circuit;
+
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class SparkGapElm extends CircuitElm {
 	double resistance, onresistance, offresistance, breakdown, holdcurrent;
 	boolean state;
+
+	Polygon arrow1, arrow2;
 
 	public SparkGapElm(int xx, int yy) {
 		super(xx, yy);
@@ -25,31 +30,19 @@ class SparkGapElm extends CircuitElm {
 		holdcurrent = new Double(st.nextToken()).doubleValue();
 	}
 
-	boolean nonLinear() {
-		return true;
+	@Override
+	void calculateCurrent() {
+		double vd = volts[0] - volts[1];
+		current = vd / resistance;
 	}
 
-	int getDumpType() {
-		return 187;
+	@Override
+	void doStep() {
+		resistance = (state) ? onresistance : offresistance;
+		sim.stampResistor(nodes[0], nodes[1], resistance);
 	}
 
-	String dump() {
-		return super.dump() + " " + onresistance + " " + offresistance + " " + breakdown + " " + holdcurrent;
-	}
-
-	Polygon arrow1, arrow2;
-
-	void setPoints() {
-		super.setPoints();
-		int dist = 16;
-		int alen = 8;
-		calcLeads(dist + alen);
-		Point p1 = interpPoint(point1, point2, (dn - alen) / (2 * dn));
-		arrow1 = calcArrow(point1, p1, alen, alen);
-		p1 = interpPoint(point1, point2, (dn + alen) / (2 * dn));
-		arrow2 = calcArrow(point2, p1, alen, alen);
-	}
-
+	@Override
 	void draw(Graphics g) {
 		int i;
 		double v1 = volts[0];
@@ -66,43 +59,17 @@ class SparkGapElm extends CircuitElm {
 		drawPosts(g);
 	}
 
-	void calculateCurrent() {
-		double vd = volts[0] - volts[1];
-		current = vd / resistance;
+	@Override
+	String dump() {
+		return super.dump() + " " + onresistance + " " + offresistance + " " + breakdown + " " + holdcurrent;
 	}
 
-	void reset() {
-		super.reset();
-		state = false;
+	@Override
+	int getDumpType() {
+		return 187;
 	}
 
-	void startIteration() {
-		if (Math.abs(current) < holdcurrent)
-			state = false;
-		double vd = volts[0] - volts[1];
-		if (Math.abs(vd) > breakdown)
-			state = true;
-	}
-
-	void doStep() {
-		resistance = (state) ? onresistance : offresistance;
-		sim.stampResistor(nodes[0], nodes[1], resistance);
-	}
-
-	void stamp() {
-		sim.stampNonLinear(nodes[0]);
-		sim.stampNonLinear(nodes[1]);
-	}
-
-	void getInfo(String arr[]) {
-		arr[0] = "spark gap";
-		getBasicInfo(arr);
-		arr[3] = state ? "on" : "off";
-		arr[4] = "Ron = " + getUnitText(onresistance, sim.ohmString);
-		arr[5] = "Roff = " + getUnitText(offresistance, sim.ohmString);
-		arr[6] = "Vbreakdown = " + getUnitText(breakdown, "V");
-	}
-
+	@Override
 	public EditInfo getEditInfo(int n) {
 		// ohmString doesn't work here on linux
 		if (n == 0)
@@ -116,6 +83,28 @@ class SparkGapElm extends CircuitElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = "spark gap";
+		getBasicInfo(arr);
+		arr[3] = state ? "on" : "off";
+		arr[4] = "Ron = " + CircuitUtil.getUnitText(onresistance, CirSim.ohmString);
+		arr[5] = "Roff = " + CircuitUtil.getUnitText(offresistance, CirSim.ohmString);
+		arr[6] = "Vbreakdown = " + CircuitUtil.getUnitText(breakdown, "V");
+	}
+
+	@Override
+	boolean nonLinear() {
+		return true;
+	}
+
+	@Override
+	void reset() {
+		super.reset();
+		state = false;
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (ei.value > 0 && n == 0)
 			onresistance = ei.value;
@@ -125,5 +114,32 @@ class SparkGapElm extends CircuitElm {
 			breakdown = ei.value;
 		if (ei.value > 0 && n == 3)
 			holdcurrent = ei.value;
+	}
+
+	@Override
+	void setPoints() {
+		super.setPoints();
+		int dist = 16;
+		int alen = 8;
+		calcLeads(dist + alen);
+		Point p1 = CircuitUtil.interpPoint(point1, point2, (dn - alen) / (2 * dn));
+		arrow1 = calcArrow(point1, p1, alen, alen);
+		p1 = CircuitUtil.interpPoint(point1, point2, (dn + alen) / (2 * dn));
+		arrow2 = calcArrow(point2, p1, alen, alen);
+	}
+
+	@Override
+	void stamp() {
+		sim.stampNonLinear(nodes[0]);
+		sim.stampNonLinear(nodes[1]);
+	}
+
+	@Override
+	void startIteration() {
+		if (Math.abs(current) < holdcurrent)
+			state = false;
+		double vd = volts[0] - volts[1];
+		if (Math.abs(vd) > breakdown)
+			state = true;
 	}
 }

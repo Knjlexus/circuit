@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.util.StringTokenizer;
 
 class JKFlipFlopElm extends ChipElm {
@@ -11,34 +12,7 @@ class JKFlipFlopElm extends ChipElm {
 		pins[4].value = !pins[3].value;
 	}
 
-	String getChipName() {
-		return "JK flip-flop";
-	}
-
-	void setupPins() {
-		sizeX = 2;
-		sizeY = 3;
-		pins = new Pin[5];
-		pins[0] = new Pin(0, SIDE_W, "J");
-		pins[1] = new Pin(1, SIDE_W, "");
-		pins[1].clock = true;
-		pins[1].bubble = true;
-		pins[2] = new Pin(2, SIDE_W, "K");
-		pins[3] = new Pin(0, SIDE_E, "Q");
-		pins[3].output = pins[3].state = true;
-		pins[4] = new Pin(2, SIDE_E, "Q");
-		pins[4].output = true;
-		pins[4].lineOver = true;
-	}
-
-	int getPostCount() {
-		return 5;
-	}
-
-	int getVoltageSourceCount() {
-		return 2;
-	}
-
+	@Override
 	void execute() {
 		if (!pins[1].value && lastClock) {
 			boolean q = pins[3].value;
@@ -55,7 +29,40 @@ class JKFlipFlopElm extends ChipElm {
 		lastClock = pins[1].value;
 	}
 
+	@Override
+	String getChipName() {
+		return "JK flip-flop";
+	}
+
+	@Override
 	int getDumpType() {
 		return 156;
+	}
+
+	@Override
+	int getPostCount() {
+		return 5;
+	}
+
+	@Override
+	int getVoltageSourceCount() {
+		return 2;
+	}
+
+	@Override
+	void setupPins() {
+		sizeX = 2;
+		sizeY = 3;
+		pins = new Pin[5];
+		pins[0] = new Pin(0, SIDE_W, "J");
+		pins[1] = new Pin(1, SIDE_W, "");
+		pins[1].clock = true;
+		pins[1].bubble = true;
+		pins[2] = new Pin(2, SIDE_W, "K");
+		pins[3] = new Pin(0, SIDE_E, "Q");
+		pins[3].output = pins[3].state = true;
+		pins[4] = new Pin(2, SIDE_E, "Q");
+		pins[4].output = true;
+		pins[4].lineOver = true;
 	}
 }

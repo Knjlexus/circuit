@@ -8,9 +8,13 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class DiacElm extends CircuitElm {
 	double onresistance, offresistance, breakdown, holdcurrent;
 	boolean state;
+
+	Point ps3, ps4;
 
 	public DiacElm(int xx, int yy) {
 		super(xx, yy);
@@ -30,27 +34,24 @@ class DiacElm extends CircuitElm {
 		holdcurrent = new Double(st.nextToken()).doubleValue();
 	}
 
-	boolean nonLinear() {
-		return true;
+	@Override
+	void calculateCurrent() {
+		double vd = volts[0] - volts[1];
+		if (state)
+			current = vd / onresistance;
+		else
+			current = vd / offresistance;
 	}
 
-	int getDumpType() {
-		return 185;
+	@Override
+	void doStep() {
+		if (state)
+			sim.stampResistor(nodes[0], nodes[1], onresistance);
+		else
+			sim.stampResistor(nodes[0], nodes[1], offresistance);
 	}
 
-	String dump() {
-		return super.dump() + " " + onresistance + " " + offresistance + " " + breakdown + " " + holdcurrent;
-	}
-
-	Point ps3, ps4;
-
-	void setPoints() {
-		super.setPoints();
-		calcLeads(32);
-		ps3 = new Point();
-		ps4 = new Point();
-	}
-
+	@Override
 	void draw(Graphics g) {
 		// FIXME need to draw Diac
 		int i;
@@ -63,46 +64,17 @@ class DiacElm extends CircuitElm {
 		drawPosts(g);
 	}
 
-	void calculateCurrent() {
-		double vd = volts[0] - volts[1];
-		if (state)
-			current = vd / onresistance;
-		else
-			current = vd / offresistance;
+	@Override
+	String dump() {
+		return super.dump() + " " + onresistance + " " + offresistance + " " + breakdown + " " + holdcurrent;
 	}
 
-	void startIteration() {
-		double vd = volts[0] - volts[1];
-		if (Math.abs(current) < holdcurrent)
-			state = false;
-		if (Math.abs(vd) > breakdown)
-			state = true;
-		// System.out.print(this + " res current set to " + current + "\n");
+	@Override
+	int getDumpType() {
+		return 185;
 	}
 
-	void doStep() {
-		if (state)
-			sim.stampResistor(nodes[0], nodes[1], onresistance);
-		else
-			sim.stampResistor(nodes[0], nodes[1], offresistance);
-	}
-
-	void stamp() {
-		sim.stampNonLinear(nodes[0]);
-		sim.stampNonLinear(nodes[1]);
-	}
-
-	void getInfo(String arr[]) {
-		// FIXME
-		arr[0] = "spark gap";
-		getBasicInfo(arr);
-		arr[3] = state ? "on" : "off";
-		arr[4] = "Ron = " + getUnitText(onresistance, sim.ohmString);
-		arr[5] = "Roff = " + getUnitText(offresistance, sim.ohmString);
-		arr[6] = "Vbrkdn = " + getUnitText(breakdown, "V");
-		arr[7] = "Ihold = " + getUnitText(holdcurrent, "A");
-	}
-
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0)
 			return new EditInfo("On resistance (ohms)", onresistance, 0, 0);
@@ -115,6 +87,24 @@ class DiacElm extends CircuitElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		// FIXME
+		arr[0] = "spark gap";
+		getBasicInfo(arr);
+		arr[3] = state ? "on" : "off";
+		arr[4] = "Ron = " + CircuitUtil.getUnitText(onresistance, CirSim.ohmString);
+		arr[5] = "Roff = " + CircuitUtil.getUnitText(offresistance, CirSim.ohmString);
+		arr[6] = "Vbrkdn = " + CircuitUtil.getUnitText(breakdown, "V");
+		arr[7] = "Ihold = " + CircuitUtil.getUnitText(holdcurrent, "A");
+	}
+
+	@Override
+	boolean nonLinear() {
+		return true;
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (ei.value > 0 && n == 0)
 			onresistance = ei.value;
@@ -124,5 +114,29 @@ class DiacElm extends CircuitElm {
 			breakdown = ei.value;
 		if (ei.value > 0 && n == 3)
 			holdcurrent = ei.value;
+	}
+
+	@Override
+	void setPoints() {
+		super.setPoints();
+		calcLeads(32);
+		ps3 = new Point();
+		ps4 = new Point();
+	}
+
+	@Override
+	void stamp() {
+		sim.stampNonLinear(nodes[0]);
+		sim.stampNonLinear(nodes[1]);
+	}
+
+	@Override
+	void startIteration() {
+		double vd = volts[0] - volts[1];
+		if (Math.abs(current) < holdcurrent)
+			state = false;
+		if (Math.abs(vd) > breakdown)
+			state = true;
+		// System.out.print(this + " res current set to " + current + "\n");
 	}
 }

@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.awt.Checkbox;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -30,34 +31,7 @@ class TextElm extends GraphicElm {
 		split();
 	}
 
-	void split() {
-		int i;
-		lines = new Vector<String>();
-		StringBuffer sb = new StringBuffer(text);
-		for (i = 0; i < sb.length(); i++) {
-			char c = sb.charAt(i);
-			if (c == '\\') {
-				sb.deleteCharAt(i);
-				c = sb.charAt(i);
-				if (c == 'n') {
-					lines.add(sb.substring(0, i));
-					sb.delete(0, i + 1);
-					i = -1;
-					continue;
-				}
-			}
-		}
-		lines.add(sb.toString());
-	}
-
-	String dump() {
-		return super.dump() + " " + size + " " + text;
-	}
-
-	int getDumpType() {
-		return 'x';
-	}
-
+	@Override
 	void drag(int xx, int yy) {
 		x = xx;
 		y = yy;
@@ -65,6 +39,7 @@ class TextElm extends GraphicElm {
 		y2 = yy;
 	}
 
+	@Override
 	void draw(Graphics g) {
 		// Graphics2D g2 = (Graphics2D)g;
 		// g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -76,14 +51,14 @@ class TextElm extends GraphicElm {
 		int i;
 		int maxw = -1;
 		for (i = 0; i != lines.size(); i++) {
-			int w = fm.stringWidth((String) (lines.elementAt(i)));
+			int w = fm.stringWidth((lines.elementAt(i)));
 			if (w > maxw)
 				maxw = w;
 		}
 		int cury = y;
 		setBbox(x, y, x, y);
 		for (i = 0; i != lines.size(); i++) {
-			String s = (String) (lines.elementAt(i));
+			String s = (lines.elementAt(i));
 			if ((flags & FLAG_CENTER) != 0)
 				x = (sim.winSize.width - fm.stringWidth(s)) / 2;
 			g.drawString(s, x, cury);
@@ -98,6 +73,17 @@ class TextElm extends GraphicElm {
 		y2 = boundingBox.y + boundingBox.height;
 	}
 
+	@Override
+	String dump() {
+		return super.dump() + " " + size + " " + text;
+	}
+
+	@Override
+	int getDumpType() {
+		return 'x';
+	}
+
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0) {
 			EditInfo ei = new EditInfo("Text", 0, -1, -1);
@@ -119,6 +105,22 @@ class TextElm extends GraphicElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = text;
+	}
+
+	@Override
+	int getShortcut() {
+		return 't';
+	}
+
+	@Override
+	boolean isCenteredText() {
+		return (flags & FLAG_CENTER) != 0;
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (n == 0) {
 			text = ei.textf.getText();
@@ -140,16 +142,23 @@ class TextElm extends GraphicElm {
 		}
 	}
 
-	boolean isCenteredText() {
-		return (flags & FLAG_CENTER) != 0;
-	}
-
-	void getInfo(String arr[]) {
-		arr[0] = text;
-	}
-
-	@Override
-	int getShortcut() {
-		return 't';
+	void split() {
+		int i;
+		lines = new Vector<String>();
+		StringBuffer sb = new StringBuffer(text);
+		for (i = 0; i < sb.length(); i++) {
+			char c = sb.charAt(i);
+			if (c == '\\') {
+				sb.deleteCharAt(i);
+				c = sb.charAt(i);
+				if (c == 'n') {
+					lines.add(sb.substring(0, i));
+					sb.delete(0, i + 1);
+					i = -1;
+					continue;
+				}
+			}
+		}
+		lines.add(sb.toString());
 	}
 }

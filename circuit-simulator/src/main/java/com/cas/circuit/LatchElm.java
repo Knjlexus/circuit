@@ -1,7 +1,12 @@
 package com.cas.circuit;
+
 import java.util.StringTokenizer;
 
 class LatchElm extends ChipElm {
+	int loadPin;
+
+	boolean lastLoad = false;
+
 	public LatchElm(int xx, int yy) {
 		super(xx, yy);
 	}
@@ -10,16 +15,41 @@ class LatchElm extends ChipElm {
 		super(xa, ya, xb, yb, f, st);
 	}
 
+	@Override
+	void execute() {
+		int i;
+		if (pins[loadPin].value && !lastLoad)
+			for (i = 0; i != bits; i++)
+				pins[i + bits].value = pins[i].value;
+		lastLoad = pins[loadPin].value;
+	}
+
+	@Override
 	String getChipName() {
 		return "Latch";
 	}
 
+	@Override
+	int getDumpType() {
+		return 168;
+	}
+
+	@Override
+	int getPostCount() {
+		return bits * 2 + 1;
+	}
+
+	@Override
+	int getVoltageSourceCount() {
+		return bits;
+	}
+
+	@Override
 	boolean needsBits() {
 		return true;
 	}
 
-	int loadPin;
-
+	@Override
 	void setupPins() {
 		sizeX = 2;
 		sizeY = bits + 1;
@@ -33,27 +63,5 @@ class LatchElm extends ChipElm {
 		}
 		pins[loadPin = bits * 2] = new Pin(bits, SIDE_W, "Ld");
 		allocNodes();
-	}
-
-	boolean lastLoad = false;
-
-	void execute() {
-		int i;
-		if (pins[loadPin].value && !lastLoad)
-			for (i = 0; i != bits; i++)
-				pins[i + bits].value = pins[i].value;
-		lastLoad = pins[loadPin].value;
-	}
-
-	int getVoltageSourceCount() {
-		return bits;
-	}
-
-	int getPostCount() {
-		return bits * 2 + 1;
-	}
-
-	int getDumpType() {
-		return 168;
 	}
 }

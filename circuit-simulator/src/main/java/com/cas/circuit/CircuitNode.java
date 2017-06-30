@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.util.Vector;
 
 class CircuitNode {

@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,12 +7,31 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class TransistorElm extends CircuitElm {
+	static final double leakage = 1e-13; // 1e-6;
+	static final double vt = .025;
+	static final double vdcoef = 1 / vt;
+	static final double rgain = .5;
 	int pnp;
+
 	double beta;
+
 	double fgain;
+
 	double gmin;
+
 	final int FLAG_FLIP = 1;
+
+	double ic, ie, ib, curcount_c, curcount_e, curcount_b;
+
+	Polygon rectPoly, arrowPoly;
+
+	Point rect[], coll[], emit[], base;
+
+	double vcrit;
+	double lastvbc, lastvbe;
 
 	TransistorElm(int xx, int yy, boolean pnpflag) {
 		super(xx, yy);
@@ -36,155 +56,13 @@ class TransistorElm extends CircuitElm {
 		setup();
 	}
 
-	void setup() {
-		vcrit = vt * Math.log(vt / (Math.sqrt(2) * leakage));
-		fgain = beta / (beta + 1);
-		noDiagonal = true;
-	}
-
-	boolean nonLinear() {
+	@Override
+	protected
+	boolean canViewInScope() {
 		return true;
 	}
 
-	void reset() {
-		volts[0] = volts[1] = volts[2] = 0;
-		lastvbc = lastvbe = curcount_c = curcount_e = curcount_b = 0;
-	}
-
-	int getDumpType() {
-		return 't';
-	}
-
-	String dump() {
-		return super.dump() + " " + pnp + " " + (volts[0] - volts[1]) + " " + (volts[0] - volts[2]) + " " + beta;
-	}
-
-	double ic, ie, ib, curcount_c, curcount_e, curcount_b;
-	Polygon rectPoly, arrowPoly;
-
-	void draw(Graphics g) {
-		setBbox(point1, point2, 16);
-		setPowerColor(g, true);
-		// draw collector
-		setVoltageColor(g, volts[1]);
-		drawThickLine(g, coll[0], coll[1]);
-		// draw emitter
-		setVoltageColor(g, volts[2]);
-		drawThickLine(g, emit[0], emit[1]);
-		// draw arrow
-		g.setColor(lightGrayColor);
-		g.fillPolygon(arrowPoly);
-		// draw base
-		setVoltageColor(g, volts[0]);
-		if (sim.powerCheckItem.getState())
-			g.setColor(Color.gray);
-		drawThickLine(g, point1, base);
-		// draw dots
-		curcount_b = updateDotCount(-ib, curcount_b);
-		drawDots(g, base, point1, curcount_b);
-		curcount_c = updateDotCount(-ic, curcount_c);
-		drawDots(g, coll[1], coll[0], curcount_c);
-		curcount_e = updateDotCount(-ie, curcount_e);
-		drawDots(g, emit[1], emit[0], curcount_e);
-		// draw base rectangle
-		setVoltageColor(g, volts[0]);
-		setPowerColor(g, true);
-		g.fillPolygon(rectPoly);
-
-		if ((needsHighlight() || sim.dragElm == this) && dy == 0) {
-			g.setColor(Color.white);
-			g.setFont(unitsFont);
-			int ds = sign(dx);
-			g.drawString("B", base.x - 10 * ds, base.y - 5);
-			g.drawString("C", coll[0].x - 3 + 9 * ds, coll[0].y + 4); // x+6 if
-																		// ds=1,
-																		// -12
-																		// if -1
-			g.drawString("E", emit[0].x - 3 + 9 * ds, emit[0].y + 4);
-		}
-		drawPosts(g);
-	}
-
-	Point getPost(int n) {
-		return (n == 0) ? point1 : (n == 1) ? coll[0] : emit[0];
-	}
-
-	int getPostCount() {
-		return 3;
-	}
-
-	double getPower() {
-		return (volts[0] - volts[2]) * ib + (volts[1] - volts[2]) * ic;
-	}
-
-	Point rect[], coll[], emit[], base;
-
-	void setPoints() {
-		super.setPoints();
-		int hs = 16;
-		if ((flags & FLAG_FLIP) != 0)
-			dsign = -dsign;
-		int hs2 = hs * dsign * pnp;
-		// calc collector, emitter posts
-		coll = newPointArray(2);
-		emit = newPointArray(2);
-		interpPoint2(point1, point2, coll[0], emit[0], 1, hs2);
-		// calc rectangle edges
-		rect = newPointArray(4);
-		interpPoint2(point1, point2, rect[0], rect[1], 1 - 16 / dn, hs);
-		interpPoint2(point1, point2, rect[2], rect[3], 1 - 13 / dn, hs);
-		// calc points where collector/emitter leads contact rectangle
-		interpPoint2(point1, point2, coll[1], emit[1], 1 - 13 / dn, 6 * dsign * pnp);
-		// calc point where base lead contacts rectangle
-		base = new Point();
-		interpPoint(point1, point2, base, 1 - 16 / dn);
-
-		// rectangle
-		rectPoly = createPolygon(rect[0], rect[2], rect[3], rect[1]);
-
-		// arrow
-		if (pnp == 1)
-			arrowPoly = calcArrow(emit[1], emit[0], 8, 4);
-		else {
-			Point pt = interpPoint(point1, point2, 1 - 11 / dn, -5 * dsign * pnp);
-			arrowPoly = calcArrow(emit[0], pt, 8, 4);
-		}
-	}
-
-	static final double leakage = 1e-13; // 1e-6;
-	static final double vt = .025;
-	static final double vdcoef = 1 / vt;
-	static final double rgain = .5;
-	double vcrit;
-	double lastvbc, lastvbe;
-
-	double limitStep(double vnew, double vold) {
-		double arg;
-		double oo = vnew;
-
-		if (vnew > vcrit && Math.abs(vnew - vold) > (vt + vt)) {
-			if (vold > 0) {
-				arg = 1 + (vnew - vold) / vt;
-				if (arg > 0) {
-					vnew = vold + vt * Math.log(arg);
-				} else {
-					vnew = vcrit;
-				}
-			} else {
-				vnew = vt * Math.log(vnew / vt);
-			}
-			sim.converged = false;
-			// System.out.println(vnew + " " + oo + " " + vold);
-		}
-		return (vnew);
-	}
-
-	void stamp() {
-		sim.stampNonLinear(nodes[0]);
-		sim.stampNonLinear(nodes[1]);
-		sim.stampNonLinear(nodes[2]);
-	}
-
+	@Override
 	void doStep() {
 		double vbc = volts[0] - volts[1]; // typically negative
 		double vbe = volts[0] - volts[2]; // typically positive
@@ -255,8 +133,75 @@ class TransistorElm extends CircuitElm {
 		sim.stampRightSide(nodes[2], -ie + gee * vbe + gec * vbc);
 	}
 
+	@Override
+	void draw(Graphics g) {
+		setBbox(point1, point2, 16);
+		setPowerColor(g, true);
+		// draw collector
+		setVoltageColor(g, volts[1]);
+		CircuitUtil.drawThickLine(g, coll[0], coll[1]);
+		// draw emitter
+		setVoltageColor(g, volts[2]);
+		CircuitUtil.drawThickLine(g, emit[0], emit[1]);
+		// draw arrow
+		g.setColor(lightGrayColor);
+		g.fillPolygon(arrowPoly);
+		// draw base
+		setVoltageColor(g, volts[0]);
+		if (sim.powerCheckItem.getState())
+			g.setColor(Color.gray);
+		CircuitUtil.drawThickLine(g, point1, base);
+		// draw dots
+		curcount_b = updateDotCount(-ib, curcount_b);
+		drawDots(g, base, point1, curcount_b);
+		curcount_c = updateDotCount(-ic, curcount_c);
+		drawDots(g, coll[1], coll[0], curcount_c);
+		curcount_e = updateDotCount(-ie, curcount_e);
+		drawDots(g, emit[1], emit[0], curcount_e);
+		// draw base rectangle
+		setVoltageColor(g, volts[0]);
+		setPowerColor(g, true);
+		g.fillPolygon(rectPoly);
+
+		if ((needsHighlight() || sim.dragElm == this) && dy == 0) {
+			g.setColor(Color.white);
+			g.setFont(unitsFont);
+			int ds = CircuitUtil.sign(dx);
+			g.drawString("B", base.x - 10 * ds, base.y - 5);
+			g.drawString("C", coll[0].x - 3 + 9 * ds, coll[0].y + 4); // x+6 if
+																		// ds=1,
+																		// -12
+																		// if -1
+			g.drawString("E", emit[0].x - 3 + 9 * ds, emit[0].y + 4);
+		}
+		drawPosts(g);
+	}
+
+	@Override
+	String dump() {
+		return super.dump() + " " + pnp + " " + (volts[0] - volts[1]) + " " + (volts[0] - volts[2]) + " " + beta;
+	}
+
+	@Override
+	int getDumpType() {
+		return 't';
+	}
+
+	@Override
+	public EditInfo getEditInfo(int n) {
+		if (n == 0)
+			return new EditInfo("Beta/hFE", beta, 10, 1000).setDimensionless();
+		if (n == 1) {
+			EditInfo ei = new EditInfo("", 0, -1, -1);
+			ei.checkbox = new Checkbox("Swap E/C", (flags & FLAG_FLIP) != 0);
+			return ei;
+		}
+		return null;
+	}
+
+	@Override
 	void getInfo(String arr[]) {
-		arr[0] = "transistor (" + ((pnp == -1) ? "PNP)" : "NPN)") + " beta=" + showFormat.format(beta);
+		arr[0] = "transistor (" + ((pnp == -1) ? "PNP)" : "NPN)") + " beta=" + CircuitUtil.showFormat.format(beta);
 		double vbc = volts[0] - volts[1];
 		double vbe = volts[0] - volts[2];
 		double vce = volts[1] - volts[2];
@@ -264,13 +209,41 @@ class TransistorElm extends CircuitElm {
 			arr[1] = vbe * pnp > .2 ? "saturation" : "reverse active";
 		else
 			arr[1] = vbe * pnp > .2 ? "fwd active" : "cutoff";
-		arr[2] = "Ic = " + getCurrentText(ic);
-		arr[3] = "Ib = " + getCurrentText(ib);
-		arr[4] = "Vbe = " + getVoltageText(vbe);
-		arr[5] = "Vbc = " + getVoltageText(vbc);
-		arr[6] = "Vce = " + getVoltageText(vce);
+		arr[2] = "Ic = " + CircuitUtil.getCurrentText(ic);
+		arr[3] = "Ib = " + CircuitUtil.getCurrentText(ib);
+		arr[4] = "Vbe = " + CircuitUtil.getVoltageText(vbe);
+		arr[5] = "Vbc = " + CircuitUtil.getVoltageText(vbc);
+		arr[6] = "Vce = " + CircuitUtil.getVoltageText(vce);
 	}
 
+	@Override
+	Point getPost(int n) {
+		return (n == 0) ? point1 : (n == 1) ? coll[0] : emit[0];
+	}
+
+	@Override
+	int getPostCount() {
+		return 3;
+	}
+
+	@Override
+	double getPower() {
+		return (volts[0] - volts[2]) * ib + (volts[1] - volts[2]) * ic;
+	}
+
+	@Override
+	String getScopeUnits(int x) {
+		switch (x) {
+		case Scope.VAL_IB:
+		case Scope.VAL_IC:
+		case Scope.VAL_IE:
+			return "A";
+		default:
+			return "V";
+		}
+	}
+
+	@Override
 	double getScopeValue(int x) {
 		switch (x) {
 		case Scope.VAL_IB:
@@ -289,28 +262,39 @@ class TransistorElm extends CircuitElm {
 		return 0;
 	}
 
-	String getScopeUnits(int x) {
-		switch (x) {
-		case Scope.VAL_IB:
-		case Scope.VAL_IC:
-		case Scope.VAL_IE:
-			return "A";
-		default:
-			return "V";
+	double limitStep(double vnew, double vold) {
+		double arg;
+		double oo = vnew;
+
+		if (vnew > vcrit && Math.abs(vnew - vold) > (vt + vt)) {
+			if (vold > 0) {
+				arg = 1 + (vnew - vold) / vt;
+				if (arg > 0) {
+					vnew = vold + vt * Math.log(arg);
+				} else {
+					vnew = vcrit;
+				}
+			} else {
+				vnew = vt * Math.log(vnew / vt);
+			}
+			sim.converged = false;
+			// System.out.println(vnew + " " + oo + " " + vold);
 		}
+		return (vnew);
 	}
 
-	public EditInfo getEditInfo(int n) {
-		if (n == 0)
-			return new EditInfo("Beta/hFE", beta, 10, 1000).setDimensionless();
-		if (n == 1) {
-			EditInfo ei = new EditInfo("", 0, -1, -1);
-			ei.checkbox = new Checkbox("Swap E/C", (flags & FLAG_FLIP) != 0);
-			return ei;
-		}
-		return null;
+	@Override
+	boolean nonLinear() {
+		return true;
 	}
 
+	@Override
+	void reset() {
+		volts[0] = volts[1] = volts[2] = 0;
+		lastvbc = lastvbe = curcount_c = curcount_e = curcount_b = 0;
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (n == 0) {
 			beta = ei.value;
@@ -325,7 +309,49 @@ class TransistorElm extends CircuitElm {
 		}
 	}
 
-	boolean canViewInScope() {
-		return true;
+	@Override
+	void setPoints() {
+		super.setPoints();
+		int hs = 16;
+		if ((flags & FLAG_FLIP) != 0)
+			dsign = -dsign;
+		int hs2 = hs * dsign * pnp;
+		// calc collector, emitter posts
+		coll = newPointArray(2);
+		emit = newPointArray(2);
+		CircuitUtil.interpPoint2(point1, point2, coll[0], emit[0], 1, hs2);
+		// calc rectangle edges
+		rect = newPointArray(4);
+		CircuitUtil.interpPoint2(point1, point2, rect[0], rect[1], 1 - 16 / dn, hs);
+		CircuitUtil.interpPoint2(point1, point2, rect[2], rect[3], 1 - 13 / dn, hs);
+		// calc points where collector/emitter leads contact rectangle
+		CircuitUtil.interpPoint2(point1, point2, coll[1], emit[1], 1 - 13 / dn, 6 * dsign * pnp);
+		// calc point where base lead contacts rectangle
+		base = new Point();
+		CircuitUtil.interpPoint(point1, point2, base, 1 - 16 / dn);
+
+		// rectangle
+		rectPoly = CircuitUtil.createPolygon(rect[0], rect[2], rect[3], rect[1]);
+
+		// arrow
+		if (pnp == 1)
+			arrowPoly = calcArrow(emit[1], emit[0], 8, 4);
+		else {
+			Point pt =CircuitUtil. interpPoint(point1, point2, 1 - 11 / dn, -5 * dsign * pnp);
+			arrowPoly = calcArrow(emit[0], pt, 8, 4);
+		}
+	}
+
+	void setup() {
+		vcrit = vt * Math.log(vt / (Math.sqrt(2) * leakage));
+		fgain = beta / (beta + 1);
+		noDiagonal = true;
+	}
+
+	@Override
+	void stamp() {
+		sim.stampNonLinear(nodes[0]);
+		sim.stampNonLinear(nodes[1]);
+		sim.stampNonLinear(nodes[2]);
 	}
 }

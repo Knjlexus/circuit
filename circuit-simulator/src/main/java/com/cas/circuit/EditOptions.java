@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 class EditOptions implements Editable {
 	CirSim sim;
 
@@ -6,6 +7,7 @@ class EditOptions implements Editable {
 		sim = s;
 	}
 
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0)
 			return new EditInfo("Time step size (s)", sim.timeStep, 0, 0);
@@ -15,6 +17,7 @@ class EditOptions implements Editable {
 		return null;
 	}
 
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (n == 0 && ei.value > 0)
 			sim.timeStep = ei.value;

@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.util.StringTokenizer;
 
 class DecadeElm extends ChipElm {
@@ -10,39 +11,7 @@ class DecadeElm extends ChipElm {
 		super(xa, ya, xb, yb, f, st);
 	}
 
-	String getChipName() {
-		return "decade counter";
-	}
-
-	boolean needsBits() {
-		return true;
-	}
-
-	void setupPins() {
-		sizeX = bits > 2 ? bits : 2;
-		sizeY = 2;
-		pins = new Pin[getPostCount()];
-		pins[0] = new Pin(1, SIDE_W, "");
-		pins[0].clock = true;
-		pins[1] = new Pin(sizeX - 1, SIDE_S, "R");
-		pins[1].bubble = true;
-		int i;
-		for (i = 0; i != bits; i++) {
-			int ii = i + 2;
-			pins[ii] = new Pin(i, SIDE_N, "Q" + i);
-			pins[ii].output = pins[ii].state = true;
-		}
-		allocNodes();
-	}
-
-	int getPostCount() {
-		return bits + 2;
-	}
-
-	int getVoltageSourceCount() {
-		return bits;
-	}
-
+	@Override
 	void execute() {
 		int i;
 		if (pins[0].value && !lastClock) {
@@ -62,7 +31,46 @@ class DecadeElm extends ChipElm {
 		lastClock = pins[0].value;
 	}
 
+	@Override
+	String getChipName() {
+		return "decade counter";
+	}
+
+	@Override
 	int getDumpType() {
 		return 163;
+	}
+
+	@Override
+	int getPostCount() {
+		return bits + 2;
+	}
+
+	@Override
+	int getVoltageSourceCount() {
+		return bits;
+	}
+
+	@Override
+	boolean needsBits() {
+		return true;
+	}
+
+	@Override
+	void setupPins() {
+		sizeX = bits > 2 ? bits : 2;
+		sizeY = 2;
+		pins = new Pin[getPostCount()];
+		pins[0] = new Pin(1, SIDE_W, "");
+		pins[0].clock = true;
+		pins[1] = new Pin(sizeX - 1, SIDE_S, "R");
+		pins[1].bubble = true;
+		int i;
+		for (i = 0; i != bits; i++) {
+			int ii = i + 2;
+			pins[ii] = new Pin(i, SIDE_N, "Q" + i);
+			pins[ii].output = pins[ii].state = true;
+		}
+		allocNodes();
 	}
 }

@@ -1,9 +1,14 @@
 package com.cas.circuit;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.StringTokenizer;
 
-class RailElm extends VoltageElm {
+import com.cas.circuit.util.CircuitUtil;
+
+public class RailElm extends VoltageElm {
+	final int FLAG_CLOCK = 1;
+
 	public RailElm(int xx, int yy) {
 		super(xx, yy, WF_DC);
 	}
@@ -16,25 +21,17 @@ class RailElm extends VoltageElm {
 		super(xa, ya, xb, yb, f, st);
 	}
 
-	final int FLAG_CLOCK = 1;
-
-	int getDumpType() {
-		return 'R';
+	@Override
+	void doStep() {
+		if (waveform != WF_DC)
+			sim.updateVoltageSource(0, nodes[0], voltSource, getVoltage());
 	}
 
-	int getPostCount() {
-		return 1;
-	}
-
-	void setPoints() {
-		super.setPoints();
-		lead1 = interpPoint(point1, point2, 1 - circleSize / dn);
-	}
-
+	@Override
 	void draw(Graphics g) {
 		setBbox(point1, point2, circleSize);
 		setVoltageColor(g, volts[0]);
-		drawThickLine(g, point1, lead1);
+		CircuitUtil.drawThickLine(g, point1, lead1);
 		boolean clock = waveform == WF_SQUARE && (flags & FLAG_CLOCK) != 0;
 		if (waveform == WF_DC || waveform == WF_VAR || clock) {
 			Font f = new Font("SansSerif", 0, 12);
@@ -42,9 +39,9 @@ class RailElm extends VoltageElm {
 			g.setColor(needsHighlight() ? selectColor : whiteColor);
 			setPowerColor(g, false);
 			double v = getVoltage();
-			String s = getShortUnitText(v, "V");
+			String s = CircuitUtil.getShortUnitText(v, "V");
 			if (Math.abs(v) < 1)
-				s = showFormat.format(v) + "V";
+				s = CircuitUtil.showFormat.format(v) + "V";
 			if (getVoltage() > 0)
 				s = "+" + s;
 			if (this instanceof AntennaElm)
@@ -61,27 +58,42 @@ class RailElm extends VoltageElm {
 			drawDots(g, point1, lead1, curcount);
 	}
 
+	@Override
+	int getDumpType() {
+		return 'R';
+	}
+
+	@Override
+	int getPostCount() {
+		return 1;
+	}
+
+	@Override
+	int getShortcut() {
+		return 'V';
+	}
+
+	@Override
 	double getVoltageDiff() {
 		return volts[0];
 	}
 
+	@Override
+	boolean hasGroundConnection(int n1) {
+		return true;
+	}
+
+	@Override
+	void setPoints() {
+		super.setPoints();
+		lead1 = CircuitUtil.interpPoint(point1, point2, 1 - circleSize / dn);
+	}
+
+	@Override
 	void stamp() {
 		if (waveform == WF_DC)
 			sim.stampVoltageSource(0, nodes[0], voltSource, getVoltage());
 		else
 			sim.stampVoltageSource(0, nodes[0], voltSource);
-	}
-
-	void doStep() {
-		if (waveform != WF_DC)
-			sim.updateVoltageSource(0, nodes[0], voltSource, getVoltage());
-	}
-
-	boolean hasGroundConnection(int n1) {
-		return true;
-	}
-
-	int getShortcut() {
-		return 'V';
 	}
 }

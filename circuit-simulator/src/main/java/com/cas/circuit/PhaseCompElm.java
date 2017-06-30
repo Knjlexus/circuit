@@ -1,7 +1,10 @@
 package com.cas.circuit;
+
 import java.util.StringTokenizer;
 
 class PhaseCompElm extends ChipElm {
+	boolean ff1, ff2;
+
 	public PhaseCompElm(int xx, int yy) {
 		super(xx, yy);
 	}
@@ -10,33 +13,7 @@ class PhaseCompElm extends ChipElm {
 		super(xa, ya, xb, yb, f, st);
 	}
 
-	String getChipName() {
-		return "phase comparator";
-	}
-
-	void setupPins() {
-		sizeX = 2;
-		sizeY = 2;
-		pins = new Pin[3];
-		pins[0] = new Pin(0, SIDE_W, "I1");
-		pins[1] = new Pin(1, SIDE_W, "I2");
-		pins[2] = new Pin(0, SIDE_E, "O");
-		pins[2].output = true;
-	}
-
-	boolean nonLinear() {
-		return true;
-	}
-
-	void stamp() {
-		int vn = sim.nodeList.size() + pins[2].voltSource;
-		sim.stampNonLinear(vn);
-		sim.stampNonLinear(0);
-		sim.stampNonLinear(nodes[2]);
-	}
-
-	boolean ff1, ff2;
-
+	@Override
 	void doStep() {
 		boolean v1 = volts[0] > 2.5;
 		boolean v2 = volts[1] > 2.5;
@@ -59,15 +36,47 @@ class PhaseCompElm extends ChipElm {
 		pins[1].value = v2;
 	}
 
+	@Override
+	String getChipName() {
+		return "phase comparator";
+	}
+
+	@Override
+	int getDumpType() {
+		return 161;
+	}
+
+	@Override
 	int getPostCount() {
 		return 3;
 	}
 
+	@Override
 	int getVoltageSourceCount() {
 		return 1;
 	}
 
-	int getDumpType() {
-		return 161;
+	@Override
+	boolean nonLinear() {
+		return true;
+	}
+
+	@Override
+	void setupPins() {
+		sizeX = 2;
+		sizeY = 2;
+		pins = new Pin[3];
+		pins[0] = new Pin(0, SIDE_W, "I1");
+		pins[1] = new Pin(1, SIDE_W, "I2");
+		pins[2] = new Pin(0, SIDE_E, "O");
+		pins[2].output = true;
+	}
+
+	@Override
+	void stamp() {
+		int vn = sim.nodeList.size() + pins[2].voltSource;
+		sim.stampNonLinear(vn);
+		sim.stampNonLinear(0);
+		sim.stampNonLinear(nodes[2]);
 	}
 }

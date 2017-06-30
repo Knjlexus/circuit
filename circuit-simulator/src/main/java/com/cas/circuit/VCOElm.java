@@ -1,8 +1,15 @@
 package com.cas.circuit;
+
 import java.awt.Graphics;
 import java.util.StringTokenizer;
 
 class VCOElm extends ChipElm {
+	final double cResistance = 1e6;
+
+	double cCurrent;
+
+	int cDir;
+
 	public VCOElm(int xx, int yy) {
 		super(xx, yy);
 	}
@@ -11,47 +18,18 @@ class VCOElm extends ChipElm {
 		super(xa, ya, xb, yb, f, st);
 	}
 
-	String getChipName() {
-		return "VCO";
+	// can't do this in calculateCurrent() because it's called before
+	// we get pins[4].current and pins[5].current, which we need
+	void computeCurrent() {
+		if (cResistance == 0)
+			return;
+		double c = cDir * (pins[4].current + pins[5].current) + (volts[3] - volts[2]) / cResistance;
+		pins[2].current = -c;
+		pins[3].current = c;
+		pins[0].current = -pins[4].current;
 	}
 
-	void setupPins() {
-		sizeX = 2;
-		sizeY = 4;
-		pins = new Pin[6];
-		pins[0] = new Pin(0, SIDE_W, "Vi");
-		pins[1] = new Pin(3, SIDE_W, "Vo");
-		pins[1].output = true;
-		pins[2] = new Pin(0, SIDE_E, "C");
-		pins[3] = new Pin(1, SIDE_E, "C");
-		pins[4] = new Pin(2, SIDE_E, "R1");
-		pins[4].output = true;
-		pins[5] = new Pin(3, SIDE_E, "R2");
-		pins[5].output = true;
-	}
-
-	boolean nonLinear() {
-		return true;
-	}
-
-	void stamp() {
-		// output pin
-		sim.stampVoltageSource(0, nodes[1], pins[1].voltSource);
-		// attach Vi to R1 pin so its current is proportional to Vi
-		sim.stampVoltageSource(nodes[0], nodes[4], pins[4].voltSource, 0);
-		// attach 5V to R2 pin so we get a current going
-		sim.stampVoltageSource(0, nodes[5], pins[5].voltSource, 5);
-		// put resistor across cap pins to give current somewhere to go
-		// in case cap is not connected
-		sim.stampResistor(nodes[2], nodes[3], cResistance);
-		sim.stampNonLinear(nodes[2]);
-		sim.stampNonLinear(nodes[3]);
-	}
-
-	final double cResistance = 1e6;
-	double cCurrent;
-	int cDir;
-
+	@Override
 	void doStep() {
 		double vc = volts[3] - volts[2];
 		double vo = volts[1];
@@ -80,31 +58,65 @@ class VCOElm extends ChipElm {
 		cDir = dir;
 	}
 
-	// can't do this in calculateCurrent() because it's called before
-	// we get pins[4].current and pins[5].current, which we need
-	void computeCurrent() {
-		if (cResistance == 0)
-			return;
-		double c = cDir * (pins[4].current + pins[5].current) + (volts[3] - volts[2]) / cResistance;
-		pins[2].current = -c;
-		pins[3].current = c;
-		pins[0].current = -pins[4].current;
-	}
-
+	@Override
 	void draw(Graphics g) {
 		computeCurrent();
 		drawChip(g);
 	}
 
+	@Override
+	String getChipName() {
+		return "VCO";
+	}
+
+	@Override
+	int getDumpType() {
+		return 158;
+	}
+
+	@Override
 	int getPostCount() {
 		return 6;
 	}
 
+	@Override
 	int getVoltageSourceCount() {
 		return 3;
 	}
 
-	int getDumpType() {
-		return 158;
+	@Override
+	boolean nonLinear() {
+		return true;
+	}
+
+	@Override
+	void setupPins() {
+		sizeX = 2;
+		sizeY = 4;
+		pins = new Pin[6];
+		pins[0] = new Pin(0, SIDE_W, "Vi");
+		pins[1] = new Pin(3, SIDE_W, "Vo");
+		pins[1].output = true;
+		pins[2] = new Pin(0, SIDE_E, "C");
+		pins[3] = new Pin(1, SIDE_E, "C");
+		pins[4] = new Pin(2, SIDE_E, "R1");
+		pins[4].output = true;
+		pins[5] = new Pin(3, SIDE_E, "R2");
+		pins[5].output = true;
+	}
+
+	@Override
+	void stamp() {
+		// output pin
+		sim.stampVoltageSource(0, nodes[1], pins[1].voltSource);
+		// attach Vi to R1 pin so its current is proportional to Vi
+		sim.stampVoltageSource(nodes[0], nodes[4], pins[4].voltSource, 0);
+		// attach 5V to R2 pin so we get a current going
+		sim.stampVoltageSource(0, nodes[5], pins[5].voltSource, 5);
+		// put resistor across cap pins to give current somewhere to go
+		// in case cap is not connected
+		sim.stampResistor(nodes[2], nodes[3], cResistance);
+		sim.stampNonLinear(nodes[2]);
+		sim.stampNonLinear(nodes[3]);
 	}
 }

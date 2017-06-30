@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -9,20 +10,11 @@ class ImportExportDialogLayout implements LayoutManager {
 	public ImportExportDialogLayout() {
 	}
 
+	@Override
 	public void addLayoutComponent(String name, Component c) {
 	}
 
-	public void removeLayoutComponent(Component c) {
-	}
-
-	public Dimension preferredLayoutSize(Container target) {
-		return new Dimension(500, 500);
-	}
-
-	public Dimension minimumLayoutSize(Container target) {
-		return new Dimension(100, 100);
-	}
-
+	@Override
 	public void layoutContainer(Container target) {
 		Insets insets = target.insets();
 		int targetw = target.size().width - insets.left - insets.right;
@@ -48,5 +40,19 @@ class ImportExportDialogLayout implements LayoutManager {
 				x += d.width;
 			}
 		}
+	}
+
+	@Override
+	public Dimension minimumLayoutSize(Container target) {
+		return new Dimension(100, 100);
+	}
+
+	@Override
+	public Dimension preferredLayoutSize(Container target) {
+		return new Dimension(500, 500);
+	}
+
+	@Override
+	public void removeLayoutComponent(Component c) {
 	}
 };

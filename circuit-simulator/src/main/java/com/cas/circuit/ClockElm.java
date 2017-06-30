@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 class ClockElm extends RailElm {
 	public ClockElm(int xx, int yy) {
 		super(xx, yy, WF_SQUARE);
@@ -8,10 +9,12 @@ class ClockElm extends RailElm {
 		flags |= FLAG_CLOCK;
 	}
 
+	@Override
 	protected Class getDumpClass() {
 		return RailElm.class;
 	}
 
+	@Override
 	int getShortcut() {
 		return 0;
 	}

@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.util.StringTokenizer;
 
 class NorGateElm extends OrGateElm {
@@ -10,19 +11,23 @@ class NorGateElm extends OrGateElm {
 		super(xa, ya, xb, yb, f, st);
 	}
 
-	String getGateName() {
-		return "NOR gate";
-	}
-
-	boolean isInverting() {
-		return true;
-	}
-
+	@Override
 	int getDumpType() {
 		return 153;
 	}
 
+	@Override
+	String getGateName() {
+		return "NOR gate";
+	}
+
+	@Override
 	int getShortcut() {
 		return '#';
+	}
+
+	@Override
+	boolean isInverting() {
+		return true;
 	}
 }

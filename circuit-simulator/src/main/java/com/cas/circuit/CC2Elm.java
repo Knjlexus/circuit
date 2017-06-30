@@ -1,6 +1,9 @@
 package com.cas.circuit;
+
 import java.awt.Graphics;
 import java.util.StringTokenizer;
+
+import com.cas.circuit.util.CircuitUtil;
 
 class CC2Elm extends ChipElm {
 	double gain;
@@ -20,14 +23,46 @@ class CC2Elm extends ChipElm {
 		gain = new Double(st.nextToken()).doubleValue();
 	}
 
+	@Override
+	void draw(Graphics g) {
+		pins[2].current = pins[0].current * gain;
+		drawChip(g);
+	}
+
+	@Override
 	String dump() {
 		return super.dump() + " " + gain;
 	}
 
+	@Override
 	String getChipName() {
 		return "CC2";
 	}
 
+	@Override
+	int getDumpType() {
+		return 179;
+	}
+
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = (gain == 1) ? "CCII+" : "CCII-";
+		arr[1] = "X,Y = " + CircuitUtil.getVoltageText(volts[0]);
+		arr[2] = "Z = " + CircuitUtil.getVoltageText(volts[2]);
+		arr[3] = "I = " + CircuitUtil.getCurrentText(pins[0].current);
+	}
+
+	@Override
+	int getPostCount() {
+		return 3;
+	}
+
+	@Override
+	int getVoltageSourceCount() {
+		return 1;
+	}
+
+	@Override
 	void setupPins() {
 		sizeX = 2;
 		sizeY = 3;
@@ -38,36 +73,13 @@ class CC2Elm extends ChipElm {
 		pins[2] = new Pin(1, SIDE_E, "Z");
 	}
 
-	void getInfo(String arr[]) {
-		arr[0] = (gain == 1) ? "CCII+" : "CCII-";
-		arr[1] = "X,Y = " + getVoltageText(volts[0]);
-		arr[2] = "Z = " + getVoltageText(volts[2]);
-		arr[3] = "I = " + getCurrentText(pins[0].current);
-	}
-
 	// boolean nonLinear() { return true; }
+	@Override
 	void stamp() {
 		// X voltage = Y voltage
 		sim.stampVoltageSource(0, nodes[0], pins[0].voltSource);
 		sim.stampVCVS(0, nodes[1], 1, pins[0].voltSource);
 		// Z current = gain * X current
 		sim.stampCCCS(0, nodes[2], pins[0].voltSource, gain);
-	}
-
-	void draw(Graphics g) {
-		pins[2].current = pins[0].current * gain;
-		drawChip(g);
-	}
-
-	int getPostCount() {
-		return 3;
-	}
-
-	int getVoltageSourceCount() {
-		return 1;
-	}
-
-	int getDumpType() {
-		return 179;
 	}
 }

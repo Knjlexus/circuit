@@ -1,9 +1,12 @@
 package com.cas.circuit;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.util.StringTokenizer;
+
+import com.cas.circuit.util.CircuitUtil;
 
 class OpAmpElm extends CircuitElm {
 	int opsize, opheight, opwidth, opaddtext;
@@ -12,6 +15,14 @@ class OpAmpElm extends CircuitElm {
 	final int FLAG_SWAP = 1;
 	final int FLAG_SMALL = 2;
 	final int FLAG_LOWGAIN = 4;
+
+	Point in1p[], in2p[], textp[];
+
+	Polygon triangle;
+
+	Font plusFont;
+
+	double lastvd;
 
 	public OpAmpElm(int xx, int yy) {
 		super(xx, yy);
@@ -41,110 +52,7 @@ class OpAmpElm extends CircuitElm {
 		setGain();
 	}
 
-	void setGain() {
-		// gain of 100000 breaks e-amp-dfdx.txt
-		// gain was 1000, but it broke amp-schmitt.txt
-		gain = ((flags & FLAG_LOWGAIN) != 0) ? 1000 : 100000;
-
-	}
-
-	String dump() {
-		return super.dump() + " " + maxOut + " " + minOut + " " + gbw;
-	}
-
-	boolean nonLinear() {
-		return true;
-	}
-
-	void draw(Graphics g) {
-		setBbox(point1, point2, opheight * 2);
-		setVoltageColor(g, volts[0]);
-		drawThickLine(g, in1p[0], in1p[1]);
-		setVoltageColor(g, volts[1]);
-		drawThickLine(g, in2p[0], in2p[1]);
-		g.setColor(needsHighlight() ? selectColor : lightGrayColor);
-		setPowerColor(g, true);
-		drawThickPolygon(g, triangle);
-		g.setFont(plusFont);
-		drawCenteredText(g, "-", textp[0].x, textp[0].y - 2, true);
-		drawCenteredText(g, "+", textp[1].x, textp[1].y, true);
-		setVoltageColor(g, volts[2]);
-		drawThickLine(g, lead2, point2);
-		curcount = updateDotCount(current, curcount);
-		drawDots(g, point2, lead2, curcount);
-		drawPosts(g);
-	}
-
-	double getPower() {
-		return volts[2] * current;
-	}
-
-	Point in1p[], in2p[], textp[];
-	Polygon triangle;
-	Font plusFont;
-
-	void setSize(int s) {
-		opsize = s;
-		opheight = 8 * s;
-		opwidth = 13 * s;
-		flags = (flags & ~FLAG_SMALL) | ((s == 1) ? FLAG_SMALL : 0);
-	}
-
-	void setPoints() {
-		super.setPoints();
-		if (dn > 150 && this == sim.dragElm)
-			setSize(2);
-		int ww = opwidth;
-		if (ww > dn / 2)
-			ww = (int) (dn / 2);
-		calcLeads(ww * 2);
-		int hs = opheight * dsign;
-		if ((flags & FLAG_SWAP) != 0)
-			hs = -hs;
-		in1p = newPointArray(2);
-		in2p = newPointArray(2);
-		textp = newPointArray(2);
-		interpPoint2(point1, point2, in1p[0], in2p[0], 0, hs);
-		interpPoint2(lead1, lead2, in1p[1], in2p[1], 0, hs);
-		interpPoint2(lead1, lead2, textp[0], textp[1], .2, hs);
-		Point tris[] = newPointArray(2);
-		interpPoint2(lead1, lead2, tris[0], tris[1], 0, hs * 2);
-		triangle = createPolygon(tris[0], tris[1], lead2);
-		plusFont = new Font("SansSerif", 0, opsize == 2 ? 14 : 10);
-	}
-
-	int getPostCount() {
-		return 3;
-	}
-
-	Point getPost(int n) {
-		return (n == 0) ? in1p[0] : (n == 1) ? in2p[0] : point2;
-	}
-
-	int getVoltageSourceCount() {
-		return 1;
-	}
-
-	void getInfo(String arr[]) {
-		arr[0] = "op-amp";
-		arr[1] = "V+ = " + getVoltageText(volts[1]);
-		arr[2] = "V- = " + getVoltageText(volts[0]);
-		// sometimes the voltage goes slightly outside range, to make
-		// convergence easier. so we hide that here.
-		double vo = Math.max(Math.min(volts[2], maxOut), minOut);
-		arr[3] = "Vout = " + getVoltageText(vo);
-		arr[4] = "Iout = " + getCurrentText(getCurrent());
-		arr[5] = "range = " + getVoltageText(minOut) + " to " + getVoltageText(maxOut);
-	}
-
-	double lastvd;
-
-	void stamp() {
-		int vn = sim.nodeList.size() + voltSource;
-		sim.stampNonLinear(vn);
-		sim.stampMatrix(nodes[2], vn, 1);
-	}
-
+	@Override
 	void doStep() {
 		double vd = volts[1] - volts[0];
 		if (Math.abs(lastvd - vd) > .1)
@@ -178,24 +86,44 @@ class OpAmpElm extends CircuitElm {
 		 */
 	}
 
+	@Override
+	void draw(Graphics g) {
+		setBbox(point1, point2, opheight * 2);
+		setVoltageColor(g, volts[0]);
+		CircuitUtil.drawThickLine(g, in1p[0], in1p[1]);
+		setVoltageColor(g, volts[1]);
+		CircuitUtil.drawThickLine(g, in2p[0], in2p[1]);
+		g.setColor(needsHighlight() ? selectColor : lightGrayColor);
+		setPowerColor(g, true);
+		CircuitUtil.drawThickPolygon(g, triangle);
+		g.setFont(plusFont);
+		drawCenteredText(g, "-", textp[0].x, textp[0].y - 2, true);
+		drawCenteredText(g, "+", textp[1].x, textp[1].y, true);
+		setVoltageColor(g, volts[2]);
+		CircuitUtil.drawThickLine(g, lead2, point2);
+		curcount = updateDotCount(current, curcount);
+		drawDots(g, point2, lead2, curcount);
+		drawPosts(g);
+	}
+
+	@Override
+	String dump() {
+		return super.dump() + " " + maxOut + " " + minOut + " " + gbw;
+	}
+
 	// there is no current path through the op-amp inputs, but there
 	// is an indirect path through the output to ground.
+	@Override
 	boolean getConnection(int n1, int n2) {
 		return false;
 	}
 
-	boolean hasGroundConnection(int n1) {
-		return (n1 == 2);
-	}
-
-	double getVoltageDiff() {
-		return volts[2] - volts[1];
-	}
-
+	@Override
 	int getDumpType() {
 		return 'a';
 	}
 
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0)
 			return new EditInfo("Max Output (V)", maxOut, 1, 20);
@@ -204,10 +132,104 @@ class OpAmpElm extends CircuitElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = "op-amp";
+		arr[1] = "V+ = " + CircuitUtil.getVoltageText(volts[1]);
+		arr[2] = "V- = " + CircuitUtil.getVoltageText(volts[0]);
+		// sometimes the voltage goes slightly outside range, to make
+		// convergence easier. so we hide that here.
+		double vo = Math.max(Math.min(volts[2], maxOut), minOut);
+		arr[3] = "Vout = " + CircuitUtil.getVoltageText(vo);
+		arr[4] = "Iout = " + CircuitUtil.getCurrentText(getCurrent());
+		arr[5] = "range = " + CircuitUtil.getVoltageText(minOut) + " to " + CircuitUtil.getVoltageText(maxOut);
+	}
+
+	@Override
+	Point getPost(int n) {
+		return (n == 0) ? in1p[0] : (n == 1) ? in2p[0] : point2;
+	}
+
+	@Override
+	int getPostCount() {
+		return 3;
+	}
+
+	@Override
+	double getPower() {
+		return volts[2] * current;
+	}
+
+	@Override
+	double getVoltageDiff() {
+		return volts[2] - volts[1];
+	}
+
+	@Override
+	int getVoltageSourceCount() {
+		return 1;
+	}
+
+	@Override
+	boolean hasGroundConnection(int n1) {
+		return (n1 == 2);
+	}
+
+	@Override
+	boolean nonLinear() {
+		return true;
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (n == 0)
 			maxOut = ei.value;
 		if (n == 1)
 			minOut = ei.value;
+	}
+
+	void setGain() {
+		// gain of 100000 breaks e-amp-dfdx.txt
+		// gain was 1000, but it broke amp-schmitt.txt
+		gain = ((flags & FLAG_LOWGAIN) != 0) ? 1000 : 100000;
+
+	}
+
+	@Override
+	void setPoints() {
+		super.setPoints();
+		if (dn > 150 && this == sim.dragElm)
+			setSize(2);
+		int ww = opwidth;
+		if (ww > dn / 2)
+			ww = (int) (dn / 2);
+		calcLeads(ww * 2);
+		int hs = opheight * dsign;
+		if ((flags & FLAG_SWAP) != 0)
+			hs = -hs;
+		in1p = newPointArray(2);
+		in2p = newPointArray(2);
+		textp = newPointArray(2);
+		CircuitUtil.interpPoint2(point1, point2, in1p[0], in2p[0], 0, hs);
+		CircuitUtil.interpPoint2(lead1, lead2, in1p[1], in2p[1], 0, hs);
+		CircuitUtil.interpPoint2(lead1, lead2, textp[0], textp[1], .2, hs);
+		Point tris[] = newPointArray(2);
+		CircuitUtil.interpPoint2(lead1, lead2, tris[0], tris[1], 0, hs * 2);
+		triangle = CircuitUtil.createPolygon(tris[0], tris[1], lead2);
+		plusFont = new Font("SansSerif", 0, opsize == 2 ? 14 : 10);
+	}
+
+	void setSize(int s) {
+		opsize = s;
+		opheight = 8 * s;
+		opwidth = 13 * s;
+		flags = (flags & ~FLAG_SMALL) | ((s == 1) ? FLAG_SMALL : 0);
+	}
+
+	@Override
+	void stamp() {
+		int vn = sim.nodeList.size() + voltSource;
+		sim.stampNonLinear(vn);
+		sim.stampMatrix(nodes[2], vn, 1);
 	}
 }

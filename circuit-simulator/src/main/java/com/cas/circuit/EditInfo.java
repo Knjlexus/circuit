@@ -1,10 +1,23 @@
 package com.cas.circuit;
+
 import java.awt.Checkbox;
 import java.awt.Choice;
 import java.awt.Scrollbar;
 import java.awt.TextField;
 
 class EditInfo {
+	String name, text;
+
+	double value, minval, maxval;
+
+	TextField textf;
+	Scrollbar bar;
+	Choice choice;
+	Checkbox checkbox;
+	boolean newDialog;
+	boolean forceLargeM;
+	boolean dimensionless;
+
 	EditInfo(String n, double val, double mn, double mx) {
 		name = n;
 		value = val;
@@ -25,14 +38,4 @@ class EditInfo {
 		dimensionless = true;
 		return this;
 	}
-
-	String name, text;
-	double value, minval, maxval;
-	TextField textf;
-	Scrollbar bar;
-	Choice choice;
-	Checkbox checkbox;
-	boolean newDialog;
-	boolean forceLargeM;
-	boolean dimensionless;
 }

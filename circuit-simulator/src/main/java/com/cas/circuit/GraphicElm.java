@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 class GraphicElm extends CircuitElm {
 
 	public GraphicElm(int xx, int yy) {
@@ -9,6 +10,7 @@ class GraphicElm extends CircuitElm {
 		super(xa, ya, xb, yb, flags);
 	}
 
+	@Override
 	int getPostCount() {
 		return 0;
 	}

@@ -1,13 +1,18 @@
 package com.cas.circuit;
+
 import java.awt.Checkbox;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.StringTokenizer;
 
+import com.cas.circuit.util.CircuitUtil;
+
 class SwitchElm extends CircuitElm {
 	boolean momentary;
 	// position 0 == closed, position 1 == open
 	int position, posCount;
+
+	Point ps, ps2;
 
 	public SwitchElm(int xx, int yy) {
 		super(xx, yy);
@@ -36,23 +41,13 @@ class SwitchElm extends CircuitElm {
 		posCount = 2;
 	}
 
-	int getDumpType() {
-		return 's';
+	@Override
+	void calculateCurrent() {
+		if (position == 1)
+			current = 0;
 	}
 
-	String dump() {
-		return super.dump() + " " + position + " " + momentary;
-	}
-
-	Point ps, ps2;
-
-	void setPoints() {
-		super.setPoints();
-		calcLeads(32);
-		ps = new Point();
-		ps2 = new Point();
-	}
-
+	@Override
 	void draw(Graphics g) {
 		int openhs = 16;
 		int hs1 = (position == 1) ? 0 : 2;
@@ -61,63 +56,36 @@ class SwitchElm extends CircuitElm {
 
 		draw2Leads(g);
 
-		if (position == 0)
+		if (position == 0) {
 			doDots(g);
+		}
 
-		if (!needsHighlight())
+		if (!needsHighlight()) {
 			g.setColor(whiteColor);
-		interpPoint(lead1, lead2, ps, 0, hs1);
-		interpPoint(lead1, lead2, ps2, 1, hs2);
+		}
+		CircuitUtil.interpPoint(lead1, lead2, ps, 0, hs1);
+		CircuitUtil.interpPoint(lead1, lead2, ps2, 1, hs2);
 
-		drawThickLine(g, ps, ps2);
+		CircuitUtil.drawThickLine(g, ps, ps2);
 		drawPosts(g);
 	}
 
-	void calculateCurrent() {
-		if (position == 1)
-			current = 0;
+	@Override
+	String dump() {
+		return super.dump() + " " + position + " " + momentary;
 	}
 
-	void stamp() {
-		if (position == 0)
-			sim.stampVoltageSource(nodes[0], nodes[1], voltSource, 0);
-	}
-
-	int getVoltageSourceCount() {
-		return (position == 1) ? 0 : 1;
-	}
-
-	void mouseUp() {
-		if (momentary)
-			toggle();
-	}
-
-	void toggle() {
-		position++;
-		if (position >= posCount)
-			position = 0;
-	}
-
-	void getInfo(String arr[]) {
-		arr[0] = (momentary) ? "push switch (SPST)" : "switch (SPST)";
-		if (position == 1) {
-			arr[1] = "open";
-			arr[2] = "Vd = " + getVoltageDText(getVoltageDiff());
-		} else {
-			arr[1] = "closed";
-			arr[2] = "V = " + getVoltageText(volts[0]);
-			arr[3] = "I = " + getCurrentDText(getCurrent());
-		}
-	}
-
+	@Override
 	boolean getConnection(int n1, int n2) {
 		return position == 0;
 	}
 
-	boolean isWire() {
-		return true;
+	@Override
+	int getDumpType() {
+		return 's';
 	}
 
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0) {
 			EditInfo ei = new EditInfo("", 0, -1, -1);
@@ -127,12 +95,62 @@ class SwitchElm extends CircuitElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = (momentary) ? "push switch (SPST)" : "switch (SPST)";
+		if (position == 1) {
+			arr[1] = "open";
+			arr[2] = "Vd = " + CircuitUtil.getVoltageDText(getVoltageDiff());
+		} else {
+			arr[1] = "closed";
+			arr[2] = "V = " + CircuitUtil.getVoltageText(volts[0]);
+			arr[3] = "I = " + CircuitUtil.getCurrentDText(getCurrent());
+		}
+	}
+
+	@Override
+	int getShortcut() {
+		return 's';
+	}
+
+	@Override
+	int getVoltageSourceCount() {
+		return (position == 1) ? 0 : 1;
+	}
+
+	@Override
+	boolean isWire() {
+		return true;
+	}
+
+	void mouseUp() {
+		if (momentary)
+			toggle();
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (n == 0)
 			momentary = ei.checkbox.getState();
 	}
 
-	int getShortcut() {
-		return 's';
+	@Override
+	void setPoints() {
+		super.setPoints();
+		calcLeads(32);
+		ps = new Point();
+		ps2 = new Point();
+	}
+
+	@Override
+	void stamp() {
+		if (position == 0)
+			sim.stampVoltageSource(nodes[0], nodes[1], voltSource, 0);
+	}
+
+	void toggle() {
+		position++;
+		if (position >= posCount)
+			position = 0;
 	}
 }

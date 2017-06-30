@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.awt.Dialog;
 
 // add plugin.jar to classpath during compilation
@@ -17,10 +18,7 @@ class ImportExportAppletDialog extends Dialog implements ImportExportDialog {
 			throw new Exception("Not running as an applet!");
 	}
 
-	public void setDump(String dump) {
-		circuitDump = dump;
-	}
-
+	@Override
 	public void execute() {
 		try {
 			JSObject window = JSObject.getWindow(cframe.applet);
@@ -35,5 +33,10 @@ class ImportExportAppletDialog extends Dialog implements ImportExportDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void setDump(String dump) {
+		circuitDump = dump;
 	}
 }

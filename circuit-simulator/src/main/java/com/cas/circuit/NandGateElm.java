@@ -1,4 +1,5 @@
 package com.cas.circuit;
+
 import java.util.StringTokenizer;
 
 class NandGateElm extends AndGateElm {
@@ -10,19 +11,23 @@ class NandGateElm extends AndGateElm {
 		super(xa, ya, xb, yb, f, st);
 	}
 
-	boolean isInverting() {
-		return true;
-	}
-
-	String getGateName() {
-		return "NAND gate";
-	}
-
+	@Override
 	int getDumpType() {
 		return 151;
 	}
 
+	@Override
+	String getGateName() {
+		return "NAND gate";
+	}
+
+	@Override
 	int getShortcut() {
 		return '@';
+	}
+
+	@Override
+	boolean isInverting() {
+		return true;
 	}
 }

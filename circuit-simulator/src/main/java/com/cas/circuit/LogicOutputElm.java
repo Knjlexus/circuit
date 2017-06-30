@@ -1,9 +1,12 @@
 package com.cas.circuit;
+
 import java.awt.Checkbox;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.util.StringTokenizer;
+
+import com.cas.circuit.util.CircuitUtil;
 
 class LogicOutputElm extends CircuitElm {
 	final int FLAG_TERNARY = 1;
@@ -28,38 +31,7 @@ class LogicOutputElm extends CircuitElm {
 		}
 	}
 
-	String dump() {
-		return super.dump() + " " + threshold;
-	}
-
-	int getDumpType() {
-		return 'M';
-	}
-
-	int getPostCount() {
-		return 1;
-	}
-
-	boolean isTernary() {
-		return (flags & FLAG_TERNARY) != 0;
-	}
-
-	// boolean isNumeric() { return (flags & (FLAG_TERNARY|FLAG_NUMERIC)) != 0;
-	// }
-	boolean isNumeric() {
-		return true;
-	} // hausen: always numeric
-
-	boolean needsPullDown() {
-		return (flags & FLAG_PULLDOWN) != 0;
-	}
-
-	void setPoints() {
-		super.setPoints();
-		lead1 = interpPoint(point1, point2, 1 - 12 / dn);
-		arrowPoly = calcArrow(point1, lead1, 8, 8);
-	}
-
+	@Override
 	void draw(Graphics g) {
 		Font f = new Font("SansSerif", Font.BOLD, 20);
 		g.setFont(f);
@@ -79,28 +51,22 @@ class LogicOutputElm extends CircuitElm {
 		setBbox(point1, lead1, 0);
 		drawCenteredText(g, s, x2, y2, true);
 		setVoltageColor(g, volts[0]);
-		drawThickLine(g, point1, lead1);
+		CircuitUtil.drawThickLine(g, point1, lead1);
 		g.fillPolygon(arrowPoly);
 		drawPosts(g);
 	}
 
-	void stamp() {
-		if (needsPullDown())
-			sim.stampResistor(nodes[0], 0, 1e6);
+	@Override
+	String dump() {
+		return super.dump() + " " + threshold;
 	}
 
-	double getVoltageDiff() {
-		return volts[0];
+	@Override
+	int getDumpType() {
+		return 'M';
 	}
 
-	void getInfo(String arr[]) {
-		arr[0] = "logic output";
-		arr[1] = (volts[0] < threshold) ? "low" : "high";
-		if (isNumeric())
-			arr[1] = value;
-		arr[2] = "V = " + getVoltageText(volts[0]);
-	}
-
+	@Override
 	public EditInfo getEditInfo(int n) {
 		if (n == 0)
 			return new EditInfo("Threshold", threshold, 10, -10);
@@ -112,6 +78,45 @@ class LogicOutputElm extends CircuitElm {
 		return null;
 	}
 
+	@Override
+	void getInfo(String arr[]) {
+		arr[0] = "logic output";
+		arr[1] = (volts[0] < threshold) ? "low" : "high";
+		if (isNumeric())
+			arr[1] = value;
+		arr[2] = "V = " + CircuitUtil.getVoltageText(volts[0]);
+	}
+
+	@Override
+	int getPostCount() {
+		return 1;
+	}
+
+	@Override
+	int getShortcut() {
+		return 'o';
+	}
+
+	@Override
+	double getVoltageDiff() {
+		return volts[0];
+	}
+
+	// boolean isNumeric() { return (flags & (FLAG_TERNARY|FLAG_NUMERIC)) != 0;
+	// }
+	boolean isNumeric() {
+		return true;
+	} // hausen: always numeric
+
+	boolean isTernary() {
+		return (flags & FLAG_TERNARY) != 0;
+	}
+
+	boolean needsPullDown() {
+		return (flags & FLAG_PULLDOWN) != 0;
+	}
+
+	@Override
 	public void setEditValue(int n, EditInfo ei) {
 		if (n == 0)
 			threshold = ei.value;
@@ -123,7 +128,16 @@ class LogicOutputElm extends CircuitElm {
 		}
 	}
 
-	int getShortcut() {
-		return 'o';
+	@Override
+	void setPoints() {
+		super.setPoints();
+		lead1 = CircuitUtil.interpPoint(point1, point2, 1 - 12 / dn);
+		arrowPoly = calcArrow(point1, lead1, 8, 8);
+	}
+
+	@Override
+	void stamp() {
+		if (needsPullDown())
+			sim.stampResistor(nodes[0], 0, 1e6);
 	}
 }
