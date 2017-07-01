@@ -217,10 +217,11 @@ class SweepElm extends CircuitElm {
 	}
 
 	@Override
-	void startIteration() {
+	public void startIteration() {
 		// has timestep been changed?
-		if (sim.timeStep != savedTimeStep)
+		if (sim.timeStep != savedTimeStep) {
 			setParams();
+		}
 		v = Math.sin(freqTime) * maxV;
 		freqTime += frequency * 2 * PI * sim.timeStep;
 		frequency = frequency * fmul + fadd;
@@ -229,8 +230,9 @@ class SweepElm extends CircuitElm {
 				fadd = -fadd;
 				fmul = 1 / fmul;
 				dir = -1;
-			} else
+			} else {
 				frequency = minF;
+			}
 		}
 		if (frequency <= minF && dir == -1) {
 			fadd = -fadd;

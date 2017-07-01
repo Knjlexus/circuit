@@ -159,7 +159,7 @@ class MemristorElm extends CircuitElm {
 	}
 
 	@Override
-	void startIteration() {
+	public void startIteration() {
 		double wd = dopeWidth / totalWidth;
 		dopeWidth += sim.timeStep * mobility * r_on * current / totalWidth;
 		if (dopeWidth < 0)

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="com.cas.circuit.Circuit" x="501" y="532">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="com.cas.circuit.CirSim"
+            endpointName="ogf" kind="Simple"/>
+        <Communication destinationClassName="com.cas.circuit.CirSim"/>
+    </Class>
+    <Class name="com.cas.circuit.CirSim" x="100" y="351">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="com.cas.circuit.CircuitElm"
+            endpointName="elmList" kind="Simple">
+            <Point x="166" y="312"/>
+        </Association>
+        <Association
+            destinationClassName="com.cas.circuit.CirSim.CirSimActionListener"
+            endpointName="actionListener" kind="Simple"/>
+        <Association destinationClassName="com.cas.circuit.CircuitElm"
+            endpointName="plotXElm" kind="Simple">
+            <Point x="306" y="287"/>
+        </Association>
+        <Association destinationClassName="com.cas.circuit.CircuitElm"
+            endpointName="dragElm" kind="Simple">
+            <Point x="361" y="243"/>
+        </Association>
+        <Association destinationClassName="com.cas.circuit.CircuitNode"
+            endpointName="nodeList" kind="Simple"/>
+        <Association destinationClassName="com.cas.circuit.Circuit"
+            endpointName="applet" kind="Simple"/>
+        <Association destinationClassName="com.cas.circuit.CircuitElm"
+            endpointName="voltageSources[]" kind="Simple">
+            <Point x="413" y="147"/>
+        </Association>
+        <Communication destinationClassName="com.cas.circuit.Circuit"/>
+        <Communication destinationClassName="com.cas.circuit.CircuitElm"/>
+    </Class>
+    <Class name="com.cas.circuit.CircuitNode" x="518" y="303">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.cas.circuit.CircuitNodeLink"
+            endpointName="links" kind="Simple"/>
+    </Class>
+    <Class name="com.cas.circuit.CirSim.CirSimActionListener" x="-210" y="433">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.cas.circuit.CirSim"/>
+        <Communication destinationClassName="com.cas.circuit.CircuitElm"/>
+    </Class>
+    <Class name="com.cas.circuit.CircuitElm" x="95" y="22">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="com.cas.circuit.CirSim"
+            endpointName="sim" kind="Simple">
+            <Point x="77" y="296"/>
+            <Point x="122" y="301"/>
+        </Association>
+        <Communication destinationClassName="com.cas.circuit.CirSim"/>
+    </Class>
+    <Class name="com.cas.circuit.CircuitNodeLink" x="362" y="18">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="com.cas.circuit.CircuitElm"
+            endpointName="elm" kind="Simple">
+            <Point x="310" y="29"/>
+        </Association>
+    </Class>
+</ClassDiagram>

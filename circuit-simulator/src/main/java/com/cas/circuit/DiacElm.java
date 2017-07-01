@@ -131,7 +131,7 @@ class DiacElm extends CircuitElm {
 	}
 
 	@Override
-	void startIteration() {
+	public void startIteration() {
 		double vd = volts[0] - volts[1];
 		if (Math.abs(current) < holdcurrent)
 			state = false;

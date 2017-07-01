@@ -248,7 +248,7 @@ class TransLineElm extends CircuitElm {
 	}
 
 	@Override
-	void startIteration() {
+	public void startIteration() {
 		// calculate voltages, currents sent over wire
 		if (voltageL == null) {
 			sim.stop("Transmission line delay too large!", this);

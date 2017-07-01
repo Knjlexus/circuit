@@ -321,7 +321,7 @@ class RelayElm extends CircuitElm {
 	}
 
 	@Override
-	void startIteration() {
+	public void startIteration() {
 		ind.startIteration(volts[nCoil1] - volts[nCoil3]);
 
 		// magic value to balance operate speed with reset speed

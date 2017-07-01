@@ -254,7 +254,7 @@ class TransformerElm extends CircuitElm {
 	}
 
 	@Override
-	void startIteration() {
+	public void startIteration() {
 		double voltdiff1 = volts[0] - volts[2];
 		double voltdiff2 = volts[1] - volts[3];
 		if (isTrapezoidal()) {

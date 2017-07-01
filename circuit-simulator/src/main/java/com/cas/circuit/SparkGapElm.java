@@ -135,7 +135,7 @@ class SparkGapElm extends CircuitElm {
 	}
 
 	@Override
-	void startIteration() {
+	public void startIteration() {
 		if (Math.abs(current) < holdcurrent)
 			state = false;
 		double vd = volts[0] - volts[1];

@@ -106,13 +106,15 @@ class TimerElm extends ChipElm {
 	}
 
 	@Override
-	void startIteration() {
+	public void startIteration() {
 		out = volts[N_OUT] > volts[N_VIN] / 2;
 		setOut = false;
 		// check comparators
-		if (volts[N_CTL] / 2 > volts[N_TRIG])
+		if (volts[N_CTL] / 2 > volts[N_TRIG]) {
 			setOut = out = true;
-		if (volts[N_THRES] > volts[N_CTL] || (hasReset() && volts[N_RST] < .7))
+		}
+		if (volts[N_THRES] > volts[N_CTL] || (hasReset() && volts[N_RST] < .7)) {
 			out = false;
+		}
 	}
 }

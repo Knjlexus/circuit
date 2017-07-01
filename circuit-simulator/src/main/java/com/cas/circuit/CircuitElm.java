@@ -16,12 +16,13 @@ import com.cas.circuit.util.CircuitUtil;
 
 /**
  * 电路元件的基类
- * 
  * @author admin
  */
 public abstract class CircuitElm implements Editable {
 	static double voltageRange = 5;
-	static int colorScaleCount = 32;
+//	彩色数
+	public static final int COLOR_SCALE_COUNT = 32;
+
 	static Color colorScale[];
 	static double currentMult, powerMult;
 	static Point ps1, ps2;
@@ -33,10 +34,9 @@ public abstract class CircuitElm implements Editable {
 		unitsFont = new Font("SansSerif", 0, 10);
 		sim = s;
 
-		colorScale = new Color[colorScaleCount];
-		int i;
-		for (i = 0; i != colorScaleCount; i++) {
-			double v = i * 2. / colorScaleCount - 1;
+		colorScale = new Color[COLOR_SCALE_COUNT];
+		for (int i = 0; i != COLOR_SCALE_COUNT; i++) {
+			double v = i * 2. / COLOR_SCALE_COUNT - 1;
 			if (v < 0) {
 				int n1 = (int) (128 * -v) + 127;
 				int n2 = (int) (127 * (1 + v));
@@ -46,6 +46,7 @@ public abstract class CircuitElm implements Editable {
 				int n2 = (int) (127 * (1 - v));
 				colorScale[i] = new Color(n2, n1, n2);
 			}
+			System.out.println("CircuitElm.initClass()" +colorScale[i]);
 		}
 
 		ps1 = new Point();
@@ -261,8 +262,7 @@ public abstract class CircuitElm implements Editable {
 	}
 
 	protected void drawDots(Graphics g, Point pa, Point pb, double pos) {
-		if (sim.stoppedCheck.getState() || pos == 0 || !sim.dotsCheckItem.getState())
-			return;
+		if (sim.stoppedCheck.getState() || pos == 0 || !sim.dotsCheckItem.getState()) return;
 		int dx = pb.x - pa.x;
 		int dy = pb.y - pa.y;
 		double dn = Math.sqrt(dx * dx + dy * dy);
@@ -387,6 +387,10 @@ public abstract class CircuitElm implements Editable {
 		return (n == 0) ? point1 : (n == 1) ? point2 : null;
 	}
 
+	/**
+	 * Post : 桩。 像是引脚的意思， 比如三极管是3个桩，普通的就2个
+	 * @return
+	 */
 	int getPostCount() {
 		return 2;
 	}
@@ -485,6 +489,10 @@ public abstract class CircuitElm implements Editable {
 		return a;
 	}
 
+	/**
+	 * 非线性元件，返回true：表示是“非线性元件”， false表示是“线性元件”
+	 * @return
+	 */
 	boolean nonLinear() {
 		return false;
 	}
@@ -578,8 +586,9 @@ public abstract class CircuitElm implements Editable {
 	void setPowerColor(Graphics g, double w0) {
 		w0 *= powerMult;
 		double w = (w0 < 0) ? -w0 : w0;
-		if (w > 1)
+		if (w > 1) {
 			w = 1;
+		}
 		int rg = 128 + (int) (w * 127);
 		int b = (int) (128 * (1 - w));
 
@@ -592,7 +601,7 @@ public abstract class CircuitElm implements Editable {
 		}
 	}
 
-	void setSelected(boolean x) {
+	protected void setSelected(boolean x) {
 		selected = x;
 	}
 
@@ -610,12 +619,12 @@ public abstract class CircuitElm implements Editable {
 			}
 			return;
 		}
-		int c = (int) ((volts + voltageRange) * (colorScaleCount - 1) / (voltageRange * 2));
+		int c = (int) ((volts + voltageRange) * (COLOR_SCALE_COUNT - 1) / (voltageRange * 2));
 		if (c < 0) {
 			c = 0;
 		}
-		if (c >= colorScaleCount) {
-			c = colorScaleCount - 1;
+		if (c >= COLOR_SCALE_COUNT) {
+			c = COLOR_SCALE_COUNT - 1;
 		}
 		g.setColor(colorScale[c]);
 	}
@@ -627,7 +636,10 @@ public abstract class CircuitElm implements Editable {
 	void stamp() {
 	}
 
-	void startIteration() {
+	/**
+	 * 迭代、循环
+	 */
+	public void startIteration() {
 	}
 
 	protected void updateDotCount() {

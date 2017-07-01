@@ -129,7 +129,7 @@ class PhotoResistorElm extends CircuitElm {
 	}
 
 	@Override
-	void startIteration() {
+	public void startIteration() {
 		double vd = volts[0] - volts[1];
 		// FIXME set resistance as appropriate, using slider.getValue()
 		resistance = minresistance;

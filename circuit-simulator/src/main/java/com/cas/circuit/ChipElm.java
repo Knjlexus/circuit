@@ -338,6 +338,9 @@ abstract class ChipElm extends CircuitElm {
 		flags |= (s == 1) ? FLAG_SMALL : 0;
 	}
 
+	/**
+	 * 设置元件的管脚
+	 */
 	abstract void setupPins();
 
 	@Override

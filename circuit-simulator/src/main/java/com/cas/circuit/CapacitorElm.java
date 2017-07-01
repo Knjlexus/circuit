@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 import com.cas.circuit.util.CircuitUtil;
 
 class CapacitorElm extends CircuitElm {
+//	后退欧拉法
 	public static final int FLAG_BACK_EULER = 2;
 	double capacitance;
 	double compResistance, voltdiff;
@@ -33,8 +34,7 @@ class CapacitorElm extends CircuitElm {
 		// we check compResistance because this might get called
 		// before stamp(), which sets compResistance, causing
 		// infinite current
-		if (compResistance > 0)
-			current = voltdiff / compResistance + curSourceValue;
+		if (compResistance > 0) current = voltdiff / compResistance + curSourceValue;
 	}
 
 	@Override
@@ -52,8 +52,7 @@ class CapacitorElm extends CircuitElm {
 		CircuitUtil.drawThickLine(g, point1, lead1);
 		setPowerColor(g, false);
 		CircuitUtil.drawThickLine(g, plate1[0], plate1[1]);
-		if (sim.powerCheckItem.getState())
-			g.setColor(Color.gray);
+		if (sim.powerCheckItem.getState()) g.setColor(Color.gray);
 
 		// draw second lead and plate
 		setVoltageColor(g, volts[1]);
@@ -85,8 +84,7 @@ class CapacitorElm extends CircuitElm {
 
 	@Override
 	public EditInfo getEditInfo(int n) {
-		if (n == 0)
-			return new EditInfo("Capacitance (F)", capacitance, 0, 0);
+		if (n == 0) return new EditInfo("Capacitance (F)", capacitance, 0, 0);
 		if (n == 1) {
 			EditInfo ei = new EditInfo("", 0, -1, -1);
 			ei.checkbox = new Checkbox("Trapezoidal Approximation", isTrapezoidal());
@@ -110,7 +108,7 @@ class CapacitorElm extends CircuitElm {
 		return 'c';
 	}
 
-	boolean isTrapezoidal() {
+	private boolean isTrapezoidal() {
 		return (flags & FLAG_BACK_EULER) == 0;
 	}
 
@@ -123,13 +121,15 @@ class CapacitorElm extends CircuitElm {
 
 	@Override
 	public void setEditValue(int n, EditInfo ei) {
-		if (n == 0 && ei.value > 0)
+		if (n == 0 && ei.value > 0) {
 			capacitance = ei.value;
+		}
 		if (n == 1) {
-			if (ei.checkbox.getState())
+			if (ei.checkbox.getState()) {
 				flags &= ~FLAG_BACK_EULER;
-			else
+			} else {
 				flags |= FLAG_BACK_EULER;
+			}
 		}
 	}
 
@@ -160,22 +160,23 @@ class CapacitorElm extends CircuitElm {
 		// parallel with a resistor. Trapezoidal is more accurate
 		// than backward euler but can cause oscillatory behavior
 		// if RC is small relative to the timestep.
-		if (isTrapezoidal())
+		if (isTrapezoidal()) {
 			compResistance = sim.timeStep / (2 * capacitance);
-		else
+		} else {
 			compResistance = sim.timeStep / capacitance;
+		}
 		sim.stampResistor(nodes[0], nodes[1], compResistance);
 		sim.stampRightSide(nodes[0]);
 		sim.stampRightSide(nodes[1]);
 	}
 
 	@Override
-	void startIteration() {
-		if (isTrapezoidal())
+	public void startIteration() {
+		if (isTrapezoidal()) {
 			curSourceValue = -voltdiff / compResistance - current;
-		else
+		} else {
 			curSourceValue = -voltdiff / compResistance;
-		// System.out.println("cap " + compResistance + " " + curSourceValue + "
-		// " + current + " " + voltdiff);
+		}
+//		System.out.println("cap " + compResistance + " " + curSourceValue + " " + current + " " + voltdiff);
 	}
 }

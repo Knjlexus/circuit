@@ -73,8 +73,7 @@ class TappedTransformerElm extends CircuitElm {
 			CircuitUtil.drawThickLine(g, ptEnds[i], ptCoil[i]);
 		}
 		for (i = 0; i != 4; i++) {
-			if (i == 1)
-				continue;
+			if (i == 1) continue;
 			setPowerColor(g, current[i] * (volts[i] - volts[i + 1]));
 			drawCoil(g, i > 1 ? -6 : 6, ptCoil[i], ptCoil[i + 1], volts[i], volts[i + 1]);
 		}
@@ -110,14 +109,10 @@ class TappedTransformerElm extends CircuitElm {
 
 	@Override
 	boolean getConnection(int n1, int n2) {
-		if (CircuitUtil.comparePair(n1, n2, 0, 1))
-			return true;
-		if (CircuitUtil.comparePair(n1, n2, 2, 3))
-			return true;
-		if (CircuitUtil.comparePair(n1, n2, 3, 4))
-			return true;
-		if (CircuitUtil.comparePair(n1, n2, 2, 4))
-			return true;
+		if (CircuitUtil.comparePair(n1, n2, 0, 1)) return true;
+		if (CircuitUtil.comparePair(n1, n2, 2, 3)) return true;
+		if (CircuitUtil.comparePair(n1, n2, 3, 4)) return true;
+		if (CircuitUtil.comparePair(n1, n2, 2, 4)) return true;
 		return false;
 	}
 
@@ -128,10 +123,12 @@ class TappedTransformerElm extends CircuitElm {
 
 	@Override
 	public EditInfo getEditInfo(int n) {
-		if (n == 0)
+		if (n == 0) {
 			return new EditInfo("Primary Inductance (H)", inductance, .01, 5);
-		if (n == 1)
+		}
+		if (n == 1) {
 			return new EditInfo("Ratio", ratio, 1, 10).setDimensionless();
+		}
 		return null;
 	}
 
@@ -163,10 +160,8 @@ class TappedTransformerElm extends CircuitElm {
 
 	@Override
 	public void setEditValue(int n, EditInfo ei) {
-		if (n == 0)
-			inductance = ei.value;
-		if (n == 1)
-			ratio = ei.value;
+		if (n == 0) inductance = ei.value;
+		if (n == 1) ratio = ei.value;
 	}
 
 	@Override
@@ -249,20 +244,21 @@ class TappedTransformerElm extends CircuitElm {
 		sim.stampVCCurrentSource(nodes[3], nodes[4], nodes[2], nodes[3], a[7]);
 		sim.stampConductance(nodes[3], nodes[4], a[8]);
 
-		for (i = 0; i != 5; i++)
+		for (i = 0; i != 5; i++) {
 			sim.stampRightSide(nodes[i]);
+		}
 	}
 
 	@Override
-	void startIteration() {
+	public void startIteration() {
 		voltdiff[0] = volts[0] - volts[1];
 		voltdiff[1] = volts[2] - volts[3];
 		voltdiff[2] = volts[3] - volts[4];
-		int i, j;
-		for (i = 0; i != 3; i++) {
+		for (int i = 0; i != 3; i++) {
 			curSourceValue[i] = current[i];
-			for (j = 0; j != 3; j++)
+			for (int j = 0; j != 3; j++) {
 				curSourceValue[i] += a[i * 3 + j] * voltdiff[j];
+			}
 		}
 	}
 }

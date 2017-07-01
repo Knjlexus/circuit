@@ -41,7 +41,6 @@ class InductorElm extends CircuitElm {
 	void draw(Graphics g) {
 		double v1 = volts[0];
 		double v2 = volts[1];
-		int i;
 		int hs = 8;
 		setBbox(point1, point2, hs);
 		draw2Leads(g);
@@ -121,7 +120,7 @@ class InductorElm extends CircuitElm {
 	}
 
 	@Override
-	void startIteration() {
+	public void startIteration() {
 		ind.startIteration(volts[0] - volts[1]);
 	}
 }

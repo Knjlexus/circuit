@@ -6,11 +6,14 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.text.NumberFormat;
+import java.util.Random;
 
 import com.cas.circuit.CirSim;
 
 public class CircuitUtil {
 	public static NumberFormat showFormat, shortFormat, noCommaFormat;
+
+	private static Random random = new Random();
 
 	static {
 		showFormat = NumberFormat.getInstance();
@@ -20,6 +23,14 @@ public class CircuitUtil {
 		noCommaFormat = NumberFormat.getInstance();
 		noCommaFormat.setMaximumFractionDigits(10);
 		noCommaFormat.setGroupingUsed(false);
+	}
+
+	public static int getrand(int x) {
+		int q = random.nextInt();
+		if (q < 0) {
+			q = -q;
+		}
+		return q % x;
 	}
 
 	public static String getCurrentDText(double i) {
@@ -32,43 +43,27 @@ public class CircuitUtil {
 
 	public static String getShortUnitText(double v, String u) {
 		double va = Math.abs(v);
-		if (va < 1e-13)
-			return null;
-		if (va < 1e-9)
-			return shortFormat.format(v * 1e12) + "p" + u;
-		if (va < 1e-6)
-			return shortFormat.format(v * 1e9) + "n" + u;
-		if (va < 1e-3)
-			return shortFormat.format(v * 1e6) + CirSim.muString + u;
-		if (va < 1)
-			return shortFormat.format(v * 1e3) + "m" + u;
-		if (va < 1e3)
-			return shortFormat.format(v) + u;
-		if (va < 1e6)
-			return shortFormat.format(v * 1e-3) + "k" + u;
-		if (va < 1e9)
-			return shortFormat.format(v * 1e-6) + "M" + u;
+		if (va < 1e-13) return null;
+		if (va < 1e-9) return shortFormat.format(v * 1e12) + "p" + u;
+		if (va < 1e-6) return shortFormat.format(v * 1e9) + "n" + u;
+		if (va < 1e-3) return shortFormat.format(v * 1e6) + CirSim.muString + u;
+		if (va < 1) return shortFormat.format(v * 1e3) + "m" + u;
+		if (va < 1e3) return shortFormat.format(v) + u;
+		if (va < 1e6) return shortFormat.format(v * 1e-3) + "k" + u;
+		if (va < 1e9) return shortFormat.format(v * 1e-6) + "M" + u;
 		return shortFormat.format(v * 1e-9) + "G" + u;
 	}
 
 	public static String getUnitText(double v, String u) {
 		double va = Math.abs(v);
-		if (va < 1e-14)
-			return "0 " + u;
-		if (va < 1e-9)
-			return showFormat.format(v * 1e12) + " p" + u;
-		if (va < 1e-6)
-			return showFormat.format(v * 1e9) + " n" + u;
-		if (va < 1e-3)
-			return showFormat.format(v * 1e6) + " " + CirSim.muString + u;
-		if (va < 1)
-			return showFormat.format(v * 1e3) + " m" + u;
-		if (va < 1e3)
-			return showFormat.format(v) + " " + u;
-		if (va < 1e6)
-			return showFormat.format(v * 1e-3) + " k" + u;
-		if (va < 1e9)
-			return showFormat.format(v * 1e-6) + " M" + u;
+		if (va < 1e-14) return "0 " + u;
+		if (va < 1e-9) return showFormat.format(v * 1e12) + " p" + u;
+		if (va < 1e-6) return showFormat.format(v * 1e9) + " n" + u;
+		if (va < 1e-3) return showFormat.format(v * 1e6) + " " + CirSim.muString + u;
+		if (va < 1) return showFormat.format(v * 1e3) + " m" + u;
+		if (va < 1e3) return showFormat.format(v) + " " + u;
+		if (va < 1e6) return showFormat.format(v * 1e-3) + " k" + u;
+		if (va < 1e9) return showFormat.format(v * 1e-6) + " M" + u;
 		return showFormat.format(v * 1e-9) + " G" + u;
 	}
 
@@ -107,10 +102,9 @@ public class CircuitUtil {
 	}
 
 	public static void drawThickCircle(Graphics g, int cx, int cy, int ri) {
-		int a;
 		double m = PI / 180;
 		double r = ri * .98;
-		for (a = 0; a != 360; a += 20) {
+		for (int a = 0; a != 360; a += 20) {
 			double ax = Math.cos(a * m) * r + cx;
 			double ay = Math.sin(a * m) * r + cy;
 			double bx = Math.cos((a + 20) * m) * r + cx;
@@ -185,8 +179,7 @@ public class CircuitUtil {
 		int xpd = b.x - a.x;
 		int ypd = b.y - a.y;
 		/*
-		 * double q = (a.x*(1-f)+b.x*f+.48); System.out.println(q + " " + (int)
-		 * q);
+		 * double q = (a.x*(1-f)+b.x*f+.48); System.out.println(q + " " + (int) q);
 		 */
 		c.x = (int) Math.floor(a.x * (1 - f) + b.x * f + .48);
 		c.y = (int) Math.floor(a.y * (1 - f) + b.y * f + .48);

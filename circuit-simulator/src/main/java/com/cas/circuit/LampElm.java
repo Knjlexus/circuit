@@ -182,7 +182,7 @@ class LampElm extends CircuitElm {
 	}
 
 	@Override
-	void startIteration() {
+	public 	void startIteration() {
 		// based on http://www.intusoft.com/nlpdf/nl11.pdf
 		double nom_r = nom_v * nom_v / nom_pow;
 		// this formula doesn't work for values over 5390

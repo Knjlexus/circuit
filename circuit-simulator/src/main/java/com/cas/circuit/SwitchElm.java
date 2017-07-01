@@ -144,8 +144,9 @@ class SwitchElm extends CircuitElm {
 
 	@Override
 	void stamp() {
-		if (position == 0)
+		if (position == 0) {
 			sim.stampVoltageSource(nodes[0], nodes[1], voltSource, 0);
+		}
 	}
 
 	void toggle() {
