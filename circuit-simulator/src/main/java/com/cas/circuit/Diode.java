@@ -45,7 +45,6 @@ class Diode {
 
 			/*
 			 * I(Vd) = Is * (exp[Vd*C] - exp[(-Vd-Vz)*C] - 1 )
-			 *
 			 * geq is I'(Vd) nc is I(Vd) + I'(Vd)*(-Vd)
 			 */
 

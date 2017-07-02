@@ -57,8 +57,7 @@ class TransistorElm extends CircuitElm {
 	}
 
 	@Override
-	protected
-	boolean canViewInScope() {
+	protected boolean canViewInScope() {
 		return true;
 	}
 
@@ -337,7 +336,7 @@ class TransistorElm extends CircuitElm {
 		if (pnp == 1)
 			arrowPoly = calcArrow(emit[1], emit[0], 8, 4);
 		else {
-			Point pt =CircuitUtil. interpPoint(point1, point2, 1 - 11 / dn, -5 * dsign * pnp);
+			Point pt = CircuitUtil.interpPoint(point1, point2, 1 - 11 / dn, -5 * dsign * pnp);
 			arrowPoly = calcArrow(emit[0], pt, 8, 4);
 		}
 	}

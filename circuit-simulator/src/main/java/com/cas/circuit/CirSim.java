@@ -247,40 +247,57 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 				stoppedCheck.setState(false);
 				cv.repaint();
 			}
-			if (e.getSource() == dumpMatrixButton) dumpMatrix = true;
-			if (e.getSource() == exportItem) doExport(false);
-			if (e.getSource() == optionsItem) doEdit(new EditOptions(CirSim.this));
-			if (e.getSource() == importItem) doImport();
-			if (e.getSource() == exportLinkItem) doExport(true);
-			if (e.getSource() == undoItem) doUndo();
-			if (e.getSource() == redoItem) doRedo();
+			if (e.getSource() == dumpMatrixButton)
+				dumpMatrix = true;
+			if (e.getSource() == exportItem)
+				doExport(false);
+			if (e.getSource() == optionsItem)
+				doEdit(new EditOptions(CirSim.this));
+			if (e.getSource() == importItem)
+				doImport();
+			if (e.getSource() == exportLinkItem)
+				doExport(true);
+			if (e.getSource() == undoItem)
+				doUndo();
+			if (e.getSource() == redoItem)
+				doRedo();
 			if (ac.compareTo("Cut") == 0) {
-				if (e.getSource() != elmCutMenuItem) menuElm = null;
+				if (e.getSource() != elmCutMenuItem)
+					menuElm = null;
 				doCut();
 			}
 			if (ac.compareTo("Copy") == 0) {
-				if (e.getSource() != elmCopyMenuItem) menuElm = null;
+				if (e.getSource() != elmCopyMenuItem)
+					menuElm = null;
 				doCopy();
 			}
-			if (ac.compareTo("Paste") == 0) doPaste();
-			if (e.getSource() == selectAllItem) doSelectAll();
+			if (ac.compareTo("Paste") == 0)
+				doPaste();
+			if (e.getSource() == selectAllItem)
+				doSelectAll();
 			if (e.getSource() == exitItem) {
 				destroyFrame();
 				return;
 			}
-			if (ac.compareTo("stackAll") == 0) stackAll();
-			if (ac.compareTo("unstackAll") == 0) unstackAll();
-			if (e.getSource() == elmEditMenuItem) doEdit(menuElm);
+			if (ac.compareTo("stackAll") == 0)
+				stackAll();
+			if (ac.compareTo("unstackAll") == 0)
+				unstackAll();
+			if (e.getSource() == elmEditMenuItem)
+				doEdit(menuElm);
 			if (ac.compareTo("Delete") == 0) {
-				if (e.getSource() != elmDeleteMenuItem) menuElm = null;
+				if (e.getSource() != elmDeleteMenuItem)
+					menuElm = null;
 				doDelete();
 			}
 			if (e.getSource() == elmScopeMenuItem && menuElm != null) {
 				int i;
 				for (i = 0; i != scopeCount; i++)
-					if (scopes[i].elm == null) break;
+					if (scopes[i].elm == null)
+						break;
 				if (i == scopeCount) {
-					if (scopeCount == scopes.length) return;
+					if (scopeCount == scopes.length)
+						return;
 					scopeCount++;
 					scopes[i] = new Scope(CirSim.this);
 					scopes[i].position = i;
@@ -289,15 +306,24 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 				scopes[i].setElm(menuElm);
 			}
 			if (menuScope != -1) {
-				if (ac.compareTo("remove") == 0) scopes[menuScope].setElm(null);
-				if (ac.compareTo("speed2") == 0) scopes[menuScope].speedUp();
-				if (ac.compareTo("speed1/2") == 0) scopes[menuScope].slowDown();
-				if (ac.compareTo("scale") == 0) scopes[menuScope].adjustScale(.5);
-				if (ac.compareTo("maxscale") == 0) scopes[menuScope].adjustScale(1e-50);
-				if (ac.compareTo("stack") == 0) stackScope(menuScope);
-				if (ac.compareTo("unstack") == 0) unstackScope(menuScope);
-				if (ac.compareTo("selecty") == 0) scopes[menuScope].selectY();
-				if (ac.compareTo("reset") == 0) scopes[menuScope].resetGraph();
+				if (ac.compareTo("remove") == 0)
+					scopes[menuScope].setElm(null);
+				if (ac.compareTo("speed2") == 0)
+					scopes[menuScope].speedUp();
+				if (ac.compareTo("speed1/2") == 0)
+					scopes[menuScope].slowDown();
+				if (ac.compareTo("scale") == 0)
+					scopes[menuScope].adjustScale(.5);
+				if (ac.compareTo("maxscale") == 0)
+					scopes[menuScope].adjustScale(1e-50);
+				if (ac.compareTo("stack") == 0)
+					stackScope(menuScope);
+				if (ac.compareTo("unstack") == 0)
+					unstackScope(menuScope);
+				if (ac.compareTo("selecty") == 0)
+					scopes[menuScope].selectY();
+				if (ac.compareTo("reset") == 0)
+					scopes[menuScope].resetGraph();
 				cv.repaint();
 			}
 			if (ac.indexOf("setup ") == 0) {
@@ -480,7 +506,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 					}
 					int k;
 					for (k = 0; k != ce.getPostCount(); k++) {
-						if (j == k) continue;
+						if (j == k)
+							continue;
 						int kn = ce.getNode(k);
 						if (ce.getConnection(j, k) && !closure[kn]) {
 							closure[kn] = true;
@@ -489,7 +516,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 					}
 				}
 			}
-			if (changed) continue;
+			if (changed)
+				continue;
 
 			// connect unconnected nodes
 			for (int i = 0; i != nodeList.size(); i++)
@@ -568,7 +596,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 					rsadd -= circuitRowInfo[j].value * q;
 					continue;
 				}
-				if (q == 0) continue;
+				if (q == 0)
+					continue;
 				if (qp == -1) {
 					qp = j;
 					qv = q;
@@ -664,8 +693,10 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 				// resolve chains of equality; 100 max steps to avoid loops
 				for (int j = 0; j != 100; j++) {
 					e2 = circuitRowInfo[elt.nodeEq];
-					if (e2.type != RowInfo.ROW_EQUAL) break;
-					if (i == e2.nodeEq) break;
+					if (e2.type != RowInfo.ROW_EQUAL)
+						break;
+					if (i == e2.nodeEq)
+						break;
 					elt.nodeEq = e2.nodeEq;
 				}
 			}
@@ -875,7 +906,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 		setMenuSelection();
 		for (i = elmList.size() - 1; i >= 0; i--) {
 			CircuitElm ce = getElm(i);
-			if (ce.isSelected()) clipboard += ce.dump() + "\n";
+			if (ce.isSelected())
+				clipboard += ce.dump() + "\n";
 		}
 		enablePaste();
 	}
@@ -925,7 +957,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 			}
 		}
 
-		if (hasDeleted) needAnalyze();
+		if (hasDeleted)
+			needAnalyze();
 	}
 
 	void doEdit(Editable eable) {
@@ -942,7 +975,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 
 	// hausen: add doEditMenu
 	void doEditMenu(MouseEvent e) {
-		if (mouseElm != null) doEdit(mouseElm);
+		if (mouseElm != null)
+			doEdit(mouseElm);
 	}
 
 	void doExport(boolean url) {
@@ -1273,7 +1307,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 	}
 
 	public CircuitNode getCircuitNode(int n) {
-		if (n >= nodeList.size()) return null;
+		if (n >= nodeList.size())
+			return null;
 		return nodeList.elementAt(n);
 	}
 
@@ -1315,10 +1350,13 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 	String getHint() {
 		CircuitElm c1 = getElm(hintItem1);
 		CircuitElm c2 = getElm(hintItem2);
-		if (c1 == null || c2 == null) return null;
+		if (c1 == null || c2 == null)
+			return null;
 		if (hintType == HINT_LC) {
-			if (!(c1 instanceof InductorElm)) return null;
-			if (!(c2 instanceof CapacitorElm)) return null;
+			if (!(c1 instanceof InductorElm))
+				return null;
+			if (!(c2 instanceof CapacitorElm))
+				return null;
 			InductorElm ie = (InductorElm) c1;
 			CapacitorElm ce = (CapacitorElm) c2;
 			// RES：电阻脚等效串联电阻用RES表示 ，res不是电容，RES是在电容两端施加一400Hz的正弦交流电进行测量得到的。
@@ -1328,29 +1366,37 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 			return "res.f = " + CircuitUtil.getUnitText(1 / (2 * PI * Math.sqrt(ie.inductance * ce.capacitance)), "Hz");
 		}
 		if (hintType == HINT_RC) {
-			if (!(c1 instanceof ResistorElm)) return null;
-			if (!(c2 instanceof CapacitorElm)) return null;
+			if (!(c1 instanceof ResistorElm))
+				return null;
+			if (!(c2 instanceof CapacitorElm))
+				return null;
 			ResistorElm re = (ResistorElm) c1;
 			CapacitorElm ce = (CapacitorElm) c2;
 			return "RC = " + CircuitUtil.getUnitText(re.resistance * ce.capacitance, "s");
 		}
 		if (hintType == HINT_3DB_C) {
-			if (!(c1 instanceof ResistorElm)) return null;
-			if (!(c2 instanceof CapacitorElm)) return null;
+			if (!(c1 instanceof ResistorElm))
+				return null;
+			if (!(c2 instanceof CapacitorElm))
+				return null;
 			ResistorElm re = (ResistorElm) c1;
 			CapacitorElm ce = (CapacitorElm) c2;
 			return "f.3db = " + CircuitUtil.getUnitText(1 / (2 * PI * re.resistance * ce.capacitance), "Hz");
 		}
 		if (hintType == HINT_3DB_L) {
-			if (!(c1 instanceof ResistorElm)) return null;
-			if (!(c2 instanceof InductorElm)) return null;
+			if (!(c1 instanceof ResistorElm))
+				return null;
+			if (!(c2 instanceof InductorElm))
+				return null;
 			ResistorElm re = (ResistorElm) c1;
 			InductorElm ie = (InductorElm) c2;
 			return "f.3db = " + CircuitUtil.getUnitText(re.resistance / (2 * PI * ie.inductance), "Hz");
 		}
 		if (hintType == HINT_TWINT) {
-			if (!(c1 instanceof ResistorElm)) return null;
-			if (!(c2 instanceof CapacitorElm)) return null;
+			if (!(c1 instanceof ResistorElm))
+				return null;
+			if (!(c2 instanceof CapacitorElm))
+				return null;
 			ResistorElm re = (ResistorElm) c1;
 			CapacitorElm ce = (CapacitorElm) c2;
 			return "fc = " + CircuitUtil.getUnitText(1 / (2 * PI * re.resistance * ce.capacitance), "Hz");
@@ -1359,7 +1405,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 	}
 
 	double getIterCount() {
-		if (speedBar.getValue() == 0) return 0;
+		if (speedBar.getValue() == 0)
+			return 0;
 		// return (Math.exp((speedBar.getValue()-1)/24.) + .5);
 		return .1 * Math.exp((speedBar.getValue() - 61) / 24.);
 	}
@@ -1518,24 +1565,29 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 				}
 			}
 			in = doc.lastIndexOf('/');
-			if (in > 0) baseURL = doc.substring(0, in + 1);
+			if (in > 0)
+				baseURL = doc.substring(0, in + 1);
 
 			String param = applet.getParameter("PAUSE");
-			if (param != null) pause = Integer.parseInt(param);
+			if (param != null)
+				pause = Integer.parseInt(param);
 			startCircuit = applet.getParameter("startCircuit");
 			startLabel = applet.getParameter("startLabel");
 			euroResistor = applet.getParameter("euroResistors");
 			useFrameStr = applet.getParameter("useFrame");
 			String x = applet.getParameter("whiteBackground");
-			if (x != null && x.equalsIgnoreCase("true")) printable = true;
+			if (x != null && x.equalsIgnoreCase("true"))
+				printable = true;
 			x = applet.getParameter("conventionalCurrent");
-			if (x != null && x.equalsIgnoreCase("true")) convention = false;
+			if (x != null && x.equalsIgnoreCase("true"))
+				convention = false;
 		} catch (Exception e) {
 		}
 
 		boolean euro = (euroResistor != null && euroResistor.equalsIgnoreCase("true"));
 		useFrame = (useFrameStr == null || !useFrameStr.equalsIgnoreCase("false"));
-		if (useFrame) main = this;
+		if (useFrame)
+			main = this;
 		else
 			main = applet;
 
@@ -1571,8 +1623,10 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 
 		initUI(printable, convention, euro);
 
-		if (startCircuitText != null) readSetup(startCircuitText);
-		else if (stopMessage == null && startCircuit != null) readSetupFile(startCircuit, startLabel);
+		if (startCircuitText != null)
+			readSetup(startCircuitText);
+		else if (stopMessage == null && startCircuit != null)
+			readSetupFile(startCircuit, startLabel);
 		else
 			readSetup(null, 0, false);
 
@@ -1880,8 +1934,10 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 	public void itemStateChanged(ItemEvent e) {
 		cv.repaint(pause);
 		Object mi = e.getItemSelectable();
-		if (mi == stoppedCheck) return;
-		if (mi == smallGridCheckItem) setGrid();
+		if (mi == stoppedCheck)
+			return;
+		if (mi == smallGridCheckItem)
+			setGrid();
 		if (mi == powerCheckItem) {
 			if (powerCheckItem.getState()) {
 				voltsCheckItem.setState(false);
@@ -1889,7 +1945,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 				voltsCheckItem.setState(true);
 			}
 		}
-		if (mi == voltsCheckItem && voltsCheckItem.getState()) powerCheckItem.setState(false);
+		if (mi == voltsCheckItem && voltsCheckItem.getState())
+			powerCheckItem.setState(false);
 		enableItems();
 		if (menuScope != -1) {
 			Scope sc = scopes[menuScope];
@@ -1900,13 +1957,20 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 			int prevMouseMode = mouseMode;
 			setMouseMode(MODE_ADD_ELM);
 			String s = mmi.getActionCommand();
-			if (s.length() > 0) mouseModeStr = s;
-			if (s.compareTo("DragAll") == 0) setMouseMode(MODE_DRAG_ALL);
-			else if (s.compareTo("DragRow") == 0) setMouseMode(MODE_DRAG_ROW);
-			else if (s.compareTo("DragColumn") == 0) setMouseMode(MODE_DRAG_COLUMN);
-			else if (s.compareTo("DragSelected") == 0) setMouseMode(MODE_DRAG_SELECTED);
-			else if (s.compareTo("DragPost") == 0) setMouseMode(MODE_DRAG_POST);
-			else if (s.compareTo("Select") == 0) setMouseMode(MODE_SELECT);
+			if (s.length() > 0)
+				mouseModeStr = s;
+			if (s.compareTo("DragAll") == 0)
+				setMouseMode(MODE_DRAG_ALL);
+			else if (s.compareTo("DragRow") == 0)
+				setMouseMode(MODE_DRAG_ROW);
+			else if (s.compareTo("DragColumn") == 0)
+				setMouseMode(MODE_DRAG_COLUMN);
+			else if (s.compareTo("DragSelected") == 0)
+				setMouseMode(MODE_DRAG_SELECTED);
+			else if (s.compareTo("DragPost") == 0)
+				setMouseMode(MODE_DRAG_POST);
+			else if (s.compareTo("Select") == 0)
+				setMouseMode(MODE_SELECT);
 			else if (s.length() > 0) {
 				try {
 					addingClass = Class.forName("com.cas.circuit." + s);
@@ -1936,10 +2000,12 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 		}
 		if (e.getKeyChar() > ' ' && e.getKeyChar() < 127) {
 			Class<?> c = shortcuts[e.getKeyChar()];
-			if (c == null) return;
+			if (c == null)
+				return;
 			CircuitElm elm = null;
 			elm = constructElement(c, 0, 0);
-			if (elm == null) return;
+			if (elm == null)
+				return;
 			setMouseMode(MODE_ADD_ELM);
 			mouseModeStr = c.getName();
 			addingClass = c;
@@ -1976,10 +2042,12 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 			double largest = 0;
 			for (j = 0; j != n; j++) {
 				double x = Math.abs(a[i][j]);
-				if (x > largest) largest = x;
+				if (x > largest)
+					largest = x;
 			}
 			// if all zeros, it's a singular matrix
-			if (largest == 0) return false;
+			if (largest == 0)
+				return false;
 			scaleFactors[i] = 1.0 / largest;
 		}
 
@@ -2051,7 +2119,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 			double swap = b[row];
 			b[row] = b[i];
 			b[i] = swap;
-			if (swap != 0) break;
+			if (swap != 0)
+				break;
 		}
 
 		int bi = i++;
@@ -2087,9 +2156,11 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getClickCount() == 2 && !didSwitch) doEditMenu(e);
+		if (e.getClickCount() == 2 && !didSwitch)
+			doEditMenu(e);
 		if ((e.getModifiers() & InputEvent.BUTTON1_MASK) != 0) {
-			if (mouseMode == MODE_SELECT || mouseMode == MODE_DRAG_SELECTED) clearSelection();
+			if (mouseMode == MODE_SELECT || mouseMode == MODE_DRAG_SELECTED)
+				clearSelection();
 		}
 	}
 
@@ -2120,10 +2191,12 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 			dragColumn(snapGrid(e.getX()), snapGrid(e.getY()));
 			break;
 		case MODE_DRAG_POST:
-			if (mouseElm != null) dragPost(snapGrid(e.getX()), snapGrid(e.getY()));
+			if (mouseElm != null)
+				dragPost(snapGrid(e.getX()), snapGrid(e.getY()));
 			break;
 		case MODE_SELECT:
-			if (mouseElm == null) selectArea(e.getX(), e.getY());
+			if (mouseElm == null)
+				selectArea(e.getX(), e.getY());
 			else {
 				tempMouseMode = MODE_DRAG_SELECTED;
 				success = dragSelected(e.getX(), e.getY());
@@ -2183,7 +2256,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 //				再做出进一步的筛选。
 				int area = ce.boundingBox.width * ce.boundingBox.height;
 				int jn = ce.getPostCount();
-				if (jn > 2) jn = 2;
+				if (jn > 2)
+					jn = 2;
 				for (int j = 0; j != jn; j++) {
 					Point pt = ce.getPost(j);
 					int dist = distanceSq(x, y, pt.x, pt.y);
@@ -2252,20 +2326,28 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 		if ((e.getModifiers() & InputEvent.BUTTON1_MASK) != 0) {
 			// left mouse
 			tempMouseMode = mouseMode;
-			if ((ex & InputEvent.ALT_DOWN_MASK) != 0 && (ex & InputEvent.META_DOWN_MASK) != 0) tempMouseMode = MODE_DRAG_COLUMN;
-			else if ((ex & InputEvent.ALT_DOWN_MASK) != 0 && (ex & InputEvent.SHIFT_DOWN_MASK) != 0) tempMouseMode = MODE_DRAG_ROW;
-			else if ((ex & InputEvent.SHIFT_DOWN_MASK) != 0) tempMouseMode = MODE_SELECT;
-			else if ((ex & InputEvent.ALT_DOWN_MASK) != 0) tempMouseMode = MODE_DRAG_ALL;
-			else if ((ex & (InputEvent.CTRL_DOWN_MASK | InputEvent.META_DOWN_MASK)) != 0) tempMouseMode = MODE_DRAG_POST;
+			if ((ex & InputEvent.ALT_DOWN_MASK) != 0 && (ex & InputEvent.META_DOWN_MASK) != 0)
+				tempMouseMode = MODE_DRAG_COLUMN;
+			else if ((ex & InputEvent.ALT_DOWN_MASK) != 0 && (ex & InputEvent.SHIFT_DOWN_MASK) != 0)
+				tempMouseMode = MODE_DRAG_ROW;
+			else if ((ex & InputEvent.SHIFT_DOWN_MASK) != 0)
+				tempMouseMode = MODE_SELECT;
+			else if ((ex & InputEvent.ALT_DOWN_MASK) != 0)
+				tempMouseMode = MODE_DRAG_ALL;
+			else if ((ex & (InputEvent.CTRL_DOWN_MASK | InputEvent.META_DOWN_MASK)) != 0)
+				tempMouseMode = MODE_DRAG_POST;
 		} else if ((e.getModifiers() & InputEvent.BUTTON3_MASK) != 0) {
 			// right mouse
-			if ((ex & InputEvent.SHIFT_DOWN_MASK) != 0) tempMouseMode = MODE_DRAG_ROW;
-			else if ((ex & (InputEvent.CTRL_DOWN_MASK | InputEvent.META_DOWN_MASK)) != 0) tempMouseMode = MODE_DRAG_COLUMN;
+			if ((ex & InputEvent.SHIFT_DOWN_MASK) != 0)
+				tempMouseMode = MODE_DRAG_ROW;
+			else if ((ex & (InputEvent.CTRL_DOWN_MASK | InputEvent.META_DOWN_MASK)) != 0)
+				tempMouseMode = MODE_DRAG_COLUMN;
 			else
 				return;
 		}
 
-		if (tempMouseMode != MODE_SELECT && tempMouseMode != MODE_DRAG_SELECTED) clearSelection();
+		if (tempMouseMode != MODE_SELECT && tempMouseMode != MODE_DRAG_SELECTED)
+			clearSelection();
 		if (mouseMode == MODE_SELECT && doSwitch(e.getX(), e.getY())) {
 			didSwitch = true;
 			return;
@@ -2275,11 +2357,13 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 		initDragX = e.getX();
 		initDragY = e.getY();
 		dragging = true;
-		if (tempMouseMode != MODE_ADD_ELM || addingClass == null) return;
+		if (tempMouseMode != MODE_ADD_ELM || addingClass == null)
+			return;
 
 		int x0 = snapGrid(e.getX());
 		int y0 = snapGrid(e.getY());
-		if (!circuitArea.contains(x0, y0)) return;
+		if (!circuitArea.contains(x0, y0))
+			return;
 
 		dragElm = constructElement(addingClass, x0, y0);
 	}
@@ -2336,10 +2420,12 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 		if (stopMessage != null) {
 			g.drawString(stopMessage, 10, circuitArea.height);
 		} else {
-			if (circuitBottom == 0) calcCircuitBottom();
+			if (circuitBottom == 0)
+				calcCircuitBottom();
 			String info[] = new String[10];
 			if (mouseElm != null) {
-				if (mousePost == -1) mouseElm.getInfo(info);
+				if (mousePost == -1)
+					mouseElm.getInfo(info);
 				else
 					info[0] = "V = " + CircuitUtil.getUnitText(mouseElm.getPostVoltage(mousePost), "V");
 				/*
@@ -2355,18 +2441,21 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 				for (i = 0; info[i] != null; i++)
 					;
 				String s = getHint();
-				if (s == null) hintType = -1;
+				if (s == null)
+					hintType = -1;
 				else
 					info[i] = s;
 			}
 			int x = 0;
-			if (ct != 0) x = scopes[ct - 1].rightEdge() + 20;
+			if (ct != 0)
+				x = scopes[ct - 1].rightEdge() + 20;
 			x = max(x, winSize.width * 2 / 3);
 
 			// count lines of data
 			for (i = 0; info[i] != null; i++)
 				;
-			if (badnodes > 0) info[i++] = badnodes + ((badnodes == 1) ? " bad connection" : " bad connections");
+			if (badnodes > 0)
+				info[i++] = badnodes + ((badnodes == 1) ? " bad connection" : " bad connections");
 
 			// find where to show data; below circuit, not too high unless we
 			// need it
@@ -2497,7 +2586,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 			for (l = 0; l != len - p; l++) {
 				if (b[l + p] == '\n' || b[l + p] == '\r') {
 					linelen = l++;
-					if (l + p < b.length && b[l + p] == '\n') l++;
+					if (l + p < b.length && b[l + p] == '\n')
+						l++;
 					break;
 				}
 			}
@@ -2577,7 +2667,8 @@ public class CirSim extends Frame implements ComponentListener, AdjustmentListen
 
 		}
 		enableItems();
-		if (!retain) handleResize(); // for scopes
+		if (!retain)
+			handleResize(); // for scopes
 		needAnalyze();
 	}
 

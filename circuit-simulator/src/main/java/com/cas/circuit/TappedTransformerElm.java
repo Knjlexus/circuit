@@ -73,7 +73,8 @@ class TappedTransformerElm extends CircuitElm {
 			CircuitUtil.drawThickLine(g, ptEnds[i], ptCoil[i]);
 		}
 		for (i = 0; i != 4; i++) {
-			if (i == 1) continue;
+			if (i == 1)
+				continue;
 			setPowerColor(g, current[i] * (volts[i] - volts[i + 1]));
 			drawCoil(g, i > 1 ? -6 : 6, ptCoil[i], ptCoil[i + 1], volts[i], volts[i + 1]);
 		}
@@ -109,10 +110,14 @@ class TappedTransformerElm extends CircuitElm {
 
 	@Override
 	boolean getConnection(int n1, int n2) {
-		if (CircuitUtil.comparePair(n1, n2, 0, 1)) return true;
-		if (CircuitUtil.comparePair(n1, n2, 2, 3)) return true;
-		if (CircuitUtil.comparePair(n1, n2, 3, 4)) return true;
-		if (CircuitUtil.comparePair(n1, n2, 2, 4)) return true;
+		if (CircuitUtil.comparePair(n1, n2, 0, 1))
+			return true;
+		if (CircuitUtil.comparePair(n1, n2, 2, 3))
+			return true;
+		if (CircuitUtil.comparePair(n1, n2, 3, 4))
+			return true;
+		if (CircuitUtil.comparePair(n1, n2, 2, 4))
+			return true;
 		return false;
 	}
 
@@ -160,8 +165,10 @@ class TappedTransformerElm extends CircuitElm {
 
 	@Override
 	public void setEditValue(int n, EditInfo ei) {
-		if (n == 0) inductance = ei.value;
-		if (n == 1) ratio = ei.value;
+		if (n == 0)
+			inductance = ei.value;
+		if (n == 1)
+			ratio = ei.value;
 	}
 
 	@Override

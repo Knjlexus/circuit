@@ -34,7 +34,8 @@ class CapacitorElm extends CircuitElm {
 		// we check compResistance because this might get called
 		// before stamp(), which sets compResistance, causing
 		// infinite current
-		if (compResistance > 0) current = voltdiff / compResistance + curSourceValue;
+		if (compResistance > 0)
+			current = voltdiff / compResistance + curSourceValue;
 	}
 
 	@Override
@@ -52,7 +53,8 @@ class CapacitorElm extends CircuitElm {
 		CircuitUtil.drawThickLine(g, point1, lead1);
 		setPowerColor(g, false);
 		CircuitUtil.drawThickLine(g, plate1[0], plate1[1]);
-		if (sim.powerCheckItem.getState()) g.setColor(Color.gray);
+		if (sim.powerCheckItem.getState())
+			g.setColor(Color.gray);
 
 		// draw second lead and plate
 		setVoltageColor(g, volts[1]);
@@ -84,7 +86,8 @@ class CapacitorElm extends CircuitElm {
 
 	@Override
 	public EditInfo getEditInfo(int n) {
-		if (n == 0) return new EditInfo("Capacitance (F)", capacitance, 0, 0);
+		if (n == 0)
+			return new EditInfo("Capacitance (F)", capacitance, 0, 0);
 		if (n == 1) {
 			EditInfo ei = new EditInfo("", 0, -1, -1);
 			ei.checkbox = new Checkbox("Trapezoidal Approximation", isTrapezoidal());
