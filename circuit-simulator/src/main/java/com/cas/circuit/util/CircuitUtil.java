@@ -43,27 +43,43 @@ public class CircuitUtil {
 
 	public static String getShortUnitText(double v, String u) {
 		double va = Math.abs(v);
-		if (va < 1e-13) return null;
-		if (va < 1e-9) return shortFormat.format(v * 1e12) + "p" + u;
-		if (va < 1e-6) return shortFormat.format(v * 1e9) + "n" + u;
-		if (va < 1e-3) return shortFormat.format(v * 1e6) + CirSim.muString + u;
-		if (va < 1) return shortFormat.format(v * 1e3) + "m" + u;
-		if (va < 1e3) return shortFormat.format(v) + u;
-		if (va < 1e6) return shortFormat.format(v * 1e-3) + "k" + u;
-		if (va < 1e9) return shortFormat.format(v * 1e-6) + "M" + u;
+		if (va < 1e-13)
+			return null;
+		if (va < 1e-9)
+			return shortFormat.format(v * 1e12) + "p" + u;
+		if (va < 1e-6)
+			return shortFormat.format(v * 1e9) + "n" + u;
+		if (va < 1e-3)
+			return shortFormat.format(v * 1e6) + CirSim.muString + u;
+		if (va < 1)
+			return shortFormat.format(v * 1e3) + "m" + u;
+		if (va < 1e3)
+			return shortFormat.format(v) + u;
+		if (va < 1e6)
+			return shortFormat.format(v * 1e-3) + "k" + u;
+		if (va < 1e9)
+			return shortFormat.format(v * 1e-6) + "M" + u;
 		return shortFormat.format(v * 1e-9) + "G" + u;
 	}
 
 	public static String getUnitText(double v, String u) {
 		double va = Math.abs(v);
-		if (va < 1e-14) return "0 " + u;
-		if (va < 1e-9) return showFormat.format(v * 1e12) + " p" + u;
-		if (va < 1e-6) return showFormat.format(v * 1e9) + " n" + u;
-		if (va < 1e-3) return showFormat.format(v * 1e6) + " " + CirSim.muString + u;
-		if (va < 1) return showFormat.format(v * 1e3) + " m" + u;
-		if (va < 1e3) return showFormat.format(v) + " " + u;
-		if (va < 1e6) return showFormat.format(v * 1e-3) + " k" + u;
-		if (va < 1e9) return showFormat.format(v * 1e-6) + " M" + u;
+		if (va < 1e-14)
+			return "0 " + u;
+		if (va < 1e-9)
+			return showFormat.format(v * 1e12) + " p" + u;
+		if (va < 1e-6)
+			return showFormat.format(v * 1e9) + " n" + u;
+		if (va < 1e-3)
+			return showFormat.format(v * 1e6) + " " + CirSim.muString + u;
+		if (va < 1)
+			return showFormat.format(v * 1e3) + " m" + u;
+		if (va < 1e3)
+			return showFormat.format(v) + " " + u;
+		if (va < 1e6)
+			return showFormat.format(v * 1e-3) + " k" + u;
+		if (va < 1e9)
+			return showFormat.format(v * 1e-6) + " M" + u;
 		return showFormat.format(v * 1e-9) + " G" + u;
 	}
 
