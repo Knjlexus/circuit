@@ -18,7 +18,7 @@ import com.jme3.scene.shape.Sphere;
 
 public class SceneCameraState extends BaseState implements ActionListener, AnalogListener {
 	protected Quaternion rot = new Quaternion();
-	protected Vector3f vector = new Vector3f(0, 0, 5);
+	protected Vector3f vector = new Vector3f(0, 0, 15);
 	protected Vector3f focus = new Vector3f();
 
 	protected boolean moved = false;
