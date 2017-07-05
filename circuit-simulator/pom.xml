@@ -6,18 +6,5 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/com.hynnet/DJNativeSwing -->
-		<dependency>
-			<groupId>com.hynnet</groupId>
-			<artifactId>DJNativeSwing</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.hynnet/DJNativeSwing-SWT -->
-		<dependency>
-			<groupId>com.hynnet</groupId>
-			<artifactId>DJNativeSwing-SWT</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 	</dependencies>
 </project>
