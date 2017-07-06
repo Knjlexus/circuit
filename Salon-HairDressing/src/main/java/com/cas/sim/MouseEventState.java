@@ -246,9 +246,9 @@ public class MouseEventState extends BaseState {
 
 	protected boolean valiedate(Geometry geometry) {
 //		模型被剔除，视为不可选中
-		if (geometry.getCullHint() == CullHint.Always) {
-			return false;
-		}
+//		if (geometry.getCullHint() == CullHint.Always) {
+//			return false;
+//		}
 ////		模型虽然显示，但已经加入黑名单中，视为不可选中。
 //		if (this.ignorModelList.contains(geometry)) {
 //			return false;
@@ -268,6 +268,7 @@ public class MouseEventState extends BaseState {
 		Vector2f click2d = null;
 		if (inputManager.isCursorVisible()) {
 			click2d = inputManager.getCursorPosition();
+			System.err.println(click2d);
 		} else {
 			System.err.println("从屏幕中央获取");
 			click2d = new Vector2f(settings.getWidth() / 2, settings.getHeight() / 2);
