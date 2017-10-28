@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="交流接触器" model="LC1-D09M7C" desc="LC1-D系列交流接触器主要用于交流50Hz或60Hz、交流电压至660V(690V)，在AC-3使用类别下工作电压为380V时，额定工作电流至170A的电路中，供远距离接通和分断电路，可与相应规格的热继电器组合成磁力起动器，以保护可能发生过负荷的电路，适宜于频繁起动和控制交流电动机。其主触头为常开触头，用于通断电路，辅助触头一般为两对具有常开和常闭功能的触头，用于执行控制指令。">
+		<Terminal id="1l1" name="1L1" mdlName="1L1" direction="y+" />
+		<Terminal id="3l2" name="3L2" mdlName="3L2" direction="y+" />
+		<Terminal id="5l3" name="5L3" mdlName="5L3" direction="y+" />
+		<Terminal id="13" name="13 NO" mdlName="13" direction="y+" />
+		<Terminal id="21" name="21 NC" mdlName="21" direction="y+" />
+		<Terminal id="a1" name="A1" mdlName="A1" direction="y+" team="group1" />
+		<Terminal id="14" name="14 NO" mdlName="14" direction="y-" />
+		<Terminal id="22" name="22 NC" mdlName="22" direction="y-" />
+		<Terminal id="a2" name="A2" mdlName="A2" direction="y-" team="group1" />
+		<Terminal id="2t1" name="2T1" mdlName="T1" direction="y-" />
+		<Terminal id="4t2" name="4T2" mdlName="T2" direction="y-" />
+		<Terminal id="6t3" name="6T3" mdlName="T3" direction="y-" />
+		<Magnetism>
+			<VoltageIO type="input" term1Id="a1" term2Id="a2" value="220" deviation="10" />
+			<ControlIO type="input|output" interact="press" name="交流接触器按钮" mdlName="Box204" switchIn="off|on" motion="move" motionParams="0|0.008" axis="z">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="a1" term2Id="a2" value="1800" />
+		</ResisState>
+		<ResisState id="off" isDef="1">
+			<ResisRelation term1Id="21" term2Id="22" value="0" />
+		</ResisState>
+		<ResisState id="on">
+			<ResisRelation term1Id="1l1" term2Id="2t1" value="0" />
+			<ResisRelation term1Id="3l2" term2Id="4t2" value="0" />
+			<ResisRelation term1Id="5l3" term2Id="6t3" value="0" />
+			<ResisRelation term1Id="13" term2Id="14" value="0" />
+		</ResisState>
+	</ElecCompDef>
+	<ElecCompDef name="电磁接触器" model="CJX1-45" desc="CJX1系列电磁接触器主要用于交流50Hz或60Hz，额定绝缘电压为660V-1000V，在AC-3使用类别下额定工作电压为380V时，额定工作电流为9A-475A的电力线路中。电磁接触器主要由传动装置（电磁机构）、触头装置（执行机构）和灭弧装置组成,作为供远距离接通和分断电路之用，并适用于控制交流电动机的起动、停止及反转。">
+		<Terminal id="1" name="L1" mdlName="1" direction="x-" />
+		<Terminal id="3" name="L2" mdlName="3" direction="x-" />
+		<Terminal id="5" name="L3" mdlName="5" direction="x-" />
+		<Terminal id="a1" name="A1" mdlName="A1" direction="x-" team="group2" />
+		<Terminal id="a2" name="A2" mdlName="A2" direction="x-" team="group2" />
+		<Terminal id="2" name="T1" mdlName="2" direction="x+" />
+		<Terminal id="4" name="T2" mdlName="4" direction="x+" />
+		<Terminal id="6" name="T3" mdlName="6" direction="x+" />
+		<Magnetism>
+			<VoltageIO type="input" term1Id="a1" term2Id="a2" value="220" deviation="10" />
+			<ControlIO type="input|output" interact="press" name="电磁接触器按钮" mdlName="Box326" switchIn="off|on" motion="move" motionParams="0|-0.005" axis="y">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="off" isDef="1">
+			<ResisRelation term1Id="a1" term2Id="a2" value="1800" />
+		</ResisState>
+		<ResisState id="on">
+			<ResisRelation term1Id="1" term2Id="2" value="0" />
+			<ResisRelation term1Id="3" term2Id="4" value="0" />
+			<ResisRelation term1Id="5" term2Id="6" value="0" />
+			<ResisRelation term1Id="a1" term2Id="a2" value="1800" />
+		</ResisState>
+	</ElecCompDef>
+</Comps>

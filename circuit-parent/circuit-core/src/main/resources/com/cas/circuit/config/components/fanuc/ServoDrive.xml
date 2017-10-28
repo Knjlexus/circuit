@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="伺服模块" model="SVSP 20/20-111" appStateCls="BiSVSP40_40_18" desc="">
+		MAX OUTPUT VOLTAGE=240
+		RATED INPUT VOLTAGE=220
+		REATED OUTPUT VOLTAGE=200
+		SPINDLE=667
+		SERVO=550
+		<Jack id="CX3" name="CX3" format="CX3" mdlName="CX3" direction="y" jackDirection="y">
+			<Terminal id="CX3_1" index="1" mark="L1" type="input" team="CX3" />
+			<Terminal id="CX3_2" index="2" mark="L2" type="input" team="CX3" />
+			<Terminal id="CX3_3" index="3" mark="L3" type="input" team="CX3" />
+		</Jack>
+		<ResisState id="CX3_OFF" isDef="1">
+		</ResisState>
+		<ResisState id="CX3_ON">
+			<ResisRelation term2Id="CX3_1" term1Id="CX3_3" value="0" />
+		</ResisState>
+
+		<Jack id="CX4" name="CX4" format="CX4" mdlName="CX4" direction="y" jackDirection="y">
+			<Terminal id="CX4_1" index="1" mark="L1" type="input" team="CX4" />
+			<Terminal id="CX4_2" index="2" mark="L2" type="input" team="CX4" />
+			<Terminal id="CX4_3" index="3" mark="L3" type="input" team="CX4" />
+		</Jack>
+		<!-- 开关电源24V 供电 -->
+		<Jack id="CXA2C" name="CXA2C" format="CXA2C" mdlName="CXA" direction="y" jackDirection="y">
+			<Terminal id="CXA2C_1" index="1" mark="+24V" voltage="+24V" type="input" team="CXA2C" />
+			<Terminal id="CXA2C_2" index="2" mark="0V" voltage="0V" type="input" team="CXA2C" />
+		</Jack>
+		<Magnetism>
+			<VoltageIO term1Id="CXA2C_1" term2Id="CXA2C_2" type="input" deviation="1" value="-24" switchIn="CX3_OFF|CX3_ON" />
+		</Magnetism>
+
+		<!-- FSSB高速串行总线，光纤接头 -->
+		<Jack id="COP10B" name="COP10B" format="COP" mdlName="COP" direction="y" jackDirection="y">
+			<Terminal id="COP10B_1" index="1" mark="SOUT" type="output" />
+			<Terminal id="COP10B_2" index="2" mark="SIN" type="input" team="COP10BSIN" />
+			<Terminal id="COP10B_3" index="3" mark="SOUT_0V" />
+			<Terminal id="COP10B_4" index="4" mark="SIN_0V" team="COP10BSIN" />
+		</Jack>
+		<ResisState isDef="1">
+			<ResisRelation term2Id="COP10B_2" term1Id="COP10B_4" value="10000" />
+		</ResisState>
+		<!-- 外接电池盒 -->
+		<!-- <Jack id="CX5X" format="CX5" mdlName="Box129" direction="" > -->
+		<!-- <Terminal index="1" mark="L1" type="input" /> -->
+		<!-- <Terminal index="2" mark="L2" type="input" /> -->
+		<!-- <Terminal index="3" mark="L3" type="input" /> -->
+		<!-- </Jack> -->
+
+		<!-- X轴内置编码器 来自X轴电机尾部编码器 -->
+		<Jack id="JF1" name="JF1" format="JF" mdlName="JF1" direction="y" jackDirection="x">
+			<Terminal id="JF1_1" index="1" mark="PCA" type="input" />
+			<Terminal id="JF1_3" index="3" mark="PCB" type="input" />
+			<Terminal id="JF1_5" index="5" mark="PCZ" type="input" />
+			<Terminal id="JF1_9" index="9" mark="+5V" voltage="0V" />
+			<Terminal id="JF1_18" index="18" mark="+5V" voltage="0V" />
+			<Terminal id="JF1_20" index="20" mark="+5V" voltage="0V" />
+			<Terminal id="JF1_12" index="12" mark="0V" voltage="0V" />
+			<Terminal id="JF1_14" index="14" mark="0V" voltage="+5V" />
+			<Terminal id="JF1_16" index="16" mark="0V" voltage="+5V" />
+		</Jack>
+
+		<!-- Z轴内置编码器 来自Z轴电机尾部编码器 -->
+		<Jack id="JF2" name="JF2" format="JF" mdlName="JF2" direction="y" jackDirection="x">
+			<Terminal id="JF2_1" index="1" mark="PCA" type="input" />
+			<Terminal id="JF2_3" index="3" mark="PCB" type="input" />
+			<Terminal id="JF2_5" index="5" mark="PCZ" type="input" />
+			<Terminal id="JF2_9" index="9" mark="+5V" voltage="0V" />
+			<Terminal id="JF2_18" index="18" mark="+5V" voltage="0V" />
+			<Terminal id="JF2_20" index="20" mark="+5V" voltage="0V" />
+			<Terminal id="JF2_12" index="12" mark="0V" voltage="0V" />
+			<Terminal id="JF2_14" index="14" mark="0V" voltage="+5V" />
+			<Terminal id="JF2_16" index="16" mark="0V" voltage="+5V" />
+		</Jack>
+
+		<!-- 串行主轴通讯输入接口 来自系统面板背面JA7A接口 -->
+		<Jack id="JA7B" name="JA7B" format="JF" mdlName="JA7B" direction="y" jackDirection="x">
+			<Terminal id="JA7B_1" index="1" mark="SIN" type="input" team="T_JA7B_SIN" />
+			<Terminal id="JA7B_3" index="3" mark="SOUT" type="output" />
+			<Terminal id="JA7B_9" index="9" mark="+5V" voltage="+5V" />
+			<Terminal id="JA7B_11" index="11" mark="0V" voltage="0V" team="T_JA7B_SIN" />
+			<Terminal id="JA7B_12" index="12" mark="0V" voltage="0V" />
+			<Terminal id="JA7B_13" index="13" mark="0V" voltage="0V" />
+			<Terminal id="JA7B_14" index="14" mark="0V" voltage="0V" />
+			<Terminal id="JA7B_15" index="15" mark="0V" voltage="0V" />
+			<Terminal id="JA7B_16" index="16" mark="0V" voltage="0V" />
+			<Terminal id="JA7B_18" index="18" mark="+5V" voltage="+5V" />
+			<Terminal id="JA7B_20" index="20" mark="+5V" voltage="+5V" />
+		</Jack>
+		<ResisState isDef="1">
+			<ResisRelation term2Id="JA7B_1" term1Id="JA7B_11" value="20000" />
+		</ResisState>
+		<!-- 串行主轴通迅输出接口 -->
+		<Jack id="JA7A" name="JA7A" format="JF" mdlName="JA7A" direction="y" jackDirection="x">
+			<Terminal id="JA7A_1" index="1" mark="SIN" type="input" team="JA7ASIN" />
+			<Terminal id="JA7A_3" index="3" mark="SOUT" type="output" />
+			<Terminal id="JA7A_9" index="9" mark="+5V" voltage="+5V" />
+			<Terminal id="JA7A_11" index="11" mark="0V" voltage="0V" team="JA7ASIN" />
+			<Terminal id="JA7A_12" index="12" mark="0V" voltage="0V" />
+			<Terminal id="JA7A_13" index="13" mark="0V" voltage="0V" />
+			<Terminal id="JA7A_14" index="14" mark="0V" voltage="0V" />
+			<Terminal id="JA7A_18" index="18" mark="+5V" voltage="+5V" />
+			<Terminal id="JA7A_20" index="20" mark="+5V" voltage="+5V" />
+		</Jack>
+		<ResisState isDef="1">
+			<ResisRelation term2Id="JA7A_1" term1Id="JA7A_11" value="20000" />
+		</ResisState>
+		<!-- 主轴内置编码器，主要负责转速检测 -->
+		<Jack id="JYA2" name="JYA2" format="JF" mdlName="JYA2" direction="y" jackDirection="x">
+			<Terminal id="JYA2_1" index="1" mark="MA" type="input" />
+			<Terminal id="JYA2_5" index="5" mark="MB" type="input" />
+			<Terminal id="JYA2_7" index="7" mark="SS" type="input" />
+			<Terminal id="JYA2_13" index="13" mark="THR1" type="input" />
+			<Terminal id="JYA2_15" index="15" mark="THR2" type="input" />
+			<Terminal id="JYA2_16" index="16" mark="0V" voltage="0V" />
+			<Terminal id="JYA2_20" index="20" mark="5V" voltage="+5V" />
+		</Jack>
+
+		<!-- 主轴位置编码器，独立的编码器，主要负责主轴角度精确控制 -->
+		<Jack id="JYA3" name="JYA3" format="JF" mdlName="JYA3" direction="y" jackDirection="x">
+			<Terminal id="JYA3_1" index="1" mark="PZ" type="input" />
+			<Terminal id="JYA3_5" index="5" mark="PA" type="input" />
+			<Terminal id="JYA3_7" index="7" mark="PB" type="input" />
+			<Terminal id="JYA3_9" index="9" mark="5V" voltage="+5V" />
+			<Terminal id="JYA3_10" index="10" mark="SS" />
+			<Terminal id="JYA3_11" index="11" mark="24V" voltage="+24V" />
+			<Terminal id="JYA3_12" index="12" mark="0V" voltage="0V" />
+			<Terminal id="JYA3_13" index="13" mark="SSCOM" />
+			<Terminal id="JYA3_14" index="14" mark="0V" voltage="0V" />
+			<Terminal id="JYA3_16" index="16" mark="0V" voltage="0V" />
+			<Terminal id="JYA3_18" index="18" mark="5V" voltage="+5V" />
+			<Terminal id="JYA3_20" index="20" mark="5V" voltage="+5V" />
+		</Jack>
+
+		<Jack id="JYA4" name="JYA4" format="JF" mdlName="JYA4" direction="y" jackDirection="x">
+			<Terminal id="JYA4_1" index="1" mark="PZ" type="input" />
+			<Terminal id="JYA4_5" index="5" mark="PA" type="input" />
+			<Terminal id="JYA4_7" index="7" mark="PB" type="input" />
+			<Terminal id="JYA4_9" index="9" mark="5V" voltage="+5V" />
+			<Terminal id="JYA4_10" index="10" mark="SS" />
+			<Terminal id="JYA4_11" index="11" mark="24V" voltage="+24V" />
+			<Terminal id="JYA4_12" index="12" mark="0V" voltage="0V" />
+			<Terminal id="JYA4_13" index="13" mark="SSCOM" />
+			<Terminal id="JYA4_14" index="14" mark="0V" voltage="0V" />
+			<Terminal id="JYA4_16" index="16" mark="0V" voltage="0V" />
+			<Terminal id="JYA4_18" index="18" mark="5V" voltage="+5V" />
+			<Terminal id="JYA4_20" index="20" mark="5V" voltage="+5V" />
+		</Jack>
+
+		<Terminal id="TB1_L1" name="L1" mdlName="L1" mark="L1" type="input" voltage="220V" direction="y-" team="TB1" />
+		<Terminal id="TB1_L2" name="L2" mdlName="L2" mark="L2" type="input" voltage="220V" direction="y-" team="TB1" />
+		<Terminal id="TB1_L3" name="L3" mdlName="L3" mark="L3" type="input" voltage="220V" direction="y-" team="TB1" />
+
+		<Terminal id="TB2_U" name="U" mdlName="U" mark="U" type="output" direction="y-" />
+		<Terminal id="TB2_V" name="V" mdlName="V" mark="V" type="output" direction="y-" />
+		<Terminal id="TB2_W" name="W" mdlName="W" mark="W" type="output" direction="y-" />
+		<Terminal id="TB2_PE" name="PE" mdlName="PE" mark="PE" type="output" direction="y-" />
+
+		<Jack id="CZ2L" name="CZ2L" format="CZJ" mdlName="CZ2L" direction="y-" jackDirection="y">
+			<Terminal id="CZ2L_1" index="1" mark="UL" type="output" />
+			<Terminal id="CZ2L_2" index="2" mark="VL" type="output" />
+			<Terminal id="CZ2L_3" index="3" mark="WL" type="output" />
+			<Terminal id="CZ2L_4" index="4" mark="GL" voltage="0V" type="output" />
+		</Jack>
+
+		<Jack id="CZ2M" name="CZ2M" format="CZJ" mdlName="CZ2M" direction="y-" jackDirection="y">
+			<Terminal id="CZ2M_1" index="1" mark="UM" type="output" />
+			<Terminal id="CZ2M_2" index="2" mark="VM" type="output" />
+			<Terminal id="CZ2M_3" index="3" mark="WM" type="output" />
+			<Terminal id="CZ2M_4" index="4" mark="GM" voltage="0V" type="output" />
+		</Jack>
+	</ElecCompDef>
+</Comps>

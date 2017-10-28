@@ -1,0 +1,1007 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="操作面板" model="操作面板" desc="机床操作面板集中了系统的所有按钮，这些按钮用于直接控制机床的动作或加工过程，如启动、暂停零件程序的运行，手动进给坐标轴，调整进给速度等。">
+		<Jack id="CB104" name="CB104" format="CB" mdlName="CB104" jackDirection="x" direction="x">
+			<Terminal name="CB104针脚1" id="104_1" index="1" mark="A01" />
+			<Terminal name="CB104针脚2" id="104_2" index="2" mark="B01" />
+			<Terminal name="CB104针脚3" id="104_3" index="3" mark="A02" />
+			<Terminal name="CB104针脚4" id="104_4" index="4" mark="B02" />
+			<Terminal name="CB104针脚5" id="104_5" index="5" mark="A03" />
+			<Terminal name="CB104针脚6" id="104_6" index="6" mark="B03" />
+			<Terminal name="CB104针脚7" id="104_7" index="7" mark="A04" />
+			<Terminal name="CB104针脚8" id="104_8" index="8" mark="B04" />
+			<Terminal name="CB104针脚9" id="104_9" index="9" mark="A05" />
+			<Terminal name="CB104针脚10" id="104_10" index="10" mark="B05" />
+			<Terminal name="CB104针脚11" id="104_11" index="11" mark="A06" />
+			<Terminal name="CB104针脚12" id="104_12" index="12" mark="B06" />
+			<Terminal name="CB104针脚13" id="104_13" index="13" mark="A07" />
+			<Terminal name="CB104针脚14" id="104_14" index="14" mark="B07" />
+			<Terminal name="CB104针脚15" id="104_15" index="15" mark="A08" />
+			<Terminal name="CB104针脚16" id="104_16" index="16" mark="B08" />
+			<Terminal name="CB104针脚17" id="104_17" index="17" mark="A09" />
+			<Terminal name="CB104针脚18" id="104_18" index="18" mark="B09" />
+			<Terminal name="CB104针脚19" id="104_19" index="19" mark="A10" />
+			<Terminal name="CB104针脚20" id="104_20" index="20" mark="B10" />
+			<Terminal name="CB104针脚21" id="104_21" index="21" mark="A11" />
+			<Terminal name="CB104针脚22" id="104_22" index="22" mark="B11" />
+			<Terminal name="CB104针脚23" id="104_23" index="23" mark="A12" />
+			<Terminal name="CB104针脚24" id="104_24" index="24" mark="B12" />
+			<Terminal name="CB104针脚25" id="104_25" index="25" mark="A13" />
+			<Terminal name="CB104针脚26" id="104_26" index="26" mark="B13" />
+			<Terminal name="CB104针脚27" id="104_27" index="27" mark="A14" />
+			<Terminal name="CB104针脚28" id="104_28" index="28" mark="B14" />
+			<Terminal name="CB104针脚29" id="104_29" index="29" mark="A15" />
+			<Terminal name="CB104针脚30" id="104_30" index="30" mark="B15" />
+			<Terminal name="CB104针脚31" id="104_31" index="31" mark="A16" />
+			<Terminal name="CB104针脚32" id="104_32" index="32" mark="B16" />
+			<Terminal name="CB104针脚33" id="104_33" index="33" mark="A17" />
+			<Terminal name="CB104针脚34" id="104_34" index="34" mark="B17" />
+			<Terminal name="CB104针脚35" id="104_35" index="35" mark="A18" />
+			<Terminal name="CB104针脚36" id="104_36" index="36" mark="B18" />
+			<Terminal name="CB104针脚37" id="104_37" index="37" mark="A19" />
+			<Terminal name="CB104针脚38" id="104_38" index="38" mark="B19" />
+			<Terminal name="CB104针脚39" id="104_39" index="39" mark="A20" />
+			<Terminal name="CB104针脚40" id="104_40" index="40" mark="B20" />
+			<Terminal name="CB104针脚41" id="104_41" index="41" mark="A21" />
+			<Terminal name="CB104针脚42" id="104_42" index="42" mark="B21" />
+			<Terminal name="CB104针脚43" id="104_43" index="43" mark="A22" />
+			<Terminal name="CB104针脚44" id="104_44" index="44" mark="B22" />
+			<Terminal name="CB104针脚45" id="104_45" index="45" mark="A23" />
+			<Terminal name="CB104针脚46" id="104_46" index="46" mark="B23" />
+			<Terminal name="CB104针脚47" id="104_47" index="47" mark="A24" />
+			<Terminal name="CB104针脚48" id="104_48" index="48" mark="B24" />
+			<Terminal name="CB104针脚49" id="104_49" index="49" mark="A25" />
+			<Terminal name="CB104针脚50" id="104_50" index="50" mark="B25" />
+		</Jack>
+		<Jack id="CB107" name="CB107" format="CB" mdlName="CB107" jackDirection="x" direction="x">
+			<Terminal name="CB107针脚1" id="107_1" index="1" mark="A01" />
+			<Terminal name="CB107针脚2" id="107_2" index="2" mark="B01" />
+			<Terminal name="CB107针脚3" id="107_3" index="3" mark="A02" />
+			<Terminal name="CB107针脚4" id="107_4" index="4" mark="B02" />
+			<Terminal name="CB107针脚5" id="107_5" index="5" mark="A03" />
+			<Terminal name="CB107针脚6" id="107_6" index="6" mark="B03" />
+			<Terminal name="CB107针脚7" id="107_7" index="7" mark="A04" />
+			<Terminal name="CB107针脚8" id="107_8" index="8" mark="B04" />
+			<Terminal name="CB107针脚9" id="107_9" index="9" mark="A05" />
+			<Terminal name="CB107针脚10" id="107_10" index="10" mark="B05" />
+			<Terminal name="CB107针脚11" id="107_11" index="11" mark="A06" />
+			<Terminal name="CB107针脚12" id="107_12" index="12" mark="B06" />
+			<Terminal name="CB107针脚13" id="107_13" index="13" mark="A07" />
+			<Terminal name="CB107针脚14" id="107_14" index="14" mark="B07" />
+			<Terminal name="CB107针脚15" id="107_15" index="15" mark="A08" />
+			<Terminal name="CB107针脚16" id="107_16" index="16" mark="B08" />
+			<Terminal name="CB107针脚17" id="107_17" index="17" mark="A09" />
+			<Terminal name="CB107针脚18" id="107_18" index="18" mark="B09" />
+			<Terminal name="CB107针脚19" id="107_19" index="19" mark="A10" />
+			<Terminal name="CB107针脚20" id="107_20" index="20" mark="B10" />
+			<Terminal name="CB107针脚21" id="107_21" index="21" mark="A11" />
+			<Terminal name="CB107针脚22" id="107_22" index="22" mark="B11" />
+			<Terminal name="CB107针脚23" id="107_23" index="23" mark="A12" />
+			<Terminal name="CB107针脚24" id="107_24" index="24" mark="B12" />
+			<Terminal name="CB107针脚25" id="107_25" index="25" mark="A13" />
+			<Terminal name="CB107针脚26" id="107_26" index="26" mark="B13" />
+			<Terminal name="CB107针脚27" id="107_27" index="27" mark="A14" />
+			<Terminal name="CB107针脚28" id="107_28" index="28" mark="B14" />
+			<Terminal name="CB107针脚29" id="107_29" index="29" mark="A15" />
+			<Terminal name="CB107针脚30" id="107_30" index="30" mark="B15" />
+			<Terminal name="CB107针脚31" id="107_31" index="31" mark="A16" />
+			<Terminal name="CB107针脚32" id="107_32" index="32" mark="B16" />
+			<Terminal name="CB107针脚33" id="107_33" index="33" mark="A17" />
+			<Terminal name="CB107针脚34" id="107_34" index="34" mark="B17" />
+			<Terminal name="CB107针脚35" id="107_35" index="35" mark="A18" />
+			<Terminal name="CB107针脚36" id="107_36" index="36" mark="B18" />
+			<Terminal name="CB107针脚37" id="107_37" index="37" mark="A19" />
+			<Terminal name="CB107针脚38" id="107_38" index="38" mark="B19" />
+			<Terminal name="CB107针脚39" id="107_39" index="39" mark="A20" />
+			<Terminal name="CB107针脚40" id="107_40" index="40" mark="B20" />
+			<Terminal name="CB107针脚41" id="107_41" index="41" mark="A21" />
+			<Terminal name="CB107针脚42" id="107_42" index="42" mark="B21" />
+			<Terminal name="CB107针脚43" id="107_43" index="43" mark="A22" />
+			<Terminal name="CB107针脚44" id="107_44" index="44" mark="B22" />
+			<Terminal name="CB107针脚45" id="107_45" index="45" mark="A23" />
+			<Terminal name="CB107针脚46" id="107_46" index="46" mark="B23" />
+			<Terminal name="CB107针脚47" id="107_47" index="47" mark="A24" />
+			<Terminal name="CB107针脚48" id="107_48" index="48" mark="B24" />
+			<Terminal name="CB107针脚49" id="107_49" index="49" mark="A25" />
+			<Terminal name="CB107针脚50" id="107_50" index="50" mark="B25" />
+		</Jack>
+
+		<!-- CB104和CB107的DOCOM端 -->
+		<ResisState isDef="1">
+			<ResisRelation term2Id="3_1" term1Id="107_47" value="0" />
+			<ResisRelation term2Id="3_1" term1Id="107_48" value="0" />
+			<ResisRelation term2Id="3_1" term1Id="107_49" value="0" />
+			<ResisRelation term2Id="3_1" term1Id="107_50" value="0" />
+
+			<ResisRelation term2Id="3_1" term1Id="104_47" value="0" />
+			<ResisRelation term2Id="3_1" term1Id="104_48" value="0" />
+			<ResisRelation term2Id="3_1" term1Id="104_49" value="0" />
+			<ResisRelation term2Id="3_1" term1Id="104_50" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_RAPID" format="SJ7" name="快速进给倍率" mdlName="RAPID" jackDirection="x" direction="x+">
+			<Terminal id="rapid_1" name="快速倍率针脚1" index="1" mark="CB107_B01" />
+			<Terminal id="rapid_2" name="快速倍率针脚2" index="2" mark="CB107_A13" /><!-- X11.6 -->
+			<Terminal id="rapid_3" name="快速倍率针脚3" index="3" mark="CB107_B13" /><!-- X11.7 -->
+			<!-- 未使用 -->
+			<!-- <Terminal id="rapid_4" index="4" mark="" /> -->
+			<!-- <Terminal id="rapid_5" index="5" mark="" /> -->
+			<!-- <Terminal id="rapid_6" index="6" mark="" /> -->
+			<!-- <Terminal id="rapid_7" index="7" mark="" /> -->
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB107 -->
+			<ResisRelation term1Id="rapid_1" term2Id="107_2" value="0" />
+			<ResisRelation term1Id="rapid_2" term2Id="107_25" value="0" />
+			<ResisRelation term1Id="rapid_3" term2Id="107_26" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_SPINDLE" format="SJ7" name="主轴倍率" mdlName="SPINDLE" jackDirection="x" direction="x+">
+			<Terminal id="sp_1" name="主轴倍率针脚1" index="1" mark="CB107_B01" />
+			<Terminal id="sp_2" name="主轴倍率针脚2" index="2" mark="CB107_A10" /><!-- X11.0 -->
+			<Terminal id="sp_3" name="主轴倍率针脚3" index="3" mark="CB107_B10" /><!-- X11.1 -->
+			<Terminal id="sp_4" name="主轴倍率针脚4" index="4" mark="CB107_A11" /><!-- X11.2 -->
+			<!-- 未使用 -->
+			<!-- <Terminal id="sp_5" index="5" mark="" /> -->
+			<!-- <Terminal id="sp_6" index="6" mark="" /> -->
+			<!-- <Terminal id="sp_7" index="7" mark="" /> -->
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB107 -->
+			<ResisRelation term1Id="sp_1" term2Id="107_2" value="0" />
+			<ResisRelation term1Id="sp_2" term2Id="107_19" value="0" />
+			<ResisRelation term1Id="sp_3" term2Id="107_20" value="0" />
+			<ResisRelation term1Id="sp_4" term2Id="107_21" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_FEED" format="SJ7" name="进给倍率" mdlName="FEED" jackDirection="x" direction="x+">
+			<Terminal id="fd_1" name="进给倍率针脚1" index="1" mark="CB104_B01" />
+			<Terminal id="fd_2" name="进给倍率针脚2" index="2" mark="CB104_A06" /><!-- X1.0 -->
+			<Terminal id="fd_3" name="进给倍率针脚3" index="3" mark="CB104_B06" /><!-- X1.1 -->
+			<Terminal id="fd_4" name="进给倍率针脚4" index="4" mark="CB104_A07" /><!-- X1.2 -->
+			<Terminal id="fd_5" name="进给倍率针脚5" index="5" mark="CB104_B07" /><!-- X1.3 -->
+			<!-- 未使用 -->
+			<!-- <Terminal id="fd_6" index="6" mark="" /> -->
+			<!-- <Terminal id="fd_7" index="7" mark="" /> -->
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="fd_1" term2Id="104_2" value="0" />
+			<ResisRelation term1Id="fd_2" term2Id="104_11" value="0" />
+			<ResisRelation term1Id="fd_3" term2Id="104_12" value="0" />
+			<ResisRelation term1Id="fd_4" term2Id="104_13" value="0" />
+			<ResisRelation term1Id="fd_5" term2Id="104_14" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_MODE" format="SJ7" name="工作方式选择" mdlName="MODE" jackDirection="x" direction="x+">
+			<Terminal id="mode_1" name="工作方式针脚1" index="1" mark="CB104_B01" />
+			<Terminal id="mode_2" name="工作方式针脚2" index="2" mark="CB104_A02" /><!-- X0.0 -->
+			<Terminal id="mode_3" name="工作方式针脚3" index="3" mark="CB104_B02" /><!-- X0.1 -->
+			<Terminal id="mode_4" name="工作方式针脚4" index="4" mark="CB104_A03" /><!-- X0.2 -->
+			<!-- 未使用 -->
+			<!-- <Terminal id="mode_5" index="5" /> -->
+			<!-- <Terminal id="mode_6" index="6" /> -->
+			<!-- <Terminal id="mode_7" index="7" /> -->
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="mode_1" term2Id="104_2" value="0" />
+			<ResisRelation term1Id="mode_2" term2Id="104_3" value="0" />
+			<ResisRelation term1Id="mode_3" term2Id="104_4" value="0" />
+			<ResisRelation term1Id="mode_4" term2Id="104_5" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_TOOL_STATION" format="SJ7" name="手动刀位选择" mdlName="TOOL_STATION" jackDirection="y" direction="x-">
+			<Terminal id="tool_station_1" name="手动刀位针脚1" index="1" mark="CB104_B01" />
+			<Terminal id="tool_station_2" name="手动刀位针脚2" index="2" mark="CB104_A10" /><!-- X2.0 -->
+			<Terminal id="tool_station_3" name="手动刀位针脚3" index="3" mark="CB104_B10" /><!-- X2.1 -->
+			<Terminal id="tool_station_4" name="手动刀位针脚4" index="4" mark="CB104_A11" /><!-- X2.2 -->
+			<Terminal id="tool_station_5" name="手动刀位针脚5" index="5" mark="CB104_B11" /><!-- X2.2 -->
+			<!-- 未使用 -->
+			<!-- <Terminal id="mode_6" index="6" /> -->
+			<!-- <Terminal id="mode_7" index="7" /> -->
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="tool_station_1" term2Id="104_2" value="0" />
+			<ResisRelation term1Id="tool_station_2" term2Id="104_19" value="0" />
+			<ResisRelation term1Id="tool_station_3" term2Id="104_20" value="0" />
+			<ResisRelation term1Id="tool_station_4" term2Id="104_21" value="0" />
+			<ResisRelation term1Id="tool_station_5" term2Id="104_22" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_KEY" format="SJ2" name="程序保护开关" mdlName="KEY" jackDirection="y" direction="x">
+			<Terminal id="key_1" name="程序保护针脚1" index="1" mark="CB104_B01" />
+			<Terminal id="key_2" name="程序保护针脚2" index="2" mark="CB104_B08" /><!-- X1.5 -->
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="key_1" term2Id="104_2" value="0" />
+			<ResisRelation term1Id="key_2" term2Id="104_16" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_IN_EX" format="SJ2" name="内外卡选择" mdlName="IN_EX" jackDirection="y" direction="x">
+			<Terminal id="in_ex_1" name="内外卡针脚1" index="1" mark="CB104_B01" />
+			<Terminal id="in_ex_2" name="内外卡针脚2" index="2" mark="CB104_A08" /><!-- X1.4 -->
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="in_ex_1" term2Id="104_2" value="0" />
+			<ResisRelation term1Id="in_ex_2" term2Id="104_15" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_ALARM" format="SJ2" name="机床报警指示灯" mdlName="ALARM" jackDirection="y" direction="x">
+			<Terminal id="alarm_1" name="机床报警针脚1" index="1" mark="CB104_B16" /><!--机床报警指示灯 -->
+			<Terminal id="alarm_2" name="机床报警针脚2" index="2" mark="CB104_A01" />
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="alarm_1" term2Id="104_32" value="0" />
+			<ResisRelation term1Id="alarm_2" term2Id="1_1" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_TOOL_START" format="SJ2" name="换刀启动" mdlName="TOOL_START" jackDirection="y" direction="x">
+			<Terminal id="tool_start_1" name="换刀启动针脚1" index="1" mark="CB104_B01" />
+			<Terminal id="tool_start_2" name="换刀启动针脚2" index="2" mark="CB104_A12" /><!--换刀启动 -->
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="tool_start_1" term2Id="104_2" value="0" />
+			<ResisRelation term1Id="tool_start_2" term2Id="104_23" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_READY" format="SJ2" name="机床准备好指示灯" mdlName="READY" jackDirection="y" direction="x">
+			<Terminal id="ready_1" name="机床准备好针脚1" index="1" mark="CB104_A16" /><!-- 机床准备好指示灯 -->
+			<Terminal id="ready_2" name="机床准备好针脚2" index="2" mark="CB104_A01" />
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="ready_1" term2Id="104_31" value="0" />
+			<ResisRelation term1Id="ready_2" term2Id="1_1" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_CHUCK" format="SJ4" name="卡盘" mdlName="CHUCK" jackDirection="y" direction="x">
+			<Terminal id="chuck_1" name="卡盘针脚1" index="1" mark="CB104_B01" />
+			<Terminal id="chuck_2" name="卡盘针脚2" index="2" mark="CB104_A05" />
+			<Terminal id="chuck_3" name="卡盘针脚3" index="3" mark="CB104_A19" /><!-- 卡盘紧指示灯 -->
+			<Terminal id="chuck_4" name="卡盘针脚4" index="4" mark="CB104_A01" />
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="chuck_1" term2Id="104_2" value="0" />
+			<ResisRelation term1Id="chuck_2" term2Id="104_9" value="0" />
+			<ResisRelation term1Id="chuck_3" term2Id="104_37" value="0" />
+			<ResisRelation term1Id="chuck_4" term2Id="1_1" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_TAIL" format="SJ4" name="尾架" mdlName="TAIL" jackDirection="y" direction="x">
+			<Terminal id="tail_1" name="尾架针脚1" index="1" mark="CB104_B01" />
+			<Terminal id="tail_2" name="尾架针脚2" index="2" mark="CB104_B05" />
+			<Terminal id="tail_3" name="尾架针脚3" index="3" mark="CB104_B19" /><!-- 尾架指示灯 -->
+			<Terminal id="tail_4" name="尾架针脚4" index="4" mark="CB104_A01" />
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="tail_1" term2Id="104_2" value="0" />
+			<ResisRelation term1Id="tail_2" term2Id="104_10" value="0" />
+			<ResisRelation term1Id="tail_3" term2Id="104_38" value="0" />
+			<ResisRelation term1Id="tail_4" term2Id="1_1" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_START" format="SJ4" name="循环启动" mdlName="START" jackDirection="y" direction="x">
+			<Terminal id="start_1" name="循环启动针脚1" index="1" mark="CB104_B01" />
+			<Terminal id="start_2" name="循环启动针脚2" index="2" mark="CB104_A04" />
+			<Terminal id="start_3" name="循环启动针脚3" index="3" mark="CB104_A18" /><!-- 循环启动指示灯 -->
+			<Terminal id="start_4" name="循环启动针脚4" index="4" mark="CB104_A01" />
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="start_1" term2Id="104_2" value="0" />
+			<ResisRelation term1Id="start_2" term2Id="104_7" value="0" />
+			<ResisRelation term1Id="start_3" term2Id="104_35" value="0" />
+			<ResisRelation term1Id="start_4" term2Id="1_1" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_HOLD" format="SJ4" name="进给保持" mdlName="HOLD" jackDirection="y" direction="x">
+			<Terminal id="hold_1" name="进给保持针脚1" index="1" mark="CB104_B01" />
+			<Terminal id="hold_2" name="进给保持针脚2" index="2" mark="CB104_B04" />
+			<Terminal id="hold_3" name="进给保持针脚3" index="3" mark="CB104_B18" /><!-- 进给保持指示灯 -->
+			<Terminal id="hold_4" name="进给保持针脚4" index="4" mark="CB104_A01" />
+		</Jack>
+		<ResisState isDef="1" id="">
+			<!-- CB104 -->
+			<ResisRelation term1Id="hold_1" term2Id="104_2" value="0" />
+			<ResisRelation term1Id="hold_2" term2Id="104_8" value="0" />
+			<ResisRelation term1Id="hold_3" term2Id="104_36" value="0" />
+			<ResisRelation term1Id="hold_4" term2Id="1_1" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_NC_on" format="SJ2" name="NC通电" mdlName="NC_on" jackDirection="y" direction="x">
+			<Terminal id="NC_on_1" name="NC通电针脚1" index="1" />
+			<Terminal id="NC_on_2" name="NC通电针脚2" index="2" />
+		</Jack>
+		<Terminal id="OP_NC_on_1" name="On" mark="On" mdlName="C01" direction="x+" index="1" />
+		<Terminal id="OP_NC_on_2" name="On" mark="On" mdlName="C02" direction="x+" index="2" />
+		<ResisState isDef="1" id="">
+			<ResisRelation term1Id="NC_on_1" term2Id="OP_NC_on_1" value="0" />
+			<ResisRelation term1Id="NC_on_2" term2Id="OP_NC_on_2" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_NC_off" format="SJ2" name="NC断电" mdlName="NC_off" jackDirection="y" direction="x">
+			<Terminal id="NC_off_1" name="NC断电针脚1" index="1" />
+			<Terminal id="NC_off_2" name="NC断电针脚2" index="2" />
+		</Jack>
+		<Terminal id="OP_NC_off_1" name="Off" mark="Off" mdlName="C03" direction="x+" index="1" />
+		<Terminal id="OP_NC_off_2" name="Off" mark="Off" mdlName="C04" direction="x+" index="2" />
+		<ResisState isDef="1" id="">
+			<ResisRelation term1Id="NC_off_1" term2Id="OP_NC_off_1" value="0" />
+			<ResisRelation term1Id="NC_off_2" term2Id="OP_NC_off_2" value="0" />
+		</ResisState>
+
+		<Jack id="JACK_Emergency" format="SJ2" name="急停" mdlName="Emergency" jackDirection="y" direction="x">
+			<Terminal id="Emergency_1" name="急停针脚1" index="1" />
+			<Terminal id="Emergency_2" name="急停针脚2" index="2" />
+		</Jack>
+		<Terminal id="OP_Emergency_1" name="5A08" mark="EMG" mdlName="C05" direction="x+" index="1" />
+		<Terminal id="OP_Emergency_2" name="24N" mark="24N" mdlName="C06" direction="x+" index="2" />
+		<ResisState isDef="1" id="">
+			<ResisRelation term1Id="Emergency_1" term2Id="OP_Emergency_1" value="0" />
+			<ResisRelation term1Id="Emergency_2" term2Id="OP_Emergency_2" value="0" />
+		</ResisState>
+
+		<Terminal id="Green" name="绿" mark="Green" mdlName="D01" direction="y-" /><!-- 绿 -->
+		<ResisState isDef="1">
+			<ResisRelation term1Id="Green" term2Id="107_44" value="0" />
+		</ResisState>
+
+		<Terminal id="Red" name="红" mark="Red" mdlName="D02" direction="y-" /><!-- 红 -->
+		<ResisState isDef="1">
+			<ResisRelation term1Id="Red" term2Id="107_45" value="0" />
+		</ResisState>
+
+		<Terminal id="Yellow" name="黄" mark="Yellow" mdlName="D03" direction="y-" /><!-- 黄 -->
+		<ResisState isDef="1">
+			<ResisRelation term1Id="Yellow" term2Id="107_46" value="0" />
+		</ResisState>
+
+		<Terminal id="5A08" name="5A08" mark="EMG_NC_1" mdlName="B01" direction="x+" /><!-- EMG_NC_1 -->
+		<Terminal id="508" name="508" mark="EMG_NC_2" mdlName="B02" direction="x+" /><!-- EMG_NC_2 -->
+		<Terminal id="6A07" name="6A07" mark="X1" mdlName="B03" direction="x+" /><!-- X1 -->
+		<Terminal id="6B07" name="6B07" mark="X10" mdlName="B04" direction="x+" /><!-- X10 -->
+		<Terminal id="6A08" name="6A08" mark="X100" mdlName="B05" direction="x+" /><!-- X100 -->
+		<Terminal id="6B08" name="6B08" mark="X" mdlName="B06" direction="x+" /><!--X -->
+		<Terminal id="6A09" name="6A09" mark="Z" mdlName="B07" direction="x+" /><!-- Z -->
+		<Terminal id="6B23" name="6B23" mark="+24V" mdlName="B08" direction="x+" /><!--+24V -->
+
+		<Terminal id="5A08_1" name="5A08_1" mark="5A08_1" mdlName="A01" direction="x-" /><!-- Handle -->
+		<Terminal id="508_1" name="508_1" mark="508_1" mdlName="A02" direction="x-" /><!-- Handle -->
+		<Terminal id="6A07_1" name="6A07_1" mark="6A07_1" mdlName="A03" direction="x-" /><!-- Handle -->
+		<Terminal id="6B07_1" name="6B07_1" mark="6B07_1" mdlName="A04" direction="x-" /><!-- Handle -->
+		<Terminal id="6A08_1" name="6A08_1" mark="6A08_1" mdlName="A05" direction="x-" /><!-- Handle -->
+		<Terminal id="6B08_1" name="6B08_1" mark="6B08_1" mdlName="A06" direction="x-" /><!-- Handle -->
+		<Terminal id="6A09_1" name="6A09_1" mark="6A09_1" mdlName="A07" direction="x-" /><!-- Handle -->
+		<Terminal id="6B23_1" name="6B23_1" mark="6B23_1" mdlName="A08" direction="x-" /><!-- Handle -->
+		<ResisState isDef="1" id="">
+			<ResisRelation term1Id="5A08" term2Id="5A08_1" value="0" />
+			<ResisRelation term1Id="508" term2Id="508_1" value="0" />
+			<ResisRelation term1Id="6A07" term2Id="6A07_1" value="0" />
+			<ResisRelation term1Id="6B07" term2Id="6B07_1" value="0" />
+			<ResisRelation term1Id="6A08" term2Id="6A08_1" value="0" />
+			<ResisRelation term1Id="6B08" term2Id="6B08_1" value="0" />
+			<ResisRelation term1Id="6A09" term2Id="6A09_1" value="0" />
+			<ResisRelation term1Id="6B23" term2Id="6B23_1" value="0" />
+		</ResisState>
+
+		<Terminal id="3_1" name="3" mark="3_1" mdlName="E12" direction="y-" /><!-- 3 -->
+		<Terminal id="3_2" name="3" mark="3_2" mdlName="E13" direction="y-" /><!-- 3 -->
+		<Terminal id="24N_1" name="24N" mark="24N_1" mdlName="E14" direction="y-" /><!-- 24N -->
+		<Terminal id="24N_2" name="24N" mark="24N_2" mdlName="E15" direction="y-" /><!-- 24N -->
+		<Terminal id="1_1" name="1" mark="1_1" mdlName="E16" direction="y-" /><!-- 1 -->
+		<Terminal id="1_2" name="1" mark="1_2" mdlName="E17" direction="y-" /><!-- 1 -->
+		<ResisState isDef="1" id="">
+			<ResisRelation term1Id="3_1" term2Id="3_2" value="0" />
+			<ResisRelation term1Id="24N_1" term2Id="24N_2" value="0" />
+			<ResisRelation term1Id="1_1" term2Id="1_2" value="0" />
+		</ResisState>
+
+		<!-- 机床照明 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1563" switchIn="off1|on1" motion="move" motionParams="0|-0.005" axis="z" name="机床照明">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="107_37" term2Id="1_2" value="20000" />
+		</ResisState>
+		<ResisState id="off1" isDef="1" />
+
+		<ResisState id="on1">
+			<ResisRelation term1Id="104_2" term2Id="104_17" value="0" />
+		</ResisState>
+		<Magnetism>
+			<VoltageIO term1Id="107_37" term2Id="1_2" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light008" name="机床照明指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- 冷却通断 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1566" switchIn="off2|on2" motion="move" motionParams="0|-0.005" axis="z" name="冷却通断">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="104_39" term2Id="1_1" value="20000" />
+		</ResisState>
+		<ResisState id="off2" isDef="1" />
+
+		<ResisState id="on2">
+			<ResisRelation term1Id="104_2" term2Id="104_18" value="0" />
+		</ResisState>
+		<Magnetism>
+			<VoltageIO term1Id="104_39" term2Id="1_1" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light007" name="冷却通断指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- 程序单段 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1514" switchIn="off3|on3" motion="move" motionParams="0|-0.005" axis="z" name="程序单段">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="104_40" term2Id="1_1" value="20000" />
+		</ResisState>
+		<ResisState id="off3" isDef="1" />
+
+		<ResisState id="on3">
+			<ResisRelation term1Id="104_2" term2Id="104_25" value="0" />
+		</ResisState>
+		<Magnetism>
+			<VoltageIO term1Id="104_40" term2Id="1_1" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light01" name="程序单段指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- 空运行 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1542" switchIn="off4|on4" motion="move" motionParams="0|-0.005" axis="z" name="空运行">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="104_41" term2Id="1_1" value="20000" />
+		</ResisState>
+		<ResisState id="off4" isDef="1" />
+
+		<ResisState id="on4">
+			<ResisRelation term1Id="104_2" term2Id="104_26" value="0" />
+		</ResisState>
+		<Magnetism>
+			<VoltageIO term1Id="104_41" term2Id="1_1" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light006" name="空运行指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- CB107 -->
+		<!-- 选择停止 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1518" switchIn="off5|on5" motion="move" motionParams="0|-0.005" axis="z" name="选择停止">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="104_42" term2Id="1_1" value="20000" />
+		</ResisState>
+		<ResisState id="off5" isDef="1" />
+
+		<ResisState id="on5">
+			<ResisRelation term1Id="107_2" term2Id="107_3" value="0" />
+		</ResisState>
+		<Magnetism>
+			<VoltageIO term1Id="104_42" term2Id="1_1" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light002" name="选择停止指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- 选择跳读 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1521" switchIn="off6|on6" motion="move" motionParams="0|-0.005" axis="z" name="选择跳读">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="104_43" term2Id="1_1" value="20000" />
+		</ResisState>
+		<ResisState id="off6" isDef="1" />
+
+		<ResisState id="on6">
+			<ResisRelation term1Id="107_2" term2Id="107_4" value="0" />
+		</ResisState>
+		<Magnetism>
+			<VoltageIO term1Id="104_43" term2Id="1_1" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light003" name="选择跳读指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- 机床锁住 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1545" switchIn="off7|on7" motion="move" motionParams="0|-0.005" axis="z" name="机床锁住">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="104_44" term2Id="1_1" value="20000" />
+		</ResisState>
+		<ResisState id="off7" isDef="1" />
+
+		<ResisState id="on7">
+			<ResisRelation term1Id="107_2" term2Id="107_5" value="0" />
+		</ResisState>
+		<Magnetism>
+			<VoltageIO term1Id="104_44" term2Id="1_1" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light005" name="机床锁住指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- 辅助锁住 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1548" switchIn="off8|on8" motion="move" motionParams="0|-0.005" axis="z" name="辅助锁住">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="104_45" term2Id="1_1" value="20000" />
+		</ResisState>
+		<ResisState id="off8" isDef="1" />
+
+		<ResisState id="on8">
+			<ResisRelation term1Id="107_2" term2Id="107_6" value="0" />
+		</ResisState>
+		<Magnetism>
+			<VoltageIO term1Id="104_45" term2Id="1_1" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light004" name="辅助锁住指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- X+ -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1527" switchIn="off9|on9" motion="move" motionParams="0|-0.005" axis="z" name="X+">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on9">
+			<ResisRelation term1Id="107_2" term2Id="107_11" value="0" />
+		</ResisState>
+		<ResisState id="off9" isDef="1" />
+
+
+		<!-- X- -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1554" switchIn="off10|on10" motion="move" motionParams="0|-0.005" axis="z" name="X-">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on10">
+			<ResisRelation term1Id="107_2" term2Id="107_12" value="0" />
+		</ResisState>
+		<ResisState id="off10" isDef="1" />
+
+
+		<!-- Z+ -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1539" switchIn="off11|on11" motion="move" motionParams="0|-0.005" axis="z" name="Z+">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on11">
+			<ResisRelation term1Id="107_2" term2Id="107_13" value="0" />
+		</ResisState>
+		<ResisState id="off11" isDef="1" />
+
+
+		<!-- Z- -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1533" switchIn="off12|on12" motion="move" motionParams="0|-0.005" axis="z" name="Z-">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on12">
+			<ResisRelation term1Id="107_2" term2Id="107_14" value="0" />
+		</ResisState>
+		<ResisState id="off12" isDef="1" />
+
+
+		<!-- C+ -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1524" switchIn="off13|on13" motion="move" motionParams="0|-0.005" axis="z" name="C+">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on13">
+			<ResisRelation term1Id="107_2" term2Id="107_9" value="0" />
+		</ResisState>
+		<ResisState id="off13" isDef="1" />
+
+
+		<!-- C- -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1557" switchIn="off14|on14" motion="move" motionParams="0|-0.005" axis="z" name="C-">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on14">
+			<ResisRelation term1Id="107_2" term2Id="107_10" value="0" />
+		</ResisState>
+		<ResisState id="off14" isDef="1" />
+
+
+		<!-- 快速 -->
+		<Magnetism>
+			<ControlIO type="input" interact="click" mdlName="1536" switchIn="off15|on15" motion="move" motionParams="0|-0.005" axis="z" name="快速">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on15">
+			<ResisRelation term1Id="107_2" term2Id="107_15" value="0" />
+		</ResisState>
+		<ResisState id="off15" isDef="1" />
+
+		<!-- 主轴正转 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1605" switchIn="off16|on16" motion="move" motionParams="0|-0.005" axis="z" name="主轴正转">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="107_33" term2Id="1_2" value="20000" />
+		</ResisState>
+		<ResisState id="on16">
+			<ResisRelation term1Id="107_2" term2Id="107_16" value="0" />
+		</ResisState>
+		<ResisState id="off16" isDef="1" />
+		<Magnetism>
+			<VoltageIO term1Id="107_33" term2Id="1_2" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light010" name="主轴正转指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+
+		<!-- 主轴停止 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1608" switchIn="off17|on17" motion="move" motionParams="0|-0.005" axis="z" name="主轴停止">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on17">
+			<ResisRelation term1Id="107_2" term2Id="107_17" value="0" />
+		</ResisState>
+		<ResisState id="off17" isDef="1" />
+
+		<!-- 主轴反转 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1611" switchIn="off18|on18" motion="move" motionParams="0|-0.005" axis="z" name="主轴反转">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="107_34" term2Id="1_2" value="20000" />
+		</ResisState>
+		<ResisState id="on18">
+			<ResisRelation term1Id="107_2" term2Id="107_18" value="0" />
+		</ResisState>
+		<ResisState id="off18" isDef="1" />
+		<Magnetism>
+			<VoltageIO term1Id="107_34" term2Id="1_2" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light012" name="主轴反转指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- 排屑正转/停止 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1602" switchIn="off19|on19" motion="move" motionParams="0|-0.005" axis="z" name="排屑正转/停止">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="107_35" term2Id="1_2" value="20000" />
+		</ResisState>
+		<ResisState id="on19">
+			<ResisRelation term1Id="107_2" term2Id="107_22" value="0" />
+		</ResisState>
+		<ResisState id="off19" isDef="1" />
+		<Magnetism>
+			<VoltageIO term1Id="107_35" term2Id="1_2" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light013" name="排屑正转/停止指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- 排屑反转 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1599" switchIn="off20|on20" motion="move" motionParams="0|-0.005" axis="z" name="排屑反转">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="107_36" term2Id="1_2" value="20000" />
+		</ResisState>
+		<ResisState id="on20">
+			<ResisRelation term1Id="107_2" term2Id="107_23" value="0" />
+		</ResisState>
+		<ResisState id="off20" isDef="1" />
+		<Magnetism>
+			<VoltageIO term1Id="107_36" term2Id="1_2" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light014" name="排屑反转指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<Terminal id="105_21" name="5A11" mark="F1" mdlName="E01" direction="y-" /><!-- F1 -->
+		<Terminal id="105_22" name="5B11" mark="F2" mdlName="E02" direction="y-" /><!-- F2 -->
+		<Terminal id="105_23" name="5A12" mark="F3" mdlName="E03" direction="y-" /><!-- F3 -->
+		<Terminal id="105_24" name="5B12" mark="X1" mdlName="E04" direction="y-" /><!-- X1 -->
+		<Terminal id="105_25" name="5A13" mark="X10" mdlName="E05" direction="y-" /><!-- X10 -->
+		<Terminal id="105_26" name="5B13" mark="X100" mdlName="E06" direction="y-" /><!-- X100 -->
+		<Terminal id="105_17" name="5A09" mark="standby" mdlName="E07" direction="y-" /><!-- standby -->
+		<Terminal id="105_3" name="5A02" mark="F4" mdlName="E08" direction="y-" /><!-- F4 -->
+		<Terminal id="105_4" name="5B02" mark="F5" mdlName="E09" direction="y-" /><!-- F5 -->
+		<Terminal id="106_44" name="6B22" mark="standby" mdlName="E10" direction="y-" /><!-- standby -->
+		<Terminal id="106_45" name="6A23" mark="standby" mdlName="E11" direction="y-" /><!-- standby -->
+
+		<!-- F1 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1593" switchIn="off21|on21" motion="move" motionParams="0|-0.005" axis="z" name="F1">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="107_41" term2Id="1_2" value="20000" />
+		</ResisState>
+		<ResisState id="on21">
+			<ResisRelation term1Id="24N_1" term2Id="105_21" value="0" />
+		</ResisState>
+		<ResisState id="off21" isDef="1" />
+		<Magnetism>
+			<VoltageIO term1Id="107_41" term2Id="1_2" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light022" name="F1指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- F2 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1590" switchIn="off22|on22" motion="move" motionParams="0|-0.005" axis="z" name="F2">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="107_42" term2Id="1_2" value="20000" />
+		</ResisState>
+		<ResisState id="on22">
+			<ResisRelation term1Id="24N_1" term2Id="105_22" value="0" />
+		</ResisState>
+		<ResisState id="off22" isDef="1" />
+		<Magnetism>
+			<VoltageIO term1Id="107_42" term2Id="1_2" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light023" name="F2指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- F3 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1587" switchIn="off23|on23" motion="move" motionParams="0|-0.005" axis="z" name="F3">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="107_43" term2Id="1_2" value="20000" />
+		</ResisState>
+		<ResisState id="on23">
+			<ResisRelation term1Id="24N_1" term2Id="105_23" value="0" />
+		</ResisState>
+		<ResisState id="off23" isDef="1" />
+		<Magnetism>
+			<VoltageIO term1Id="107_43" term2Id="1_2" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="Light024" name="F3指示灯" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- F4 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1617" switchIn="off24|on24" motion="move" motionParams="0|-0.005" axis="z" name="F4">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on24">
+			<ResisRelation term1Id="24N_1" term2Id="105_3" value="0" />
+		</ResisState>
+		<ResisState id="off24" isDef="1" />
+
+
+		<!-- F5 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1560" switchIn="off25|on25" motion="move" motionParams="0|-0.005" axis="z" name="F5">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on25">
+			<ResisRelation term1Id="24N_1" term2Id="105_4" value="0" />
+		</ResisState>
+		<ResisState id="off25" isDef="1" />
+
+
+		<!-- 门控制 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1596" switchIn="off26|on26" motion="move" motionParams="0|-0.005" axis="z" name="门控制">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on26">
+			<ResisRelation term1Id="107_2" term2Id="107_24" value="0" />
+		</ResisState>
+		<ResisState id="off26" isDef="1" />
+
+
+		<!-- 对刀仪 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1614" switchIn="off27|on27" motion="move" motionParams="0|-0.005" axis="z" name="对刀仪">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on27">
+			<ResisRelation term1Id="104_2" term2Id="104_24" value="0" />
+		</ResisState>
+		<ResisState id="off27" isDef="1" />
+
+
+		<!-- 中心架 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1620" switchIn="off28|on28" motion="move" motionParams="0|-0.005" axis="z" name="中心架">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on28">
+			<ResisRelation term1Id="104_2" term2Id="104_6" value="0" />
+		</ResisState>
+		<ResisState id="off28" isDef="1" />
+
+
+		<!-- interact="press,toggle" -->
+		<!-- F6 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1584" switchIn="off29|on29" motion="move" motionParams="0|-0.005" axis="z" name="F6">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on29">
+			<!-- <ResisRelation term1Id="24N_1" term2Id="105_4" value="0" /> -->
+		</ResisState>
+		<ResisState id="off29" isDef="1" />
+
+
+		<!-- F7 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1581" switchIn="off30|on30" motion="move" motionParams="0|-0.005" axis="z" name="F7">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on30">
+			<!-- <ResisRelation term1Id="24N_1" term2Id="105_4" value="0" /> -->
+		</ResisState>
+		<ResisState id="off30" isDef="1" />
+
+
+		<!-- F8 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1578" switchIn="off31|on31" motion="move" motionParams="0|-0.005" axis="z" name="F8">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on31">
+			<!-- <ResisRelation term1Id="24N_1" term2Id="105_4" value="0" /> -->
+		</ResisState>
+		<ResisState id="off31" isDef="1" />
+
+
+		<!-- F9 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1569" switchIn="off32|on32" motion="move" motionParams="0|-0.005" axis="z" name="F9">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on32">
+			<ResisRelation term1Id="24N_1" term2Id="105_4" value="0" />
+		</ResisState>
+		<ResisState id="off32" isDef="1" />
+
+
+		<!-- F10 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1572" switchIn="off33|on33" motion="move" motionParams="0|-0.005" axis="z" name="F10">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on33">
+			<ResisRelation term1Id="24N_1" term2Id="105_4" value="0" />
+		</ResisState>
+		<ResisState id="off33" isDef="1" />
+
+
+		<!-- F11 -->
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="1575" switchIn="off34|on34" motion="move" motionParams="0|-0.005" axis="z" name="F11">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on34">
+			<!-- <ResisRelation term1Id="24N_1" term2Id="105_4" value="0" /> -->
+		</ResisState>
+		<ResisState id="off34" isDef="1" />
+
+
+		<!-- 内外卡选择 -->
+		<!-- <Magnetism> -->
+		<!-- <ControlIO type="input" interact="click" mdlName="1505" switchIn="off35|on35" motion="rotate" motionParams="0|80" axis="z" name="内外卡选择" /> -->
+		<!-- </Magnetism> -->
+		<!-- <ResisState id="on35"> -->
+		<!-- <ResisRelation term1Id="104_2" term2Id="104_15" value="0" /> -->
+		<!-- </ResisState> -->
+		<!-- <ResisState id="off35" isDef="1"> -->
+		<!-- </ResisState> -->
+
+		<!-- 存储保护 -->
+		<!-- <Magnetism> -->
+		<!-- <ControlIO type="input" interact="click" mdlName="2320" switchIn="off36|on36" motion="rotate" motionParams="0|80" axis="z" name="存储保护" /> -->
+		<!-- </Magnetism> -->
+		<!-- <ResisState id="on36"> -->
+		<!-- <ResisRelation term1Id="104_2" term2Id="104_16" value="0" /> -->
+		<!-- </ResisState> -->
+		<!-- <ResisState id="off36" isDef="1"> -->
+		<!-- </ResisState> -->
+
+		<!-- 急停按钮 -->
+		<!-- <Magnetism> -->
+		<!-- <ControlIO type="input" interact="click" mdlName="344" switchIn="on0|off0" motion="move" motionParams="0|-0.005" axis="z" name="急停按钮" /> -->
+		<!-- </Magnetism> -->
+		<!-- <ResisState id="on0" isDef="1"> -->
+		<!-- <ResisRelation term1Id="OP_Emergency_1" term2Id="OP_Emergency_2" value="0" /> -->
+		<!-- </ResisState> -->
+		<!-- <ResisState id="off0"> -->
+		<!-- </ResisState> -->
+
+		<!-- 循环启动按钮 -->
+		<!-- <Magnetism> -->
+		<!-- <ControlIO type="input" interact="press" mdlName="336" switchIn="off1|on1" motion="move" motionParams="0|-0.005" axis="z" name="循环启动" /> -->
+		<!-- </Magnetism> -->
+		<!-- <ResisState id="on1"> -->
+		<!-- <ResisRelation term1Id="104_2" term2Id="104_7" value="0" /> -->
+		<!-- </ResisState> -->
+		<!-- <ResisState id="off1" isDef="1"> -->
+		<!-- </ResisState> -->
+
+		<!-- 进给保持 -->
+		<!-- <Magnetism> -->
+		<!-- <ControlIO type="input" interact="press" mdlName="338" switchIn="on2|off2" motion="move" motionParams="0|-0.005" axis="z" name="进给保持" /> -->
+		<!-- </Magnetism> -->
+		<!-- <ResisState id="on2" isDef="1"> -->
+		<!-- <ResisRelation term1Id="104_2" term2Id="104_8" value="0" /> -->
+		<!-- </ResisState> -->
+		<!-- <ResisState id="off2"> -->
+		<!-- </ResisState> -->
+
+		<!-- 卡盘控制 -->
+		<!-- <Magnetism> -->
+		<!-- <ControlIO type="input" interact="press" mdlName="703" switchIn="off3|on3" motion="move" motionParams="0|-0.005" axis="z" name="卡盘控制" /> -->
+		<!-- </Magnetism> -->
+		<!-- <ResisState id="on3"> -->
+		<!-- <ResisRelation term1Id="104_2" term2Id="104_9" value="0" /> -->
+		<!-- </ResisState> -->
+		<!-- <ResisState id="off3" isDef="1"> -->
+		<!-- </ResisState> -->
+
+		<!-- 尾架控制 -->
+		<!-- <Magnetism> -->
+		<!-- <ControlIO type="input" interact="press" mdlName="702" switchIn="off4|on4" motion="move" motionParams="0|-0.005" axis="z" name="尾架控制" /> -->
+		<!-- </Magnetism> -->
+		<!-- <ResisState id="on4"> -->
+		<!-- <ResisRelation term1Id="104_2" term2Id="104_10" value="0" /> -->
+		<!-- </ResisState> -->
+		<!-- <ResisState id="off4" isDef="1"> -->
+		<!-- </ResisState> -->
+
+		<!-- 换刀启动 -->
+		<!-- <Magnetism> -->
+		<!-- <ControlIO type="input" interact="press" mdlName="332" switchIn="off7|on7" motion="move" motionParams="0|-0.005" axis="z" name="换刀启动" /> -->
+		<!-- </Magnetism> -->
+		<!-- <ResisState id="on7"> -->
+		<!-- <ResisRelation term1Id="104_2" term2Id="104_23" value="0" /> -->
+		<!-- </ResisState> -->
+		<!-- <ResisState id="off7" isDef="1"> -->
+		<!-- </ResisState> -->
+	</ElecCompDef>
+</Comps>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roots>
+	<ElecCompDef name="PLC-EXT" model="PLC-EXT">
+		<!-- <ElecCompDef name="FX2N-8EX" model="FX2N-8EX"> -->
+		<Terminal id="24+" name="24+" mdlName="4" direction="X-" />
+		<Terminal id="X1" name="X1" mdlName="5" direction="X-" />
+		<Terminal id="X3" name="X3" mdlName="6" direction="X-" />
+		<!-- <Terminal id="" name="" mdlName="10" direction="X-" /> -->
+		<Terminal id="X5" name="X5" mdlName="11" direction="X-" />
+		<Terminal id="X7" name="X7" mdlName="12" direction="X-" />
+		<!-- <Terminal id="" name="1" mdlName="1" direction="X-" /> -->
+		<Terminal id="X0" name="X0" mdlName="2" direction="X-" />
+		<Terminal id="X2" name="X2" mdlName="3" direction="X-" />
+		<!-- <Terminal id="" name="" mdlName="7" direction="X-" /> -->
+		<Terminal id="X4" name="X4" mdlName="8" direction="X-" />
+		<Terminal id="X6" name="X6" mdlName="9" direction="X-" />
+
+		<!-- <ResisState isDef="1"> -->
+		<!-- <ResisRelation term1Id="S/S" term2Id="X0" value="4300" /> -->
+		<!-- </ResisState> -->
+
+
+		<!-- <Jack id="RS-485" mdlName="FX3U-32M85" name="RS-485" direction="X" core="5"> -->
+		<!-- <Terminal id="SG" name="SG" index="05" mark="SG" /> -->
+		<!-- </Jack> -->
+		<!-- </ElecCompDef> -->
+		<!-- ========================= -->
+		<!-- <ElecCompDef name="FX2N-2DA" model="FX2N-2DA"> -->
+		<Terminal id="VOUT1" name="VOUT1" mdlName="13" direction="X-" />
+		<Terminal id="IOUT1" name="IOUT1" mdlName="14" direction="X-" />
+		<Terminal id="COM1" name="COM1" mdlName="15" direction="X-" />
+		<Terminal id="VOUT2" name="VOUT2" mdlName="16" direction="X-" />
+		<Terminal id="IOUT2" name="IOUT2" mdlName="17" direction="X-" />
+		<Terminal id="COM2" name="COM2" mdlName="18" direction="X-" />
+
+		<!-- <Terminal id="CH1-GAIN" name="CH1-GAIN" mdlName="24" direction="X-" /> -->
+		<!-- <Terminal id="CH2-OFFSET" name="CH2-OFFSET" mdlName="24" direction="X-" /> -->
+		<!-- <Terminal id="CH2-GAIN" name="CH2-GAIN" mdlName="24" direction="X-" /> -->
+		<!-- <ResisState isDef="1"> -->
+		<!-- <ResisRelation term1Id="S/S" term2Id="X0" value="4300" /> -->
+		<!-- </ResisState> -->
+
+
+<!-- 		<Jack id="RS-485" mdlName="FX3U-32M85" name="RS-485" direction="Z" core="5" cable="NET-RS485" format="NET-RS485" rotation="90,0,90"> -->
+<!-- 			<Terminal id="RDA" name="RDA" index="1" mark="RDA" /> -->
+<!-- 			<Terminal id="RDB" name="RDB" index="2" mark="RDB" /> -->
+<!-- 			<Terminal id="SDA" name="SDA" index="3" mark="SDA" /> -->
+<!-- 			<Terminal id="SDB" name="SDB" index="4" mark="SDB" /> -->
+<!-- 			<Terminal id="SG" name="SG" index="5" mark="SG" /> -->
+<!-- 		</Jack> -->
+		<!-- </ElecCompDef> -->
+		<!-- ========================= -->
+		<!-- <ElecCompDef name="FX3U-ENET-L" model="FX3U-ENET-L"> -->
+		<Terminal id="24V" name="24+" mdlName="19" direction="X-" />
+		<Terminal id="GND" name="GND" mdlName="20" direction="X-" />
+		<Terminal id="0V" name="24-" mdlName="21" direction="X-" />
+
+		<!-- <ResisState isDef="1"> -->
+		<!-- <ResisRelation term1Id="S/S" term2Id="X0" value="4300" /> -->
+		<!-- </ResisState> -->
+
+
+		<Jack id="ENET" mdlName="ENET" name="ENET" direction="X" core="8" cable="NET" format="NET" rotation="90,0,90">
+			<Terminal id="SG1" name="SG1" index="1" mark="" />
+			<Terminal id="POW1" name="POW1" index="2" mark="" />
+			<Terminal id="RDA" name="RDA" index="3" mark="" />
+			<Terminal id="SDB" name="SDB" index="4" mark="" />
+			<Terminal id="SDA" name="SDA" index="5" mark="" />
+			<Terminal id="RDB" name="RDB" index="6" mark="" />
+			<Terminal id="SG2" name="SG2" index="7" mark="" />
+			<Terminal id="POW2" name="POW2" index="8" mark="" />
+		</Jack>
+	</ElecCompDef>
+</roots>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty-controls xmlns="http://nifty-gui.lessvoid.com/nifty-gui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://nifty-gui.lessvoid.com/nifty-gui http://nifty-gui.lessvoid.com/nifty-gui">
+	<controlDefinition name="connectionPanel">
+		<panel id="connection" childLayout="horizontal" width="98%" height="260" valign="bottom" margin="0,10,10,10" controller="com.cas.circuit.ui.controller.ConnectionController">
+			<panel height="260" childLayout="vertical" align="left">
+				<control id="multimeterPanel" name="wireAndPipeItem" margin="0,0,20,0" label="万用表" style="cas-bg-front" mode="subImage:96,160,32,32">
+					<interact onClick="multimeterClick()" />
+				</control>
+				<panel id="pipePanel" width="150" height="50" margin="0,0,20,0" childLayout="horizontal">
+					<control id="currentPipe" name="wireAndPipeItem" label="气管(1)" style="cas-bg-front">
+						<effect>
+							<onHover name="onHover" onMouseOver="setContentVisible(pipeColorsContent,true)"></onHover>
+						</effect>
+					</control>
+					<panel width="101" height="50" childLayout="horizontal" childClip="true">
+						<panel id="pipeColorsContent" width="101" height="50" childLayout="horizontal" visible="false" margin="0,0,0,1" style="cas-bg-back">
+							<effect>
+								<onHide name="move" direction="left" mode="out" length="300" offsetX="100" inherit="true" onEndEffect="onContentVisibleChanged(currentPipe,pipeColorsContent)"></onHide>
+								<onShow name="move" direction="left" mode="in" length="300" offsetX="100" inherit="true" onStartEffect="onContentVisibleChanged(currentPipe,pipeColorsContent)"></onShow>
+							</effect>
+						</panel>
+					</panel>
+					<effect>
+						<onHover name="onHover" onMouseLeave="setContentVisible(pipeColorsContent,false)"></onHover>
+					</effect>
+				</panel>
+				<panel id="wirePanel" width="250" height="50" margin="0,0,20,0" childLayout="horizontal">
+					<control id="currentWire" name="wireAndPipeItem" label="导线(2)" childLayout="vertical" style="cas-bg-front">
+						<effect>
+							<onHover name="onHover" onMouseOver="setContentVisible(wireColorsContent,true)" />
+						</effect>
+					</control>
+					<panel width="201" height="50" childLayout="horizontal" childClip="true">
+						<panel id="wireColorsContent" width="201" height="50" childLayout="horizontal" visible="false" margin="0,0,0,1" style="cas-bg-back">
+							<effect>
+								<onHide name="move" direction="left" mode="out" length="300" offsetX="200" inherit="true" onEndEffect="onContentVisibleChanged(currentWire,wireColorsContent)"></onHide>
+								<onShow name="move" direction="left" mode="in" length="300" offsetX="200" inherit="true" onStartEffect="onContentVisibleChanged(currentWire,wireColorsContent)"></onShow>
+							</effect>
+						</panel>
+					</panel>
+					<effect>
+						<onHover name="onHover" onMouseLeave="setContentVisible(wireColorsContent,false)" />
+					</effect>
+				</panel>
+				<panel id="xianlanPanel" width="100%" height="50" childLayout="horizontal">
+					<control id="xianlan" name="wireAndPipeItem" label="线缆(3)" style="cas-bg-front" mode="subImage:65,160,32,32">
+						<interact onClick="selectCable()" />
+					</control>
+					<panel width="201" height="50" childLayout="horizontal" childClip="true">
+						<panel id="xianlanColorsContent" width="201" height="50" childLayout="horizontal" visible="false" margin="0,0,0,1" style="cas-bg-back">
+							<effect>
+								<onHide name="move" direction="left" mode="out" length="300" offsetX="200" inherit="true" onEndEffect="onContentVisibleChanged(xianlan,xianlanColorsContent)"></onHide>
+								<onShow name="move" direction="left" mode="in" length="300" offsetX="200" inherit="true" onStartEffect="onContentVisibleChanged(xianlan,xianlanColorsContent)"></onShow>
+							</effect>
+						</panel>
+					</panel>
+				</panel>
+			</panel>
+			<image id="border" filename="com/cas/circuit/ui/resorces/border.png" width="160" height="160" valign="bottom" visible="false" />
+		</panel>
+	</controlDefinition>
+
+	<controlDefinition name="wireAndPipeItem">
+		<panel width="50" height="50" childLayout="vertical">
+			<image id="#colorImage" filename="com/cas/circuit/ui/resorces/icon32.png" imageMode="$mode" width="32" height="32" margin="0,14,0,10">
+			</image>
+			<text id="#colorText" text="$label" style="ui_font_yahei_light_12" height="*" width="100%" textVAlign="center" textHAlign="center"></text>
+		</panel>
+	</controlDefinition>
+
+	<!-- 线号修改提示框 -->
+	<popup id="numDialoguePopup" style="cas-popup">
+		<panel style="cas-panel" width="280" height="170" childLayout="vertical" padding="0">
+			<panel style="cas-title" width="100%" height="62" childLayout="horizontal">
+				<text text="导线号码管" style="ui_font_yahei_bold_14" height="100%" marginLeft="10" textHAlign="left" textVAlign="center" />
+			</panel>
+			<text text="请输入导线号码管内容！" style="ui_font_yahei_light_12" height="20" marginLeft="20" textHAlign="left" textVAlign="center" />
+			<control id="wireNum" name="textfield" width="100" height="20" align="center" marginTop="10" maxLength="3"></control>
+			<control id="changeNumButton" name="button" style="nifty-yellowButton" width="85" height="35" label="确定" align="center" marginTop="10">
+				<interact onRelease="showWireNum()" />
+			</control>
+		</panel>
+	</popup>
+</nifty-controls>

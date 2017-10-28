@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roots>
+	<!-- 双作用气缸 -->
+	<ElecCompDef name="双作用气缸" model="CJ2B16-60">
+		<GasPort id="A" name="A" mdlName="Object088" direction="X+" />
+		<GasPort id="B" name="B" mdlName="Object087" direction="X+" />
+	</ElecCompDef>
+
+	<ElecCompDef name="双作用气缸" model="CJ2B16-75">
+		<GasPort id="A" name="A" mdlName="Object088" direction="X+" />
+		<GasPort id="B" name="B" mdlName="Object087" direction="X+" />
+	</ElecCompDef>
+
+	<ElecCompDef name="双作用气缸" model="CJ2B16-100">
+		<GasPort id="A" name="A" mdlName="Object088" direction="X+" />
+		<GasPort id="B" name="B" mdlName="Object087" direction="X+" />
+	</ElecCompDef>
+
+	<ElecCompDef name="双作用气缸" model="CJ2B16-125">
+		<GasPort id="A" name="A" mdlName="Object088" direction="X+" />
+		<GasPort id="B" name="B" mdlName="Object087" direction="X+" />
+	</ElecCompDef>
+
+
+<!-- 摆动气缸 -->
+<ElecCompDef name="摆动气缸" model="MSQXB10A">
+		<GasPort id="A" name="IN" mdlName="IN" direction="X+" />
+		<GasPort id="B" name="OUT" mdlName="OUT" direction="X+" />
+	</ElecCompDef>
+<!-- 导向气缸1 -->
+<ElecCompDef name="导向气缸" model="DJ2B16-60">
+		<GasPort id="A" name="IN" mdlName="IN" direction="X+" />
+		<GasPort id="B" name="OUT" mdlName="OUT" direction="X+" />
+	</ElecCompDef>
+<!-- 导向气缸2 -->
+<ElecCompDef name="导向气缸" model="DJ2B16-100">
+		<GasPort id="A" name="IN" mdlName="IN" direction="X+" />
+		<GasPort id="B" name="OUT" mdlName="OUT" direction="X+" />
+	</ElecCompDef>
+<!-- 气动手指1 -->
+	<ElecCompDef name="气动手指" model="MHZ2-20D">
+		<GasPort id="A" name="IN" mdlName="IN" direction="X+" />
+		<GasPort id="B" name="OUT" mdlName="OUT" direction="X+" />
+	</ElecCompDef>
+	
+<!-- 气动手指2 -->
+	<ElecCompDef name="气动手指" model="MHC2-20D">
+		<GasPort id="A" name="IN" mdlName="IN" direction="X+" />
+		<GasPort id="B" name="OUT" mdlName="OUT" direction="X+" />
+	</ElecCompDef>
+	
+<!-- 薄型气缸 -->
+	<ElecCompDef name="薄型气缸" model="CQ2B50-20">
+		<GasPort id="A" name="IN" mdlName="IN" direction="X+" />
+		<GasPort id="B" name="OUT" mdlName="OUT" direction="X+" />
+	</ElecCompDef>
+
+</roots>

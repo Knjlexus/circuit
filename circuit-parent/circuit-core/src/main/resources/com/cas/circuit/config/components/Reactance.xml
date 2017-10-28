@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="电抗器" model="电抗器" desc="电抗器在电力系统中常有两种采用方式，其中串联电抗器通常起限流作用，并联电抗器经常用于无功补偿。在机床设备中，为了限制输电线路的短路电流，保护电力设备，通常都要安装电抗器，电抗器能够减小短路电流，使短路瞬间系统的电压保持不变。">
+		<Terminal id="1" name="1" mdlName="1" direction="x+" />
+		<Terminal id="3" name="3" mdlName="3" direction="x+" />
+		<Terminal id="5" name="5" mdlName="5" direction="x+" />
+		<Terminal id="2" name="2" mdlName="2" direction="x-" />
+		<Terminal id="4" name="4" mdlName="4" direction="x-" />
+		<Terminal id="6" name="6" mdlName="6" direction="x-" />
+		<ResisState id="res_01" isDef="1">
+			<ResisRelation term1Id="1" term2Id="2" value="0.05" />
+			<ResisRelation term1Id="3" term2Id="4" value="0.05" />
+			<ResisRelation term1Id="5" term2Id="6" value="0.05" />
+		</ResisState>
+	</ElecCompDef>
+
+</Comps>

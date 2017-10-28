@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roots>
+  <ElecCompDef name="伺服控制器" model="伺服控制器">
+    <Terminal id="L1" name="L1" mdlName="L1" direction="X+"/>
+    <Terminal id="L1C" name="L1C" mdlName="L1C" direction="X+"/>
+    <Terminal id="W" name="W" mdlName="W" direction="X+"/>
+    <Terminal id="U" name="U" mdlName="U" direction="X+"/>
+    <Terminal id="L3" name="L3" mdlName="L3" direction="X+"/>
+    <Terminal id="RB2" name="RB2" mdlName="RB2" direction="X+"/>
+    <Terminal id="RB1" name="RB1" mdlName="RB1" direction="X+"/>
+    <Terminal id="V" name="V" mdlName="V" direction="X+"/>
+    <Terminal id="L2C" name="L2C" mdlName="L2C" direction="X+"/>
+    <Terminal id="RB3" name="RB3" mdlName="RB3" direction="X+"/>
+    <Jack id="X6" mdlName="X6" name="X6" direction="X" core="6">
+      <Terminal id="X6_01" name="X601号针脚" index="1" mark="A01"/>
+      <Terminal id="X6_02" name="X602号针脚" index="2" mark="B01"/>
+      <Terminal id="X6_03" name="X603号针脚" index="3" mark="A02"/>
+      <Terminal id="X6_04" name="X604号针脚" index="4" mark="B02"/>
+      <Terminal id="X6_05" name="X605号针脚" index="5" mark="A03"/>
+      <Terminal id="X6_06" name="X606号针脚" index="6" mark="B03"/>
+    </Jack>
+    <Jack id="X3" mdlName="X3" name="X3" direction="X" core="9">
+      <Terminal id="X3_01" name="X301号针脚" index="1" mark="A01"/>
+      <Terminal id="X3_02" name="X302号针脚" index="2" mark="B01"/>
+      <Terminal id="X3_03" name="X303号针脚" index="3" mark="A02"/>
+      <Terminal id="X3_04" name="X304号针脚" index="4" mark="B02"/>
+      <Terminal id="X3_05" name="X305号针脚" index="5" mark="A03"/>
+      <Terminal id="X3_06" name="X306号针脚" index="6" mark="B03"/>
+      <Terminal id="X3_07" name="X307号针脚" index="7" mark="A04"/>
+      <Terminal id="X3_08" name="X308号针脚" index="8" mark="B04"/>
+      <Terminal id="X3_09" name="X309号针脚" index="9" mark="A05"/>
+    </Jack>
+    <Jack id="X5" mdlName="X5" name="X5" direction="X" core="13">
+      <Terminal id="X5_01" name="X501号针脚" index="1" mark="A01"/>
+      <Terminal id="X5_02" name="X502号针脚" index="2" mark="B01"/>
+      <Terminal id="X5_03" name="X503号针脚" index="3" mark="A02"/>
+      <Terminal id="X5_04" name="X504号针脚" index="4" mark="B02"/>
+      <Terminal id="X5_05" name="X505号针脚" index="5" mark="A03"/>
+      <Terminal id="X5_06" name="X506号针脚" index="6" mark="B03"/>
+      <Terminal id="X5_07" name="X507号针脚" index="7" mark="A04"/>
+      <Terminal id="X5_08" name="X508号针脚" index="8" mark="B04"/>
+      <Terminal id="X5_09" name="X509号针脚" index="9" mark="A05"/>
+      <Terminal id="X5_10" name="X510号针脚" index="10" mark="B05"/>
+      <Terminal id="X5_11" name="X511号针脚" index="11" mark="A06"/>
+      <Terminal id="X5_12" name="X512号针脚" index="12" mark="B06"/>
+      <Terminal id="X5_13" name="X513号针脚" index="13" mark="A07"/>
+    </Jack>
+    <Jack id="X4" mdlName="X4" name="X4" direction="X" core="9">
+      <Terminal id="X4_01" name="X401号针脚" index="1" mark="A01"/>
+      <Terminal id="X4_02" name="X402号针脚" index="2" mark="B01"/>
+      <Terminal id="X4_03" name="X403号针脚" index="3" mark="A02"/>
+      <Terminal id="X4_04" name="X404号针脚" index="4" mark="B02"/>
+      <Terminal id="X4_05" name="X405号针脚" index="5" mark="A03"/>
+      <Terminal id="X4_06" name="X406号针脚" index="6" mark="B03"/>
+      <Terminal id="X4_07" name="X407号针脚" index="7" mark="A04"/>
+      <Terminal id="X4_08" name="X408号针脚" index="8" mark="B04"/>
+      <Terminal id="X4_09" name="X409号针脚" index="9" mark="A05"/>
+    </Jack>
+  </ElecCompDef>
+</roots>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<!-- 集成到NC中 -->
+	<!-- <ElecCompDef model="PLC" name="PLC" mdlRef="PLC" appStateCls="IntegratedPLC" desc=""> -->
+	<!-- <Jack id="JD1A" name="JD1A" format="JF" mdlName="_2286" jackDirection="y"> -->
+	<!-- <Terminal id="JD1A_1" index="1" mark="SIN" type="input" /> -->
+	<!-- <Terminal id="JD1A_3" index="3" mark="SOUT" type="output" /> -->
+	<!-- <Terminal id="JD1A_9" index="9" mark="+5V" voltage="+5V" /> -->
+	<!-- <Terminal id="JD1A_11" index="11" mark="0V" voltage="0V" /> -->
+	<!-- <Terminal id="JD1A_12" index="12" mark="0V" voltage="0V" /> -->
+	<!-- <Terminal id="JD1A_13" index="13" mark="0V" voltage="0V" /> -->
+	<!-- <Terminal id="JD1A_14" index="14" mark="0V" voltage="0V" /> -->
+	<!-- <Terminal id="JD1A_15" index="15" mark="0V" voltage="0V" /> -->
+	<!-- <Terminal id="JD1A_18" index="18" mark="+5V" voltage="+5V" /> -->
+	<!-- <Terminal id="JD1A_20" index="20" mark="+5V" voltage="+5V" /> -->
+	<!-- </Jack> -->
+	<!-- </ElecCompDef> -->
+</Comps>

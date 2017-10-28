@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roots>
+	<ElecCompDef name="按钮板" model="YL-Z-17">
+		<Terminal id="HL1_in" name="HL1_in" mdlName="1" direction="Z-" />
+		<Terminal id="HL1_out" name="HL1_out" mdlName="2" direction="Z-" />
+		<Terminal id="HL2_in" name="HL2_in" mdlName="3" direction="Z-" />
+		<Terminal id="HL2_out" name="HL2_out" mdlName="4" direction="Z-" />
+		<Terminal id="HL3_in" name="HL3_in" mdlName="5" direction="Z-" />
+		<Terminal id="HL3_out" name="HL3_out" mdlName="6" direction="Z-" />
+		<Terminal id="SB1_in" name="SB1_in" mdlName="7" direction="Z-" />
+		<Terminal id="SB1_out" name="SB1_out" mdlName="8" direction="Z-" />
+		<Terminal id="SB2_in" name="SB2_in" mdlName="9" direction="Z-" />
+		<Terminal id="SB2_out" name="SB2_out" mdlName="10" direction="Z-" />
+		<Terminal id="SA_in" name="SA_in" mdlName="11" direction="Z-" />
+		<Terminal id="SA_out1" name="SA_out1" mdlName="12" direction="Z-" />
+		<Terminal id="SA_out2" name="SA_out2" mdlName="13" direction="Z-" />
+		<Terminal id="QS_in" name="QS_in" mdlName="14" direction="Z-" />
+		<Terminal id="QS_out" name="QS_out" mdlName="15" direction="Z-" />
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="HL1_in" term2Id="HL1_out" value="0.5" />
+			<ResisRelation term1Id="HL2_in" term2Id="HL2_out" value="0.5" />
+			<ResisRelation term1Id="HL3_in" term2Id="HL3_out" value="0.5" />
+		</ResisState>
+
+		<ResisState id="SB1_NO" isDef="1" />
+		<ResisState id="SB1_NC">
+			<ResisRelation term1Id="SB1_in" term2Id="SB1_out" value="0" />
+		</ResisState>
+
+		<ResisState id="SB2_NO" isDef="1" />
+		<ResisState id="SB2_NC">
+			<ResisRelation term1Id="SB2_in" term2Id="SB2_out" value="0" />
+		</ResisState>
+
+		<ResisState id="SA_NC" isDef="1">
+			<ResisRelation term1Id="SA_in" term2Id="SA_out2" value="0" />
+		</ResisState>
+		<ResisState id="SA_NO">
+			<ResisRelation term1Id="SA_in" term2Id="SA_out1" value="0" />
+		</ResisState>
+
+		<ResisState id="QS_NC" isDef="1">
+			<ResisRelation term1Id="QS_in" term2Id="QS_out" value="0" />
+		</ResisState>
+		<ResisState id="QS_NO" />
+
+		<Magnetism>
+			<ControlIO name="SB1" mdlName="SB1" type="input" interact="press" motion="move" motionParams="0|-0.002" axis="Y" switchIn="SB1_NO|SB1_NC" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="SB2" mdlName="SB2" type="input" interact="press" motion="move" motionParams="0|-0.002" axis="Y" switchIn="SB2_NO|SB2_NC" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="SA" mdlName="SA" type="input" interact="click" motion="rotate" motionParams="0|-30" axis="Y" switchIn="SA_NC|SA_NO" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="QS" mdlName="QS" type="input" interact="click" motion="move" motionParams="0|-0.004" axis="Y" switchIn="QS_NC|QS_NO" />
+		</Magnetism>
+
+		<Magnetism>
+			<VoltageIO type="input" term1Id="HL1_in" term2Id="HL1_out" value="+24" deviation="5" />
+			<LightIO name="黄灯" mdlName="HL1" glowColor="1|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="HL1_out" term2Id="HL1_in" value="+24" deviation="5" />
+			<LightIO name="黄灯" mdlName="HL1" glowColor="1|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="HL2_in" term2Id="HL2_out" value="+24" deviation="5" />
+			<LightIO name="绿灯" mdlName="HL2" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="HL2_out" term2Id="HL2_in" value="+24" deviation="5" />
+			<LightIO name="绿灯" mdlName="HL2" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="HL3_in" term2Id="HL3_out" value="+24" deviation="5" />
+			<LightIO name="红灯" mdlName="HL3" glowColor="1|0|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="HL3_out" term2Id="HL3_in" value="+24" deviation="5" />
+			<LightIO name="红灯" mdlName="HL3" glowColor="1|0|0|1" />
+		</Magnetism>
+	</ElecCompDef>
+</roots>

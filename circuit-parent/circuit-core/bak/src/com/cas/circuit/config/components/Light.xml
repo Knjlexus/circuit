@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="三色灯" model="PTE LME-302W-RYG" desc="机床三色灯是用来表征机床运行状态的信号灯，一般为红、黄、绿三种颜色，红灯表示报警或机器故障，黄灯表示警告或加工异常，绿色表示正常运行或正在操作，在实际应用中，可通过三色灯的颜色来判断机床运行状态。">
+		<Terminal id="yellow" name="机床待机" mdlName="02" direction="y+" />
+		<Terminal id="green" name="加工进行中" mdlName="03" direction="y+" />
+		<Terminal id="red" name="机床报警" mdlName="01" direction="y+" />
+		<Terminal id="com" name="公共" mdlName="04" direction="y+" />
+		<Magnetism>
+			<ControlIO type="input" interact="click" name="" mdlName="deng008" motion="rotate" switchIn="" motionParams="0|180" axis="y" />
+		</Magnetism>
+
+		<Magnetism>
+			<VoltageIO type="input" term1Id="yellow" term2Id="com" value="+24" deviation="1" />
+			<LightIO name="黄灯" mdlName="Cylinder199" glowColor="1|0.9|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="red" term2Id="com" value="+24" deviation="1" />
+			<LightIO name="红灯" mdlName="Cylinder198" glowColor="1|0|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="green" term2Id="com" value="+24" deviation="1" />
+			<LightIO name="绿灯" mdlName="Cylinder200" glowColor="0|1|0|1" />
+		</Magnetism>
+	</ElecCompDef>
+	<ElecCompDef name="三色灯" model="TPAL7-24" desc="三色灯是用来表征机床运行状态的信号灯，一般为红、黄、绿三种颜色，红灯表示报警或机器故障，黄灯表示警告或加工异常，绿色表示正常运行或正在操作，在实际应用中，可通过三色灯的颜色来判断机床运行状态。">
+		<Terminal id="yellow" name="机床待机" mdlName="yellow" direction="y-" />
+		<Terminal id="green" name="加工进行中" mdlName="green" direction="y-" />
+		<Terminal id="red" name="机床报警" mdlName="red" direction="y-" />
+		<Terminal id="com" name="公共" mdlName="com" direction="y-" />
+
+		<Magnetism>
+			<ControlIO type="input" interact="click" name="" mdlName="deng008" motion="rotate" switchIn="" motionParams="0|180" axis="y" />
+		</Magnetism>
+
+		<Magnetism>
+			<VoltageIO type="input" term1Id="com" term2Id="yellow" value="+24" deviation="1" />
+			<LightIO name="黄灯" mdlName="l_yellow" glowColor="1|0.9|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="com" term2Id="red" value="+24" deviation="1" />
+			<LightIO name="红灯" mdlName="l_red" glowColor="1|0|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="com" term2Id="green" value="+24" deviation="1" />
+			<LightIO name="绿灯" mdlName="l_green" glowColor="0|1|0|1" />
+		</Magnetism>
+	</ElecCompDef>
+	<ElecCompDef name="机床灯" model="机床灯" desc="机床灯是一种为机床照明的LED工作灯，具有光线分布均匀、照明效果好、防水、防蚀等优点，灯具有配套的支架，在机械的相应位置用螺丝固定，广泛应用于各种中小型机床、实验设备、封闭式机床、组合机床的工作及检修照明。">
+		<Terminal id="1" name="0" mdlName="1380" team="power" />
+		<Terminal id="2" name="24+" mdlName="1381" team="power" />
+		<Magnetism>
+			<VoltageIO type="input" term1Id="1" term2Id="2" value="+24" deviation="1" />
+			<LightIO name="机床灯" mdlName="484" glowColor="1|1|1|1" />
+		</Magnetism>
+	</ElecCompDef>
+
+</Comps>

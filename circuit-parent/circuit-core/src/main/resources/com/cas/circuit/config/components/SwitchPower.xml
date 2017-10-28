@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="开关电源" model="HDC-150-24" desc="开关电源是利用现代电力电子技术，控制开关开通和关断的时间比率，其体积小、重量轻、功耗小、效率高，是一种维持稳定直流电压输出的电源。">
+		<Terminal id="vp1" name="V+" mdlName="1" direction="x+" type="output" />
+		<Terminal id="vp2" name="V+" mdlName="2" direction="x+" type="output" />
+		<Terminal id="com1" name="V-" mdlName="3" direction="x+" type="output" />
+		<Terminal id="com2" name="V-" mdlName="4" direction="x+" type="output" />
+		<Terminal id="gnd" name="GND" mdlName="5" direction="x+" type="output" />
+		<Terminal id="n" name="N" mdlName="6" direction="x+" type="input" />
+		<Terminal id="l" name="L" mdlName="7" direction="x+" type="input" />
+		<Magnetism>
+			<VoltageIO type="input" term1Id="n" term2Id="l" value="220" deviation="10" />
+			<VoltageIO type="output" term1Id="vp1" term2Id="com1" value="+24" deviation="1" />
+			<VoltageIO type="output" term1Id="vp1" term2Id="com2" value="+24" deviation="1" />
+			<VoltageIO type="output" term1Id="vp2" term2Id="com1" value="+24" deviation="1" />
+			<VoltageIO type="output" term1Id="vp2" term2Id="com2" value="+24" deviation="1" />
+			<LightIO name="开关电源指示灯" mdlName="light" glowColor="0|1|0|1" />
+		</Magnetism>
+		<ResisState isDef="1">
+			<!-- <ResisRelation term1Id="n" term2Id="l" value="1300000" /> -->
+			<ResisRelation term1Id="vp1" term2Id="com1" value="0.000024" />
+			<ResisRelation term1Id="vp1" term2Id="vp2" value="0" />
+			<ResisRelation term1Id="com1" term2Id="com2" value="0" />
+		</ResisState>
+	</ElecCompDef>
+</Comps>

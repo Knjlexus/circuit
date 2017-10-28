@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roots>
+	<ElecCompDef name="路由器" model="Mercury">
+		<Jack id="WAN" mdlName="WAN" name="WAN" direction="X" core="8" cable="NET" format="NET">
+			<Terminal id="WAN_01" name="WAN_01号针脚" index="1" mark="WO" />
+			<Terminal id="WAN_02" name="WAN_02号针脚" index="2" mark="O" />
+			<Terminal id="WAN_03" name="WAN_03号针脚" index="3" mark="WG" />
+			<Terminal id="WAN_04" name="WAN_04号针脚" index="4" mark="BU" />
+			<Terminal id="WAN_05" name="WAN_05号针脚" index="5" mark="WBU" />
+			<Terminal id="WAN_06" name="WAN_06号针脚" index="6" mark="G" />
+			<Terminal id="WAN_07" name="WAN_07号针脚" index="7" mark="WBN" />
+			<Terminal id="WAN_08" name="WAN_08号针脚" index="8" mark="BN" />
+		</Jack>
+		<Jack id="LAN1" mdlName="LAN1" name="LAN1" direction="X" core="8" cable="NET" format="NET">
+			<Terminal id="LAN1_01" name="LAN1_01号针脚" index="1" mark="WO" />
+			<Terminal id="LAN1_02" name="LAN1_02号针脚" index="2" mark="O" />
+			<Terminal id="LAN1_03" name="LAN1_03号针脚" index="3" mark="WG" />
+			<Terminal id="LAN1_04" name="LAN1_04号针脚" index="4" mark="BU" />
+			<Terminal id="LAN1_05" name="LAN1_05号针脚" index="5" mark="WBU" />
+			<Terminal id="LAN1_06" name="LAN1_06号针脚" index="6" mark="G" />
+			<Terminal id="LAN1_07" name="LAN1_07号针脚" index="7" mark="WBN" />
+			<Terminal id="LAN1_08" name="LAN1_08号针脚" index="8" mark="BN" />
+		</Jack>
+		<Jack id="LAN2" mdlName="LAN2" name="LAN2" direction="X" core="8" cable="NET" format="NET">
+			<Terminal id="LAN2_01" name="LAN2_01号针脚" index="1" mark="WO" />
+			<Terminal id="LAN2_02" name="LAN2_02号针脚" index="2" mark="O" />
+			<Terminal id="LAN2_03" name="LAN2_03号针脚" index="3" mark="WG" />
+			<Terminal id="LAN2_04" name="LAN2_04号针脚" index="4" mark="BU" />
+			<Terminal id="LAN2_05" name="LAN2_05号针脚" index="5" mark="WBU" />
+			<Terminal id="LAN2_06" name="LAN2_06号针脚" index="6" mark="G" />
+			<Terminal id="LAN2_07" name="LAN2_07号针脚" index="7" mark="WBN" />
+			<Terminal id="LAN2_08" name="LAN2_08号针脚" index="8" mark="BN" />
+		</Jack>
+		<Jack id="LAN3" mdlName="LAN3" name="LAN3" direction="X" core="8" cable="NET" format="NET">
+			<Terminal id="LAN3_01" name="LAN3_01号针脚" index="1" mark="WO" />
+			<Terminal id="LAN3_02" name="LAN3_02号针脚" index="2" mark="O" />
+			<Terminal id="LAN3_03" name="LAN3_03号针脚" index="3" mark="WG" />
+			<Terminal id="LAN3_04" name="LAN3_04号针脚" index="4" mark="BU" />
+			<Terminal id="LAN3_05" name="LAN3_05号针脚" index="5" mark="WBU" />
+			<Terminal id="LAN3_06" name="LAN3_06号针脚" index="6" mark="G" />
+			<Terminal id="LAN3_07" name="LAN3_07号针脚" index="7" mark="WBN" />
+			<Terminal id="LAN3_08" name="LAN3_08号针脚" index="8" mark="BN" />
+		</Jack>
+		<Jack id="LAN4" mdlName="LAN4" name="LAN4" direction="X" core="8" cable="NET" format="NET">
+			<Terminal id="LAN4_01" name="LAN4_01号针脚" index="1" mark="WO" />
+			<Terminal id="LAN4_02" name="LAN4_02号针脚" index="2" mark="O" />
+			<Terminal id="LAN4_03" name="LAN4_03号针脚" index="3" mark="WG" />
+			<Terminal id="LAN4_04" name="LAN4_04号针脚" index="4" mark="BU" />
+			<Terminal id="LAN4_05" name="LAN4_05号针脚" index="5" mark="WBU" />
+			<Terminal id="LAN4_06" name="LAN4_06号针脚" index="6" mark="G" />
+			<Terminal id="LAN4_07" name="LAN4_07号针脚" index="7" mark="WBN" />
+			<Terminal id="LAN4_08" name="LAN4_08号针脚" index="8" mark="BN" />
+		</Jack>
+	</ElecCompDef>
+</roots>

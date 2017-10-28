@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="电动机" model="80YS25GY38" desc="" appStateCls="ElectroMotor">
+		<Terminal id="U" name="U" mdlName="U1" direction="x-" team="power" />
+		<Terminal id="V" name="V" mdlName="V1" direction="x-" team="power" />
+		<Terminal id="W" name="W" mdlName="W1" direction="x-" team="power" />
+
+		<Terminal id="PE" name="PE" mdlName="PE" direction="x-" />
+	</ElecCompDef>
+
+	<ElecCompDef name="电动机" model="90YS90GY22" desc="" appStateCls="ElectroMotor">
+		<Terminal id="U" name="U2" mdlName="U2" direction="y-" team="power" />
+		<Terminal id="V" name="V2" mdlName="V2" direction="y-" team="power" />
+		<Terminal id="W" name="W2" mdlName="W2" direction="y-" team="power" />
+	</ElecCompDef>
+	<ElecCompDef name="电动机" model="05S6M" desc="" appStateCls="DCMotor">
+		<Terminal id="24V" name="24V" mdlName="24V" direction="y-" team="power" />
+		<Terminal id="0V" name="0V" mdlName="0V" direction="y-" team="power" />
+	</ElecCompDef>
+</Comps>

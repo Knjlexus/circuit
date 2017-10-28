@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="保险丝GFA5x20" model="3A"  desc="保险丝是为了避免在电路发生故障或异常时，随着电流不断升高，导致损坏电路中的某些重要元器件或是烧毁整个电路甚至造成火灾。若在电路中正确安置了保险丝，保险丝就会在电流异常升高到一定的高度和热度的时候，自身熔断切断电流，从而起到保护电路安全运行的作用。">
+		<Terminal id="1" name="1" mdlName="1" direction="y+" />
+		<Terminal id="3" name="3" mdlName="2" direction="y-" />
+		<ResisState isDef="1">
+			<ResisRelation term1Id="1" term2Id="3" value="0.0001" />
+		</ResisState>
+	</ElecCompDef>
+	<ElecCompDef name="保险丝GFA5x20" model="6A"   desc="保险丝是为了避免在电路发生故障或异常时，随着电流不断升高，导致损坏电路中的某些重要元器件或是烧毁整个电路甚至造成火灾。若在电路中正确安置了保险丝，保险丝就会在电流异常升高到一定的高度和热度的时候，自身熔断切断电流，从而起到保护电路安全运行的作用。">
+		<Terminal id="1" name="1" mdlName="1" direction="y+" />
+		<Terminal id="3" name="3" mdlName="2" direction="y-" />
+		<ResisState isDef="1">
+			<ResisRelation term1Id="1" term2Id="3" value="0.0001" />
+		</ResisState>
+	</ElecCompDef>
+	<ElecCompDef name="保险丝GFA5x20" model="2A"   desc="保险丝是为了避免在电路发生故障或异常时，随着电流不断升高，导致损坏电路中的某些重要元器件或是烧毁整个电路甚至造成火灾。若在电路中正确安置了保险丝，保险丝就会在电流异常升高到一定的高度和热度的时候，自身熔断切断电流，从而起到保护电路安全运行的作用。">
+		<Terminal id="1" name="1" mdlName="1" direction="y+" />
+		<Terminal id="3" name="3" mdlName="2" direction="y-" />
+		<ResisState isDef="1">
+			<ResisRelation term1Id="1" term2Id="3" value="0.0001" />
+		</ResisState>
+	</ElecCompDef>
+	<ElecCompDef name="保险丝GFA5x20" model="1A"  desc="保险丝是为了避免在电路发生故障或异常时，随着电流不断升高，导致损坏电路中的某些重要元器件或是烧毁整个电路甚至造成火灾。若在电路中正确安置了保险丝，保险丝就会在电流异常升高到一定的高度和热度的时候，自身熔断切断电流，从而起到保护电路安全运行的作用。">
+		<Terminal id="1" name="1" mdlName="1" direction="y+" />
+		<Terminal id="3" name="3" mdlName="2" direction="y-" />
+		<ResisState isDef="1">
+			<ResisRelation term1Id="1" term2Id="3" value="0.0001" />
+		</ResisState>
+	</ElecCompDef>
+</Comps>

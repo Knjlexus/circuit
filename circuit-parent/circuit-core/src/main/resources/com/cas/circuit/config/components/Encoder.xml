@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="旋转编码器" model="Encoder" desc="" appStateCls="Encoder" isCable="1">
+		<Jack id="Encoder" cable="Encoder" format="Encoder">
+			<Terminal id="24V" name="12-24V" index="1" mark="12-24V" team="Power" />
+			<Terminal id="0V" name="0V" index="2" mark="0V" team="Power" />
+			<Terminal id="A" name="A" index="3" mark="A" />
+			<Terminal id="B" name="B" index="4" mark="B" />
+			<Terminal id="Z" name="Z" index="5" mark="Z" />
+		</Jack>
+	</ElecCompDef>
+	
+	<ElecCompDef name="旋转编码器" model="Encoder-2" desc="" appStateCls="Encoder" isCable="1">
+		<Jack id="Encoder" cable="X6" format="X6">
+			<Terminal id="24V" name="12-24V" index="1" mark="12-24V" team="Power" />
+			<Terminal id="0V" name="0V" index="2" mark="0V" team="Power" />
+			<Terminal id="A" name="A" index="3" mark="A" />
+			<Terminal id="B" name="B" index="4" mark="B" />
+			<Terminal id="Z" name="Z" index="5" mark="Z" />
+		</Jack>
+	</ElecCompDef>
+</Comps>

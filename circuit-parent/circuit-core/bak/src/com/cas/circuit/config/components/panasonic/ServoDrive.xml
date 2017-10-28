@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="伺服模块" model="MADHT1507E" desc="" appStateCls="ServoDrive">
+		<Terminal id="L1" name="L1" mdlName="L1" type="input" direction="x-" team="power" />
+		<Terminal id="L2" name="L2" mdlName="L2" type="input" direction="x-" team="power" />
+		<Terminal id="L3" name="L3" mdlName="L3" type="input" direction="x-" team="power" />
+
+		<Terminal id="L1C" name="L1C" mdlName="L1C" direction="x-" type="input" team="out" />
+		<Terminal id="L2C" name="L2C" mdlName="L2C" direction="x-" type="input" team="out" />
+
+		<Terminal id="U" name="U" mdlName="U" type="output" direction="x-" team="control" />
+		<Terminal id="V" name="V" mdlName="V" type="output" direction="x-" team="control" />
+		<Terminal id="W" name="W" mdlName="W" type="output" direction="x-" team="control" />
+
+		<Jack id="X4" name="X4" cable="X4" format="X4" mdlName="X4" direction="x-" rotation="0,180,90">
+			<Terminal id="OPC1" index="1" mark="OPC1" team="speed" />
+			<Terminal id="PULS2" index="2" mark="PULS2" team="speed" />
+			<Terminal id="OPC2" index="3" mark="OPC2" />
+			<Terminal id="SIGN2" index="4" mark="SIGN2" />
+			<Terminal id="POT" index="5" mark="POT" />
+			<Terminal id="NOT" index="6" mark="NOT" />
+			<Terminal id="ALM+" index="7" mark="ALM+" />
+			<Terminal id="COM-" index="8" mark="COM-" />
+			<Terminal id="COM+" index="9" mark="COM+" />
+
+			<Terminal id="SERV-ON" index="10" mark="SERV-ON" />
+			<Terminal id="ALM-" index="11" mark="ALM-" />
+		</Jack>
+
+		<Jack id="X6" name="X6" cable="X6" format="X6" mdlName="X6" direction="x-" rotation="90,90,0" belongElecComp="1">
+			<Terminal index="1" mark="24V" />
+			<Terminal index="2" mark="0V" />
+			<Terminal index="3" mark="A" />
+			<Terminal index="4" mark="B" />
+			<Terminal index="5" mark="Z" />
+		</Jack>
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="COM+" term2Id="SERV-ON" value="4300" />
+			<ResisRelation term1Id="COM+" term2Id="POT" value="4300" />
+			<ResisRelation term1Id="COM+" term2Id="NOT" value="4300" />
+
+			<ResisRelation term1Id="SERV-ON" term2Id="ALM-" value="0" />
+			<ResisRelation term1Id="COM-" term2Id="ALM-" value="0" />
+		</ResisState>
+
+	</ElecCompDef>
+</Comps>

@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roots>
+	<!-- MagnetismSensor -->
+	<ElecCompDef name="磁性开关" model="D-C73" appStateCls="MagnetismSensorLogic" isCable="1">
+		<Jack id="D-C73" mdlName="D-C73" cable="Magnetism" format="Magnetism">
+			<Terminal id="Mgc_In" name="Brown" index="1" direction="X+" mark="棕色" />
+			<Terminal id="Mgc_Out" name="Blue" index="2" direction="X+" mark="蓝色" />
+		</Jack>
+		<Terminal id="light" />
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="light" term2Id="Mgc_Out" value="5" />
+		</ResisState>
+
+		<ResisState id="Mgc_NO" isDef="1" />
+		<ResisState id="Mgc_NC">
+			<ResisRelation term1Id="Mgc_In" term2Id="light" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Mgc_NO|Mgc_NC" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<Magnetism id="检测指示灯1">
+			<VoltageIO type="input" term1Id="light" term2Id="Mgc_Out" value="+0.02" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|0|0|1" />
+		</Magnetism>
+		<Magnetism id="检测指示灯2">
+			<VoltageIO type="input" term1Id="Mgc_Out" term2Id="light" value="+0.02" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|0|0|1" />
+		</Magnetism>
+	</ElecCompDef>
+
+	<ElecCompDef name="磁性开关" model="D-Z73" appStateCls="MagnetismSensorLogic" isCable="1">
+		<Jack id="D-Z73" mdlName="D-Z73" cable="Magnetism" format="Magnetism">
+			<Terminal id="Mgc_In" name="Brown" index="1" direction="X+" mark="棕色" />
+			<Terminal id="Mgc_Out" name="Blue" index="2" direction="X+" mark="蓝色" />
+		</Jack>
+		<Terminal id="light" />
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="light" term2Id="Mgc_Out" value="5" />
+		</ResisState>
+
+		<ResisState id="Mgc_NO" isDef="1" />
+		<ResisState id="Mgc_NC">
+			<ResisRelation term1Id="Mgc_In" term2Id="light" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Mgc_NO|Mgc_NC" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<Magnetism id="检测指示灯1">
+			<VoltageIO type="input" term1Id="light" term2Id="Mgc_Out" value="+0.02" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|0|0|1" />
+		</Magnetism>
+		<Magnetism id="检测指示灯2">
+			<VoltageIO type="input" term1Id="Mgc_Out" term2Id="light" value="+0.02" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|0|0|1" />
+		</Magnetism>
+	</ElecCompDef>
+
+	<ElecCompDef name="磁性开关" model="D-A93" appStateCls="MagnetismSensorLogic" isCable="1">
+		<Jack id="D-A93" mdlName="D-A93" cable="Magnetism" format="Magnetism">
+			<Terminal id="Mgc_In" name="Brown" index="1" direction="X+" mark="棕色" />
+			<Terminal id="Mgc_Out" name="Blue" index="2" direction="X+" mark="蓝色" />
+		</Jack>
+		<Terminal id="light" />
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="light" term2Id="Mgc_Out" value="5" />
+		</ResisState>
+
+		<ResisState id="Mgc_NO" isDef="1" />
+		<ResisState id="Mgc_NC">
+			<ResisRelation term1Id="Mgc_In" term2Id="light" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Mgc_NO|Mgc_NC" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<Magnetism id="检测指示灯1">
+			<VoltageIO type="input" term1Id="light" term2Id="Mgc_Out" value="+0.02" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|0|0|1" />
+		</Magnetism>
+		<Magnetism id="检测指示灯2">
+			<VoltageIO type="input" term1Id="Mgc_Out" term2Id="light" value="+0.02" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|0|0|1" />
+		</Magnetism>
+	</ElecCompDef>
+
+	<!-- Inductance -->
+	<ElecCompDef name="电感式接近开关" model="C-MPXSC-2-12S" appStateCls="InductanceLogic" isCable="1">
+		<Jack id="C-MPXSC-2-12S" mdlName="C-MPXSC-2-12S" cable="Inductance" format="Inductance">
+			<Terminal id="Anode" name="24V" index="1" direction="X+" mark="24V" />
+			<Terminal id="Cathode" name="0V" index="2" direction="X+" mark="0V" />
+			<Terminal id="Signal" name="Signal" index="3" direction="X+" mark="信号" />
+		</Jack>
+		<ResisState id="No_Metal" isDef="1" />
+		<ResisState id="Metal_Detected">
+			<ResisRelation term1Id="Cathode" term2Id="Signal" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="No_Metal|Metal_Detected" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Anode" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="工作指示灯" mdlName="light1" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Signal" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|1|0.15|1" />
+		</Magnetism>
+	</ElecCompDef>
+
+	<!-- DiffuseSensor -->
+	<ElecCompDef name="漫射式光电开关" model="CX-441" appStateCls="DiffuseSensorLogic" isCable="1">
+		<Jack id="CX-441" mdlName="CX-441" cable="Diffuse" format="Diffuse">
+			<Terminal id="Anode" name="24V" index="1" direction="x+" mark="24V" />
+			<Terminal id="Cathode" name="0V" index="2" direction="x+" mark="0V" />
+			<Terminal id="Signal" name="Signal" index="3" direction="x+" mark="信号" />
+		</Jack>
+		<ResisState id="Light_NO" isDef="1" />
+		<ResisState id="Sth_Detected">
+			<ResisRelation term1Id="Cathode" term2Id="Signal" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Light_NO|Sth_Detected" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Anode" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="工作指示灯" mdlName="light1" glowColor="1|0|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Signal" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|1|0.15|1" />
+		</Magnetism>
+	</ElecCompDef>
+
+	<ElecCompDef name="漫射式光电开关" model="MHT15-N2317" appStateCls="DiffuseSensorLogic" isCable="1">
+		<Jack id="MHT15-N2317" mdlName="MHT15-N2317" cable="Diffuse" format="Diffuse">
+			<Terminal id="Anode" name="24V" index="1" direction="x+" mark="24V" />
+			<Terminal id="Cathode" name="0V" index="2" direction="x+" mark="0V" />
+			<Terminal id="Signal" name="Signal" index="3" direction="x+" mark="信号" />
+		</Jack>
+		<ResisState id="Light_NO" isDef="1" />
+		<ResisState id="Sth_Detected">
+			<ResisRelation term1Id="Cathode" term2Id="Signal" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Light_NO|Sth_Detected" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Anode" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="工作指示灯" mdlName="light1" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Signal" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|1|0.15|1" />
+		</Magnetism>
+	</ElecCompDef>
+
+	<!-- 求补全 -->
+	<ElecCompDef name="光电反射式传感器" model="E3Z-LS61" appStateCls="DiffuseSensorLogic" isCable="1">
+		<Jack id="E3Z-LS61" mdlName="E3Z-LS61" cable="Diffuse" format="Diffuse">
+			<Terminal id="Anode" name="24V" index="1" direction="x+" mark="24V" />
+			<Terminal id="Cathode" name="0V" index="2" direction="x+" mark="0V" />
+			<Terminal id="Signal" name="Signal" index="3" direction="x+" mark="信号" />
+		</Jack>
+		<ResisState id="Light_NO" isDef="1" />
+		<ResisState id="Sth_Detected">
+			<ResisRelation term1Id="Cathode" term2Id="Signal" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Light_NO|Sth_Detected" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Anode" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="工作指示灯" mdlName="light1" glowColor="1|0|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Signal" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|1|0.15|1" />
+		</Magnetism>
+	</ElecCompDef>
+
+	<ElecCompDef name="红外线光电开关" model="SB03-1K" appStateCls="DiffuseSensorLogic" isCable="1">
+		<Jack id="SB03-1K" mdlName="SB03-1K" cable="Diffuse" format="Diffuse">
+			<Terminal id="Anode" name="24V" index="1" direction="x+" mark="24V" />
+			<Terminal id="Cathode" name="0V" index="2" direction="x+" mark="0V" />
+			<Terminal id="Signal" name="Signal" index="3" direction="x+" mark="信号" />
+		</Jack>
+		<ResisState id="Light_NO" isDef="1" />
+		<ResisState id="Sth_Detected">
+			<ResisRelation term1Id="Cathode" term2Id="Signal" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Light_NO|Sth_Detected" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Anode" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="工作指示灯" mdlName="light1" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Signal" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|1|0.15|1" />
+		</Magnetism>
+	</ElecCompDef>
+
+	<ElecCompDef name="电容式传感器" model="CLG5-1K" appStateCls="DiffuseSensorLogic" isCable="1">
+		<Jack id="CLG5-1K" mdlName="CLG5-1K" cable="Diffuse" format="Diffuse">
+			<Terminal id="Anode" name="24V" index="1" direction="x+" mark="24V" />
+			<Terminal id="Cathode" name="0V" index="2" direction="x+" mark="0V" />
+			<Terminal id="Signal" name="Signal" index="3" direction="x+" mark="信号" />
+		</Jack>
+		<ResisState id="Light_NO" isDef="1" />
+		<ResisState id="Sth_Detected">
+			<ResisRelation term1Id="Cathode" term2Id="Signal" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Light_NO|Sth_Detected" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Anode" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="工作指示灯" mdlName="light1" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Signal" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|1|0.15|1" />
+		</Magnetism>
+	</ElecCompDef>
+
+	<ElecCompDef name="光电式对射传感器" model="GS6-D1311" appStateCls="DiffuseSensorLogic" isCable="1">
+		<Jack id="GS6-D1311" mdlName="GS6-D1311" cable="Diffuse" format="Diffuse">
+			<Terminal id="Anode" name="24V" index="1" direction="x+" mark="24V" />
+			<Terminal id="Cathode" name="0V" index="2" direction="x+" mark="0V" />
+			<Terminal id="Signal" name="Signal" index="3" direction="x+" mark="信号" />
+		</Jack>
+		<ResisState id="Light_NO" isDef="1" />
+		<ResisState id="Sth_Detected">
+			<ResisRelation term1Id="Cathode" term2Id="Signal" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Light_NO|Sth_Detected" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Anode" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="工作指示灯" mdlName="light1" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Signal" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|1|0.15|1" />
+		</Magnetism>
+	</ElecCompDef>
+
+	<ElecCompDef name="光电式对射传感器" model="GE6-N1111" isCable="1">
+		<Jack id="GE6-N1111" mdlName="GE6-N1111" cable="Diffuse" format="Diffuse">
+			<Terminal id="Anode" name="24V" index="1" direction="x+" mark="24V" />
+			<Terminal id="Cathode" name="0V" index="2" direction="x+" mark="0V" />
+			<Terminal id="Signal" name="Signal" index="3" direction="x+" mark="信号" />
+		</Jack>
+		<ResisState id="Light_NO" isDef="1" />
+		<ResisState id="Sth_Detected">
+			<ResisRelation term1Id="Cathode" term2Id="Signal" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Light_NO|Sth_Detected" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Anode" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="工作指示灯" mdlName="light1" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="Signal" term2Id="Cathode" value="+24" deviation="1" />
+			<LightIO name="检测指示灯" mdlName="light2" glowColor="1|1|0.15|1" />
+		</Magnetism>
+
+	</ElecCompDef>
+
+	<!-- FiberSensor -->
+	<ElecCompDef name="光纤传感器" model="E3Z-NA11" appStateCls="FiberSensorLogic" isCable="1">
+		<Jack id="E3Z-NA11" mdlName="E3Z-NA11" cable="Fiber" format="Fiber">
+			<Terminal id="Anode" name="24V" index="1" direction="x+" mark="24V" />
+			<Terminal id="Cathode" name="0V" index="2" direction="x+" mark="0V" />
+			<Terminal id="Signal" name="Signal" index="3" direction="x+" mark="信号" />
+		</Jack>
+		<ResisState id="Light_NO" isDef="1" />
+		<ResisState id="Sth_Detected">
+			<ResisRelation term1Id="Cathode" term2Id="Signal" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Light_NO|Sth_Detected" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<!-- <Magnetism> -->
+		<!-- <VoltageIO type="input" term1Id="Anode" term2Id="Cathode" value="+24" deviation="1" /> -->
+		<!-- <LightIO name="工作指示灯" mdlName="light1" glowColor="0|1|0|1" /> -->
+		<!-- </Magnetism> -->
+		<!-- <Magnetism> -->
+		<!-- <VoltageIO type="input" term1Id="Signal" term2Id="Cathode" value="+24" deviation="1" /> -->
+		<!-- <LightIO name="检测指示灯" mdlName="light2" glowColor="1|1|0.15|1" /> -->
+		<!-- </Magnetism> -->
+	</ElecCompDef>
+
+	<ElecCompDef name="光纤传感器" model="E3X-ZD11" appStateCls="FiberSensorLogic" isCable="1">
+		<Jack id="E3X-ZD11" mdlName="E3X-ZD11" cable="Fiber" format="Fiber">
+			<Terminal id="Anode" name="24V" index="1" direction="x+" mark="24V" />
+			<Terminal id="Cathode" name="0V" index="2" direction="x+" mark="0V" />
+			<Terminal id="Signal" name="Signal" index="3" direction="x+" mark="信号" />
+		</Jack>
+		<ResisState id="Light_NO" isDef="1" />
+		<ResisState id="Sth_Detected">
+			<ResisRelation term1Id="Cathode" term2Id="Signal" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<SensorIO switchIn="Light_NO|Sth_Detected" />
+		</Magnetism>
+
+		<!-- 指示灯 -->
+		<!-- <Magnetism> -->
+		<!-- <VoltageIO type="input" term1Id="Anode" term2Id="Cathode" value="+24" deviation="1" /> -->
+		<!-- <LightIO name="工作指示灯" mdlName="light1" glowColor="0|1|0|1" /> -->
+		<!-- </Magnetism> -->
+		<!-- <Magnetism> -->
+		<!-- <VoltageIO type="input" term1Id="Signal" term2Id="Cathode" value="+24" deviation="1" /> -->
+		<!-- <LightIO name="检测指示灯" mdlName="light2" glowColor="1|1|0.15|1" /> -->
+		<!-- </Magnetism> -->
+	</ElecCompDef>
+
+	<ElecCompDef name="RFID" model="RF260R">
+	</ElecCompDef>
+
+	<!-- 行程开关 -->
+	<ElecCompDef name="行程开关" model="VS10N051C" appStateCls="VS10N051CLogic" isCable="1">
+		<Jack id="VS10N051C" mdlName="VS10N051C" cable="VS10N051C" format="VS10N051C">
+			<Terminal id="COM" index="1" name="COM" />
+			<Terminal id="NO" index="2" name="NO" />
+			<Terminal id="NC" index="3" name="NC" />
+		</Jack>
+
+		<ResisState id="NO" isDef="1">
+			<ResisRelation term1Id="COM" term2Id="NO" value="0" />
+		</ResisState>
+		<ResisState id="NC">
+			<ResisRelation term1Id="COM" term2Id="NC" value="0" />
+		</ResisState>
+
+		<Magnetism>
+			<ControlIO type="input" interact="press" name="开关" switchIn="NO|NC" mdlName="collision" motion="rotate" motionParams="0|-10" axis="Y" />
+		</Magnetism>
+	</ElecCompDef>
+
+</roots>

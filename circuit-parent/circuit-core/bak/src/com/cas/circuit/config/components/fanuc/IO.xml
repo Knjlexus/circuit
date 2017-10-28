@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="I/O单元" model="IO" appStateCls="IO" desc="I/O单元主要用来处理机床信号，它将来自机床侧操作者的操作命令传入PMC，同时将系统处理结果输出给执行元件如刀架、主轴、排屑机等。">
+		#I/O信号地址映射配置
+		signalMapping=com/cas/me/maintenance/config/signal/SignalMapping.xml
+
+		<Jack id="CP1" name="CP1" format="CP1" mdlName="CP1" jackDirection="y" direction="y">
+			<Terminal id="CPD1_1" index="1" mark="+24V" voltage="+24V" type="input" team="CP1" />
+			<Terminal id="CPD1_2" index="2" mark="0V" voltage="0V" type="input" team="CP1" />
+		</Jack>
+
+		<Jack id="CP2" name="CP2" format="CP2" mdlName="CP2" jackDirection="y" direction="y">
+			<Terminal id="CPD2_1" index="1" mark="+24V" voltage="+24V" type="input" team="CP2" />
+			<Terminal id="CPD2_2" index="2" mark="0V" voltage="0V" type="output" team="CP2" />
+		</Jack>
+
+		<Jack id="CB104" name="CB104" format="CB" mdlName="CB104" jackDirection="y" direction="y">
+			<Terminal name="CB104针脚1" id="104_1" index="1" mark="A01" type="output" />
+			<Terminal name="CB104针脚2" id="104_2" index="2" mark="B01" type="output" />
+			<Terminal name="CB104针脚3" id="104_3" index="3" mark="A02" type="input" />
+			<Terminal name="CB104针脚4" id="104_4" index="4" mark="B02" type="input" />
+			<Terminal name="CB104针脚5" id="104_5" index="5" mark="A03" type="input" />
+			<Terminal name="CB104针脚6" id="104_6" index="6" mark="B03" type="input" />
+			<Terminal name="CB104针脚7" id="104_7" index="7" mark="A04" type="input" />
+			<Terminal name="CB104针脚8" id="104_8" index="8" mark="B04" type="input" />
+			<Terminal name="CB104针脚9" id="104_9" index="9" mark="A05" type="input" />
+			<Terminal name="CB104针脚10" id="104_10" index="10" mark="B05" type="input" />
+			<Terminal name="CB104针脚11" id="104_11" index="11" mark="A06" type="input" />
+			<Terminal name="CB104针脚12" id="104_12" index="12" mark="B06" type="input" />
+			<Terminal name="CB104针脚13" id="104_13" index="13" mark="A07" type="input" />
+			<Terminal name="CB104针脚14" id="104_14" index="14" mark="B07" type="input" />
+			<Terminal name="CB104针脚15" id="104_15" index="15" mark="A08" type="input" />
+			<Terminal name="CB104针脚16" id="104_16" index="16" mark="B08" type="input" />
+			<Terminal name="CB104针脚17" id="104_17" index="17" mark="A09" type="input" />
+			<Terminal name="CB104针脚18" id="104_18" index="18" mark="B09" type="input" />
+			<Terminal name="CB104针脚19" id="104_19" index="19" mark="A10" type="input" />
+			<Terminal name="CB104针脚20" id="104_20" index="20" mark="B10" type="input" />
+			<Terminal name="CB104针脚21" id="104_21" index="21" mark="A11" type="input" />
+			<Terminal name="CB104针脚22" id="104_22" index="22" mark="B11" type="input" />
+			<Terminal name="CB104针脚23" id="104_23" index="23" mark="A12" type="input" />
+			<Terminal name="CB104针脚24" id="104_24" index="24" mark="B12" type="input" />
+			<Terminal name="CB104针脚25" id="104_25" index="25" mark="A13" type="input" />
+			<Terminal name="CB104针脚26" id="104_26" index="26" mark="B13" type="input" />
+			<Terminal name="CB104针脚27" id="104_27" index="27" mark="A14" />
+			<Terminal name="CB104针脚28" id="104_28" index="28" mark="B14" />
+			<Terminal name="CB104针脚29" id="104_29" index="29" mark="A15" />
+			<Terminal name="CB104针脚30" id="104_30" index="30" mark="B15" />
+			<Terminal name="CB104针脚31" id="104_31" index="31" mark="A16" type="output" />
+			<Terminal name="CB104针脚32" id="104_32" index="32" mark="B16" type="output" />
+			<Terminal name="CB104针脚33" id="104_33" index="33" mark="A17" type="output" />
+			<Terminal name="CB104针脚34" id="104_34" index="34" mark="B17" type="output" />
+			<Terminal name="CB104针脚35" id="104_35" index="35" mark="A18" type="output" />
+			<Terminal name="CB104针脚36" id="104_36" index="36" mark="B18" type="output" />
+			<Terminal name="CB104针脚37" id="104_37" index="37" mark="A19" type="output" />
+			<Terminal name="CB104针脚38" id="104_38" index="38" mark="B19" type="output" />
+			<Terminal name="CB104针脚39" id="104_39" index="39" mark="A20" type="output" />
+			<Terminal name="CB104针脚40" id="104_40" index="40" mark="B20" type="output" />
+			<Terminal name="CB104针脚41" id="104_41" index="41" mark="A21" type="output" />
+			<Terminal name="CB104针脚42" id="104_42" index="42" mark="B21" type="output" />
+			<Terminal name="CB104针脚43" id="104_43" index="43" mark="A22" type="output" />
+			<Terminal name="CB104针脚44" id="104_44" index="44" mark="B22" type="output" />
+			<Terminal name="CB104针脚45" id="104_45" index="45" mark="A23" type="output" />
+			<Terminal name="CB104针脚46" id="104_46" index="46" mark="B23" type="output" />
+			<Terminal name="CB104针脚47" id="104_47" index="47" mark="A24" />
+			<Terminal name="CB104针脚48" id="104_48" index="48" mark="B24" />
+			<Terminal name="CB104针脚49" id="104_49" index="49" mark="A25" />
+			<Terminal name="CB104针脚50" id="104_50" index="50" mark="B25" />
+		</Jack>
+		<Jack id="CB105" name="CB105" format="CB" mdlName="CB105" jackDirection="y" direction="y">
+			<Terminal name="CB105针脚1" id="105_1" index="1" mark="A01" type="output" />
+			<Terminal name="CB105针脚2" id="105_2" index="2" mark="B01" type="output" />
+			<Terminal name="CB105针脚3" id="105_3" index="3" mark="A02" type="input" />
+			<Terminal name="CB105针脚4" id="105_4" index="4" mark="B02" type="input" />
+			<Terminal name="CB105针脚5" id="105_5" index="5" mark="A03" type="input" />
+			<Terminal name="CB105针脚6" id="105_6" index="6" mark="B03" type="input" />
+			<Terminal name="CB105针脚7" id="105_7" index="7" mark="A04" type="input" />
+			<Terminal name="CB105针脚8" id="105_8" index="8" mark="B04" type="input" />
+			<Terminal name="CB105针脚9" id="105_9" index="9" mark="A05" type="input" />
+			<Terminal name="CB105针脚10" id="105_10" index="10" mark="B05" type="input" />
+			<Terminal name="CB105针脚11" id="105_11" index="11" mark="A06" type="input" />
+			<Terminal name="CB105针脚12" id="105_12" index="12" mark="B06" type="input" />
+			<Terminal name="CB105针脚13" id="105_13" index="13" mark="A07" type="input" />
+			<Terminal name="CB105针脚14" id="105_14" index="14" mark="B07" type="input" />
+			<Terminal name="CB105针脚15" id="105_15" index="15" mark="A08" type="input" />
+			<Terminal name="CB105针脚16" id="105_16" index="16" mark="B08" type="input" />
+			<Terminal name="CB105针脚17" id="105_17" index="17" mark="A09" type="input" />
+			<Terminal name="CB105针脚18" id="105_18" index="18" mark="B09" type="input" />
+			<Terminal name="CB105针脚19" id="105_19" index="19" mark="A10" type="input" />
+			<Terminal name="CB105针脚20" id="105_20" index="20" mark="B10" type="input" />
+			<Terminal name="CB105针脚21" id="105_21" index="21" mark="A11" type="input" />
+			<Terminal name="CB105针脚22" id="105_22" index="22" mark="B11" type="input" />
+			<Terminal name="CB105针脚23" id="105_23" index="23" mark="A12" type="input" />
+			<Terminal name="CB105针脚24" id="105_24" index="24" mark="B12" type="input" />
+			<Terminal name="CB105针脚25" id="105_25" index="25" mark="A13" type="input" />
+			<Terminal name="CB105针脚26" id="105_26" index="26" mark="B13" type="input" />
+			<Terminal name="CB105针脚27" id="105_27" index="27" mark="A14" />
+			<Terminal name="CB105针脚28" id="105_28" index="28" mark="B14" />
+			<Terminal name="CB105针脚29" id="105_29" index="29" mark="A15" />
+			<Terminal name="CB105针脚30" id="105_30" index="30" mark="B15" />
+			<Terminal name="CB105针脚31" id="105_31" index="31" mark="A16" type="output" />
+			<Terminal name="CB105针脚32" id="105_32" index="32" mark="B16" type="output" />
+			<Terminal name="CB105针脚33" id="105_33" index="33" mark="A17" type="output" />
+			<Terminal name="CB105针脚34" id="105_34" index="34" mark="B17" type="output" />
+			<Terminal name="CB105针脚35" id="105_35" index="35" mark="A18" type="output" />
+			<Terminal name="CB105针脚36" id="105_36" index="36" mark="B18" type="output" />
+			<Terminal name="CB105针脚37" id="105_37" index="37" mark="A19" type="output" />
+			<Terminal name="CB105针脚38" id="105_38" index="38" mark="B19" type="output" />
+			<Terminal name="CB105针脚39" id="105_39" index="39" mark="A20" type="output" />
+			<Terminal name="CB105针脚40" id="105_40" index="40" mark="B20" type="output" />
+			<Terminal name="CB105针脚41" id="105_41" index="41" mark="A21" type="output" />
+			<Terminal name="CB105针脚42" id="105_42" index="42" mark="B21" type="output" />
+			<Terminal name="CB105针脚43" id="105_43" index="43" mark="A22" type="output" />
+			<Terminal name="CB105针脚44" id="105_44" index="44" mark="B22" type="output" />
+			<Terminal name="CB105针脚45" id="105_45" index="45" mark="A23" type="output" />
+			<Terminal name="CB105针脚46" id="105_46" index="46" mark="B23" type="output" />
+			<Terminal name="CB105针脚47" id="105_47" index="47" mark="A24" />
+			<Terminal name="CB105针脚48" id="105_48" index="48" mark="B24" />
+			<Terminal name="CB105针脚49" id="105_49" index="49" mark="A25" />
+			<Terminal name="CB105针脚50" id="105_50" index="50" mark="B25" />
+		</Jack>
+		<Jack id="CB106" name="CB106" format="CB" mdlName="CB106" jackDirection="y" direction="y">
+			<Terminal name="CB106针脚1" id="106_1" index="1" mark="A01" type="output" />
+			<Terminal name="CB106针脚2" id="106_2" index="2" mark="B01" type="output" />
+			<Terminal name="CB106针脚3" id="106_3" index="3" mark="A02" type="input" />
+			<Terminal name="CB106针脚4" id="106_4" index="4" mark="B02" type="input" />
+			<Terminal name="CB106针脚5" id="106_5" index="5" mark="A03" type="input" />
+			<Terminal name="CB106针脚6" id="106_6" index="6" mark="B03" type="input" />
+			<Terminal name="CB106针脚7" id="106_7" index="7" mark="A04" type="input" />
+			<Terminal name="CB106针脚8" id="106_8" index="8" mark="B04" type="input" />
+			<Terminal name="CB106针脚9" id="106_9" index="9" mark="A05" type="input" />
+			<Terminal name="CB106针脚10" id="106_10" index="10" mark="B05" type="input" />
+			<Terminal name="CB106针脚11" id="106_11" index="11" mark="A06" type="input" />
+			<Terminal name="CB106针脚12" id="106_12" index="12" mark="B06" type="input" />
+			<Terminal name="CB106针脚13" id="106_13" index="13" mark="A07" type="input" />
+			<Terminal name="CB106针脚14" id="106_14" index="14" mark="B07" type="input" />
+			<Terminal name="CB106针脚15" id="106_15" index="15" mark="A08" type="input" />
+			<Terminal name="CB106针脚16" id="106_16" index="16" mark="B08" type="input" />
+			<Terminal name="CB106针脚17" id="106_17" index="17" mark="A09" type="input" />
+			<Terminal name="CB106针脚18" id="106_18" index="18" mark="B09" type="input" />
+			<Terminal name="CB106针脚19" id="106_19" index="19" mark="A10" type="input" />
+			<Terminal name="CB106针脚20" id="106_20" index="20" mark="B10" type="input" />
+			<Terminal name="CB106针脚21" id="106_21" index="21" mark="A11" type="input" />
+			<Terminal name="CB106针脚22" id="106_22" index="22" mark="B11" type="input" />
+			<Terminal name="CB106针脚23" id="106_23" index="23" mark="A12" type="input" />
+			<Terminal name="CB106针脚24" id="106_24" index="24" mark="B12" type="input" />
+			<Terminal name="CB106针脚25" id="106_25" index="25" mark="A13" type="input" />
+			<Terminal name="CB106针脚26" id="106_26" index="26" mark="B13" type="input" />
+			<Terminal name="CB106针脚27" id="106_27" index="27" mark="A14" />
+			<Terminal name="CB106针脚28" id="106_28" index="28" mark="B14" />
+			<Terminal name="CB106针脚29" id="106_29" index="29" mark="A15" />
+			<Terminal name="CB106针脚30" id="106_30" index="30" mark="B15" />
+			<Terminal name="CB106针脚31" id="106_31" index="31" mark="A16" type="output" />
+			<Terminal name="CB106针脚32" id="106_32" index="32" mark="B16" type="output" />
+			<Terminal name="CB106针脚33" id="106_33" index="33" mark="A17" type="output" />
+			<Terminal name="CB106针脚34" id="106_34" index="34" mark="B17" type="output" />
+			<Terminal name="CB106针脚35" id="106_35" index="35" mark="A18" type="output" />
+			<Terminal name="CB106针脚36" id="106_36" index="36" mark="B18" type="output" />
+			<Terminal name="CB106针脚37" id="106_37" index="37" mark="A19" type="output" />
+			<Terminal name="CB106针脚38" id="106_38" index="38" mark="B19" type="output" />
+			<Terminal name="CB106针脚39" id="106_39" index="39" mark="A20" type="output" />
+			<Terminal name="CB106针脚40" id="106_40" index="40" mark="B20" type="output" />
+			<Terminal name="CB106针脚41" id="106_41" index="41" mark="A21" type="output" />
+			<Terminal name="CB106针脚42" id="106_42" index="42" mark="B21" type="output" />
+			<Terminal name="CB106针脚43" id="106_43" index="43" mark="A22" type="output" />
+			<Terminal name="CB106针脚44" id="106_44" index="44" mark="B22" type="output" />
+			<Terminal name="CB106针脚45" id="106_45" index="45" mark="A23" type="output" />
+			<Terminal name="CB106针脚46" id="106_46" index="46" mark="B23" type="output" />
+			<Terminal name="CB106针脚47" id="106_47" index="47" mark="A24" />
+			<Terminal name="CB106针脚48" id="106_48" index="48" mark="B24" />
+			<Terminal name="CB106针脚49" id="106_49" index="49" mark="A25" />
+			<Terminal name="CB106针脚50" id="106_50" index="50" mark="B25" />
+		</Jack>
+		<Jack id="CB107" name="CB107" format="CB" mdlName="CB107" jackDirection="y" direction="y">
+			<Terminal name="CB107针脚1" id="107_1" index="1" mark="A01" type="output" />
+			<Terminal name="CB107针脚2" id="107_2" index="2" mark="B01" type="output" />
+			<Terminal name="CB107针脚3" id="107_3" index="3" mark="A02" type="input" />
+			<Terminal name="CB107针脚4" id="107_4" index="4" mark="B02" type="input" />
+			<Terminal name="CB107针脚5" id="107_5" index="5" mark="A03" type="input" />
+			<Terminal name="CB107针脚6" id="107_6" index="6" mark="B03" type="input" />
+			<Terminal name="CB107针脚7" id="107_7" index="7" mark="A04" type="input" />
+			<Terminal name="CB107针脚8" id="107_8" index="8" mark="B04" type="input" />
+			<Terminal name="CB107针脚9" id="107_9" index="9" mark="A05" type="input" />
+			<Terminal name="CB107针脚10" id="107_10" index="10" mark="B05" type="input" />
+			<Terminal name="CB107针脚11" id="107_11" index="11" mark="A06" type="input" />
+			<Terminal name="CB107针脚12" id="107_12" index="12" mark="B06" type="input" />
+			<Terminal name="CB107针脚13" id="107_13" index="13" mark="A07" type="input" />
+			<Terminal name="CB107针脚14" id="107_14" index="14" mark="B07" type="input" />
+			<Terminal name="CB107针脚15" id="107_15" index="15" mark="A08" type="input" />
+			<Terminal name="CB107针脚16" id="107_16" index="16" mark="B08" type="input" />
+			<Terminal name="CB107针脚17" id="107_17" index="17" mark="A09" type="input" />
+			<Terminal name="CB107针脚18" id="107_18" index="18" mark="B09" type="input" />
+			<Terminal name="CB107针脚19" id="107_19" index="19" mark="A10" type="input" />
+			<Terminal name="CB107针脚20" id="107_20" index="20" mark="B10" type="input" />
+			<Terminal name="CB107针脚21" id="107_21" index="21" mark="A11" type="input" />
+			<Terminal name="CB107针脚22" id="107_22" index="22" mark="B11" type="input" />
+			<Terminal name="CB107针脚23" id="107_23" index="23" mark="A12" type="input" />
+			<Terminal name="CB107针脚24" id="107_24" index="24" mark="B12" type="input" />
+			<Terminal name="CB107针脚25" id="107_25" index="25" mark="A13" type="input" />
+			<Terminal name="CB107针脚26" id="107_26" index="26" mark="B13" type="input" />
+			<Terminal name="CB107针脚27" id="107_27" index="27" mark="A14" />
+			<Terminal name="CB107针脚28" id="107_28" index="28" mark="B14" />
+			<Terminal name="CB107针脚29" id="107_29" index="29" mark="A15" />
+			<Terminal name="CB107针脚30" id="107_30" index="30" mark="B15" />
+			<Terminal name="CB107针脚31" id="107_31" index="31" mark="A16" type="output" />
+			<Terminal name="CB107针脚32" id="107_32" index="32" mark="B16" type="output" />
+			<Terminal name="CB107针脚33" id="107_33" index="33" mark="A17" type="output" />
+			<Terminal name="CB107针脚34" id="107_34" index="34" mark="B17" type="output" />
+			<Terminal name="CB107针脚35" id="107_35" index="35" mark="A18" type="output" />
+			<Terminal name="CB107针脚36" id="107_36" index="36" mark="B18" type="output" />
+			<Terminal name="CB107针脚37" id="107_37" index="37" mark="A19" type="output" />
+			<Terminal name="CB107针脚38" id="107_38" index="38" mark="B19" type="output" />
+			<Terminal name="CB107针脚39" id="107_39" index="39" mark="A20" type="output" />
+			<Terminal name="CB107针脚40" id="107_40" index="40" mark="B20" type="output" />
+			<Terminal name="CB107针脚41" id="107_41" index="41" mark="A21" type="output" />
+			<Terminal name="CB107针脚42" id="107_42" index="42" mark="B21" type="output" />
+			<Terminal name="CB107针脚43" id="107_43" index="43" mark="A22" type="output" />
+			<Terminal name="CB107针脚44" id="107_44" index="44" mark="B22" type="output" />
+			<Terminal name="CB107针脚45" id="107_45" index="45" mark="A23" type="output" />
+			<Terminal name="CB107针脚46" id="107_46" index="46" mark="B23" type="output" />
+			<Terminal name="CB107针脚47" id="107_47" index="47" mark="A24" />
+			<Terminal name="CB107针脚48" id="107_48" index="48" mark="B24" />
+			<Terminal name="CB107针脚49" id="107_49" index="49" mark="A25" />
+			<Terminal name="CB107针脚50" id="107_50" index="50" mark="B25" />
+		</Jack>
+		<Jack id="JD1B" name="JD1B" format="JF" mdlName="JD1B" jackDirection="x" direction="y">
+			<Terminal id="JD1B_1" index="1" mark="SIN" type="input" />
+			<Terminal id="JD1B_2" index="2" mark="*SIN" type="input" />
+			<Terminal id="JD1B_3" index="3" mark="SOUT" type="output" />
+			<Terminal id="JD1B_4" index="4" mark="*SOUT" type="output" />
+			<Terminal id="JD1B_9" index="9" mark="+5V" voltage="+5V" />
+			<Terminal id="JD1B_11" index="11" mark="0V" voltage="0V" />
+			<Terminal id="JD1B_12" index="12" mark="0V" voltage="0V" />
+			<Terminal id="JD1B_13" index="13" mark="0V" voltage="0V" />
+			<Terminal id="JD1B_14" index="14" mark="0V" voltage="0V" />
+			<Terminal id="JD1B_15" index="15" mark="0V" voltage="0V" />
+			<Terminal id="JD1B_18" index="18" mark="+5V" voltage="+5V" />
+			<Terminal id="JD1B_20" index="20" mark="+5V" voltage="+5V" />
+		</Jack>
+		<ResisState isDef="1">
+			<ResisRelation term2Id="JD1B_1" term1Id="JD1B_11" value="20000" />
+		</ResisState>
+		<Jack id="JD1A" name="JD1A" format="JF" mdlName="JD1A" jackDirection="x" direction="y">
+			<Terminal id="JD1A_1" index="1" mark="SIN" type="input" team="JD1ASIN" />
+			<Terminal id="JD1A_3" index="3" mark="SOUT" type="output" />
+			<Terminal id="JD1A_9" index="9" mark="+5V" voltage="+5V" />
+			<Terminal id="JD1A_11" index="11" mark="0V" voltage="0V" team="JD1ASIN" />
+			<Terminal id="JD1A_12" index="12" mark="0V" voltage="0V" />
+			<Terminal id="JD1A_13" index="13" mark="0V" voltage="0V" />
+			<Terminal id="JD1A_14" index="14" mark="0V" voltage="0V" />
+			<Terminal id="JD1A_15" index="15" mark="0V" voltage="0V" />
+			<Terminal id="JD1A_18" index="18" mark="+5V" voltage="+5V" />
+			<Terminal id="JD1A_19" index="20" mark="+5V" voltage="+5V" />
+		</Jack>
+		<ResisState isDef="1">
+			<ResisRelation term2Id="JD1A_1" term1Id="JD1A_11" value="20000" />
+		</ResisState>
+		<LightIO name="IO模块电源指示灯" mdlName="L1" glowColor="0|1|0|1" />
+	</ElecCompDef>
+</Comps>

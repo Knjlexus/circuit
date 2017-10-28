@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<!-- 液压站端子排 -->
+	<ElecCompDef name="液压站" model="hpStation" appStateCls="HPStation" desc="液压站">
+		<Terminal id="dz1" name="KONG" mdlName="01" direction="x+" />
+		<Terminal id="dz2" name="KONG" mdlName="02" direction="x+" />
+		<Terminal id="dz3" name="5B06" mdlName="03" direction="x+" />
+		<Terminal id="dz4" name="5A06" mdlName="04" direction="x+" />
+		<Terminal id="dz5" name="24N" mdlName="05" direction="x+" />
+		<Terminal id="dz6" name="37" mdlName="06" direction="x+" />
+		<Terminal id="dz7" name="36" mdlName="07" direction="x+" />
+		<Terminal id="dz8" name="35" mdlName="08" direction="x+" />
+		<Terminal id="dz9" name="34" mdlName="09" direction="x+" />
+		<Terminal id="dz10" name="33" mdlName="10" direction="x+" />
+		<Terminal id="dz11" name="32" mdlName="11" direction="x+" />
+		<Terminal id="dz12" name="31" mdlName="12" direction="x+" />
+		<Terminal id="dz13" name="30" mdlName="13" direction="z+" />
+		<Terminal id="dz14" name="2" mdlName="14" direction="z+" />
+		<Terminal id="dz15" name="PE" mdlName="15" direction="z+" />
+		<Terminal id="dz16" name="W" mdlName="16" direction="z+" />
+		<Terminal id="dz17" name="V" mdlName="17" direction="z+" />
+		<Terminal id="dz18" name="U" mdlName="18" direction="z+" />
+
+		<Terminal id="dz30" name="KONG" mdlName="30" direction="z+" />
+		<Terminal id="dz31" name="KONG" mdlName="31" direction="z+" />
+		<Terminal id="dz32" name="5B06" mdlName="32" direction="z+" />
+		<Terminal id="dz33" name="5A06" mdlName="33" direction="z+" />
+		<Terminal id="dz34" name="24N" mdlName="34" direction="z+" />
+		<Terminal id="dz35" name="37" mdlName="35" direction="z+" />
+		<Terminal id="dz36" name="36" mdlName="36" direction="z+" />
+		<Terminal id="dz37" name="35" mdlName="37" direction="z+" />
+		<Terminal id="dz38" name="34" mdlName="38" direction="z+" />
+		<Terminal id="dz39" name="33" mdlName="39" direction="z+" />
+		<Terminal id="dz40" name="32" mdlName="40" direction="z+" />
+		<Terminal id="dz41" name="31" mdlName="41" direction="z+" />
+		<Terminal id="dz42" name="30" mdlName="42" direction="z+" />
+		<Terminal id="dz43" name="2" mdlName="43" direction="z+" />
+		<Terminal id="dz44" name="PE" mdlName="44" direction="z+" />
+		<Terminal id="dz45" name="W" mdlName="45" direction="z+" />
+		<Terminal id="dz46" name="V" mdlName="46" direction="z+" />
+		<Terminal id="dz47" name="U" mdlName="47" direction="z+" />
+
+		<!-- 油管接头 -->
+		<Jack id="yg_1" name="卡盘松开油管" format="YG" mdlName="yg_1" jackDirection="z" rotation="0,-90,0" direction="y">
+			<Terminal id="yg_1" index="1" name="卡盘松开" />
+		</Jack>
+		<Jack id="yg_2" name="卡盘夹紧油管" format="YG" mdlName="yg_2" jackDirection="z" rotation="0,-90,0" direction="y">
+			<Terminal id="yg_2" index="1" name="卡盘夹紧" />
+		</Jack>
+		<Jack id="yg_3" name="刀架锁紧油管" format="YG" mdlName="yg_3" jackDirection="z" rotation="0,-90,0" direction="y">
+			<Terminal id="yg_3" index="1" name="刀架锁紧" />
+		</Jack>
+		<Jack id="yg_4" name="刀架松开油管" format="YG" mdlName="yg_4" jackDirection="z" rotation="0,-90,0" direction="y">
+			<Terminal id="yg_4" index="1" name="刀架松开" />
+		</Jack>
+		<Jack id="yg_5" name="刀架正转油管" format="YG" mdlName="yg_5" jackDirection="z" rotation="0,-90,0" direction="y">
+			<Terminal id="yg_5" index="1" name="刀架正转" />
+		</Jack>
+		<Jack id="yg_6" name="刀架反转油管" format="YG" mdlName="yg_6" jackDirection="z" rotation="0,-90,0" direction="y">
+			<Terminal id="yg_6" index="1" name="刀架反转" />
+		</Jack>
+		<Jack id="yg_7" name="尾架伸出油管" format="YG" mdlName="yg_7" jackDirection="z" rotation="0,-90,0" direction="y">
+			<Terminal id="yg_7" index="1" name="尾架伸出" />
+		</Jack>
+		<Jack id="yg_8" name="尾架缩回油管" format="YG" mdlName="yg_8" jackDirection="z" rotation="0,-90,0" direction="y">
+			<Terminal id="yg_8" index="1" name="尾架缩回" />
+		</Jack>
+
+		<!-- 电机 -->
+		<Terminal id="yyz1" name="V2" mdlName="yyz1" direction="y-" />
+		<Terminal id="yyz2" name="U2" mdlName="yyz2" direction="y-" />
+		<Terminal id="yyz3" name="W2" mdlName="yyz3" direction="y-" />
+		<Terminal id="yyz4" name="U1" mdlName="yyz4" direction="y-" />
+		<Terminal id="yyz5" name="V1" mdlName="yyz5" direction="y-" />
+		<Terminal id="yyz6" name="W1" mdlName="yyz6" direction="y-" />
+		<Terminal id="yyz7" name="PE" mdlName="yyz7" direction="y-" />
+		<Magnetism>
+			<VoltageIO type="input|output" term1Id="yyz6" term2Id="yyz2" value="380" deviation="20" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input|output" term1Id="yyz6" term2Id="yyz3" value="380" deviation="20" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input|output" term1Id="yyz5" term2Id="yyz1" value="380" deviation="20" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input|output" term1Id="yyz5" term2Id="yyz3" value="380" deviation="20" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input|output" term1Id="yyz4" term2Id="yyz1" value="380" deviation="20" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input|output" term1Id="yyz4" term2Id="yyz2" value="380" deviation="20" />
+		</Magnetism>
+
+		<!-- 电磁阀 -->
+		<Jack id="c4" name="卡盘松开电磁阀 " format="YA" mdlName="c4" jackDirection="z" rotation="0,180,0" direction="x">
+			<Terminal id="c4_1" index="1" mark="+24V" voltage="+24V" type="input" team="c4" />
+			<Terminal id="c4_2" index="2" mark="0V" voltage="0V" type="input" team="c4" />
+		</Jack>
+		<Jack id="c8" name="卡盘夹紧电磁阀 " format="YA" mdlName="c8" jackDirection="z" rotation="0,0,0" direction="x">
+			<Terminal id="c8_1" index="1" mark="+24V" voltage="+24V" type="input" team="c8" />
+			<Terminal id="c8_2" index="2" mark="0V" voltage="0V" type="input" team="c8" />
+		</Jack>
+		<Jack id="c7" name="刀架锁紧电磁阀 " format="YA" mdlName="c7" jackDirection="z" rotation="0,0,0" direction="x">
+			<Terminal id="c7_1" index="1" mark="+24V" voltage="+24V" type="input" team="c7" />
+			<Terminal id="c7_2" index="2" mark="0V" voltage="0V" type="input" team="c7" />
+		</Jack>
+		<Jack id="c3" name="刀架松开电磁阀 " format="YA" mdlName="c3" jackDirection="z" rotation="0,180,0" direction="x">
+			<Terminal id="c3_1" index="1" mark="+24V" voltage="+24V" type="input" team="c3" />
+			<Terminal id="c3_2" index="2" mark="0V" voltage="0V" type="input" team="c3" />
+		</Jack>
+		<Jack id="c2" name="刀架正转电磁阀 " format="YA" mdlName="c2" jackDirection="z" rotation="0,180,0" direction="x">
+			<Terminal id="c2_1" index="1" mark="+24V" voltage="+24V" type="input" team="c2" />
+			<Terminal id="c2_2" index="2" mark="0V" voltage="0V" type="input" team="c2" />
+		</Jack>
+		<Jack id="c6" name="刀架反转电磁阀 " format="YA" mdlName="c6" jackDirection="z" rotation="0,0,0" direction="x">
+			<Terminal id="c6_1" index="1" mark="+24V" voltage="+24V" type="input" team="c6" />
+			<Terminal id="c6_2" index="2" mark="0V" voltage="0V" type="input" team="c6" />
+		</Jack>
+		<Jack id="c1" name="尾架伸出电磁阀 " format="YA" mdlName="c1" jackDirection="z" rotation="0,180,0" direction="x">
+			<Terminal id="c1_1" index="1" mark="+24V" voltage="+24V" type="input" team="c1" />
+			<Terminal id="c1_2" index="2" mark="0V" voltage="0V" type="input" team="c1" />
+		</Jack>
+		<Jack id="c5" name="尾架缩回电磁阀 " format="YA" mdlName="c5" jackDirection="z" rotation="0,0,0" direction="x">
+			<Terminal id="c5_1" index="1" mark="+24V" voltage="+24V" type="input" team="c5" />
+			<Terminal id="c5_2" index="2" mark="0V" voltage="0V" type="input" team="c5" />
+		</Jack>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="c4_1" term2Id="c4_2" switchIn="kp_off|kp_on" value="+24" deviation="1" />
+		</Magnetism>
+		<!-- 夹紧 -->
+		<ResisState id="kp_off" isDef="1">
+			<ResisRelation term1Id="dz33" term2Id="dz34" value="0" />
+		</ResisState>
+		<!-- 松开 -->
+		<ResisState id="kp_on">
+			<ResisRelation term1Id="dz32" term2Id="dz34" value="0" />
+		</ResisState>
+		
+		<ResisState isDef="1">
+			<ResisRelation term1Id="dz1" term2Id="dz30" value="0" />
+			<ResisRelation term1Id="dz2" term2Id="dz31" value="0" />
+			<ResisRelation term1Id="dz3" term2Id="dz32" value="0" />
+			<ResisRelation term1Id="dz4" term2Id="dz33" value="0" />
+			<ResisRelation term1Id="dz5" term2Id="dz34" value="0" />
+			<ResisRelation term1Id="dz6" term2Id="dz35" value="0" />
+			<ResisRelation term1Id="dz7" term2Id="dz36" value="0" />
+			<ResisRelation term1Id="dz8" term2Id="dz37" value="0" />
+			<ResisRelation term1Id="dz9" term2Id="dz38" value="0" />
+			<ResisRelation term1Id="dz10" term2Id="dz39" value="0" />
+			<ResisRelation term1Id="dz11" term2Id="dz40" value="0" />
+			<ResisRelation term1Id="dz12" term2Id="dz41" value="0" />
+			<ResisRelation term1Id="dz13" term2Id="dz42" value="0" />
+			<ResisRelation term1Id="dz14" term2Id="dz43" value="0" />
+			<ResisRelation term1Id="dz15" term2Id="dz44" value="0" />
+			<ResisRelation term1Id="dz16" term2Id="dz45" value="0" />
+			<ResisRelation term1Id="dz17" term2Id="dz46" value="0" />
+			<ResisRelation term1Id="dz18" term2Id="dz47" value="0" />
+		<!--电磁阀线圈电阻 -->
+			<ResisRelation term1Id="c4_1" term2Id="c4_2" value="500" />
+			<ResisRelation term1Id="c8_1" term2Id="c8_2" value="500" />
+			<ResisRelation term1Id="c7_1" term2Id="c7_2" value="500" />
+			<ResisRelation term1Id="c3_1" term2Id="c3_2" value="500" />
+			<ResisRelation term1Id="c2_1" term2Id="c2_2" value="500" />
+			<ResisRelation term1Id="c6_1" term2Id="c6_2" value="500" />
+			<ResisRelation term1Id="c1_1" term2Id="c1_2" value="500" />
+			<ResisRelation term1Id="c5_1" term2Id="c5_2" value="500" />
+		</ResisState>
+		
+	</ElecCompDef>
+</Comps>

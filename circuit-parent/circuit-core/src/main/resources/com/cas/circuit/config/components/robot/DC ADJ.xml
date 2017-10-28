@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roots>
+	<ElecCompDef name="直流调速器" model="MMT-4Q" appStateCls="MMT_4QLogic">
+		<Terminal id="DCIN+" name="DCIN+" mdlName="1" direction="Z+" />
+		<Terminal id="DCIN-" name="DCIN-" mdlName="2" direction="Z+" />
+		<Terminal id="OUT+" name="OUT+" mdlName="3" direction="Z+" />
+		<Terminal id="OUT-" name="OUT-" mdlName="4" direction="Z+" />
+
+		<Terminal id="C" name="C" mdlName="5" direction="Z+" />
+		<Terminal id="E" name="E" mdlName="6" direction="Z+" />
+
+		<!-- outputEnable -->
+		<Terminal id="EN" name="EN" mdlName="7" direction="Z+" />
+		<Terminal id="COM1" name="COM" mdlName="8" direction="Z+" />
+
+		<!-- direction -->
+		<Terminal id="DIR" name="DIR" mdlName="9" direction="Z+" />
+		<Terminal id="COM2" name="COM" mdlName="10" direction="Z+" />
+
+		<Terminal id="S1" name="S1" mdlName="11" direction="Z+" />
+		<Terminal id="S2" name="S2" mdlName="12" direction="Z+" />
+		<Terminal id="S3" name="S3" mdlName="13" direction="Z+" />
+
+		<Magnetism>
+			<VoltageIO type="input" term1Id="DCIN+" term2Id="DCIN-" value="+24" deviation="2" />
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="DCIN+" term2Id="EN" value="1" />
+			<ResisRelation term1Id="DCIN+" term2Id="DIR" value="1" />
+			<ResisRelation term1Id="DCIN-" term2Id="COM1" value="0" />
+			<ResisRelation term1Id="DCIN-" term2Id="COM2" value="0" />
+		</ResisState>
+	</ElecCompDef>
+</roots>

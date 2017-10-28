@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<link file="components/Fanuc/IO.xml" />
+	<link file="components/Fanuc/NC.xml" />
+	<link file="components/Fanuc/ServoDrive.xml" />
+	<link file="components/Fanuc/ServoMotor.xml" />
+	<link file="components/Fanuc/ControlComp.xml" />
+	<link file="components/Fanuc/Operator.xml" />
+</root>

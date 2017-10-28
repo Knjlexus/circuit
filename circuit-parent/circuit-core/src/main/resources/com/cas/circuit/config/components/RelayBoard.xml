@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="继电器模块" model="FX-01/16G" desc="继电器模块集成了来自机床侧信号输入端子、继电器控制接线端子和CB 50芯线缆接线端，每个继电器下方有NO、C、NC三个端子，分别对应常开、公共端和常闭，通常应用于自动化控制电路中，起到自动调节、转换电路等作用。">
+		<Jack id="CB105" name="CB105" format="CB" mdlName="cb1" jackDirection="x" direction="y+">
+			<Terminal name="CB105针脚1" id="105_1" index="1" mark="A01" />
+			<Terminal name="CB105针脚2" id="105_2" index="2" mark="B01" />
+			<Terminal name="CB105针脚3" id="105_3" index="3" mark="A02" />
+			<Terminal name="CB105针脚4" id="105_4" index="4" mark="B02" />
+			<Terminal name="CB105针脚5" id="105_5" index="5" mark="A03" />
+			<Terminal name="CB105针脚6" id="105_6" index="6" mark="B03" />
+			<Terminal name="CB105针脚7" id="105_7" index="7" mark="A04" />
+			<Terminal name="CB105针脚8" id="105_8" index="8" mark="B04" />
+			<Terminal name="CB105针脚9" id="105_9" index="9" mark="A05" />
+			<Terminal name="CB105针脚10" id="105_10" index="10" mark="B05" />
+			<Terminal name="CB105针脚11" id="105_11" index="11" mark="A06" />
+			<Terminal name="CB105针脚12" id="105_12" index="12" mark="B06" />
+			<Terminal name="CB105针脚13" id="105_13" index="13" mark="A07" />
+			<Terminal name="CB105针脚14" id="105_14" index="14" mark="B07" />
+			<Terminal name="CB105针脚15" id="105_15" index="15" mark="A08" />
+			<Terminal name="CB105针脚16" id="105_16" index="16" mark="B08" />
+			<Terminal name="CB105针脚17" id="105_17" index="17" mark="A09" />
+			<Terminal name="CB105针脚18" id="105_18" index="18" mark="B09" />
+			<Terminal name="CB105针脚19" id="105_19" index="19" mark="A10" />
+			<Terminal name="CB105针脚20" id="105_20" index="20" mark="B10" />
+			<Terminal name="CB105针脚21" id="105_21" index="21" mark="A11" />
+			<Terminal name="CB105针脚22" id="105_22" index="22" mark="B11" />
+			<Terminal name="CB105针脚23" id="105_23" index="23" mark="A12" />
+			<Terminal name="CB105针脚24" id="105_24" index="24" mark="B12" />
+			<Terminal name="CB105针脚25" id="105_25" index="25" mark="A13" />
+			<Terminal name="CB105针脚26" id="105_26" index="26" mark="B13" />
+			<Terminal name="CB105针脚27" id="105_27" index="27" mark="A14" />
+			<Terminal name="CB105针脚28" id="105_28" index="28" mark="B14" />
+			<Terminal name="CB105针脚29" id="105_29" index="29" mark="A15" />
+			<Terminal name="CB105针脚30" id="105_30" index="30" mark="B15" />
+			<Terminal name="CB105针脚31" id="105_31" index="31" mark="A16" />
+			<Terminal name="CB105针脚32" id="105_32" index="32" mark="B16" />
+			<Terminal name="CB105针脚33" id="105_33" index="33" mark="A17" />
+			<Terminal name="CB105针脚34" id="105_34" index="34" mark="B17" />
+			<Terminal name="CB105针脚35" id="105_35" index="35" mark="A18" />
+			<Terminal name="CB105针脚36" id="105_36" index="36" mark="B18" />
+			<Terminal name="CB105针脚37" id="105_37" index="37" mark="A19" />
+			<Terminal name="CB105针脚38" id="105_38" index="38" mark="B19" />
+			<Terminal name="CB105针脚39" id="105_39" index="39" mark="A20" />
+			<Terminal name="CB105针脚40" id="105_40" index="40" mark="B20" />
+			<Terminal name="CB105针脚41" id="105_41" index="41" mark="A21" />
+			<Terminal name="CB105针脚42" id="105_42" index="42" mark="B21" />
+			<Terminal name="CB105针脚43" id="105_43" index="43" mark="A22" />
+			<Terminal name="CB105针脚44" id="105_44" index="44" mark="B22" />
+			<Terminal name="CB105针脚45" id="105_45" index="45" mark="A23" />
+			<Terminal name="CB105针脚46" id="105_46" index="46" mark="B23" />
+			<Terminal name="CB105针脚47" id="105_47" index="47" mark="A24" />
+			<Terminal name="CB105针脚48" id="105_48" index="48" mark="B24" />
+			<Terminal name="CB105针脚49" id="105_49" index="49" mark="A25" />
+			<Terminal name="CB105针脚50" id="105_50" index="50" mark="B25" />
+		</Jack>
+		<Terminal id="jack_28" name="B14" mdlName="a1" direction="y+" />
+		<Terminal id="jack_27" name="A14" mdlName="a2" direction="y+" />
+		<Terminal id="jack_26" name="B13" mdlName="a3" direction="y+" />
+		<Terminal id="jack_25" name="A13" mdlName="a4" direction="y+" />
+		<Terminal id="jack_24" name="B12" mdlName="a5" direction="y+" />
+		<Terminal id="jack_23" name="A12" mdlName="a6" direction="y+" />
+		<Terminal id="jack_22" name="B11" mdlName="a7" direction="y+" />
+		<Terminal id="jack_21" name="A11" mdlName="a8" direction="y+" />
+		<Terminal id="jack_20" name="B10" mdlName="a9" direction="y+" />
+		<Terminal id="jack_19" name="A10" mdlName="a10" direction="y+" />
+		<Terminal id="jack_18" name="B09" mdlName="a11" direction="y+" />
+		<Terminal id="jack_17" name="A09" mdlName="a12" direction="y+" />
+		<Terminal id="jack_16" name="B08" mdlName="a13" direction="y+" />
+		<Terminal id="jack_15" name="A08" mdlName="a14" direction="y+" />
+		<Terminal id="jack_14" name="B07" mdlName="a15" direction="y+" />
+		<Terminal id="jack_13" name="A07" mdlName="a16" direction="y+" />
+		<Terminal id="jack_12" name="B06" mdlName="a17" direction="y+" />
+		<Terminal id="jack_11" name="A06" mdlName="a18" direction="y+" />
+		<Terminal id="jack_10" name="B05" mdlName="a19" direction="y+" />
+		<Terminal id="jack_9" name="A05" mdlName="a20" direction="y+" />
+		<Terminal id="jack_8" name="B04" mdlName="a21" direction="y+" />
+		<Terminal id="jack_7" name="A04" mdlName="a22" direction="y+" />
+		<Terminal id="jack_6" name="B03" mdlName="a23" direction="y+" />
+		<Terminal id="jack_5" name="A03" mdlName="a24" direction="y+" />
+		<Terminal id="jack_4" name="B02" mdlName="a25" direction="y+" />
+		<Terminal id="jack_3" name="A02" mdlName="a26" direction="y+" />
+		<Terminal id="jack_2" name="B01" mdlName="a27" direction="y+" mark="B01" />
+		<Terminal id="jack_1" name="A01" mdlName="a28" direction="y+" mark="A01" />
+
+		<Terminal id="DCIN-" name="0V" mark="0V" mdlName="49" voltage="0V" direction="y-" team="power" />
+		<Terminal id="DCIN+" name="24V" mark="+24V" mdlName="50" voltage="+24V" direction="y-" team="power" />
+
+		<Magnetism>
+			<VoltageIO term1Id="105_31" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off1|on1" />
+			<LightIO name="继电器指示灯1" mdlName="L1" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_32" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off2|on2" />
+			<LightIO name="继电器指示灯2" mdlName="L2" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_33" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off3|on3" />
+			<LightIO name="继电器指示灯3" mdlName="L3" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_34" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off4|on4" />
+			<LightIO name="继电器指示灯4" mdlName="L4" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_35" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off5|on5" />
+			<LightIO name="继电器指示灯5" mdlName="L5" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_36" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off6|on6" />
+			<LightIO name="继电器指示灯6" mdlName="L6" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_37" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off7|on7" />
+			<LightIO name="继电器指示灯7" mdlName="L7" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_38" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off8|on8" />
+			<LightIO name="继电器指示灯8" mdlName="L8" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_39" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off9|on9" />
+			<LightIO name="继电器指示灯9" mdlName="L9" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_40" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off10|on10" />
+			<LightIO name="继电器指示灯10" mdlName="L10" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_41" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off11|on11" />
+			<LightIO name="继电器指示灯11" mdlName="L11" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_42" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off12|on12" />
+			<LightIO name="继电器指示灯12" mdlName="L12" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_43" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off13|on13" />
+			<LightIO name="继电器指示灯13" mdlName="L13" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_44" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off14|on14" />
+			<LightIO name="继电器指示灯14" mdlName="L14" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_45" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off15|on15" />
+			<LightIO name="继电器指示灯15" mdlName="L15" glowColor="0|1|0|1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="105_46" term2Id="DCIN-" type="input" value="+24" deviation="1" switchIn="off16|on16" />
+			<LightIO name="继电器指示灯16" mdlName="L16" glowColor="0|1|0|1" />
+		</Magnetism>
+
+		<!-- KA2 -->
+		<Terminal id="relay_1NO" mark="1NO" name="1NO" mdlName="1" direction="y-" />
+		<Terminal id="relay_1C" mark="1C" name="1C" mdlName="2" direction="y-" />
+		<Terminal id="relay_1NC" mark="1NC" name="1NC" mdlName="3" direction="y-" />
+		<ResisState id="off1" isDef="1">
+			<ResisRelation term1Id="relay_1C" term2Id="relay_1NC" value="0" />
+		</ResisState>
+		<ResisState id="on1" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_1NO" term2Id="relay_1C" value="0" />
+		</ResisState>
+		<!-- KA3 -->
+		<Terminal id="relay_2NO" mark="2NO" name="2NO" mdlName="4" direction="y-" />
+		<Terminal id="relay_2C" mark="2C" name="2C" mdlName="5" direction="y-" />
+		<Terminal id="relay_2NC" mark="2NC" name="2NC" mdlName="6" direction="y-" />
+		<ResisState id="off2" isDef="1">
+			<ResisRelation term1Id="relay_2C" term2Id="relay_2NC" value="0" />
+		</ResisState>
+		<ResisState id="on2" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_2NO" term2Id="relay_2C" value="0" />
+		</ResisState>
+		<!-- KA4 -->
+		<Terminal id="relay_3NO" mark="3NO" name="3NO" mdlName="7" direction="y-" />
+		<Terminal id="relay_3C" mark="3C" name="3C" mdlName="8" direction="y-" />
+		<Terminal id="relay_3NC" mark="3NC" name="3NC" mdlName="9" direction="y-" />
+		<ResisState id="off3" isDef="1">
+			<ResisRelation term1Id="relay_3C" term2Id="relay_3NC" value="0" />
+		</ResisState>
+		<ResisState id="on3" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_3NO" term2Id="relay_3C" value="0" />
+		</ResisState>
+		<!-- KA5 -->
+		<Terminal id="relay_4NO" mark="4NO" name="4NO" mdlName="10" direction="y-" />
+		<Terminal id="relay_4C" mark="4C" name="4C" mdlName="11" direction="y-" />
+		<Terminal id="relay_4NC" mark="4NC" name="4NC" mdlName="12" direction="y-" />
+		<ResisState id="off4" isDef="1">
+			<ResisRelation term1Id="relay_4C" term2Id="relay_4NC" value="0" />
+		</ResisState>
+		<ResisState id="on4" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_4NO" term2Id="relay_4C" value="0" />
+		</ResisState>
+		<!-- KA6 -->
+		<Terminal id="relay_5NO" mark="5NO" name="5NO" mdlName="13" direction="y-" />
+		<Terminal id="relay_5C" mark="5C" name="5C" mdlName="14" direction="y-" />
+		<Terminal id="relay_5NC" mark="5NC" name="5NC" mdlName="15" direction="y-" />
+		<ResisState id="off5" isDef="1">
+			<ResisRelation term1Id="relay_5C" term2Id="relay_5NC" value="0" />
+		</ResisState>
+		<ResisState id="on5" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_5NO" term2Id="relay_5C" value="0" />
+		</ResisState>
+		<!-- KA7 -->
+		<Terminal id="relay_6NO" mark="6NO" name="6NO" mdlName="16" direction="y-" />
+		<Terminal id="relay_6C" mark="6C" name="6C" mdlName="17" direction="y-" />
+		<Terminal id="relay_6NC" mark="6NC" name="6NC" mdlName="18" direction="y-" />
+		<ResisState id="off6" isDef="1">
+			<ResisRelation term1Id="relay_6C" term2Id="relay_6NC" value="0" />
+		</ResisState>
+		<ResisState id="on6" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_6NO" term2Id="relay_6C" value="0" />
+		</ResisState>
+		<!-- KA8 -->
+		<Terminal id="relay_7NO" mark="7NO" name="7NO" mdlName="19" direction="y-" />
+		<Terminal id="relay_7C" mark="7C" name="7C" mdlName="20" direction="y-" />
+		<Terminal id="relay_7NC" mark="7NC" name="7NC" mdlName="21" direction="y-" />
+		<ResisState id="off7" isDef="1">
+			<ResisRelation term1Id="relay_7C" term2Id="relay_7NC" value="0" />
+		</ResisState>
+		<ResisState id="on7" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_7NO" term2Id="relay_7C" value="0" />
+		</ResisState>
+		<!-- KA9 -->
+		<Terminal id="relay_8NO" mark="8NO" name="8NO" mdlName="22" direction="y-" />
+		<Terminal id="relay_8C" mark="8C" name="8C" mdlName="23" direction="y-" />
+		<Terminal id="relay_8NC" mark="8NC" name="8NC" mdlName="24" direction="y-" />
+		<ResisState id="off8" isDef="1">
+			<ResisRelation term1Id="relay_8C" term2Id="relay_8NC" value="0" />
+		</ResisState>
+		<ResisState id="on8" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_8NO" term2Id="relay_8C" value="0" />
+		</ResisState>
+		<!-- KA10 -->
+		<Terminal id="relay_9NO" mark="9NO" name="9NO" mdlName="25" direction="y-" />
+		<Terminal id="relay_9C" mark="9C" name="9C" mdlName="26" direction="y-" />
+		<Terminal id="relay_9NC" mark="9NC" name="9NC" mdlName="27" direction="y-" />
+		<ResisState id="off9" isDef="1">
+			<ResisRelation term1Id="relay_9C" term2Id="relay_9NC" value="0" />
+		</ResisState>
+		<ResisState id="on9" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_9NO" term2Id="relay_9C" value="0" />
+		</ResisState>
+		<!-- KA11 -->
+		<Terminal id="relay_10NO" mark="10NO" name="10NO" mdlName="28" direction="y-" />
+		<Terminal id="relay_10C" mark="10C" name="10C" mdlName="29" direction="y-" />
+		<Terminal id="relay_10NC" mark="10NC" name="10NC" mdlName="30" direction="y-" />
+		<ResisState id="off10" isDef="1">
+			<ResisRelation term1Id="relay_10C" term2Id="relay_10NC" value="0" />
+		</ResisState>
+		<ResisState id="on10" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_10NO" term2Id="relay_10C" value="0" />
+		</ResisState>
+		<!-- KA12 -->
+		<Terminal id="relay_11NO" mark="11NO" name="11NO" mdlName="31" direction="y-" />
+		<Terminal id="relay_11C" mark="11C" name="11C" mdlName="32" direction="y-" />
+		<Terminal id="relay_11NC" mark="11NC" name="11NC" mdlName="33" direction="y-" />
+		<ResisState id="off11" isDef="1">
+			<ResisRelation term1Id="relay_11C" term2Id="relay_11NC" value="0" />
+		</ResisState>
+		<ResisState id="on11" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_11NO" term2Id="relay_11C" value="0" />
+		</ResisState>
+		<!-- KA13 -->
+		<Terminal id="relay_12NO" mark="12NO" name="12NO" mdlName="34" direction="y-" />
+		<Terminal id="relay_12C" mark="12C" name="12C" mdlName="35" direction="y-" />
+		<Terminal id="relay_12NC" mark="12NC" name="12NC" mdlName="36" direction="y-" />
+		<ResisState id="off12" isDef="1">
+			<ResisRelation term1Id="relay_12C" term2Id="relay_12NC" value="0" />
+		</ResisState>
+		<ResisState id="on12" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_12NO" term2Id="relay_12C" value="0" />
+		</ResisState>
+		<!-- KA14 -->
+		<Terminal id="relay_13NO" mark="13NO" name="13NO" mdlName="37" direction="y-" />
+		<Terminal id="relay_13C" mark="13C" name="13C" mdlName="38" direction="y-" />
+		<Terminal id="relay_13NC" mark="13NC" name="13NC" mdlName="39" direction="y-" />
+		<ResisState id="off13" isDef="1">
+			<ResisRelation term1Id="relay_13C" term2Id="relay_13NC" value="0" />
+		</ResisState>
+		<ResisState id="on13" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_13NO" term2Id="relay_13C" value="0" />
+		</ResisState>
+		<!-- KA15 -->
+		<Terminal id="relay_14NO" mark="14NO" name="14NO" mdlName="40" direction="y-" />
+		<Terminal id="relay_14C" mark="14C" name="14C" mdlName="41" direction="y-" />
+		<Terminal id="relay_14NC" mark="14NC" name="14NC" mdlName="42" direction="y-" />
+		<ResisState id="off14" isDef="1">
+			<ResisRelation term1Id="relay_14C" term2Id="relay_14NC" value="0" />
+		</ResisState>
+		<ResisState id="on14" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_14NO" term2Id="relay_14C" value="0" />
+		</ResisState>
+		<!-- KA16 -->
+		<Terminal id="relay_15NO" mark="15NO" name="15NO" mdlName="43" direction="y-" />
+		<Terminal id="relay_15C" mark="15C" name="15C" mdlName="44" direction="y-" />
+		<Terminal id="relay_15NC" mark="15NC" name="15NC" mdlName="45" direction="y-" />
+		<ResisState id="off15" isDef="1">
+			<ResisRelation term1Id="relay_15C" term2Id="relay_15NC" value="0" />
+		</ResisState>
+		<ResisState id="on15" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_15NO" term2Id="relay_15C" value="0" />
+		</ResisState>
+		<!-- KA17 -->
+		<Terminal id="relay_16NO" mark="16NO" name="16NO" mdlName="46" direction="y-" />
+		<Terminal id="relay_16C" mark="16C" name="16C" mdlName="47" direction="y-" />
+		<Terminal id="relay_16NC" mark="16NC" name="16NC" mdlName="48" direction="y-" />
+		<ResisState id="off16" isDef="1">
+			<ResisRelation term1Id="relay_16C" term2Id="relay_16NC" value="0" />
+		</ResisState>
+		<ResisState id="on16" glowColor="0|1|0|1">
+			<ResisRelation term1Id="relay_16NO" term2Id="relay_16C" value="0" />
+		</ResisState>
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="105_1" term2Id="jack_1" value="0" />
+			<ResisRelation term1Id="105_2" term2Id="jack_2" value="0" />
+			<ResisRelation term1Id="105_3" term2Id="jack_3" value="0" />
+			<ResisRelation term1Id="105_4" term2Id="jack_4" value="0" />
+			<ResisRelation term1Id="105_5" term2Id="jack_5" value="0" />
+			<ResisRelation term1Id="105_6" term2Id="jack_6" value="0" />
+			<ResisRelation term1Id="105_7" term2Id="jack_7" value="0" />
+			<ResisRelation term1Id="105_8" term2Id="jack_8" value="0" />
+			<ResisRelation term1Id="105_9" term2Id="jack_9" value="0" />
+			<ResisRelation term1Id="105_10" term2Id="jack_10" value="0" />
+			<ResisRelation term1Id="105_11" term2Id="jack_11" value="0" />
+			<ResisRelation term1Id="105_12" term2Id="jack_12" value="0" />
+			<ResisRelation term1Id="105_13" term2Id="jack_13" value="0" />
+			<ResisRelation term1Id="105_14" term2Id="jack_14" value="0" />
+			<ResisRelation term1Id="105_15" term2Id="jack_15" value="0" />
+			<ResisRelation term1Id="105_16" term2Id="jack_16" value="0" />
+			<ResisRelation term1Id="105_17" term2Id="jack_17" value="0" />
+			<ResisRelation term1Id="105_18" term2Id="jack_18" value="0" />
+			<ResisRelation term1Id="105_19" term2Id="jack_19" value="0" />
+			<ResisRelation term1Id="105_20" term2Id="jack_20" value="0" />
+			<ResisRelation term1Id="105_21" term2Id="jack_21" value="0" />
+			<ResisRelation term1Id="105_22" term2Id="jack_22" value="0" />
+			<ResisRelation term1Id="105_23" term2Id="jack_23" value="0" />
+			<ResisRelation term1Id="105_24" term2Id="jack_24" value="0" />
+			<ResisRelation term1Id="105_25" term2Id="jack_25" value="0" />
+			<ResisRelation term1Id="105_26" term2Id="jack_26" value="0" />
+			<ResisRelation term1Id="105_27" term2Id="jack_27" value="0" />
+			<ResisRelation term1Id="105_28" term2Id="jack_28" value="0" />
+
+			<ResisRelation term1Id="105_47" term2Id="DCIN+" value="0" />
+			<ResisRelation term1Id="105_48" term2Id="DCIN+" value="0" />
+			<ResisRelation term1Id="105_49" term2Id="DCIN+" value="0" />
+			<ResisRelation term1Id="105_50" term2Id="DCIN+" value="0" />
+
+		</ResisState>
+	</ElecCompDef>
+</Comps>

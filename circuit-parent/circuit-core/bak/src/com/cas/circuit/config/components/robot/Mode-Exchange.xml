@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roots>
+	<ElecCompDef name="切换装置" model="Mode-Exchange">
+		<Terminal id="24V-1" name="24V" mdlName="1" direction="Y-" />
+		<Terminal id="24V-2" name="24V" mdlName="2" direction="Y-" />
+		<Terminal id="DIR" name="DIR" mdlName="3" direction="Y-" />
+		<Terminal id="OV" name="OV" mdlName="4" direction="Y-" />
+	</ElecCompDef>
+</roots>

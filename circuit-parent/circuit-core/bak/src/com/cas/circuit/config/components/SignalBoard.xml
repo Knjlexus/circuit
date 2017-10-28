@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="转接器" model="FX-26BB" desc="转接中含有基本模块和扩展模块，对于扩展模块，分为除输入输出外还带有手摇脉冲发生器接口的扩展模块和只有输入输出的扩展模块。在连接CB 50芯线缆时，CB 50芯线缆的管脚定义，是通过PMC地址分配设定决定的。">
+		<Jack format="CB" mdlName="CB1" id="CB106" name="CB106" direction="y+" jackDirection="x">
+			<Terminal name="CB106针脚1" id="106_1" index="1" mark="A01" />
+			<Terminal name="CB106针脚2" id="106_2" index="2" mark="B01" />
+			<Terminal name="CB106针脚3" id="106_3" index="3" mark="A02" />
+			<Terminal name="CB106针脚4" id="106_4" index="4" mark="B02" />
+			<Terminal name="CB106针脚5" id="106_5" index="5" mark="A03" />
+			<Terminal name="CB106针脚6" id="106_6" index="6" mark="B03" />
+			<Terminal name="CB106针脚7" id="106_7" index="7" mark="A04" />
+			<Terminal name="CB106针脚8" id="106_8" index="8" mark="B04" />
+			<Terminal name="CB106针脚9" id="106_9" index="9" mark="A05" />
+			<Terminal name="CB106针脚10" id="106_10" index="10" mark="B05" />
+			<Terminal name="CB106针脚11" id="106_11" index="11" mark="A06" />
+			<Terminal name="CB106针脚12" id="106_12" index="12" mark="B06" />
+			<Terminal name="CB106针脚13" id="106_13" index="13" mark="A07" />
+			<Terminal name="CB106针脚14" id="106_14" index="14" mark="B07" />
+			<Terminal name="CB106针脚15" id="106_15" index="15" mark="A08" />
+			<Terminal name="CB106针脚16" id="106_16" index="16" mark="B08" />
+			<Terminal name="CB106针脚17" id="106_17" index="17" mark="A09" />
+			<Terminal name="CB106针脚18" id="106_18" index="18" mark="B09" />
+			<Terminal name="CB106针脚19" id="106_19" index="19" mark="A10" />
+			<Terminal name="CB106针脚20" id="106_20" index="20" mark="B10" />
+			<Terminal name="CB106针脚21" id="106_21" index="21" mark="A11" />
+			<Terminal name="CB106针脚22" id="106_22" index="22" mark="B11" />
+			<Terminal name="CB106针脚23" id="106_23" index="23" mark="A12" />
+			<Terminal name="CB106针脚24" id="106_24" index="24" mark="B12" />
+			<Terminal name="CB106针脚25" id="106_25" index="25" mark="A13" />
+			<Terminal name="CB106针脚26" id="106_26" index="26" mark="B13" />
+
+			<Terminal name="CB106针脚27" id="106_27" index="27" mark="COM4" />
+			<!-- <Terminal name="CB106针脚28" id="106_28" index="28" mark="B14" /> -->
+			<!-- <Terminal name="CB106针脚29" id="106_29" index="29" mark="A15" /> -->
+			<!-- <Terminal name="CB106针脚30" id="106_30" index="30" mark="B15" /> -->
+
+			<Terminal name="CB106针脚31" id="106_31" index="31" mark="A16" />
+			<Terminal name="CB106针脚32" id="106_32" index="32" mark="B16" />
+			<Terminal name="CB106针脚33" id="106_33" index="33" mark="A17" />
+			<Terminal name="CB106针脚34" id="106_34" index="34" mark="B17" />
+			<Terminal name="CB106针脚35" id="106_35" index="35" mark="A18" />
+			<Terminal name="CB106针脚36" id="106_36" index="36" mark="B18" />
+			<Terminal name="CB106针脚37" id="106_37" index="37" mark="A19" />
+			<Terminal name="CB106针脚38" id="106_38" index="38" mark="B19" />
+
+			<Terminal name="CB106针脚39" id="106_39" index="39" mark="A20" />
+			<Terminal name="CB106针脚40" id="106_40" index="40" mark="B20" />
+			<Terminal name="CB106针脚41" id="106_41" index="41" mark="A21" />
+			<Terminal name="CB106针脚42" id="106_42" index="42" mark="B21" />
+			<Terminal name="CB106针脚43" id="106_43" index="43" mark="A22" />
+			<Terminal name="CB106针脚44" id="106_44" index="44" mark="B22" />
+			<Terminal name="CB106针脚45" id="106_45" index="45" mark="A23" />
+			<Terminal name="CB106针脚46" id="106_46" index="46" mark="B23" />
+
+			<Terminal name="CB106针脚47" id="106_47" index="47" mark="DOCOM" />
+			<Terminal name="CB106针脚48" id="106_48" index="48" mark="DOCOM" />
+			<Terminal name="CB106针脚49" id="106_49" index="49" mark="DOCOM" />
+			<Terminal name="CB106针脚50" id="106_50" index="50" mark="DOCOM" />
+		</Jack>
+		<Terminal id="jack_1" index="1" name="A01" mark="A01" mdlName="A1" direction="y-" />
+		<Terminal id="jack_2" index="2" name="B01" mark="B01" mdlName="B01" direction="y-" />
+		<Terminal id="jack_3" index="3" name="A02" mark="A02" mdlName="A2" direction="y-" />
+		<Terminal id="jack_4" index="4" name="B02" mark="B02" mdlName="B02" direction="y-" />
+		<Terminal id="jack_5" index="5" name="A03" mark="A03" mdlName="A3" direction="y-" />
+		<Terminal id="jack_6" index="6" name="B03" mark="B03" mdlName="B03" direction="y-" />
+		<Terminal id="jack_7" index="7" name="A04" mark="A04" mdlName="A4" direction="y-" />
+		<Terminal id="jack_8" index="8" name="B04" mark="B04" mdlName="B04" direction="y-" />
+		<Terminal id="jack_9" index="9" name="A05" mark="A05" mdlName="A5" direction="y-" />
+		<Terminal id="jack_10" index="10" name="B05" mark="B05" mdlName="B05" direction="y-" />
+		<Terminal id="jack_11" index="11" name="A06" mark="A06" mdlName="A6" direction="y-" />
+		<Terminal id="jack_12" index="12" name="B06" mark="B06" mdlName="B06" direction="y-" />
+		<Terminal id="jack_13" index="13" name="A07" mark="A07" mdlName="A7" direction="y-" />
+		<Terminal id="jack_14" index="14" name="B07" mark="B07" mdlName="B07" direction="y-" />
+		<Terminal id="jack_15" index="15" name="A08" mark="A08" mdlName="A8" direction="y-" />
+		<Terminal id="jack_16" index="16" name="B08" mark="B08" mdlName="B08" direction="y-" />
+		<Terminal id="jack_17" index="17" name="A09" mark="A09" mdlName="A9" direction="y-" />
+		<Terminal id="jack_18" index="18" name="B09" mark="B09" mdlName="B09" direction="y-" />
+		<Terminal id="jack_19" index="19" name="A10" mark="A10" mdlName="A10" direction="y-" />
+		<Terminal id="jack_20" index="20" name="B10" mark="B10" mdlName="B10" direction="y-" />
+		<Terminal id="jack_21" index="21" name="A11" mark="A11" mdlName="A11" direction="y-" />
+		<Terminal id="jack_22" index="22" name="B11" mark="B11" mdlName="B11" direction="y-" />
+		<Terminal id="jack_23" index="23" name="A12" mark="A12" mdlName="A12" direction="y-" />
+		<Terminal id="jack_24" index="24" name="B12" mark="B12" mdlName="B12" direction="y-" />
+		<Terminal id="jack_25" index="25" name="A13" mark="A13" mdlName="A13" direction="y-" />
+
+		<Terminal id="jack_26" index="26" name="B13" mark="B13" mdlName="B13" direction="y-" />
+		<Terminal id="jack_27" index="27" name="A14" mark="A14" mdlName="A14" direction="y-" />
+		<Terminal id="jack_28" index="28" name="B14" mark="B14" mdlName="B14" direction="y-" />
+		<Terminal id="jack_29" index="29" name="A15" mark="A15" mdlName="A15" direction="y-" />
+		<Terminal id="jack_30" index="30" name="B15" mark="B15" mdlName="B15" direction="y-" />
+		<Terminal id="jack_31" index="31" name="A16" mark="A16" mdlName="A16" direction="y-" />
+		<Terminal id="jack_32" index="32" name="B16" mark="B16" mdlName="B16" direction="y-" />
+		<Terminal id="jack_33" index="33" name="A17" mark="A17" mdlName="A17" direction="y-" />
+		<Terminal id="jack_34" index="34" name="B17" mark="B17" mdlName="B17" direction="y-" />
+		<Terminal id="jack_35" index="35" name="A18" mark="A18" mdlName="A18" direction="y-" />
+		<Terminal id="jack_36" index="36" name="B18" mark="B18" mdlName="B18" direction="y-" />
+		<Terminal id="jack_37" index="37" name="A19" mark="A19" mdlName="A19" direction="y-" />
+		<Terminal id="jack_38" index="38" name="B19" mark="B19" mdlName="B19" direction="y-" />
+		<Terminal id="jack_39" index="39" name="A20" mark="A20" mdlName="A20" direction="y-" />
+		<Terminal id="jack_40" index="40" name="B20" mark="B20" mdlName="B20" direction="y-" />
+		<Terminal id="jack_41" index="41" name="A21" mark="A21" mdlName="A21" direction="y-" />
+		<Terminal id="jack_42" index="42" name="B21" mark="B21" mdlName="B21" direction="y-" />
+		<Terminal id="jack_43" index="43" name="A22" mark="A22" mdlName="A22" direction="y-" />
+		<Terminal id="jack_44" index="44" name="B22" mark="B22" mdlName="B22" direction="y-" />
+		<Terminal id="jack_45" index="45" name="A23" mark="A23" mdlName="A23" direction="y-" />
+		<Terminal id="jack_46" index="46" name="B23" mark="B23" mdlName="B23" direction="y-" />
+
+		<Terminal id="jack_47" index="47" name="A24" mark="A24" mdlName="A24" direction="y-" />
+		<Terminal id="jack_48" index="48" name="B24" mark="B24" mdlName="B24" direction="y-" />
+		<Terminal id="jack_49" index="49" name="A25" mark="A25" mdlName="A25" direction="y-" />
+		<Terminal id="jack_50" index="50" name="B25" mark="B25" mdlName="B25" direction="y-" />
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="106_1" term2Id="jack_1" value="0" />
+			<ResisRelation term1Id="106_2" term2Id="jack_2" value="0" />
+			<ResisRelation term1Id="106_3" term2Id="jack_3" value="0" />
+			<ResisRelation term1Id="106_4" term2Id="jack_4" value="0" />
+			<ResisRelation term1Id="106_5" term2Id="jack_5" value="0" />
+			<ResisRelation term1Id="106_6" term2Id="jack_6" value="0" />
+			<ResisRelation term1Id="106_7" term2Id="jack_7" value="0" />
+			<ResisRelation term1Id="106_8" term2Id="jack_8" value="0" />
+			<ResisRelation term1Id="106_9" term2Id="jack_9" value="0" />
+			<ResisRelation term1Id="106_10" term2Id="jack_10" value="0" />
+			<ResisRelation term1Id="106_11" term2Id="jack_11" value="0" />
+			<ResisRelation term1Id="106_12" term2Id="jack_12" value="0" />
+			<ResisRelation term1Id="106_13" term2Id="jack_13" value="0" />
+			<ResisRelation term1Id="106_14" term2Id="jack_14" value="0" />
+			<ResisRelation term1Id="106_15" term2Id="jack_15" value="0" />
+			<ResisRelation term1Id="106_16" term2Id="jack_16" value="0" />
+			<ResisRelation term1Id="106_17" term2Id="jack_17" value="0" />
+			<ResisRelation term1Id="106_18" term2Id="jack_18" value="0" />
+			<ResisRelation term1Id="106_19" term2Id="jack_19" value="0" />
+			<ResisRelation term1Id="106_20" term2Id="jack_20" value="0" />
+			<ResisRelation term1Id="106_21" term2Id="jack_21" value="0" />
+			<ResisRelation term1Id="106_22" term2Id="jack_22" value="0" />
+			<ResisRelation term1Id="106_23" term2Id="jack_23" value="0" />
+			<ResisRelation term1Id="106_24" term2Id="jack_24" value="0" />
+			<ResisRelation term1Id="106_25" term2Id="jack_25" value="0" />
+
+			<ResisRelation term1Id="106_25" term2Id="jack_25" value="0" />
+			<ResisRelation term1Id="106_26" term2Id="jack_26" value="0" />
+			<ResisRelation term1Id="106_27" term2Id="jack_27" value="0" />
+			<!-- <ResisRelation term1Id="106_28" term2Id="jack_28" value="0" /> -->
+			<!-- <ResisRelation term1Id="106_29" term2Id="jack_29" value="0" /> -->
+			<!-- <ResisRelation term1Id="106_30" term2Id="jack_30" value="0" /> -->
+			<ResisRelation term1Id="106_31" term2Id="jack_31" value="0" />
+			<ResisRelation term1Id="106_32" term2Id="jack_32" value="0" />
+			<ResisRelation term1Id="106_33" term2Id="jack_33" value="0" />
+			<ResisRelation term1Id="106_34" term2Id="jack_34" value="0" />
+			<ResisRelation term1Id="106_35" term2Id="jack_35" value="0" />
+			<ResisRelation term1Id="106_36" term2Id="jack_36" value="0" />
+			<ResisRelation term1Id="106_37" term2Id="jack_37" value="0" />
+			<ResisRelation term1Id="106_38" term2Id="jack_38" value="0" />
+			<ResisRelation term1Id="106_39" term2Id="jack_39" value="0" />
+			<ResisRelation term1Id="106_40" term2Id="jack_40" value="0" />
+			<ResisRelation term1Id="106_41" term2Id="jack_41" value="0" />
+			<ResisRelation term1Id="106_42" term2Id="jack_42" value="0" />
+			<ResisRelation term1Id="106_43" term2Id="jack_43" value="0" />
+			<ResisRelation term1Id="106_44" term2Id="jack_44" value="0" />
+			<ResisRelation term1Id="106_45" term2Id="jack_45" value="0" />
+			<ResisRelation term1Id="106_46" term2Id="jack_46" value="0" />
+			<ResisRelation term1Id="106_47" term2Id="jack_47" value="0" />
+			<ResisRelation term1Id="106_48" term2Id="jack_48" value="0" />
+			<ResisRelation term1Id="106_49" term2Id="jack_49" value="0" />
+			<ResisRelation term1Id="106_50" term2Id="jack_50" value="0" />
+
+			<ResisRelation term1Id="jack_47" term2Id="jack_48" value="0" />
+			<ResisRelation term1Id="jack_48" term2Id="jack_49" value="0" />
+			<ResisRelation term1Id="jack_49" term2Id="jack_50" value="0" />
+		</ResisState>
+	</ElecCompDef>
+</Comps>

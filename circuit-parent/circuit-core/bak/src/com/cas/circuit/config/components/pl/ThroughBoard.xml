@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roots>
+	<ElecCompDef name="装置侧电路转接板" model="PLC-T-2">
+		<Jack id="MT_15" mdlName="MT_15" name="MT_15" direction="X" core="15" cable="15PIN" format="15PIN">
+			<Terminal id="MT_15_01" name="MT_15_01号针脚" index="1" mark="" />
+			<Terminal id="MT_15_02" name="MT_15_02号针脚" index="2" mark="" />
+			<Terminal id="MT_15_03" name="MT_15_03号针脚" index="3" mark="" />
+			<Terminal id="MT_15_04" name="MT_15_04号针脚" index="4" mark="" />
+			<Terminal id="MT_15_05" name="MT_15_05号针脚" index="5" mark="" />
+			<Terminal id="MT_15_06" name="MT_15_06号针脚" index="6" mark="" />
+			<Terminal id="MT_15_07" name="MT_15_07号针脚" index="7" mark="" />
+			<Terminal id="MT_15_08" name="MT_15_08号针脚" index="8" mark="" />
+			<Terminal id="MT_15_09" name="MT_15_09号针脚" index="9" mark="" />
+			<Terminal id="MT_15_10" name="MT_15_10号针脚" index="10" mark="" />
+			<Terminal id="MT_15_11" name="MT_15_11号针脚" index="11" mark="" />
+			<Terminal id="MT_15_12" name="MT_15_12号针脚" index="12" mark="" />
+			<Terminal id="MT_15_13" name="MT_15_13号针脚" index="13" mark="" />
+			<Terminal id="MT_15_14" name="MT_15_14号针脚" index="14" mark="" />
+			<Terminal id="MT_15_15" name="MT_15_15号针脚" index="15" mark="" />
+		</Jack>
+		<!-- 15芯 -->
+		<Terminal id="15_02" name="02" mdlName="1" direction="Z+" />
+		<Terminal id="15_03" name="03" mdlName="2" direction="Z+" />
+		<Terminal id="15_04" name="04" mdlName="3" direction="Z+" />
+		<Terminal id="15_05" name="05" mdlName="4" direction="Z+" />
+		<Terminal id="15_06" name="06" mdlName="5" direction="Z+" />
+		<Terminal id="15_07" name="07" mdlName="6" direction="Z+" />
+		<Terminal id="15_08" name="08" mdlName="7" direction="Z+" />
+		<Terminal id="15_09" name="09" mdlName="8" direction="Z+" />
+		<Terminal id="15_10" name="10" mdlName="9" direction="Z+" />
+		<Terminal id="15_11" name="11" mdlName="10" direction="Z+" />
+		<Terminal id="15_12" name="12" mdlName="11" direction="Z+" />
+		<Terminal id="15_13" name="13" mdlName="12" direction="Z+" />
+		<Terminal id="15_14" name="14" mdlName="13" direction="Z+" />
+
+		<Terminal id="15_0V_01" name="0V" mdlName="26" direction="Z+" />
+		<Terminal id="15_0V_02" name="0V" mdlName="25" direction="Z+" />
+		<Terminal id="15_0V_03" name="0V" mdlName="24" direction="Z+" />
+		<Terminal id="15_0V_04" name="0V" mdlName="23" direction="Z+" />
+		<Terminal id="15_0V_05" name="0V" mdlName="22" direction="Z+" />
+		<Terminal id="15_0V_06" name="0V" mdlName="21" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="20" direction="Z+" /> -->
+		<Terminal id="15_24V_01" name="24V" mdlName="19" direction="Z+" />
+		<Terminal id="15_24V_02" name="24V" mdlName="18" direction="Z+" />
+		<Terminal id="15_24V_03" name="24V" mdlName="17" direction="Z+" />
+		<Terminal id="15_24V_04" name="24V" mdlName="16" direction="Z+" />
+		<Terminal id="15_24V_05" name="24V" mdlName="15" direction="Z+" />
+		<Terminal id="15_24V_06" name="24V" mdlName="14" direction="Z+" />
+
+		<Jack id="MT_25" mdlName="MT_25" name="MT_25" direction="X" core="25" cable="25PIN" format="25PIN" rotation="90,0,0">
+			<Terminal id="MT_25_01" name="MT_25_01号针脚" index="1" mark="" />
+			<Terminal id="MT_25_02" name="MT_25_02号针脚" index="2" mark="" />
+			<Terminal id="MT_25_03" name="MT_25_03号针脚" index="3" mark="" />
+			<Terminal id="MT_25_04" name="MT_25_04号针脚" index="4" mark="" />
+			<Terminal id="MT_25_05" name="MT_25_05号针脚" index="5" mark="" />
+			<Terminal id="MT_25_06" name="MT_25_06号针脚" index="6" mark="" />
+			<Terminal id="MT_25_07" name="MT_25_07号针脚" index="7" mark="" />
+			<Terminal id="MT_25_08" name="MT_25_08号针脚" index="8" mark="" />
+			<Terminal id="MT_25_09" name="MT_25_09号针脚" index="9" mark="" />
+			<Terminal id="MT_25_10" name="MT_25_10号针脚" index="10" mark="" />
+			<Terminal id="MT_25_11" name="MT_25_11号针脚" index="11" mark="" />
+			<Terminal id="MT_25_12" name="MT_25_12号针脚" index="12" mark="" />
+			<Terminal id="MT_25_13" name="MT_25_13号针脚" index="13" mark="" />
+			<Terminal id="MT_25_14" name="MT_25_14号针脚" index="14" mark="" />
+			<Terminal id="MT_25_15" name="MT_25_15号针脚" index="15" mark="" />
+			<Terminal id="MT_25_16" name="MT_25_16号针脚" index="16" mark="" />
+			<Terminal id="MT_25_17" name="MT_25_17号针脚" index="17" mark="" />
+			<Terminal id="MT_25_18" name="MT_25_18号针脚" index="18" mark="" />
+			<Terminal id="MT_25_19" name="MT_25_19号针脚" index="19" mark="" />
+			<Terminal id="MT_25_20" name="MT_25_20号针脚" index="20" mark="" />
+			<Terminal id="MT_25_21" name="MT_25_21号针脚" index="21" mark="" />
+			<Terminal id="MT_25_22" name="MT_25_22号针脚" index="22" mark="" />
+			<Terminal id="MT_25_23" name="MT_25_23号针脚" index="23" mark="" />
+			<Terminal id="MT_25_24" name="MT_25_24号针脚" index="24" mark="" />
+			<Terminal id="MT_25_25" name="MT_25_25号针脚" index="25" mark="" />
+		</Jack>
+		<Terminal id="25_02" name="02" mdlName="27" direction="Z+" />
+		<Terminal id="25_03" name="03" mdlName="28" direction="Z+" />
+		<Terminal id="25_04" name="04" mdlName="29" direction="Z+" />
+		<Terminal id="25_05" name="05" mdlName="30" direction="Z+" />
+		<Terminal id="25_06" name="06" mdlName="31" direction="Z+" />
+		<Terminal id="25_07" name="07" mdlName="32" direction="Z+" />
+		<Terminal id="25_08" name="08" mdlName="33" direction="Z+" />
+		<Terminal id="25_09" name="09" mdlName="34" direction="Z+" />
+		<Terminal id="25_10" name="10" mdlName="35" direction="Z+" />
+		<Terminal id="25_11" name="11" mdlName="36" direction="Z+" />
+		<Terminal id="25_12" name="12" mdlName="37" direction="Z+" />
+		<Terminal id="25_13" name="13" mdlName="38" direction="Z+" />
+		<Terminal id="25_14" name="14" mdlName="39" direction="Z+" />
+		<Terminal id="25_15" name="15" mdlName="40" direction="Z+" />
+		<Terminal id="25_16" name="16" mdlName="41" direction="Z+" />
+		<Terminal id="25_17" name="17" mdlName="42" direction="Z+" />
+
+		<Terminal id="25_24V_01" name="24V" mdlName="49" direction="Z+" />
+		<Terminal id="25_24V_02" name="24V" mdlName="48" direction="Z+" />
+		<Terminal id="25_24V_03" name="24V" mdlName="47" direction="Z+" />
+		<Terminal id="25_24V_04" name="24V" mdlName="46" direction="Z+" />
+		<Terminal id="25_24V_05" name="24V" mdlName="45" direction="Z+" />
+		<Terminal id="25_24V_06" name="24V" mdlName="44" direction="Z+" />
+		<Terminal id="25_24V_07" name="24V" mdlName="43" direction="Z+" />
+		<!-- <Terminal id=" " name=" " mdlName="51" direction="Z+" /> -->
+		<!-- <Terminal id=" " name=" " mdlName="50" direction="Z+" /> -->
+		<Terminal id="25_0V_01" name="0V" mdlName="58" direction="Z+" />
+		<Terminal id="25_0V_02" name="0V" mdlName="57" direction="Z+" />
+		<Terminal id="25_0V_03" name="0V" mdlName="56" direction="Z+" />
+		<Terminal id="25_0V_04" name="0V" mdlName="55" direction="Z+" />
+		<Terminal id="25_0V_05" name="0V" mdlName="54" direction="Z+" />
+		<Terminal id="25_0V_06" name="0V" mdlName="53" direction="Z+" />
+		<Terminal id="25_0V_07" name="0V" mdlName="52" direction="Z+" />
+
+		<ResisState isDef="1">
+			<!-- MT_15插孔与端子的关系 -->
+			<ResisRelation term1Id="15_02" term2Id="MT_15_02" value="0" />
+			<ResisRelation term1Id="15_03" term2Id="MT_15_03" value="0" />
+			<ResisRelation term1Id="15_04" term2Id="MT_15_04" value="0" />
+			<ResisRelation term1Id="15_05" term2Id="MT_15_05" value="0" />
+			<ResisRelation term1Id="15_06" term2Id="MT_15_06" value="0" />
+			<ResisRelation term1Id="15_07" term2Id="MT_15_07" value="0" />
+			<ResisRelation term1Id="15_08" term2Id="MT_15_08" value="0" />
+			<ResisRelation term1Id="15_09" term2Id="MT_15_09" value="0" />
+			<ResisRelation term1Id="15_10" term2Id="MT_15_10" value="0" />
+			<ResisRelation term1Id="15_11" term2Id="MT_15_11" value="0" />
+			<ResisRelation term1Id="15_12" term2Id="MT_15_12" value="0" />
+			<ResisRelation term1Id="15_13" term2Id="MT_15_13" value="0" />
+			<ResisRelation term1Id="15_14" term2Id="MT_15_14" value="0" />
+			<!-- MT_15插孔1与端子24V的关系 -->
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_01" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_02" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_03" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_04" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_05" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_06" value="0" />
+			<!-- MT_15插孔15与端子0V的关系 -->
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_01" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_02" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_03" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_04" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_05" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_06" value="0" />
+
+			<!-- MT_25插孔与端子的关系 -->
+			<ResisRelation term1Id="25_02" term2Id="MT_25_02" value="0" />
+			<ResisRelation term1Id="25_03" term2Id="MT_25_03" value="0" />
+			<ResisRelation term1Id="25_04" term2Id="MT_25_04" value="0" />
+			<ResisRelation term1Id="25_05" term2Id="MT_25_05" value="0" />
+			<ResisRelation term1Id="25_06" term2Id="MT_25_06" value="0" />
+			<ResisRelation term1Id="25_07" term2Id="MT_25_07" value="0" />
+			<ResisRelation term1Id="25_08" term2Id="MT_25_08" value="0" />
+			<ResisRelation term1Id="25_09" term2Id="MT_25_09" value="0" />
+			<ResisRelation term1Id="25_10" term2Id="MT_25_10" value="0" />
+			<ResisRelation term1Id="25_11" term2Id="MT_25_11" value="0" />
+			<ResisRelation term1Id="25_12" term2Id="MT_25_12" value="0" />
+			<ResisRelation term1Id="25_13" term2Id="MT_25_13" value="0" />
+			<ResisRelation term1Id="25_14" term2Id="MT_25_14" value="0" />
+			<ResisRelation term1Id="25_15" term2Id="MT_25_15" value="0" />
+			<ResisRelation term1Id="25_16" term2Id="MT_25_16" value="0" />
+			<ResisRelation term1Id="25_17" term2Id="MT_25_17" value="0" />
+
+			<!-- MT_25插孔1与端子24V的关系 -->
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_01" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_02" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_03" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_04" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_05" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_06" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_07" value="0" />
+			<!-- MT_25插孔25与端子0V的关系 -->
+
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_01" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_02" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_03" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_04" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_05" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_06" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_07" value="0" />
+		</ResisState>
+
+	</ElecCompDef>
+	<!-- 25芯 -->
+	<ElecCompDef name="装置侧电路转接板" model="PLC-T-3">
+		<Jack id="MT_15" mdlName="MT_15" name="MT_15" direction="X" core="15" cable="15PIN" format="15PIN">
+			<Terminal id="MT_15_01" name="MT_15_01号针脚" index="1" mark="" />
+			<Terminal id="MT_15_02" name="MT_15_02号针脚" index="2" mark="" />
+			<Terminal id="MT_15_03" name="MT_15_03号针脚" index="3" mark="" />
+			<Terminal id="MT_15_04" name="MT_15_04号针脚" index="4" mark="" />
+			<Terminal id="MT_15_05" name="MT_15_05号针脚" index="5" mark="" />
+			<Terminal id="MT_15_06" name="MT_15_06号针脚" index="6" mark="" />
+			<Terminal id="MT_15_07" name="MT_15_07号针脚" index="7" mark="" />
+			<Terminal id="MT_15_08" name="MT_15_08号针脚" index="8" mark="" />
+			<Terminal id="MT_15_09" name="MT_15_09号针脚" index="9" mark="" />
+			<Terminal id="MT_15_10" name="MT_15_10号针脚" index="10" mark="" />
+			<Terminal id="MT_15_11" name="MT_15_11号针脚" index="11" mark="" />
+			<Terminal id="MT_15_12" name="MT_15_12号针脚" index="12" mark="" />
+			<Terminal id="MT_15_13" name="MT_15_13号针脚" index="13" mark="" />
+			<Terminal id="MT_15_14" name="MT_15_14号针脚" index="14" mark="" />
+			<Terminal id="MT_15_15" name="MT_15_15号针脚" index="15" mark="" />
+		</Jack>
+		<!-- 15芯 -->
+		<Terminal id="15_24V_01" name="24V" mdlName="87" direction="Y+" />
+		<Terminal id="15_24V_02" name="24V" mdlName="86" direction="Y+" />
+		<Terminal id="15_24V_03" name="24V" mdlName="85" direction="Y+" />
+		<Terminal id="15_24V_04" name="24V" mdlName="84" direction="Y+" />
+		<Terminal id="15_24V_05" name="24V" mdlName="83" direction="Y+" />
+		<Terminal id="15_24V_06" name="24V" mdlName="82" direction="Y+" />
+		<Terminal id="15_24V_07" name="24V" mdlName="81" direction="Y+" />
+		<Terminal id="15_24V_08" name="24V" mdlName="80" direction="Y+" />
+		<Terminal id="15_24V_09" name="24V" mdlName="79" direction="Y+" />
+		<Terminal id="15_24V_10" name="24V" mdlName="78" direction="Y+" />
+		<Terminal id="15_24V_11" name="24V" mdlName="77" direction="Y+" />
+		<Terminal id="15_24V_12" name="24V" mdlName="76" direction="Y+" />
+		<Terminal id="15_24V_13" name="24V" mdlName="75" direction="Y+" />
+
+		<Terminal id="15_02" name="02" mdlName="58" direction="Y+" />
+		<Terminal id="15_03" name="03" mdlName="57" direction="Y+" />
+		<Terminal id="15_04" name="04" mdlName="56" direction="Y+" />
+		<Terminal id="15_05" name="05" mdlName="55" direction="Y+" />
+		<Terminal id="15_06" name="06" mdlName="54" direction="Y+" />
+		<Terminal id="15_07" name="07" mdlName="53" direction="Y+" />
+		<Terminal id="15_08" name="08" mdlName="52" direction="Y+" />
+		<Terminal id="15_09" name="09" mdlName="51" direction="Y+" />
+		<Terminal id="15_10" name="10" mdlName="50" direction="Y+" />
+		<Terminal id="15_11" name="11" mdlName="49" direction="Y+" />
+		<Terminal id="15_12" name="12" mdlName="48" direction="Y+" />
+		<Terminal id="15_13" name="13" mdlName="47" direction="Y+" />
+		<Terminal id="15_14" name="14" mdlName="46" direction="Y+" />
+
+		<Terminal id="15_0V_01" name="0V" mdlName="29" direction="Y+" />
+		<Terminal id="15_0V_02" name="0V" mdlName="28" direction="Y+" />
+		<Terminal id="15_0V_03" name="0V" mdlName="27" direction="Y+" />
+		<Terminal id="15_0V_04" name="0V" mdlName="26" direction="Y+" />
+		<Terminal id="15_0V_05" name="0V" mdlName="25" direction="Y+" />
+		<Terminal id="15_0V_06" name="0V" mdlName="24" direction="Y+" />
+		<Terminal id="15_0V_07" name="0V" mdlName="23" direction="Y+" />
+		<Terminal id="15_0V_08" name="0V" mdlName="22" direction="Y+" />
+		<Terminal id="15_0V_09" name="0V" mdlName="21" direction="Y+" />
+		<Terminal id="15_0V_10" name="0V" mdlName="20" direction="Y+" />
+		<Terminal id="15_0V_11" name="0V" mdlName="19" direction="Y+" />
+		<Terminal id="15_0V_12" name="0V" mdlName="18" direction="Y+" />
+		<Terminal id="15_0V_13" name="0V" mdlName="17" direction="Y+" />
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_01" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_02" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_03" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_04" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_05" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_06" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_07" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_08" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_09" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_10" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_11" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_12" value="0" />
+			<ResisRelation term1Id="MT_15_01" term2Id="15_24V_13" value="0" />
+
+			<ResisRelation term1Id="MT_15_02" term2Id="15_02" value="0" />
+			<ResisRelation term1Id="MT_15_03" term2Id="15_03" value="0" />
+			<ResisRelation term1Id="MT_15_04" term2Id="15_04" value="0" />
+			<ResisRelation term1Id="MT_15_05" term2Id="15_05" value="0" />
+			<ResisRelation term1Id="MT_15_06" term2Id="15_06" value="0" />
+			<ResisRelation term1Id="MT_15_07" term2Id="15_07" value="0" />
+			<ResisRelation term1Id="MT_15_08" term2Id="15_08" value="0" />
+			<ResisRelation term1Id="MT_15_09" term2Id="15_09" value="0" />
+			<ResisRelation term1Id="MT_15_10" term2Id="15_10" value="0" />
+			<ResisRelation term1Id="MT_15_11" term2Id="15_11" value="0" />
+			<ResisRelation term1Id="MT_15_12" term2Id="15_12" value="0" />
+			<ResisRelation term1Id="MT_15_13" term2Id="15_13" value="0" />
+			<ResisRelation term1Id="MT_15_14" term2Id="15_14" value="0" />
+
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_01" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_02" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_03" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_04" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_05" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_06" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_07" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_08" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_09" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_10" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_11" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_12" value="0" />
+			<ResisRelation term1Id="MT_15_15" term2Id="15_0V_13" value="0" />
+		</ResisState>
+
+
+
+
+		<Jack id="MT_25" mdlName="MT_25" name="MT_25" direction="X" core="25" cable="25PIN" format="25PIN" rotation="90,0,0">
+			<Terminal id="MT_25_01" name="MT_25_01号针脚" index="1" mark="" />
+			<Terminal id="MT_25_02" name="MT_25_02号针脚" index="2" mark="" />
+			<Terminal id="MT_25_03" name="MT_25_03号针脚" index="3" mark="" />
+			<Terminal id="MT_25_04" name="MT_25_04号针脚" index="4" mark="" />
+			<Terminal id="MT_25_05" name="MT_25_05号针脚" index="5" mark="" />
+			<Terminal id="MT_25_06" name="MT_25_06号针脚" index="6" mark="" />
+			<Terminal id="MT_25_07" name="MT_25_07号针脚" index="7" mark="" />
+			<Terminal id="MT_25_08" name="MT_25_08号针脚" index="8" mark="" />
+			<Terminal id="MT_25_09" name="MT_25_09号针脚" index="9" mark="" />
+			<Terminal id="MT_25_10" name="MT_25_10号针脚" index="10" mark="" />
+			<Terminal id="MT_25_11" name="MT_25_11号针脚" index="11" mark="" />
+			<Terminal id="MT_25_12" name="MT_25_12号针脚" index="12" mark="" />
+			<Terminal id="MT_25_13" name="MT_25_13号针脚" index="13" mark="" />
+			<Terminal id="MT_25_14" name="MT_25_14号针脚" index="14" mark="" />
+			<Terminal id="MT_25_15" name="MT_25_15号针脚" index="15" mark="" />
+			<Terminal id="MT_25_16" name="MT_25_16号针脚" index="16" mark="" />
+			<Terminal id="MT_25_17" name="MT_25_17号针脚" index="17" mark="" />
+			<Terminal id="MT_25_18" name="MT_25_18号针脚" index="18" mark="" />
+			<Terminal id="MT_25_19" name="MT_25_19号针脚" index="19" mark="" />
+			<Terminal id="MT_25_20" name="MT_25_20号针脚" index="20" mark="" />
+			<Terminal id="MT_25_21" name="MT_25_21号针脚" index="21" mark="" />
+			<Terminal id="MT_25_22" name="MT_25_22号针脚" index="22" mark="" />
+			<Terminal id="MT_25_23" name="MT_25_23号针脚" index="23" mark="" />
+			<Terminal id="MT_25_24" name="MT_25_24号针脚" index="24" mark="" />
+			<Terminal id="MT_25_25" name="MT_25_25号针脚" index="25" mark="" />
+		</Jack>
+
+		<Terminal id="25_24V_01" name="24V" mdlName="74" direction="Y+" />
+		<Terminal id="25_24V_02" name="24V" mdlName="73" direction="Y+" />
+		<Terminal id="25_24V_03" name="24V" mdlName="72" direction="Y+" />
+		<Terminal id="25_24V_04" name="24V" mdlName="71" direction="Y+" />
+		<Terminal id="25_24V_05" name="24V" mdlName="70" direction="Y+" />
+		<Terminal id="25_24V_06" name="24V" mdlName="69" direction="Y+" />
+		<Terminal id="25_24V_07" name="24V" mdlName="68" direction="Y+" />
+		<Terminal id="25_24V_08" name="24V" mdlName="67" direction="Y+" />
+		<Terminal id="25_24V_09" name="24V" mdlName="66" direction="Y+" />
+		<Terminal id="25_24V_10" name="24V" mdlName="65" direction="Y+" />
+		<Terminal id="25_24V_11" name="24V" mdlName="64" direction="Y+" />
+		<Terminal id="25_24V_12" name="24V" mdlName="63" direction="Y+" />
+		<Terminal id="25_24V_13" name="24V" mdlName="62" direction="Y+" />
+		<Terminal id="25_24V_14" name="24V" mdlName="61" direction="Y+" />
+		<Terminal id="25_24V_15" name="24V" mdlName="60" direction="Y+" />
+		<Terminal id="25_24V_16" name="24V" mdlName="59" direction="Y+" />
+
+		<Terminal id="25_02" name="2" mdlName="45" direction="Y+" />
+		<Terminal id="25_03" name="3" mdlName="44" direction="Y+" />
+		<Terminal id="25_04" name="4" mdlName="43" direction="Y+" />
+		<Terminal id="25_05" name="5" mdlName="42" direction="Y+" />
+		<Terminal id="25_06" name="6" mdlName="41" direction="Y+" />
+		<Terminal id="25_07" name="7" mdlName="40" direction="Y+" />
+		<Terminal id="25_08" name="8" mdlName="39" direction="Y+" />
+		<Terminal id="25_09" name="9" mdlName="38" direction="Y+" />
+		<Terminal id="25_10" name="10" mdlName="37" direction="Y+" />
+		<Terminal id="25_11" name="11" mdlName="36" direction="Y+" />
+		<Terminal id="25_12" name="12" mdlName="35" direction="Y+" />
+		<Terminal id="25_13" name="13" mdlName="34" direction="Y+" />
+		<Terminal id="25_14" name="14" mdlName="33" direction="Y+" />
+		<Terminal id="25_15" name="15" mdlName="32" direction="Y+" />
+		<Terminal id="25_16" name="16" mdlName="31" direction="Y+" />
+		<Terminal id="25_17" name="17" mdlName="30" direction="Y+" />
+
+		<Terminal id="25_0V_01" name="0V" mdlName="16" direction="Y+" />
+		<Terminal id="25_0V_02" name="0V" mdlName="15" direction="Y+" />
+		<Terminal id="25_0V_03" name="0V" mdlName="14" direction="Y+" />
+		<Terminal id="25_0V_04" name="0V" mdlName="13" direction="Y+" />
+		<Terminal id="25_0V_05" name="0V" mdlName="12" direction="Y+" />
+		<Terminal id="25_0V_06" name="0V" mdlName="11" direction="Y+" />
+		<Terminal id="25_0V_07" name="0V" mdlName="10" direction="Y+" />
+		<Terminal id="25_0V_08" name="0V" mdlName="9" direction="Y+" />
+		<Terminal id="25_0V_09" name="0V" mdlName="8" direction="Y+" />
+		<Terminal id="25_0V_10" name="0V" mdlName="7" direction="Y+" />
+		<Terminal id="25_0V_11" name="0V" mdlName="6" direction="Y+" />
+		<Terminal id="25_0V_12" name="0V" mdlName="5" direction="Y+" />
+		<Terminal id="25_0V_13" name="0V" mdlName="4" direction="Y+" />
+		<Terminal id="25_0V_14" name="0V" mdlName="3" direction="Y+" />
+		<Terminal id="25_0V_15" name="0V" mdlName="2" direction="Y+" />
+		<Terminal id="25_0V_16" name="0V" mdlName="1" direction="Y+" />
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_01" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_02" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_03" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_04" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_05" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_06" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_07" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_08" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_09" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_10" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_11" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_12" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_13" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_14" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_15" value="0" />
+			<ResisRelation term1Id="MT_25_01" term2Id="25_24V_16" value="0" />
+
+			<ResisRelation term1Id="25_02" term2Id="MT_25_02" value="0" />
+			<ResisRelation term1Id="25_03" term2Id="MT_25_03" value="0" />
+			<ResisRelation term1Id="25_04" term2Id="MT_25_04" value="0" />
+			<ResisRelation term1Id="25_05" term2Id="MT_25_05" value="0" />
+			<ResisRelation term1Id="25_06" term2Id="MT_25_06" value="0" />
+			<ResisRelation term1Id="25_07" term2Id="MT_25_07" value="0" />
+			<ResisRelation term1Id="25_08" term2Id="MT_25_08" value="0" />
+			<ResisRelation term1Id="25_09" term2Id="MT_25_09" value="0" />
+			<ResisRelation term1Id="25_10" term2Id="MT_25_10" value="0" />
+			<ResisRelation term1Id="25_11" term2Id="MT_25_11" value="0" />
+			<ResisRelation term1Id="25_12" term2Id="MT_25_12" value="0" />
+			<ResisRelation term1Id="25_13" term2Id="MT_25_13" value="0" />
+			<ResisRelation term1Id="25_14" term2Id="MT_25_14" value="0" />
+			<ResisRelation term1Id="25_15" term2Id="MT_25_15" value="0" />
+			<ResisRelation term1Id="25_16" term2Id="MT_25_16" value="0" />
+			<ResisRelation term1Id="25_17" term2Id="MT_25_17" value="0" />
+
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_01" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_02" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_03" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_04" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_05" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_06" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_07" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_08" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_09" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_10" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_11" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_12" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_13" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_14" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_15" value="0" />
+			<ResisRelation term1Id="MT_25_25" term2Id="25_0V_16" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="装置侧电路转接板" model="DC2-50P">
+		<Jack id="DC2-50P" mdlName="DC2-50P_00" name="DC2-50P" direction="X" core="50" cable="50PIN" format="50PIN" rotation="90,0,0">
+			<Terminal id="core_01" name="core_01号针脚" index="1" mark="A01" />
+			<Terminal id="core_02" name="core_02号针脚" index="2" mark="A02" />
+			<Terminal id="core_03" name="core_03号针脚" index="3" mark="A03" />
+			<Terminal id="core_04" name="core_04号针脚" index="4" mark="A04" />
+			<Terminal id="core_05" name="core_05号针脚" index="5" mark="A05" />
+			<Terminal id="core_06" name="core_06号针脚" index="6" mark="A06" />
+			<Terminal id="core_07" name="core_07号针脚" index="7" mark="A07" />
+			<Terminal id="core_08" name="core_08号针脚" index="8" mark="A08" />
+			<Terminal id="core_09" name="core_09号针脚" index="9" mark="A09" />
+			<Terminal id="core_10" name="core_10号针脚" index="10" mark="A10" />
+			<Terminal id="core_11" name="core_11号针脚" index="11" mark="A11" />
+			<Terminal id="core_12" name="core_12号针脚" index="12" mark="A12" />
+			<Terminal id="core_13" name="core_13号针脚" index="13" mark="A13" />
+			<Terminal id="core_14" name="core_14号针脚" index="14" mark="A14" />
+			<Terminal id="core_15" name="core_15号针脚" index="15" mark="A15" />
+			<Terminal id="core_16" name="core_16号针脚" index="16" mark="A16" />
+			<Terminal id="core_17" name="core_17号针脚" index="17" mark="A17" />
+			<Terminal id="core_18" name="core_18号针脚" index="18" mark="A18" />
+			<Terminal id="core_19" name="core_19号针脚" index="19" mark="A19" />
+			<Terminal id="core_20" name="core_20号针脚" index="20" mark="A20" />
+			<Terminal id="core_21" name="core_21号针脚" index="21" mark="A21" />
+			<Terminal id="core_22" name="core_22号针脚" index="22" mark="A22" />
+			<Terminal id="core_23" name="core_23号针脚" index="23" mark="A23" />
+			<Terminal id="core_24" name="core_24号针脚" index="24" mark="A24" />
+			<Terminal id="core_25" name="core_25号针脚" index="25" mark="A25" />
+			<Terminal id="core_26" name="core_26号针脚" index="26" mark="B01" />
+			<Terminal id="core_27" name="core_27号针脚" index="27" mark="B02" />
+			<Terminal id="core_28" name="core_28号针脚" index="28" mark="B03" />
+			<Terminal id="core_29" name="core_29号针脚" index="29" mark="B04" />
+			<Terminal id="core_30" name="core_30号针脚" index="30" mark="B05" />
+			<Terminal id="core_31" name="core_31号针脚" index="31" mark="B06" />
+			<Terminal id="core_32" name="core_32号针脚" index="32" mark="B07" />
+			<Terminal id="core_33" name="core_33号针脚" index="33" mark="B08" />
+			<Terminal id="core_34" name="core_34号针脚" index="34" mark="B09" />
+			<Terminal id="core_35" name="core_35号针脚" index="35" mark="B10" />
+			<Terminal id="core_36" name="core_36号针脚" index="36" mark="B11" />
+			<Terminal id="core_37" name="core_37号针脚" index="37" mark="B12" />
+			<Terminal id="core_38" name="core_38号针脚" index="38" mark="B13" />
+			<Terminal id="core_39" name="core_39号针脚" index="39" mark="B14" />
+			<Terminal id="core_40" name="core_40号针脚" index="40" mark="B15" />
+			<Terminal id="core_41" name="core_41号针脚" index="41" mark="B16" />
+			<Terminal id="core_42" name="core_42号针脚" index="42" mark="B17" />
+			<Terminal id="core_43" name="core_43号针脚" index="43" mark="B18" />
+			<Terminal id="core_44" name="core_44号针脚" index="44" mark="B19" />
+			<Terminal id="core_45" name="core_45号针脚" index="45" mark="B20" />
+			<Terminal id="core_46" name="core_46号针脚" index="46" mark="B21" />
+			<Terminal id="core_47" name="core_47号针脚" index="47" mark="B22" />
+			<Terminal id="core_48" name="core_48号针脚" index="48" mark="B23" />
+			<Terminal id="core_49" name="core_49号针脚" index="49" mark="B24" />
+			<Terminal id="core_50" name="core_50号针脚" index="50" mark="B25" />
+		</Jack>
+		<Terminal id="DC2-50P_01" name="A01" mdlName="1"  direction="Z-" />
+		<Terminal id="DC2-50P_02" name="A02" mdlName="2"  direction="Z-" />
+		<Terminal id="DC2-50P_03" name="A03" mdlName="3"  direction="Z-" />
+		<Terminal id="DC2-50P_04" name="A04" mdlName="4"  direction="Z-" />
+		<Terminal id="DC2-50P_05" name="A05" mdlName="5"  direction="Z-" />
+		<Terminal id="DC2-50P_06" name="A06" mdlName="6"  direction="Z-" />
+		<Terminal id="DC2-50P_07" name="A07" mdlName="7"  direction="Z-" />
+		<Terminal id="DC2-50P_08" name="A08" mdlName="8"  direction="Z-" />
+		<Terminal id="DC2-50P_09" name="A09" mdlName="9"  direction="Z-" />
+		<Terminal id="DC2-50P_10" name="A10" mdlName="10" direction="Z-" />
+		<Terminal id="DC2-50P_11" name="A11" mdlName="11" direction="Z-" />
+		<Terminal id="DC2-50P_12" name="A12" mdlName="12" direction="Z-" />
+		<Terminal id="DC2-50P_13" name="A13" mdlName="13" direction="Z-" />
+		<Terminal id="DC2-50P_14" name="A14" mdlName="14" direction="Z-" />
+		<Terminal id="DC2-50P_15" name="A15" mdlName="15" direction="Z-" />
+		<Terminal id="DC2-50P_16" name="A16" mdlName="16" direction="Z-" />
+		<Terminal id="DC2-50P_17" name="A17" mdlName="17" direction="Z-" />
+		<Terminal id="DC2-50P_18" name="A18" mdlName="18" direction="Z-" />
+		<Terminal id="DC2-50P_19" name="A19" mdlName="19" direction="Z-" />
+		<Terminal id="DC2-50P_20" name="A20" mdlName="20" direction="Z-" />
+		<Terminal id="DC2-50P_21" name="A21" mdlName="21" direction="Z-" />
+		<Terminal id="DC2-50P_22" name="A22" mdlName="22" direction="Z-" />
+		<Terminal id="DC2-50P_23" name="A23" mdlName="23" direction="Z-" />
+		<Terminal id="DC2-50P_24" name="A24" mdlName="24" direction="Z-" />
+		<Terminal id="DC2-50P_25" name="A25" mdlName="25" direction="Z-" />
+		<Terminal id="DC2-50P_26" name="B01" mdlName="26" direction="Z-" />
+		<Terminal id="DC2-50P_27" name="B02" mdlName="27" direction="Z-" />
+		<Terminal id="DC2-50P_28" name="B03" mdlName="28" direction="Z-" />
+		<Terminal id="DC2-50P_29" name="B04" mdlName="29" direction="Z-" />
+		<Terminal id="DC2-50P_30" name="B05" mdlName="30" direction="Z-" />
+		<Terminal id="DC2-50P_31" name="B06" mdlName="31" direction="Z-" />
+		<Terminal id="DC2-50P_32" name="B07" mdlName="32" direction="Z-" />
+		<Terminal id="DC2-50P_33" name="B08" mdlName="33" direction="Z-" />
+		<Terminal id="DC2-50P_34" name="B09" mdlName="34" direction="Z-" />
+		<Terminal id="DC2-50P_35" name="B10" mdlName="35" direction="Z-" />
+		<Terminal id="DC2-50P_36" name="B11" mdlName="36" direction="Z-" />
+		<Terminal id="DC2-50P_37" name="B12" mdlName="37" direction="Z-" />
+		<Terminal id="DC2-50P_38" name="B13" mdlName="38" direction="Z-" />
+		<Terminal id="DC2-50P_39" name="B14" mdlName="39" direction="Z-" />
+		<Terminal id="DC2-50P_40" name="B15" mdlName="40" direction="Z-" />
+		<Terminal id="DC2-50P_41" name="B16" mdlName="41" direction="Z-" />
+		<Terminal id="DC2-50P_42" name="B17" mdlName="42" direction="Z-" />
+		<Terminal id="DC2-50P_43" name="B18" mdlName="43" direction="Z-" />
+		<Terminal id="DC2-50P_44" name="B19" mdlName="44" direction="Z-" />
+		<Terminal id="DC2-50P_45" name="B20" mdlName="45" direction="Z-" />
+		<Terminal id="DC2-50P_46" name="B21" mdlName="46" direction="Z-" />
+		<Terminal id="DC2-50P_47" name="B22" mdlName="47" direction="Z-" />
+		<Terminal id="DC2-50P_48" name="B23" mdlName="48" direction="Z-" />
+		<Terminal id="DC2-50P_49" name="B24" mdlName="49" direction="Z-" />
+		<Terminal id="DC2-50P_50" name="B25" mdlName="50" direction="Z-" />
+	</ElecCompDef>
+	<ResisState isDef="1">
+			<ResisRelation term1Id="core_01" term2Id="DC2-50P_01" value="0" />
+			<ResisRelation term1Id="core_02" term2Id="DC2-50P_02" value="0" />
+			<ResisRelation term1Id="core_03" term2Id="DC2-50P_03" value="0" />
+			<ResisRelation term1Id="core_04" term2Id="DC2-50P_04" value="0" />
+			<ResisRelation term1Id="core_05" term2Id="DC2-50P_05" value="0" />
+			<ResisRelation term1Id="core_06" term2Id="DC2-50P_06" value="0" />
+			<ResisRelation term1Id="core_07" term2Id="DC2-50P_07" value="0" />
+			<ResisRelation term1Id="core_08" term2Id="DC2-50P_08" value="0" />
+			<ResisRelation term1Id="core_09" term2Id="DC2-50P_09" value="0" />
+			<ResisRelation term1Id="core_10" term2Id="DC2-50P_10" value="0" />
+			<ResisRelation term1Id="core_11" term2Id="DC2-50P_11" value="0" />
+			<ResisRelation term1Id="core_12" term2Id="DC2-50P_12" value="0" />
+			<ResisRelation term1Id="core_13" term2Id="DC2-50P_13" value="0" />
+			<ResisRelation term1Id="core_14" term2Id="DC2-50P_14" value="0" />
+			<ResisRelation term1Id="core_15" term2Id="DC2-50P_15" value="0" />
+			<ResisRelation term1Id="core_16" term2Id="DC2-50P_16" value="0" />
+			<ResisRelation term1Id="core_17" term2Id="DC2-50P_17" value="0" />
+			<ResisRelation term1Id="core_18" term2Id="DC2-50P_18" value="0" />
+			<ResisRelation term1Id="core_19" term2Id="DC2-50P_19" value="0" />
+			<ResisRelation term1Id="core_20" term2Id="DC2-50P_20" value="0" />
+			<ResisRelation term1Id="core_21" term2Id="DC2-50P_21" value="0" />
+			<ResisRelation term1Id="core_22" term2Id="DC2-50P_22" value="0" />
+			<ResisRelation term1Id="core_23" term2Id="DC2-50P_23" value="0" />
+			<ResisRelation term1Id="core_24" term2Id="DC2-50P_24" value="0" />
+			<ResisRelation term1Id="core_25" term2Id="DC2-50P_25" value="0" />
+			<ResisRelation term1Id="core_26" term2Id="DC2-50P_26" value="0" />
+			<ResisRelation term1Id="core_27" term2Id="DC2-50P_27" value="0" />
+			<ResisRelation term1Id="core_28" term2Id="DC2-50P_28" value="0" />
+			<ResisRelation term1Id="core_29" term2Id="DC2-50P_29" value="0" />
+			<ResisRelation term1Id="core_30" term2Id="DC2-50P_30" value="0" />
+			<ResisRelation term1Id="core_31" term2Id="DC2-50P_31" value="0" />
+			<ResisRelation term1Id="core_32" term2Id="DC2-50P_32" value="0" />
+			<ResisRelation term1Id="core_33" term2Id="DC2-50P_33" value="0" />
+			<ResisRelation term1Id="core_34" term2Id="DC2-50P_34" value="0" />
+			<ResisRelation term1Id="core_35" term2Id="DC2-50P_35" value="0" />
+			<ResisRelation term1Id="core_36" term2Id="DC2-50P_36" value="0" />
+			<ResisRelation term1Id="core_37" term2Id="DC2-50P_37" value="0" />
+			<ResisRelation term1Id="core_38" term2Id="DC2-50P_38" value="0" />
+			<ResisRelation term1Id="core_39" term2Id="DC2-50P_39" value="0" />
+			<ResisRelation term1Id="core_40" term2Id="DC2-50P_40" value="0" />
+			<ResisRelation term1Id="core_41" term2Id="DC2-50P_41" value="0" />
+			<ResisRelation term1Id="core_42" term2Id="DC2-50P_42" value="0" />
+			<ResisRelation term1Id="core_43" term2Id="DC2-50P_43" value="0" />
+			<ResisRelation term1Id="core_44" term2Id="DC2-50P_44" value="0" />
+			<ResisRelation term1Id="core_45" term2Id="DC2-50P_45" value="0" />
+			<ResisRelation term1Id="core_46" term2Id="DC2-50P_46" value="0" />
+			<ResisRelation term1Id="core_47" term2Id="DC2-50P_47" value="0" />
+			<ResisRelation term1Id="core_48" term2Id="DC2-50P_48" value="0" />
+			<ResisRelation term1Id="core_49" term2Id="DC2-50P_49" value="0" />
+			<ResisRelation term1Id="core_50" term2Id="DC2-50P_50" value="0" />
+		</ResisState>
+</roots>

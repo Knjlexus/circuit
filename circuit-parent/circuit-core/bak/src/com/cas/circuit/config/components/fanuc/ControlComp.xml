@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<!-- 快速倍率 -->
+	<ElecCompDef name="快速倍率" model="快速倍率" desc="当机床坐标轴快速移动时，速度受此旋钮控制。速度控制为0%、25%、50%、100%。">
+		<Jack id="JACK_RAPID" name="JACK_RAPID" mdlName="P7_1" format="SJ7" jackDirection="x">
+			<Terminal id="rapid_1" name="24N" index="1" mark="CB107_B01" />
+			<Terminal id="rapid_2" name="7A13" index="2" mark="CB107_A13" /><!-- X11.6 -->
+			<Terminal id="rapid_3" name="7B13" index="3" mark="CB107_B13" /><!-- X11.7 -->
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="rotate" name="快速倍率" mdlName="1371" switchIn="F0|Quarter|Half|Full" motion="rotate" motionParams="0|-30|-60|-90" axis="z">
+				sound=me/Interface/sound/control/wheel.wav
+			</ControlIO>
+		</Magnetism>
+		<!-- X11.7-X11.6 -->
+		<!-- 0-0 -->
+		<ResisState id="F0" isDef="1">
+		</ResisState>
+		<!-- 0-1 -->
+		<ResisState id="Quarter">
+			<ResisRelation term1Id="rapid_1" term2Id="rapid_2" value="0" />
+		</ResisState>
+		<!-- 1-0 -->
+		<ResisState id="Half">
+			<ResisRelation term1Id="rapid_1" term2Id="rapid_3" value="0" />
+		</ResisState>
+		<!-- 1-1 -->
+		<ResisState id="Full">
+			<ResisRelation term1Id="rapid_1" term2Id="rapid_2" value="0" />
+			<ResisRelation term1Id="rapid_1" term2Id="rapid_3" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<!-- 主轴倍率 -->
+	<ElecCompDef name="主轴倍率" model="主轴倍率" desc="手动、自动方式旋转主轴时，微调主轴实时转速，实时转速为设定转速*主轴倍率。最低为50%，最高为120%。">
+		<Jack id="JACK_SPINDLE" name="JACK_SPINDLE" mdlName="P7_2" format="SJ7" jackDirection="x">
+			<Terminal id="sp_1" name="24N" index="1" mark="CB107_B01" />
+			<Terminal id="sp_2" name="7A10" index="2" mark="CB107_A10" /><!-- X11.0 -->
+			<Terminal id="sp_3" name="7B10" index="3" mark="CB107_B10" /><!-- X11.1 -->
+			<Terminal id="sp_4" name="7A11" index="4" mark="CB107_A11" /><!-- X11.2 -->
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="rotate" name="主轴倍率" mdlName="1368" switchIn="50|60|70|80|90|100|110|120" motion="rotate" motionParams="0|-16|-32|-48|-64|-80|-96|-112" axis="z">
+				sound=me/Interface/sound/control/wheel.wav
+			</ControlIO>
+		</Magnetism>
+		<!-- X11.2-X11.1-X11.0 -->
+		<!-- 0-0-0 -->
+		<ResisState id="50" isDef="1">
+		</ResisState>
+		<!-- 0-0-1 -->
+		<ResisState id="60">
+			<ResisRelation term1Id="sp_1" term2Id="sp_2" value="0" />
+		</ResisState>
+		<!-- 0-1-0 -->
+		<ResisState id="70">
+			<ResisRelation term1Id="sp_1" term2Id="sp_3" value="0" />
+		</ResisState>
+		<!-- 0-1-1 -->
+		<ResisState id="80">
+			<ResisRelation term1Id="sp_1" term2Id="sp_2" value="0" />
+			<ResisRelation term1Id="sp_1" term2Id="sp_3" value="0" />
+		</ResisState>
+		<!-- 1-0-0 -->
+		<ResisState id="90">
+			<ResisRelation term1Id="sp_1" term2Id="sp_4" value="0" />
+		</ResisState>
+		<!-- 1-0-1 -->
+		<ResisState id="100">
+			<ResisRelation term1Id="sp_1" term2Id="sp_2" value="0" />
+			<ResisRelation term1Id="sp_1" term2Id="sp_4" value="0" />
+		</ResisState>
+		<!-- 1-1-0 -->
+		<ResisState id="110">
+			<ResisRelation term1Id="sp_1" term2Id="sp_3" value="0" />
+			<ResisRelation term1Id="sp_1" term2Id="sp_4" value="0" />
+		</ResisState>
+		<!-- 1-1-1 -->
+		<ResisState id="120">
+			<ResisRelation term1Id="sp_1" term2Id="sp_2" value="0" />
+			<ResisRelation term1Id="sp_1" term2Id="sp_3" value="0" />
+			<ResisRelation term1Id="sp_1" term2Id="sp_4" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<!-- 进给倍率 -->
+	<ElecCompDef name="进给倍率" model="进给倍率" desc="机床运动进给倍率从0%至150%，分别代表机床实际进给速度为设定速度与进给倍率的乘积。">
+		<Jack id="JACK_FEED" name="JACK_FEED" mdlName="P7_3" format="SJ7" jackDirection="x">
+			<Terminal id="fd_1" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="fd_2" name="4A06" index="2" mark="CB104_A06" /><!-- X1.0 -->
+			<Terminal id="fd_3" name="4B06" index="3" mark="CB104_B06" /><!-- X1.1 -->
+			<Terminal id="fd_4" name="4A07" index="4" mark="CB104_A07" /><!-- X1.2 -->
+			<Terminal id="fd_5" name="4B07" index="5" mark="CB104_B07" /><!-- X1.3 -->
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="rotate" name="进给倍率" mdlName="1365" motion="rotate" switchIn="0|10|20|30|40|50|60|70|80|90|100|110|120|130|140|150" motionParams="0|-15.3|-30.6|-45.9|-61.2|-76.5|-91.8|-107.1|-122.4|-137.7|-153|-168.3|-183.6|-198.9|-214.2|-229.5" axis="z">
+				sound=me/Interface/sound/control/wheel.wav
+			</ControlIO>
+		</Magnetism>
+		<!-- X1.3-X1.2-X1.1-X1.0 -->
+		<!-- 0-0-0-0 -->
+		<ResisState id="0" isDef="1">
+		</ResisState>
+		<!-- 0-0-0-1 -->
+		<ResisState id="10">
+			<ResisRelation term1Id="fd_1" term2Id="fd_2" value="0" />
+		</ResisState>
+		<!-- 0-0-1-0 -->
+		<ResisState id="20">
+			<ResisRelation term1Id="fd_1" term2Id="fd_3" value="0" />
+		</ResisState>
+		<!-- 0-0-1-1 -->
+		<ResisState id="30">
+			<ResisRelation term1Id="fd_1" term2Id="fd_2" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_3" value="0" />
+		</ResisState>
+		<!-- 0-1-0-0 -->
+		<ResisState id="40">
+			<ResisRelation term1Id="fd_1" term2Id="fd_4" value="0" />
+		</ResisState>
+		<!-- 0-1-0-1 -->
+		<ResisState id="50">
+			<ResisRelation term1Id="fd_1" term2Id="fd_2" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_4" value="0" />
+		</ResisState>
+		<!-- 0-1-1-0 -->
+		<ResisState id="60">
+			<ResisRelation term1Id="fd_1" term2Id="fd_3" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_4" value="0" />
+		</ResisState>
+		<!-- 0-1-1-1 -->
+		<ResisState id="70">
+			<ResisRelation term1Id="fd_1" term2Id="fd_2" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_3" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_4" value="0" />
+		</ResisState>
+		<!-- 1-0-0-0 -->
+		<ResisState id="80">
+			<ResisRelation term1Id="fd_1" term2Id="fd_5" value="0" />
+		</ResisState>
+		<!-- 1-0-0-1 -->
+		<ResisState id="90">
+			<ResisRelation term1Id="fd_1" term2Id="fd_2" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_5" value="0" />
+		</ResisState>
+		<!-- 1-0-1-0 -->
+		<ResisState id="100">
+			<ResisRelation term1Id="fd_1" term2Id="fd_3" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_5" value="0" />
+		</ResisState>
+		<!-- 1-0-1-1 -->
+		<ResisState id="110">
+			<ResisRelation term1Id="fd_1" term2Id="fd_2" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_3" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_5" value="0" />
+		</ResisState>
+		<!-- 1-1-0-0 -->
+		<ResisState id="120">
+			<ResisRelation term1Id="fd_1" term2Id="fd_4" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_5" value="0" />
+		</ResisState>
+		<!-- 1-1-0-1 -->
+		<ResisState id="130">
+			<ResisRelation term1Id="fd_1" term2Id="fd_2" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_4" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_5" value="0" />
+		</ResisState>
+		<!-- 1-1-1-0 -->
+		<ResisState id="140">
+			<ResisRelation term1Id="fd_1" term2Id="fd_3" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_4" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_5" value="0" />
+		</ResisState>
+		<!-- 1-1-1-1 -->
+		<ResisState id="150">
+			<ResisRelation term1Id="fd_1" term2Id="fd_2" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_3" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_4" value="0" />
+			<ResisRelation term1Id="fd_1" term2Id="fd_5" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<!-- 工作方式选择 -->
+	<ElecCompDef name="工作方式选择" model="工作方式选择" desc="方式选择旋钮用来切换机床工作方式，主要有以下几种：程序编辑、自动循环、手动输入、连续进给、手轮进给、机床回零、DNC。">
+		<Jack id="JACK_MODE" name="JACK_MODE" mdlName="P7_4" format="SJ7" jackDirection="x">
+			<Terminal id="mode_1" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="mode_2" name="4A02" index="2" mark="CB104_A02" /><!-- X0.0 -->
+			<Terminal id="mode_3" name="4B02" index="3" mark="CB104_B02" /><!-- X0.1 -->
+			<Terminal id="mode_4" name="4A03" index="4" mark="CB104_A03" /><!-- X0.2 -->
+		</Jack>
+		<Magnetism>
+			<!-- 程序编辑-自动运行-手动输入-手轮方式-连续进给-机床回零-NDC -->
+			<ControlIO type="input" interact="rotate" name="工作方式选择" mdlName="1374" switchIn="Edit|Auto|MDI|JOG|HANDLE|REF|DNC" motion="rotate" motionParams="0|-30|-60|-90|-120|-150|-180" axis="z">
+				sound=me/Interface/sound/control/wheel.wav
+			</ControlIO>
+		</Magnetism>
+		<!-- X0.2-X0.1-X0.0 -->
+		<!-- 0-0-0 -->
+		<ResisState id="Edit" isDef="1">
+		</ResisState>
+		<!-- 0-0-1 -->
+		<ResisState id="Auto">
+			<ResisRelation term1Id="mode_1" term2Id="mode_2" value="0" />
+		</ResisState>
+		<!-- 0-1-0 -->
+		<ResisState id="MDI">
+			<ResisRelation term1Id="mode_1" term2Id="mode_3" value="0" />
+		</ResisState>
+		<!-- 0-1-1 -->
+		<ResisState id="HANDLE">
+			<ResisRelation term1Id="mode_1" term2Id="mode_2" value="0" />
+			<ResisRelation term1Id="mode_1" term2Id="mode_3" value="0" />
+		</ResisState>
+		<!-- 1-0-0 -->
+		<ResisState id="JOG">
+			<ResisRelation term1Id="mode_1" term2Id="mode_4" value="0" />
+		</ResisState>
+		<!-- 1-0-1 -->
+		<ResisState id="REF">
+			<ResisRelation term1Id="mode_1" term2Id="mode_2" value="0" />
+			<ResisRelation term1Id="mode_1" term2Id="mode_4" value="0" />
+		</ResisState>
+		<!-- 1-1-0 -->
+		<ResisState id="DNC">
+			<ResisRelation term1Id="mode_1" term2Id="mode_3" value="0" />
+			<ResisRelation term1Id="mode_1" term2Id="mode_4" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="循环启动" model="循环启动" desc="自动或MDI方式，执行当前缓存区程序。执行时，指示灯亮。">
+		<Jack id="JACK_START_1" name="循环启动" mdlName="p1" format="NO4" jackDirection="x">
+			<Terminal id="start_1" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="start_2" name="4A04" index="2" mark="CB104_A04" />
+			<Terminal id="start_3" name="4A18" index="3" mark="CB104_A18" /><!-- 循环启动指示灯 -->
+			<Terminal id="start_4" name="0V" index="4" mark="1_1" />
+		</Jack>
+		<Jack id="JACK_START_2" name="循环启动" mdlName="p2" format="NO4" jackDirection="x">
+			<Terminal id="start_5" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="start_6" name="4A04" index="2" mark="CB104_A04" />
+			<Terminal id="start_7" name="4A18" index="3" mark="CB104_A18" /><!-- 循环启动指示灯 -->
+			<Terminal id="start_8" name="0V" index="4" mark="1_1" />
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="336" switchIn="off|on" motion="move" motionParams="0|-0.008" axis="z" name="循环启动">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="start_3" term2Id="start_4" value="+24" deviation="1" />
+			<VoltageIO type="input" term1Id="start_7" term2Id="start_8" value="+24" deviation="1" />
+			<LightIO name="循环启动指示灯" mdlName="3321" glowColor="0|1|0|1" />
+		</Magnetism>
+		<ResisState id="off" isDef="1" />
+		<ResisState id="on">
+			<ResisRelation term1Id="start_1" term2Id="start_2" value="0" />
+			<ResisRelation term1Id="start_5" term2Id="start_6" value="0" />
+		</ResisState>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="start_3" term2Id="start_4" value="20000" />
+			<ResisRelation term1Id="start_7" term2Id="start_8" value="20000" />
+		</ResisState>
+		<!-- <Magnetism> -->
+		<!-- <VoltageIO type="input" term1Id="start_4" term2Id="start_3" value="+24V" deviation="1" /> -->
+		<!-- <VoltageIO type="input" term1Id="start_8" term2Id="start_7" value="+24V" deviation="1" /> -->
+		<!-- <LightIO name="循环启动指示灯" mdlName="336" glowColor="0|1|0|1" /> -->
+		<!-- </Magnetism> -->
+	</ElecCompDef>
+
+	<ElecCompDef name="进给保持" model="进给保持" desc="暂停当前程序的进给轴动作，记忆当前程序执行状态。通过按循环启动从记忆位置开始继续执行程序。">
+		<Jack id="JACK_HOLD_1" name="进给保持" mdlName="p1" format="NC4" jackDirection="x">
+			<Terminal id="hold_1" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="hold_2" name="4B04" index="2" mark="CB104_B04" />
+			<Terminal id="hold_3" name="4B18" index="3" mark="CB104_B18" /><!-- 进给保持指示灯 -->
+			<Terminal id="hold_4" name="0V" index="4" mark="1_1" />
+		</Jack>
+		<Jack id="JACK_HOLD_2" name="进给保持" mdlName="p2" format="NC4" jackDirection="x">
+			<Terminal id="hold_5" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="hold_6" name="4B04" index="2" mark="CB104_B04" />
+			<Terminal id="hold_7" name="4B18" index="3" mark="CB104_B18" /><!-- 进给保持指示灯 -->
+			<Terminal id="hold_8" name="0V" index="4" mark="1_1" />
+		</Jack>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="hold_3" term2Id="hold_4" value="20000" />
+			<ResisRelation term1Id="hold_7" term2Id="hold_8" value="20000" />
+		</ResisState>
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="338" switchIn="on|off" motion="move" motionParams="0|-0.008" axis="z" name="进给保持">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="hold_3" term2Id="hold_4" value="+24" deviation="1" />
+			<VoltageIO type="input" term1Id="hold_7" term2Id="hold_8" value="+24" deviation="1" />
+			<LightIO name="进给保持指示灯" mdlName="3381" glowColor="1|0|0|1" />
+		</Magnetism>
+		<ResisState id="on" isDef="1">
+			<ResisRelation term1Id="hold_1" term2Id="hold_2" value="0" />
+			<ResisRelation term1Id="hold_5" term2Id="hold_6" value="0" />
+		</ResisState>
+		<ResisState id="off">
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="卡盘控制" model="卡盘控制" desc="主轴停转情况下，夹紧或松开卡盘。">
+		<Jack id="JACK_CHUCK_1" name="卡盘控制" mdlName="p1" format="NO4" jackDirection="x">
+			<Terminal id="chuck_1" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="chuck_2" name="4A05" index="2" mark="CB104_A05" />
+			<Terminal id="chuck_3" name="4A19" index="3" mark="CB104_A19" /><!-- 卡盘指示灯 -->
+			<Terminal id="chuck_4" name="0V" index="4" mark="1_1" />
+		</Jack>
+		<Jack id="JACK_CHUCK_2" name="卡盘控制" mdlName="p2" format="NO4" jackDirection="x">
+			<Terminal id="chuck_5" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="chuck_6" name="4A05" index="2" mark="CB104_A05" />
+			<Terminal id="chuck_7" name="4A19" index="3" mark="CB104_A19" /><!-- 卡盘指示灯 -->
+			<Terminal id="chuck_8" name="0V" index="4" mark="1_1" />
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="703" switchIn="off|on" motion="move" motionParams="0|-0.003" axis="z" name="卡盘控制按钮">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="chuck_3" term2Id="chuck_4" type="input" deviation="1" value="+24" />
+			<VoltageIO term1Id="chuck_7" term2Id="chuck_8" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="703" name="卡盘控制指示灯" glowColor="1|1|1|1" />
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="chuck_3" term2Id="chuck_4" value="2000" />
+			<ResisRelation term1Id="chuck_7" term2Id="chuck_8" value="2000" />
+		</ResisState>
+		<ResisState id="off">
+		</ResisState>
+		<ResisState id="on">
+			<ResisRelation term1Id="chuck_1" term2Id="chuck_2" value="0" />
+			<ResisRelation term1Id="chuck_5" term2Id="chuck_6" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="尾架控制" model="尾架控制" desc="用于控制尾架伸出或缩回。">
+		<Jack id="JACK_TAIL_1" name="尾架控制" mdlName="p1" format="NO4" jackDirection="x">
+			<Terminal id="tail_1" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="tail_2" name="4B05" index="2" mark="CB104_B05" />
+			<Terminal id="tail_3" name="4B19" index="3" mark="CB104_B19" /><!-- 尾架指示灯 -->
+			<Terminal id="tail_4" name="0V" index="4" mark="1_1" />
+		</Jack>
+		<Jack id="JACK_TAIL_2" name="尾架控制" mdlName="p2" format="NO4" jackDirection="x">
+			<Terminal id="tail_5" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="tail_6" name="4B05" index="2" mark="CB104_B05" />
+			<Terminal id="tail_7" name="4B19" index="3" mark="CB104_B19" /><!-- 尾架指示灯 -->
+			<Terminal id="tail_8" name="0V" index="4" mark="1_1" />
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="702" switchIn="off|on" motion="move" motionParams="0|-0.003" axis="z" name="NO">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO term1Id="tail_3" term2Id="tail_4" type="input" deviation="1" value="+24" />
+			<VoltageIO term1Id="tail_7" term2Id="tail_8" type="input" deviation="1" value="+24" />
+			<LightIO mdlName="703" name="尾架控制指示灯" glowColor="1|1|1|1" />
+		</Magnetism>
+		<ResisState id="off" isDef="1">
+		</ResisState>
+		<ResisState id="on">
+			<ResisRelation term1Id="tail_1" term2Id="tail_2" value="0" />
+			<ResisRelation term1Id="tail_5" term2Id="tail_6" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="刀位选择" model="刀位选择" desc="选择加工所需刀位，1-12为手动刀位号，手动或手轮方式选择刀位号，按换刀启动，刀架立即转到设定刀号。">
+		<Jack id="JACK_TOOL_STATION" mdlName="P7_5" format="SJ7" jackDirection="x" direction="y-" name="刀位选择">
+			<Terminal id="tool_station_1" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="tool_station_2" name="4A10" index="2" mark="CB104_A10" /><!-- X2.0 -->
+			<Terminal id="tool_station_3" name="4B10" index="3" mark="CB104_B10" /><!-- X2.1 -->
+			<Terminal id="tool_station_4" name="4A11" index="4" mark="CB104_A11" /><!-- X2.2 -->
+			<Terminal id="tool_station_5" name="4B11" index="5" mark="CB104_B11" /><!-- X2.3 -->
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="rotate" name="手动刀位选择" mdlName="1377" switchIn="1|2|3|4|5|6|7|8|9|10|11|12" motion="rotate" motionParams="0|-15.5|-31|-46.5|-62|-77.5|-93|-108.5|-124|-139.5|-155|-170.5" axis="z">
+				sound=me/Interface/sound/control/wheel.wav
+			</ControlIO>
+		</Magnetism>
+		<!-- X2.3-X2.2-X2.1-X2.0 -->
+		<!-- 0-0-0-0 -->
+		<ResisState id="1" isDef="1">
+		</ResisState>
+		<!-- 0-0-0-1 -->
+		<ResisState id="2">
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_2" value="0" />
+		</ResisState>
+		<!-- 0-0-1-0 -->
+		<ResisState id="3">
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_3" value="0" />
+		</ResisState>
+		<!-- 0-0-1-1 -->
+		<ResisState id="4">
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_2" value="0" />
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_3" value="0" />
+		</ResisState>
+		<!-- 0-1-0-0 -->
+		<ResisState id="5">
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_4" value="0" />
+		</ResisState>
+		<!-- 0-1-0-1 -->
+		<ResisState id="6">
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_2" value="0" />
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_4" value="0" />
+		</ResisState>
+		<!-- 0-1-1-0 -->
+		<ResisState id="7">
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_3" value="0" />
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_4" value="0" />
+		</ResisState>
+		<!-- 0-1-1-1 -->
+		<ResisState id="8">
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_2" value="0" />
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_3" value="0" />
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_4" value="0" />
+		</ResisState>
+		<!-- 1-0-0-0 -->
+		<ResisState id="9">
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_5" value="0" />
+		</ResisState>
+		<!-- 1-0-0-1 -->
+		<ResisState id="10">
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_2" value="0" />
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_5" value="0" />
+		</ResisState>
+		<!-- 1-0-1-0 -->
+		<ResisState id="11">
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_3" value="0" />
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_5" value="0" />
+		</ResisState>
+		<!-- 1-0-1-1 -->
+		<ResisState id="12">
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_2" value="0" />
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_3" value="0" />
+			<ResisRelation term1Id="tool_station_1" term2Id="tool_station_5" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="换刀启动" model="换刀启动" desc="手动模式下，选择刀位号，按此按钮启动换刀。">
+		<Jack id="JACK_TOOL_CHANGE_1" name="换刀启动" format="NO2" mdlName="p1" jackDirection="x">
+			<Terminal id="tool_change_1" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="tool_change_2" name="4A12" index="2" mark="CB104_A12" /><!-- X2.4 -->
+		</Jack>
+		<Jack id="JACK_TOOL_CHANGE_2" name="换刀启动" format="NO2" mdlName="p2" jackDirection="x">
+			<Terminal id="tool_change_3" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="tool_change_4" name="4A12" index="2" mark="CB104_A12" /><!-- X2.4 -->
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="332" switchIn="off|on" motion="move" motionParams="0|-0.008" axis="z" name="换刀启动">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="off" isDef="1">
+		</ResisState>
+		<ResisState id="on">
+			<ResisRelation term1Id="tool_change_1" term2Id="tool_change_2" value="0" />
+			<ResisRelation term1Id="tool_change_3" term2Id="tool_change_4" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="急停" model="急停" desc="按下急停按钮时，机床停止所有动作，但不会关机，面板显示急停报警。">
+		<Jack id="JACK_EMG_1" name="急停" mdlName="p1" format="NC2" jackDirection="x">
+			<Terminal id="emg_1" name="24N" index="1" mark="CB105_B01" />
+			<Terminal id="emg_2" name="5A18" index="2" mark="CB105_A08" />
+		</Jack>
+		<Jack id="JACK_EMG_2" name="急停" mdlName="p2" format="NC2" jackDirection="x">
+			<Terminal id="emg_3" name="24N" index="1" mark="CB105_B01" />
+			<Terminal id="emg_4" name="5A18" index="2" mark="CB105_A08" />
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="click" mdlName="344" switchIn="on|off" motion="move" motionParams="0|-0.015" axis="z" name="急停" />
+		</Magnetism>
+		<ResisState id="on" isDef="1">
+			<ResisRelation term1Id="emg_1" term2Id="emg_2" value="0" />
+			<ResisRelation term1Id="emg_3" term2Id="emg_4" value="0" />
+		</ResisState>
+		<ResisState id="off">
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="NC通电" model="NC通电" desc="打开NC电源，NC工作。">
+		<Jack id="JACK_NC_ON_1" name="NC通电" format="NO2" mdlName="p1" jackDirection="x">
+			<Terminal id="nc_on_1" name="NC_on_1" index="1" />
+			<Terminal id="nc_on_2" name="NC_on_2" index="2" />
+		</Jack>
+		<Jack id="JACK_NC_ON_2" name="NC通电" format="NO2" mdlName="p2" jackDirection="x">
+			<Terminal id="nc_on_3" name="NC_on_1" index="1" />
+			<Terminal id="nc_on_4" name="NC_on_2" index="2" />
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="342" switchIn="off|on" motion="move" motionParams="0|-0.008" axis="z" name="NC通电">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="off" isDef="1">
+		</ResisState>
+		<ResisState id="on">
+			<ResisRelation term1Id="nc_on_1" term2Id="nc_on_2" value="0" />
+			<ResisRelation term1Id="nc_on_3" term2Id="nc_on_4" value="0" />
+		</ResisState>
+	</ElecCompDef>
+	<ElecCompDef name="NC断电" model="NC断电" desc="断开NC电源，NC停止工作。">
+		<Jack id="JACK_NC_OFF_1" name="NC断电" mdlName="p1" format="NC2" jackDirection="x">
+			<Terminal id="nc_off_1" name="NC_off_1" index="1" />
+			<Terminal id="nc_off_2" name="NC_off_2" index="2" />
+		</Jack>
+		<Jack id="JACK_NC_OFF_2" name="NC断电" mdlName="p2" format="NC2" jackDirection="x">
+			<Terminal id="nc_off_3" name="NC_off_1" index="1" />
+			<Terminal id="nc_off_4" name="NC_off_2" index="2" />
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="press" mdlName="340" switchIn="on|off" motion="move" motionParams="0|-0.008" axis="z" name="NC断电">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="on" isDef="1">
+			<ResisRelation term1Id="nc_off_1" term2Id="nc_off_2" value="0" />
+			<ResisRelation term1Id="nc_off_3" term2Id="nc_off_4" value="0" />
+		</ResisState>
+		<ResisState id="off">
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="存储保护" model="存储保护" desc="打开则程序无法编辑，程序无法输入。">
+		<Jack id="JACK_KEY_1" name="存储保护" mdlName="p1" format="NO2" jackDirection="x">
+			<Terminal id="key_1" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="key_2" name="4B08" index="2" mark="CB104_B08" />
+		</Jack>
+		<Jack id="JACK_KEY_2" name="存储保护" mdlName="p2" format="NO2" jackDirection="x">
+			<Terminal id="key_3" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="key_4" name="4B08" index="2" mark="CB104_B08" />
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="click" mdlName="2320" switchIn="off|on" motion="rotate" motionParams="0|-90" axis="z" name="存储保护" />
+		</Magnetism>
+		<ResisState id="off" isDef="1">
+		</ResisState>
+		<ResisState id="on">
+			<ResisRelation term1Id="key_1" term2Id="key_2" value="0" />
+			<ResisRelation term1Id="key_3" term2Id="key_4" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="内外卡选择" model="内外卡选择" desc="选择卡盘工作方式，选择内，卡盘张开为有效工作方式，选择外，卡盘夹紧为有效工作方式。">
+		<Jack id="JACK_IN_EX" name="内外卡选择" mdlName="p1" format="NO2" jackDirection="x">
+			<Terminal id="in_ex_1" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="in_ex_2" name="4A08" index="2" mark="CB104_A08" />
+		</Jack>
+		<Jack id="JACK_EMG" name="内外卡选择" mdlName="p2" format="NO2" jackDirection="x">
+			<Terminal id="in_ex_3" name="24N" index="1" mark="CB104_B01" />
+			<Terminal id="in_ex_4" name="4A08" index="2" mark="CB104_A08" />
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="click" mdlName="1505" switchIn="on|off" motion="rotate" motionParams="0|-90" axis="z" name="内外卡选择" />
+		</Magnetism>
+		<ResisState id="on" isDef="1">
+			<ResisRelation term1Id="in_ex_1" term2Id="in_ex_2" value="0" />
+			<ResisRelation term1Id="in_ex_3" term2Id="in_ex_4" value="0" />
+		</ResisState>
+		<ResisState id="off">
+		</ResisState>
+	</ElecCompDef>
+
+	<!-- <ElecCompDef tagName="ALARM"> -->
+	<!-- </ElecCompDef> -->
+
+	<!-- <ElecCompDef tagName="READY"> -->
+	<!-- </ElecCompDef> -->
+</Comps>

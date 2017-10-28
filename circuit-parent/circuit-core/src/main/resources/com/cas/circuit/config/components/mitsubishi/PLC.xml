@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roots>
+	<!-- FX3U-32M -->
+	<ElecCompDef name="FX3U-32MPLC" model="FX3U-32M" appStateCls="FX3UPLCLogic">
+		<!-- input -->
+		<Terminal id="GND" name="GND" mdlName="1" direction="Z-" />
+		<Terminal id="S/S" name="S/S" mdlName="2" direction="Z-" />
+		<Terminal id="0V" name="0V" mdlName="3" direction="Z-" />
+		<Terminal id="X0" name="X0" mdlName="4" direction="Z-" />
+		<Terminal id="X2" name="X2" mdlName="5" direction="Z-" />
+		<Terminal id="X4" name="X4" mdlName="6" direction="Z-" />
+		<Terminal id="X6" name="X6" mdlName="7" direction="Z-" />
+		<Terminal id="X10" name="X10" mdlName="8" direction="Z-" />
+		<Terminal id="X12" name="X12" mdlName="9" direction="Z-" />
+		<Terminal id="X14" name="X14" mdlName="10" direction="Z-" />
+		<Terminal id="X16" name="X16" mdlName="11" direction="Z-" />
+		<!-- <Terminal id="" name="" mdlName="12" direction="Z-" /> -->
+		<Terminal id="L" name="L" mdlName="13" direction="Z-" team="power" />
+		<Terminal id="N" name="N" mdlName="14" direction="Z-" team="power" />
+		<!-- <Terminal id="" name="" mdlName="15" direction="Z-" /> -->
+		<Terminal id="24V" name="24V" mdlName="16" direction="Z-" />
+		<Terminal id="X1" name="X1" mdlName="17" direction="Z-" />
+		<Terminal id="X3" name="X3" mdlName="18" direction="Z-" />
+		<Terminal id="X5" name="X5" mdlName="19" direction="Z-" />
+		<Terminal id="X7" name="X7" mdlName="20" direction="Z-" />
+		<Terminal id="X11" name="X11" mdlName="21" direction="Z-" />
+		<Terminal id="X13" name="X13" mdlName="22" direction="Z-" />
+		<Terminal id="X15" name="X15" mdlName="23" direction="Z-" />
+		<Terminal id="X17" name="X17" mdlName="24" direction="Z-" />
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="S/S" term2Id="X0" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X1" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X2" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X3" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X4" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X5" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X6" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X7" value="4300" />
+
+			<ResisRelation term1Id="S/S" term2Id="X10" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X11" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X12" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X13" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X14" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X15" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X16" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X17" value="4300" />
+		</ResisState>
+
+		<!-- output -->
+		<Terminal id="Y0" name="Y0" mdlName="25" direction="Z+" />
+		<Terminal id="Y2" name="Y2" mdlName="26" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="27" direction="Z+" /> -->
+		<Terminal id="Y4" name="Y4" mdlName="28" direction="Z+" />
+		<Terminal id="Y6" name="Y6" mdlName="29" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="30" direction="Z+" /> -->
+		<Terminal id="Y10" name="Y10" mdlName="31" direction="Z+" />
+		<Terminal id="Y12" name="Y12" mdlName="32" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="33" direction="Z+" /> -->
+		<Terminal id="Y14" name="Y14" mdlName="34" direction="Z+" />
+		<Terminal id="Y16" name="Y16" mdlName="35" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="36" direction="Z+" /> -->
+		<Terminal id="COM1" name="COM1" mdlName="37" direction="Z+" />
+		<Terminal id="Y1" name="Y1" mdlName="38" direction="Z+" />
+		<Terminal id="Y3" name="Y3" mdlName="39" direction="Z+" />
+		<Terminal id="COM2" name="COM2" mdlName="40" direction="Z+" />
+		<Terminal id="Y5" name="Y5" mdlName="41" direction="Z+" />
+		<Terminal id="Y7" name="Y7" mdlName="42" direction="Z+" />
+		<Terminal id="COM3" name="COM3" mdlName="43" direction="Z+" />
+		<Terminal id="Y11" name="Y11" mdlName="44" direction="Z+" />
+		<Terminal id="Y13" name="Y13" mdlName="45" direction="Z+" />
+		<Terminal id="COM4" name="COM4" mdlName="46" direction="Z+" />
+		<Terminal id="Y15" name="Y15" mdlName="47" direction="Z+" />
+		<Terminal id="Y17" name="Y17" mdlName="48" direction="Z+" />
+
+		<!-- <Jack id="RS-485" mdlName="FX3U-32M85" name="RS-485" direction="X" core="5"> -->
+		<Terminal id="SDA" name="SDA" index="01" mdlName="SDA" mark="SDA" />
+		<Terminal id="SDB" name="SDB" index="02" mdlName="SDB" mark="SDB" />
+		<Terminal id="RDA" name="RDA" index="03" mdlName="RDA" mark="RDA" />
+		<Terminal id="RDB" name="RDB" index="04" mdlName="RDB" mark="RDB" />
+		<Terminal id="SG" name="SG" index="05" mdlName="SG" mark="SG" />
+		<!-- </Jack> -->
+
+		<!-- Run/Stop配置文件 -->
+
+		<!-- 指示灯配置文件 -->
+	</ElecCompDef>
+	<ElecCompDef name="FX3U-48MPLC" model="FX3U-48M" appStateCls="FX3UPLCLogic">
+		<!-- input -->
+		<Terminal id="GND" name="GND" mdlName="1" direction="Z-" />
+		<Terminal id="S/S" name="S/S" mdlName="2" direction="Z-" />
+		<Terminal id="0V" name="0V" mdlName="3" direction="Z-" />
+		<Terminal id="X0" name="X0" mdlName="4" direction="Z-" />
+		<Terminal id="X2" name="X2" mdlName="5" direction="Z-" />
+		<Terminal id="X4" name="X4" mdlName="6" direction="Z-" />
+		<Terminal id="X6" name="X6" mdlName="7" direction="Z-" />
+		<Terminal id="X10" name="X10" mdlName="8" direction="Z-" />
+		<Terminal id="X12" name="X12" mdlName="9" direction="Z-" />
+		<Terminal id="X14" name="X14" mdlName="10" direction="Z-" />
+		<Terminal id="X16" name="X16" mdlName="11" direction="Z-" />
+		<Terminal id="X20" name="X20" mdlName="12" direction="Z-" />
+		<Terminal id="X22" name="X22" mdlName="13" direction="Z-" />
+		<Terminal id="X24" name="X24" mdlName="14" direction="Z-" />
+		<Terminal id="X26" name="X26" mdlName="15" direction="Z-" />
+		<!-- <Terminal id="" name="" mdlName="16" direction="Z-" /> -->
+		<Terminal id="L" name="L" mdlName="17" direction="Z-" team="power" />
+		<Terminal id="N" name="N" mdlName="18" direction="Z-" team="power" />
+		<!-- <Terminal id="" name="" mdlName="19" direction="Z-" /> -->
+		<Terminal id="24V" name="24V" mdlName="20" direction="Z-" />
+		<Terminal id="X1" name="X1" mdlName="21" direction="Z-" />
+		<Terminal id="X3" name="X3" mdlName="22" direction="Z-" />
+		<Terminal id="X5" name="X5" mdlName="23" direction="Z-" />
+		<Terminal id="X7" name="X7" mdlName="24" direction="Z-" />
+		<Terminal id="X11" name="X11" mdlName="25" direction="Z-" />
+		<Terminal id="X13" name="X13" mdlName="26" direction="Z-" />
+		<Terminal id="X15" name="X15" mdlName="27" direction="Z-" />
+		<Terminal id="X17" name="X17" mdlName="28" direction="Z-" />
+		<Terminal id="X21" name="X21" mdlName="29" direction="Z-" />
+		<Terminal id="X23" name="X23" mdlName="30" direction="Z-" />
+		<Terminal id="X25" name="X25" mdlName="31" direction="Z-" />
+		<Terminal id="X27" name="X27" mdlName="32" direction="Z-" />
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="S/S" term2Id="X0" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X1" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X2" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X3" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X4" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X5" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X6" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X7" value="4300" />
+
+			<ResisRelation term1Id="S/S" term2Id="X10" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X11" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X12" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X13" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X14" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X15" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X16" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X17" value="4300" />
+
+			<ResisRelation term1Id="S/S" term2Id="X20" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X21" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X22" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X23" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X24" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X25" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X26" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X27" value="4300" />
+		</ResisState>
+
+
+		<!-- output -->
+		<Terminal id="Y0" name="Y0" mdlName="33" direction="Z+" />
+		<Terminal id="Y2" name="Y2" mdlName="34" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="35" direction="Z+" /> -->
+		<Terminal id="Y4" name="Y4" mdlName="36" direction="Z+" />
+		<Terminal id="Y6" name="Y6" mdlName="37" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="38" direction="Z+" /> -->
+		<Terminal id="Y10" name="Y10" mdlName="39" direction="Z+" />
+		<Terminal id="Y12" name="Y12" mdlName="40" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="41" direction="Z+" /> -->
+		<Terminal id="Y14" name="Y14" mdlName="42" direction="Z+" />
+		<Terminal id="Y16" name="Y16" mdlName="43" direction="Z+" />
+		<Terminal id="Y20" name="Y20" mdlName="44" direction="Z+" />
+		<Terminal id="Y22" name="Y22" mdlName="45" direction="Z+" />
+		<Terminal id="Y24" name="Y24" mdlName="46" direction="Z+" />
+		<Terminal id="Y26" name="Y26" mdlName="47" direction="Z+" />
+		<Terminal id="COM5" name="COM5" mdlName="48" direction="Z+" />
+		<Terminal id="COM1" name="COM1" mdlName="49" direction="Z+" />
+		<Terminal id="Y1" name="Y1" mdlName="50" direction="Z+" />
+		<Terminal id="Y3" name="Y3" mdlName="51" direction="Z+" />
+		<Terminal id="COM2" name="COM2" mdlName="52" direction="Z+" />
+		<Terminal id="Y5" name="Y5" mdlName="53" direction="Z+" />
+		<Terminal id="Y7" name="Y7" mdlName="54" direction="Z+" />
+		<Terminal id="COM3" name="COM3" mdlName="55" direction="Z+" />
+		<Terminal id="Y11" name="Y11" mdlName="56" direction="Z+" />
+		<Terminal id="Y13" name="Y13" mdlName="57" direction="Z+" />
+		<Terminal id="COM4" name="COM4" mdlName="58" direction="Z+" />
+		<Terminal id="Y15" name="Y15" mdlName="59" direction="Z+" />
+		<Terminal id="Y17" name="Y17" mdlName="60" direction="Z+" />
+		<Terminal id="Y21" name="Y21" mdlName="61" direction="Z+" />
+		<Terminal id="Y23" name="Y23" mdlName="62" direction="Z+" />
+		<Terminal id="Y25" name="Y25" mdlName="63" direction="Z+" />
+		<Terminal id="Y27" name="Y27" mdlName="64" direction="Z+" />
+
+		<Terminal id="SDA" name="SDA" index="01" mdlName="SDA" mark="SDA" />
+		<Terminal id="SDB" name="SDB" index="02" mdlName="SDB" mark="SDB" />
+		<Terminal id="RDA" name="RDA" index="03" mdlName="RDA" mark="RDA" />
+		<Terminal id="RDB" name="RDB" index="04" mdlName="RDB" mark="RDB" />
+		<Terminal id="SG" name="SG" index="05" mdlName="SG" mark="SG" />
+
+		<!-- Run/Stop配置文件 -->
+
+		<!-- 指示灯配置文件 -->
+
+	</ElecCompDef>
+	<ElecCompDef name="FX3U-64MPLC" model="FX3U-64M" appStateCls="FX3UPLCLogic">
+		<!-- input -->
+		<Terminal id="GND" name="GND" mdlName="84" direction="Z-" />
+		<Terminal id="S/S" name="S/S" mdlName="83" direction="Z-" />
+		<Terminal id="0V_1" name="0V" mdlName="82" direction="Z-" />
+		<Terminal id="0V_2" name="0V" mdlName="81" direction="Z-" />
+		<Terminal id="X0" name="X0" mdlName="80" direction="Z-" />
+		<Terminal id="X2" name="X2" mdlName="79" direction="Z-" />
+		<Terminal id="X4" name="X4" mdlName="78" direction="Z-" />
+		<Terminal id="X6" name="X6" mdlName="77" direction="Z-" />
+		<Terminal id="X10" name="X10" mdlName="76" direction="Z-" />
+		<Terminal id="X12" name="X12" mdlName="75" direction="Z-" />
+		<Terminal id="X14" name="X14" mdlName="74" direction="Z-" />
+		<Terminal id="X16" name="X16" mdlName="73" direction="Z-" />
+		<Terminal id="X20" name="X20" mdlName="72" direction="Z-" />
+		<Terminal id="X22" name="X22" mdlName="71" direction="Z-" />
+		<Terminal id="X24" name="X24" mdlName="70" direction="Z-" />
+		<Terminal id="X26" name="X26" mdlName="69" direction="Z-" />
+		<Terminal id="X30" name="X30" mdlName="68" direction="Z-" />
+		<Terminal id="X32" name="X32" mdlName="67" direction="Z-" />
+		<Terminal id="X34" name="X34" mdlName="66" direction="Z-" />
+		<Terminal id="X36" name="X36" mdlName="65" direction="Z-" />
+		<!-- <Terminal id="" name="" mdlName="64" direction="Z-" /> -->
+		<Terminal id="L" name="L" mdlName="63" direction="Z-" team="power" />
+		<Terminal id="N" name="N" mdlName="62" direction="Z-" team="power" />
+		<!-- <Terminal id="" name="" mdlName="61" direction="Z-" /> -->
+		<Terminal id="24V_1" name="24V" mdlName="60" direction="Z-" />
+		<Terminal id="24V_2" name="24V" mdlName="59" direction="Z-" />
+		<Terminal id="X1" name="X1" mdlName="58" direction="Z-" />
+		<Terminal id="X3" name="X3" mdlName="57" direction="Z-" />
+		<Terminal id="X5" name="X5" mdlName="56" direction="Z-" />
+		<Terminal id="X7" name="X7" mdlName="55" direction="Z-" />
+		<Terminal id="X11" name="X11" mdlName="54" direction="Z-" />
+		<Terminal id="X13" name="X13" mdlName="53" direction="Z-" />
+		<Terminal id="X15" name="X15" mdlName="52" direction="Z-" />
+		<Terminal id="X17" name="X17" mdlName="51" direction="Z-" />
+		<Terminal id="X21" name="X21" mdlName="50" direction="Z-" />
+		<Terminal id="X23" name="X23" mdlName="49" direction="Z-" />
+		<Terminal id="X25" name="X25" mdlName="48" direction="Z-" />
+		<Terminal id="X27" name="X27" mdlName="47" direction="Z-" />
+		<Terminal id="X31" name="X31" mdlName="46" direction="Z-" />
+		<Terminal id="X33" name="X33" mdlName="45" direction="Z-" />
+		<Terminal id="X35" name="X35" mdlName="44" direction="Z-" />
+		<Terminal id="X37" name="X37" mdlName="43" direction="Z-" />
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="S/S" term2Id="X0" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X1" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X2" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X3" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X4" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X5" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X6" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X7" value="4300" />
+
+			<ResisRelation term1Id="S/S" term2Id="X10" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X11" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X12" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X13" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X14" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X15" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X16" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X17" value="4300" />
+
+			<ResisRelation term1Id="S/S" term2Id="X20" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X21" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X22" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X23" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X24" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X25" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X26" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X27" value="4300" />
+
+			<ResisRelation term1Id="S/S" term2Id="X30" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X31" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X32" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X33" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X34" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X35" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X36" value="4300" />
+			<ResisRelation term1Id="S/S" term2Id="X37" value="4300" />
+
+		</ResisState>
+
+
+		<!-- output -->
+		<Terminal id="Y0" name="Y0" mdlName="1" direction="Z+" />
+		<Terminal id="Y2" name="Y2" mdlName="2" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="3" direction="Z+" /> -->
+		<Terminal id="Y4" name="Y4" mdlName="4" direction="Z+" />
+		<Terminal id="Y6" name="Y6" mdlName="5" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="6" direction="Z+" /> -->
+		<Terminal id="Y10" name="Y10" mdlName="7" direction="Z+" />
+		<Terminal id="Y12" name="Y12" mdlName="8" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="9" direction="Z+" /> -->
+		<Terminal id="Y14" name="Y14" mdlName="10" direction="Z+" />
+		<Terminal id="Y16" name="Y16" mdlName="11" direction="Z+" />
+		<!-- <Terminal id="" name="" mdlName="12" direction="Z+" /> -->
+		<Terminal id="Y20" name="Y20" mdlName="13" direction="Z+" />
+		<Terminal id="Y22" name="Y22" mdlName="14" direction="Z+" />
+		<Terminal id="Y24" name="Y24" mdlName="15" direction="Z+" />
+		<Terminal id="Y26" name="Y26" mdlName="16" direction="Z+" />
+		<Terminal id="Y30" name="Y30" mdlName="17" direction="Z+" />
+		<Terminal id="Y32" name="Y32" mdlName="18" direction="Z+" />
+		<Terminal id="Y34" name="Y34" mdlName="19" direction="Z+" />
+		<Terminal id="Y36" name="Y36" mdlName="20" direction="Z+" />
+		<Terminal id="COM6" name="COM6" mdlName="21" direction="Z+" />
+		<Terminal id="COM1" name="COM1" mdlName="22" direction="Z+" />
+		<Terminal id="Y1" name="Y1" mdlName="23" direction="Z+" />
+		<Terminal id="Y3" name="Y3" mdlName="24" direction="Z+" />
+		<Terminal id="COM2" name="COM2" mdlName="25" direction="Z+" />
+		<Terminal id="Y5" name="Y5" mdlName="26" direction="Z+" />
+		<Terminal id="Y7" name="Y7" mdlName="27" direction="Z+" />
+		<Terminal id="COM3" name="COM3" mdlName="28" direction="Z+" />
+		<Terminal id="Y11" name="Y11" mdlName="29" direction="Z+" />
+		<Terminal id="Y13" name="Y13" mdlName="30" direction="Z+" />
+		<Terminal id="COM4" name="COM4" mdlName="31" direction="Z+" />
+		<Terminal id="Y15" name="Y15" mdlName="32" direction="Z+" />
+		<Terminal id="Y17" name="Y17" mdlName="33" direction="Z+" />
+		<Terminal id="COM5" name="COM5" mdlName="34" direction="Z+" />
+		<Terminal id="Y21" name="Y21" mdlName="35" direction="Z+" />
+		<Terminal id="Y23" name="Y23" mdlName="36" direction="Z+" />
+		<Terminal id="Y25" name="Y25" mdlName="37" direction="Z+" />
+		<Terminal id="Y27" name="Y27" mdlName="38" direction="Z+" />
+		<Terminal id="Y31" name="Y31" mdlName="39" direction="Z+" />
+		<Terminal id="Y33" name="Y33" mdlName="40" direction="Z+" />
+		<Terminal id="Y35" name="Y35" mdlName="41" direction="Z+" />
+		<Terminal id="Y37" name="Y37" mdlName="42" direction="Z+" />
+
+		<Jack id="RS-485" mdlName="" name="RS-485" direction="X" core="5">
+			<Terminal id="SDA" name="SDA" index="01" mark="SDA" />
+			<Terminal id="SDB" name="SDB" index="02" mark="SDB" />
+			<Terminal id="RDA" name="RDA" index="03" mark="RDA" />
+			<Terminal id="RDB" name="RDB" index="04" mark="RDB" />
+			<Terminal id="SG" name="SG" index="05" mark="SG" />
+		</Jack>
+
+
+		<!-- Run/Stop配置文件 -->
+
+		<!-- 指示灯配置文件 -->
+
+	</ElecCompDef>
+</roots>

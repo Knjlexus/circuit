@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="NC" model="NC0iMateTD" appStateCls="NC0iMateTD" desc="NC单元是数控机床的重要组成部件，是操作人员与数控机床进行交互的工具。操作人员可以通过它对数控机床进行操作、编程、调试、对机床参数进行设定和修改，还可以通过它了解、查询数控机床的运行状态，是数控机床特有的一个输入、输出部件。主要有显示装置、NC键盘、机床控制面板、状态灯、手持单元等部分组成。">
+		#第二视角模型
+		viewMdls=nc_view|105|520|268
+		#NC按钮配置文件
+		NCButtons=com/cas/me/maintenance/config/configurations/ncButton/NCButtons.xml
+		#数控系统菜单配置文件
+		NCMonitorMenu=com/cas/me/maintenance/config/configurations/monitor/NCMonitorMenu.xml
+		#系统参数
+		allSystemParam=com/cas/me/maintenance/config/configurations/monitor/sys/FUNAC0iTD_Param.xml
+		#系统参数默认值
+		SystemParamDefalutValue=com/cas/me/maintenance/config/configurations/monitor/sys/FUNAC0iTD_Param_default.txt
+		#Offset设定参数
+		OffsetSet=com/cas/me/maintenance/config/configurations/monitor/ofsset/OfssetSetParams.xml
+		#辅助功能参数
+		AssistFunction=com/cas/me/maintenance/config/configurations/monitor/sys/prmset/Style1SysPrmSetAssistFunction.xml
+		#轴设定
+		AxisSet=com/cas/me/maintenance/config/configurations/monitor/sys/prmset/Style1SysPrmsetAxisSet.xml
+		#高精度设定
+		HighAccuracySet=com/cas/me/maintenance/config/configurations/monitor/sys/prmset/Style1SysPrmSetHighAccuracySet.xml
+		#伺服参数
+		ServoParam=com/cas/me/maintenance/config/configurations/monitor/sys/prmset/Style1SysPrmsetServoParam.xml
+		#伺服设定
+		ServoSet=com/cas/me/maintenance/config/configurations/monitor/sys/prmset/Style2SysPrmSetServoSet.xml
+		#主轴设定
+		SpindleSet=com/cas/me/maintenance/config/configurations/monitor/sys/prmset/Style2SysPrmSetSpindleSet.xml
+		#伺服设定特殊
+		UniqueServoSet=com/cas/me/maintenance/config/configurations/monitor/sys/prmset/UniqueSysPrmServoSet.xml
+		#伺服电机型号
+		ServoMotorType=com/cas/me/maintenance/config/configurations/monitor/motor/ServoMotorType.xml
+		#主轴电机型号
+		SpindleMotorType=com/cas/me/maintenance/config/configurations/monitor/motor/SpindleMotorType.xml
+		#PLC参数
+		PLCParam_Default=com/cas/me/maintenance/config/configurations/ladder/PLCParam_Default.xml
+		<Jack id="CP1" name="CP1" format="CP1" mdlName="CP2" jackDirection="y">
+			<Terminal id="CP1_1" index="1" mark="+24V" voltage="+24V" type="input" team="NC_POWER" />
+			<Terminal id="CP1_2" index="2" mark="0V" voltage="0V" type="input" team="NC_POWER" />
+		</Jack>
+
+		<Jack id="JA7A" name="JA7A" format="JF" mdlName="JA6" jackDirection="y">
+			<Terminal id="JA7A_1" index="1" mark="SIN" type="input" team="JA7ASIN" />
+			<Terminal id="JA7A_3" index="3" mark="SOUT" type="output" />
+			<Terminal id="JA7A_11" index="11" mark="0V" voltage="0V" team="JA7ASIN" />
+			<Terminal id="JA7A_12" index="12" mark="0V" voltage="0V" />
+			<Terminal id="JA7A_13" index="13" mark="0V" voltage="0V" />
+			<Terminal id="JA7A_14" index="14" mark="0V" voltage="0V" />
+			<Terminal id="JA7A_16" index="16" mark="0V" voltage="0V" />
+		</Jack>
+		<ResisState isDef="1">
+			<ResisRelation term2Id="JA7A_1" term1Id="JA7A_11" value="20000" />
+		</ResisState>
+
+		<Jack name="JA40" id="JA40" format="JF" mdlName="JA4" jackDirection="y">
+		</Jack>
+		<Jack name="JD36B" id="JD36B" format="JF" mdlName="JA3" jackDirection="y">
+		</Jack>
+		<Jack name="JD36A" id="JD36A" format="JF" mdlName="JA2" jackDirection="y">
+		</Jack>
+		<Jack name="CA55" id="CA55" format="JF" mdlName="JA1" jackDirection="y">
+		</Jack>
+		<Jack name="CK5" id="CK5" format="JF" mdlName="JA7" jackDirection="y">
+		</Jack>
+
+		<Jack id="COP10A" name="COP10A" format="COP" mdlName="CP" jackDirection="z">
+			<Terminal id="COP10A_1" index="1" mark="SOUT" type="output" />
+			<Terminal id="COP10A_2" index="2" mark="SIN" type="input" team="COP10ASIN" />
+			<Terminal id="COP10A_3" index="3" mark="SOUT_0V" />
+			<Terminal id="COP10A_4" index="4" mark="SIN_0V" team="COP10ASIN" />
+		</Jack>
+		<ResisState isDef="1">
+			<ResisRelation term2Id="COP10A_2" term1Id="COP10A_4" value="20000" />
+		</ResisState>
+
+		<!-- 集成PLC -->
+		<Jack id="JD1A" name="JD1A" format="JF" mdlName="JA5" jackDirection="y">
+			<Terminal id="JD1A_1" index="1" mark="SIN" type="input" team="JD1A1-11" />
+			<Terminal id="JD1A_3" index="3" mark="SOUT" type="output" team="JD1A3-13" />
+			<Terminal id="JD1A_9" index="9" mark="+5V" voltage="+5V" />
+			<Terminal id="JD1A_11" index="11" mark="0V" voltage="0V" team="JD1A1-11" />
+			<Terminal id="JD1A_12" index="12" mark="0V" voltage="0V" />
+			<Terminal id="JD1A_13" index="13" mark="0V" voltage="0V" team="JD1A3-13" />
+			<Terminal id="JD1A_14" index="14" mark="0V" voltage="0V" />
+			<Terminal id="JD1A_15" index="15" mark="0V" voltage="0V" />
+			<Terminal id="JD1A_18" index="18" mark="+5V" voltage="+5V" />
+			<Terminal id="JD1A_20" index="20" mark="+5V" voltage="+5V" />
+		</Jack>
+		<ResisState isDef="1">
+			<ResisRelation term2Id="JD1A_1" term1Id="JD1A_11" value="20000" />
+		</ResisState>
+	</ElecCompDef>
+</Comps>

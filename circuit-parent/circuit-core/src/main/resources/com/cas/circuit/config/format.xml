@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Layout SYSTEM "http://com.cas.me/dtds/format.dtd">
+<Formats>
+	<item vo="Format" keyProperty="id" qname="format" />
+
+	<format id="Magnetism" turns="2" mdlRef="" />
+
+	<format id="Diffuse" turns="3" mdlRef="" />
+
+	<format id="Inductance" turns="3" mdlRef="" />
+
+	<format id="Fiber" turns="3" mdlRef="" />
+
+	<format id="Servo_Power" turns="3" mdlRef="" />
+
+	<format id="Encoder" turns="5" mdlRef="" />
+
+	<format id="X4" turns="9" mdlRef="Models/Jack_X4.j3o" />
+	<format id="X6" turns="5" mdlRef="Models/Jack_X6.j3o" />
+
+	<format id="15PIN" turns="15" mdlRef="Models/Zjb-chatou.j3o" />
+
+	<format id="25PIN" turns="25" mdlRef="Models/Zjb-chatou2.j3o" />
+
+	<format id="YA" turns="2" mdlRef="Models/Xianquanchatou.j3o" />
+
+	<!-- 网络端口-PU -->
+	<format id="NET-RS485" turns="5" mdlRef="Models/Wangxianjietou.j3o" />
+
+	<format id="NET" turns="8" mdlRef="Models/Wangxianjietou.j3o" />
+
+	<format id="VS10N051C" turns="3" mdlRef="" />
+</Formats>

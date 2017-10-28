@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Comps>
+	<ElecCompDef name="气泵" model="AirPump" desc="气泵">
+		<GasPort id="export" name="export" mdlName="export" direction="z-" />
+	</ElecCompDef>
+</Comps>

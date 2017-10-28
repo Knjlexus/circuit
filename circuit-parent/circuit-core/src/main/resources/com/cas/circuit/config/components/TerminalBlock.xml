@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="端子排" model="端子排XT2" desc="端子排是承载多个或多组相互绝缘的端子组件并用于固定支持件的绝缘部件，起到信号传输的作用。有了端子排，使得接线美观，在远距离线之间的联接时牢靠，施工和维护方便。">
+		<Terminal id="1" name="1" mdlName="1" direction="y+" />
+		<Terminal id="2" name="2" mdlName="3" direction="y+" />
+		<Terminal id="3" name="3" mdlName="2" direction="y-" />
+		<ResisState isDef="1">
+			<ResisRelation term1Id="1" term2Id="2" value="0" />
+			<ResisRelation term1Id="2" term2Id="3" value="0" />
+		</ResisState>
+	</ElecCompDef>
+	<ElecCompDef name="端子排" model="端子排XT1" desc="端子排是承载多个或多组相互绝缘的端子组件并用于固定支持件的绝缘部件，起到信号传输的作用。有了端子排，使得接线美观，在远距离线之间的联接时牢靠，施工和维护方便。">
+		<Terminal id="1" name="1" mdlName="1" direction="y+" />
+		<Terminal id="2" name="2" mdlName="3" direction="y+" />
+		<Terminal id="3" name="3" mdlName="2" direction="y-" />
+		<ResisState isDef="1">
+			<ResisRelation term1Id="1" term2Id="2" value="0" />
+			<ResisRelation term1Id="2" term2Id="3" value="0" />
+		</ResisState>
+	</ElecCompDef>
+	<ElecCompDef name="强电端子排" model="强电端子排" desc="强电端子排用于接机床总电源380V，起到信号传输的作用。有了端子排，使得接线美观，在远距离线之间的联接时牢靠，施工和维护方便。">
+		<Terminal id="1" name="L13" mdlName="1" direction="y+" />
+		<Terminal id="2" name="shotCNT" mdlName="3" direction="y+" />
+		<Terminal id="3" name="L13" mdlName="2" direction="y-" />
+		<ResisState isDef="1">
+			<ResisRelation term1Id="1" term2Id="2" value="0" />
+			<ResisRelation term1Id="2" term2Id="3" value="0" />
+		</ResisState>
+	</ElecCompDef>
+	<ElecCompDef name="强电接地端子排" model="强电接地端子排" desc="强电接地端子排用于机床强电总接地，可以使接地线有良好地接地条件。接地是设备发生故障时的安全措施，有时是为了获得合理的线路分配而设立的。">
+		<Terminal id="1" name="GND" mdlName="1" direction="y+" />
+		<Terminal id="2" name="shotCNT" mdlName="3" direction="y+" />
+		<Terminal id="3" name="GND" mdlName="2" direction="y-" />
+		<ResisState isDef="1">
+			<ResisRelation term1Id="1" term2Id="2" value="0" />
+			<ResisRelation term1Id="2" term2Id="3" value="0" />
+		</ResisState>
+	</ElecCompDef>
+	<ElecCompDef name="接地端子排" model="接地端子排" desc="接地端子排就是供接地线使用，使用接地端子排可以使接地线有良好地接地条件。接地是设备发生故障时的安全措施，有时是为了获得合理的线路分配而设立的。">
+		<Terminal id="1" name="L11" mdlName="1" direction="y+" />
+		<Terminal id="2" name="shotCNT" mdlName="3" direction="y+" />
+		<Terminal id="3" name="L11" mdlName="2" direction="y-" />
+		<ResisState isDef="1">
+			<ResisRelation term1Id="1" term2Id="2" value="0" />
+			<ResisRelation term1Id="2" term2Id="3" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="端子排" model="TB-2-5" desc="">
+		<Terminal id="11" name="11" mdlName="1" direction="z-" />
+		<Terminal id="21" name="21" mdlName="3" direction="z-" />
+		<Terminal id="31" name="31" mdlName="5" direction="z-" />
+		<Terminal id="41" name="41" mdlName="7" direction="z-" />
+		<Terminal id="51" name="51" mdlName="9" direction="z-" />
+
+		<Terminal id="12" name="12" mdlName="2" direction="z+" />
+		<Terminal id="22" name="22" mdlName="4" direction="z+" />
+		<Terminal id="32" name="32" mdlName="6" direction="z+" />
+		<Terminal id="42" name="42" mdlName="8" direction="z+" />
+		<Terminal id="52" name="52" mdlName="10" direction="z+" />
+		<ResisState isDef="1">
+			<ResisRelation term1Id="11" term2Id="12" value="0" />
+			<ResisRelation term1Id="21" term2Id="22" value="0" />
+			<ResisRelation term1Id="31" term2Id="32" value="0" />
+			<ResisRelation term1Id="41" term2Id="42" value="0" />
+			<ResisRelation term1Id="51" term2Id="52" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="端子排" model="TB-2-20" desc="">
+		<Terminal id="11" name="1" mdlName="1" direction="z-" />
+		<Terminal id="21" name="2" mdlName="2" direction="z-" />
+		<Terminal id="31" name="3" mdlName="3" direction="z-" />
+		<Terminal id="41" name="4" mdlName="4" direction="z-" />
+		<Terminal id="51" name="5" mdlName="5" direction="z-" />
+		<Terminal id="61" name="6" mdlName="6" direction="z-" />
+		<Terminal id="71" name="7" mdlName="7" direction="z-" />
+		<Terminal id="81" name="8" mdlName="8" direction="z-" />
+		<Terminal id="91" name="9" mdlName="9" direction="z-" />
+		<Terminal id="101" name="10" mdlName="10" direction="z-" />
+		<Terminal id="111" name="11" mdlName="11" direction="z-" />
+		<Terminal id="121" name="12" mdlName="12" direction="z-" />
+		<Terminal id="131" name="13" mdlName="13" direction="z-" />
+		<Terminal id="141" name="14" mdlName="14" direction="z-" />
+		<Terminal id="151" name="15" mdlName="15" direction="z-" />
+		<Terminal id="161" name="16" mdlName="16" direction="z-" />
+		<Terminal id="171" name="17" mdlName="17" direction="z-" />
+		<Terminal id="181" name="18" mdlName="18" direction="z-" />
+		<Terminal id="191" name="19" mdlName="19" direction="z-" />
+		<Terminal id="201" name="20" mdlName="20" direction="z-" />
+
+		<Terminal id="212" name="1" mdlName="21" direction="z+" />
+		<Terminal id="222" name="2" mdlName="22" direction="z+" />
+		<Terminal id="232" name="3" mdlName="23" direction="z+" />
+		<Terminal id="242" name="4" mdlName="24" direction="z+" />
+		<Terminal id="252" name="5" mdlName="25" direction="z+" />
+		<Terminal id="262" name="6" mdlName="26" direction="z+" />
+		<Terminal id="272" name="7" mdlName="27" direction="z+" />
+		<Terminal id="282" name="8" mdlName="28" direction="z+" />
+		<Terminal id="292" name="9" mdlName="29" direction="z+" />
+		<Terminal id="302" name="10" mdlName="30" direction="z+" />
+		<Terminal id="312" name="11" mdlName="31" direction="z+" />
+		<Terminal id="322" name="12" mdlName="32" direction="z+" />
+		<Terminal id="332" name="13" mdlName="33" direction="z+" />
+		<Terminal id="342" name="14" mdlName="34" direction="z+" />
+		<Terminal id="352" name="15" mdlName="35" direction="z+" />
+		<Terminal id="362" name="16" mdlName="36" direction="z+" />
+		<Terminal id="372" name="17" mdlName="37" direction="z+" />
+		<Terminal id="382" name="18" mdlName="38" direction="z+" />
+		<Terminal id="392" name="19" mdlName="39" direction="z+" />
+		<Terminal id="402" name="20" mdlName="40" direction="z+" />
+		<ResisState isDef="1">
+			<ResisRelation term1Id="11" term2Id="212" value="0" />
+			<ResisRelation term1Id="21" term2Id="222" value="0" />
+			<ResisRelation term1Id="31" term2Id="232" value="0" />
+			<ResisRelation term1Id="41" term2Id="242" value="0" />
+			<ResisRelation term1Id="51" term2Id="252" value="0" />
+			<ResisRelation term1Id="61" term2Id="262" value="0" />
+			<ResisRelation term1Id="71" term2Id="272" value="0" />
+			<ResisRelation term1Id="81" term2Id="282" value="0" />
+			<ResisRelation term1Id="91" term2Id="292" value="0" />
+			<ResisRelation term1Id="101" term2Id="302" value="0" />
+			<ResisRelation term1Id="111" term2Id="312" value="0" />
+			<ResisRelation term1Id="121" term2Id="322" value="0" />
+			<ResisRelation term1Id="131" term2Id="332" value="0" />
+			<ResisRelation term1Id="141" term2Id="342" value="0" />
+			<ResisRelation term1Id="151" term2Id="352" value="0" />
+			<ResisRelation term1Id="161" term2Id="362" value="0" />
+			<ResisRelation term1Id="171" term2Id="372" value="0" />
+			<ResisRelation term1Id="181" term2Id="382" value="0" />
+			<ResisRelation term1Id="191" term2Id="392" value="0" />
+			<ResisRelation term1Id="201" term2Id="402" value="0" />
+		</ResisState>
+	</ElecCompDef>
+	<ElecCompDef name="端子排" model="TB-4-50" desc="机器人电器柜">
+		<Terminal id="FUSE-1" name="FUSE" mdlName="FUSE-1" direction="z-" />
+		<Terminal id="FUSE-2" name="FUSE" mdlName="FUSE-2" direction="z+" />
+		<Terminal id="XT1-11" name="1" mdlName="1" direction="z-" />
+		<Terminal id="XT1-12" name="1" mdlName="51" direction="z-" />
+		<Terminal id="XT1-13" name="1" mdlName="101" direction="z+" />
+		<Terminal id="XT1-14" name="1" mdlName="151" direction="z+" />
+		<Terminal id="XT1-21" name="2" mdlName="2" direction="z-" />
+		<Terminal id="XT1-22" name="2" mdlName="52" direction="z-" />
+		<Terminal id="XT1-23" name="2" mdlName="102" direction="z+" />
+		<Terminal id="XT1-24" name="2" mdlName="152" direction="z+" />
+		<Terminal id="XT1-31" name="3" mdlName="3" direction="z-" />
+		<Terminal id="XT1-32" name="3" mdlName="53" direction="z-" />
+		<Terminal id="XT1-33" name="3" mdlName="103" direction="z+" />
+		<Terminal id="XT1-34" name="3" mdlName="153" direction="z+" />
+		<Terminal id="XT1-41" name="4" mdlName="4" direction="z-" />
+		<Terminal id="XT1-42" name="4" mdlName="54" direction="z-" />
+		<Terminal id="XT1-43" name="4" mdlName="104" direction="z+" />
+		<Terminal id="XT1-44" name="4" mdlName="154" direction="z+" />
+		<Terminal id="XT1-51" name="5" mdlName="5" direction="z-" />
+		<Terminal id="XT1-52" name="5" mdlName="55" direction="z-" />
+		<Terminal id="XT1-53" name="5" mdlName="105" direction="z+" />
+		<Terminal id="XT1-54" name="5" mdlName="155" direction="z+" />
+		<Terminal id="XT1-61" name="6" mdlName="6" direction="z-" />
+		<Terminal id="XT1-62" name="6" mdlName="56" direction="z-" />
+		<Terminal id="XT1-63" name="6" mdlName="106" direction="z+" />
+		<Terminal id="XT1-64" name="6" mdlName="156" direction="z+" />
+		<Terminal id="XT1-71" name="7" mdlName="7" direction="z-" />
+		<Terminal id="XT1-72" name="7" mdlName="57" direction="z-" />
+		<Terminal id="XT1-73" name="7" mdlName="107" direction="z+" />
+		<Terminal id="XT1-74" name="7" mdlName="157" direction="z+" />
+		<Terminal id="XT1-81" name="8" mdlName="8" direction="z-" />
+		<Terminal id="XT1-82" name="8" mdlName="58" direction="z-" />
+		<Terminal id="XT1-83" name="8" mdlName="108" direction="z+" />
+		<Terminal id="XT1-84" name="8" mdlName="158" direction="z+" />
+		<Terminal id="XT1-91" name="9" mdlName="9" direction="z-" />
+		<Terminal id="XT1-92" name="9" mdlName="59" direction="z-" />
+		<Terminal id="XT1-93" name="9" mdlName="109" direction="z+" />
+		<Terminal id="XT1-94" name="9" mdlName="159" direction="z+" />
+		<Terminal id="XT1-101" name="10" mdlName="10" direction="z-" />
+		<Terminal id="XT1-102" name="10" mdlName="60" direction="z-" />
+		<Terminal id="XT1-103" name="10" mdlName="110" direction="z+" />
+		<Terminal id="XT1-104" name="10" mdlName="160" direction="z+" />
+		<Terminal id="XT1-111" name="11" mdlName="11" direction="z-" />
+		<Terminal id="XT1-112" name="11" mdlName="61" direction="z-" />
+		<Terminal id="XT1-113" name="11" mdlName="111" direction="z+" />
+		<Terminal id="XT1-114" name="11" mdlName="161" direction="z+" />
+		<Terminal id="XT1-121" name="12" mdlName="12" direction="z-" />
+		<Terminal id="XT1-122" name="12" mdlName="62" direction="z-" />
+		<Terminal id="XT1-123" name="12" mdlName="112" direction="z+" />
+		<Terminal id="XT1-124" name="12" mdlName="162" direction="z+" />
+		<Terminal id="XT1-131" name="13" mdlName="13" direction="z-" />
+		<Terminal id="XT1-132" name="13" mdlName="63" direction="z-" />
+		<Terminal id="XT1-133" name="13" mdlName="113" direction="z+" />
+		<Terminal id="XT1-134" name="13" mdlName="163" direction="z+" />
+		<Terminal id="XT1-141" name="14" mdlName="14" direction="z-" />
+		<Terminal id="XT1-142" name="14" mdlName="64" direction="z-" />
+		<Terminal id="XT1-143" name="14" mdlName="114" direction="z+" />
+		<Terminal id="XT1-144" name="14" mdlName="164" direction="z+" />
+		<Terminal id="XT1-151" name="15" mdlName="15" direction="z-" />
+		<Terminal id="XT1-152" name="15" mdlName="65" direction="z-" />
+		<Terminal id="XT1-153" name="15" mdlName="115" direction="z+" />
+		<Terminal id="XT1-154" name="15" mdlName="165" direction="z+" />
+		<Terminal id="XT1-161" name="16" mdlName="16" direction="z-" />
+		<Terminal id="XT1-162" name="16" mdlName="66" direction="z-" />
+		<Terminal id="XT1-163" name="16" mdlName="116" direction="z+" />
+		<Terminal id="XT1-164" name="16" mdlName="166" direction="z+" />
+		<Terminal id="XT1-171" name="17" mdlName="17" direction="z-" />
+		<Terminal id="XT1-172" name="17" mdlName="67" direction="z-" />
+		<Terminal id="XT1-173" name="17" mdlName="117" direction="z+" />
+		<Terminal id="XT1-174" name="17" mdlName="167" direction="z+" />
+		<Terminal id="XT1-181" name="18" mdlName="18" direction="z-" />
+		<Terminal id="XT1-182" name="18" mdlName="68" direction="z-" />
+		<Terminal id="XT1-183" name="18" mdlName="118" direction="z+" />
+		<Terminal id="XT1-184" name="18" mdlName="168" direction="z+" />
+		<Terminal id="XT1-191" name="19" mdlName="19" direction="z-" />
+		<Terminal id="XT1-192" name="19" mdlName="69" direction="z-" />
+		<Terminal id="XT1-193" name="19" mdlName="119" direction="z+" />
+		<Terminal id="XT1-194" name="19" mdlName="169" direction="z+" />
+		<Terminal id="XT1-201" name="20" mdlName="20" direction="z-" />
+		<Terminal id="XT1-202" name="20" mdlName="70" direction="z-" />
+		<Terminal id="XT1-203" name="20" mdlName="120" direction="z+" />
+		<Terminal id="XT1-204" name="20" mdlName="170" direction="z+" />
+		<Terminal id="XT2-11" name="21" mdlName="21" direction="z-" />
+		<Terminal id="XT2-12" name="21" mdlName="71" direction="z-" />
+		<Terminal id="XT2-13" name="21" mdlName="121" direction="z+" />
+		<Terminal id="XT2-14" name="21" mdlName="171" direction="z+" />
+		<Terminal id="XT2-21" name="22" mdlName="22" direction="z-" />
+		<Terminal id="XT2-22" name="22" mdlName="72" direction="z-" />
+		<Terminal id="XT2-23" name="22" mdlName="122" direction="z+" />
+		<Terminal id="XT2-24" name="22" mdlName="172" direction="z+" />
+		<Terminal id="XT2-31" name="23" mdlName="23" direction="z-" />
+		<Terminal id="XT2-32" name="23" mdlName="73" direction="z-" />
+		<Terminal id="XT2-33" name="23" mdlName="123" direction="z+" />
+		<Terminal id="XT2-34" name="23" mdlName="173" direction="z+" />
+		<Terminal id="XT2-41" name="24" mdlName="24" direction="z-" />
+		<Terminal id="XT2-42" name="24" mdlName="74" direction="z-" />
+		<Terminal id="XT2-43" name="24" mdlName="124" direction="z+" />
+		<Terminal id="XT2-44" name="24" mdlName="174" direction="z+" />
+		<Terminal id="XT2-51" name="25" mdlName="25" direction="z-" />
+		<Terminal id="XT2-52" name="25" mdlName="75" direction="z-" />
+		<Terminal id="XT2-53" name="25" mdlName="125" direction="z+" />
+		<Terminal id="XT2-54" name="25" mdlName="175" direction="z+" />
+		<Terminal id="XT2-61" name="26" mdlName="26" direction="z-" />
+		<Terminal id="XT2-62" name="26" mdlName="76" direction="z-" />
+		<Terminal id="XT2-63" name="26" mdlName="126" direction="z+" />
+		<Terminal id="XT2-64" name="26" mdlName="176" direction="z+" />
+		<Terminal id="XT2-71" name="27" mdlName="27" direction="z-" />
+		<Terminal id="XT2-72" name="27" mdlName="77" direction="z-" />
+		<Terminal id="XT2-73" name="27" mdlName="127" direction="z+" />
+		<Terminal id="XT2-74" name="27" mdlName="177" direction="z+" />
+		<Terminal id="XT2-81" name="28" mdlName="28" direction="z-" />
+		<Terminal id="XT2-82" name="28" mdlName="78" direction="z-" />
+		<Terminal id="XT2-83" name="28" mdlName="128" direction="z+" />
+		<Terminal id="XT2-84" name="28" mdlName="178" direction="z+" />
+		<Terminal id="XT2-91" name="29" mdlName="29" direction="z-" />
+		<Terminal id="XT2-92" name="29" mdlName="79" direction="z-" />
+		<Terminal id="XT2-93" name="29" mdlName="129" direction="z+" />
+		<Terminal id="XT2-94" name="29" mdlName="179" direction="z+" />
+		<Terminal id="XT2-101" name="30" mdlName="30" direction="z-" />
+		<Terminal id="XT2-102" name="30" mdlName="80" direction="z-" />
+		<Terminal id="XT2-103" name="30" mdlName="130" direction="z+" />
+		<Terminal id="XT2-104" name="30" mdlName="180" direction="z+" />
+		<Terminal id="XT2-111" name="31" mdlName="31" direction="z-" />
+		<Terminal id="XT2-112" name="31" mdlName="81" direction="z-" />
+		<Terminal id="XT2-113" name="31" mdlName="131" direction="z+" />
+		<Terminal id="XT2-114" name="31" mdlName="181" direction="z+" />
+		<Terminal id="XT2-121" name="32" mdlName="32" direction="z-" />
+		<Terminal id="XT2-122" name="32" mdlName="82" direction="z-" />
+		<Terminal id="XT2-123" name="32" mdlName="132" direction="z+" />
+		<Terminal id="XT2-124" name="32" mdlName="182" direction="z+" />
+		<Terminal id="XT2-131" name="33" mdlName="33" direction="z-" />
+		<Terminal id="XT2-132" name="33" mdlName="83" direction="z-" />
+		<Terminal id="XT2-133" name="33" mdlName="133" direction="z+" />
+		<Terminal id="XT2-134" name="33" mdlName="183" direction="z+" />
+		<Terminal id="XT2-141" name="34" mdlName="34" direction="z-" />
+		<Terminal id="XT2-142" name="34" mdlName="84" direction="z-" />
+		<Terminal id="XT2-143" name="34" mdlName="134" direction="z+" />
+		<Terminal id="XT2-144" name="34" mdlName="184" direction="z+" />
+		<Terminal id="XT2-151" name="35" mdlName="35" direction="z-" />
+		<Terminal id="XT2-152" name="35" mdlName="85" direction="z-" />
+		<Terminal id="XT2-153" name="35" mdlName="135" direction="z+" />
+		<Terminal id="XT2-154" name="35" mdlName="185" direction="z+" />
+		<Terminal id="XT2-161" name="36" mdlName="36" direction="z-" />
+		<Terminal id="XT2-162" name="36" mdlName="86" direction="z-" />
+		<Terminal id="XT2-163" name="36" mdlName="136" direction="z+" />
+		<Terminal id="XT2-164" name="36" mdlName="186" direction="z+" />
+		<Terminal id="XT2-171" name="37" mdlName="37" direction="z-" />
+		<Terminal id="XT2-172" name="37" mdlName="87" direction="z-" />
+		<Terminal id="XT2-173" name="37" mdlName="137" direction="z+" />
+		<Terminal id="XT2-174" name="37" mdlName="187" direction="z+" />
+		<Terminal id="XT2-181" name="38" mdlName="38" direction="z-" />
+		<Terminal id="XT2-182" name="38" mdlName="88" direction="z-" />
+		<Terminal id="XT2-183" name="38" mdlName="138" direction="z+" />
+		<Terminal id="XT2-184" name="38" mdlName="188" direction="z+" />
+		<Terminal id="XT2-191" name="39" mdlName="39" direction="z-" />
+		<Terminal id="XT2-192" name="39" mdlName="89" direction="z-" />
+		<Terminal id="XT2-193" name="39" mdlName="139" direction="z+" />
+		<Terminal id="XT2-194" name="39" mdlName="189" direction="z+" />
+		<Terminal id="XT2-201" name="40" mdlName="40" direction="z-" />
+		<Terminal id="XT2-202" name="40" mdlName="90" direction="z-" />
+		<Terminal id="XT2-203" name="40" mdlName="140" direction="z+" />
+		<Terminal id="XT2-204" name="40" mdlName="190" direction="z+" />
+		<Terminal id="XT3-11" name="41" mdlName="41" direction="z-" />
+		<Terminal id="XT3-12" name="41" mdlName="91" direction="z-" />
+		<Terminal id="XT3-13" name="41" mdlName="141" direction="z+" />
+		<Terminal id="XT3-14" name="41" mdlName="191" direction="z+" />
+		<Terminal id="XT3-21" name="42" mdlName="42" direction="z-" />
+		<Terminal id="XT3-22" name="42" mdlName="92" direction="z-" />
+		<Terminal id="XT3-23" name="42" mdlName="142" direction="z+" />
+		<Terminal id="XT3-24" name="42" mdlName="192" direction="z+" />
+		<Terminal id="XT3-31" name="43" mdlName="43" direction="z-" />
+		<Terminal id="XT3-32" name="43" mdlName="93" direction="z-" />
+		<Terminal id="XT3-33" name="43" mdlName="143" direction="z+" />
+		<Terminal id="XT3-34" name="43" mdlName="193" direction="z+" />
+		<Terminal id="XT3-41" name="44" mdlName="44" direction="z-" />
+		<Terminal id="XT3-42" name="44" mdlName="94" direction="z-" />
+		<Terminal id="XT3-43" name="44" mdlName="144" direction="z+" />
+		<Terminal id="XT3-44" name="44" mdlName="194" direction="z+" />
+		<Terminal id="XT3-51" name="45" mdlName="45" direction="z-" />
+		<Terminal id="XT3-52" name="45" mdlName="95" direction="z-" />
+		<Terminal id="XT3-53" name="45" mdlName="145" direction="z+" />
+		<Terminal id="XT3-54" name="45" mdlName="195" direction="z+" />
+		<Terminal id="XT3-61" name="46" mdlName="46" direction="z-" />
+		<Terminal id="XT3-62" name="46" mdlName="96" direction="z-" />
+		<Terminal id="XT3-63" name="46" mdlName="146" direction="z+" />
+		<Terminal id="XT3-64" name="46" mdlName="196" direction="z+" />
+		<Terminal id="XT3-71" name="47" mdlName="47" direction="z-" />
+		<Terminal id="XT3-72" name="47" mdlName="97" direction="z-" />
+		<Terminal id="XT3-73" name="47" mdlName="147" direction="z+" />
+		<Terminal id="XT3-74" name="47" mdlName="197" direction="z+" />
+		<Terminal id="XT3-81" name="48" mdlName="48" direction="z-" />
+		<Terminal id="XT3-82" name="48" mdlName="98" direction="z-" />
+		<Terminal id="XT3-83" name="48" mdlName="148" direction="z+" />
+		<Terminal id="XT3-84" name="48" mdlName="198" direction="z+" />
+		<Terminal id="XT3-91" name="49" mdlName="49" direction="z-" />
+		<Terminal id="XT3-92" name="49" mdlName="99" direction="z-" />
+		<Terminal id="XT3-93" name="49" mdlName="149" direction="z+" />
+		<Terminal id="XT3-94" name="49" mdlName="199" direction="z+" />
+		<Terminal id="XT3-101" name="50" mdlName="50" direction="z-" />
+		<Terminal id="XT3-102" name="50" mdlName="100" direction="z-" />
+		<Terminal id="XT3-103" name="50" mdlName="150" direction="z+" />
+		<Terminal id="XT3-104" name="50" mdlName="200" direction="z+" />
+
+		<!-- <Terminal id="XT3-111" name="51" mdlName="20" direction="z-" /> -->
+		<!-- <Terminal id="XT3-112" name="51" mdlName="20" direction="z-" /> -->
+		<!-- <Terminal id="XT3-113" name="51" mdlName="20" direction="z-" /> -->
+		<!-- <Terminal id="XT3-114" name="51" mdlName="20" direction="z-" /> -->
+		<!-- <Terminal id="XT3-121" name="52" mdlName="20" direction="z-" /> -->
+		<!-- <Terminal id="XT3-122" name="52" mdlName="20" direction="z-" /> -->
+		<!-- <Terminal id="XT3-123" name="52" mdlName="20" direction="z-" /> -->
+		<!-- <Terminal id="XT3-124" name="52" mdlName="20" direction="z-" /> -->
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="FUSE-1" term2Id="FUSE-2" value="0" />
+			<ResisRelation term1Id="XT1-11" term2Id="XT1-14" value="0" />
+			<ResisRelation term1Id="XT1-12" term2Id="XT1-13" value="0" />
+			<ResisRelation term1Id="XT1-21" term2Id="XT1-24" value="0" />
+			<ResisRelation term1Id="XT1-22" term2Id="XT1-23" value="0" />
+			<ResisRelation term1Id="XT1-31" term2Id="XT1-34" value="0" />
+			<ResisRelation term1Id="XT1-32" term2Id="XT1-33" value="0" />
+			<ResisRelation term1Id="XT1-41" term2Id="XT1-44" value="0" />
+			<ResisRelation term1Id="XT1-42" term2Id="XT1-43" value="0" />
+			<ResisRelation term1Id="XT1-51" term2Id="XT1-54" value="0" />
+			<ResisRelation term1Id="XT1-52" term2Id="XT1-53" value="0" />
+			<ResisRelation term1Id="XT1-61" term2Id="XT1-64" value="0" />
+			<ResisRelation term1Id="XT1-62" term2Id="XT1-63" value="0" />
+			<ResisRelation term1Id="XT1-71" term2Id="XT1-74" value="0" />
+			<ResisRelation term1Id="XT1-72" term2Id="XT1-73" value="0" />
+			<ResisRelation term1Id="XT1-81" term2Id="XT1-84" value="0" />
+			<ResisRelation term1Id="XT1-82" term2Id="XT1-83" value="0" />
+			<ResisRelation term1Id="XT1-91" term2Id="XT1-94" value="0" />
+			<ResisRelation term1Id="XT1-92" term2Id="XT1-93" value="0" />
+			<ResisRelation term1Id="XT1-101" term2Id="XT1-104" value="0" />
+			<ResisRelation term1Id="XT1-102" term2Id="XT1-103" value="0" />
+			<ResisRelation term1Id="XT1-111" term2Id="XT1-114" value="0" />
+			<ResisRelation term1Id="XT1-112" term2Id="XT1-113" value="0" />
+			<ResisRelation term1Id="XT1-121" term2Id="XT1-124" value="0" />
+			<ResisRelation term1Id="XT1-122" term2Id="XT1-123" value="0" />
+			<ResisRelation term1Id="XT1-131" term2Id="XT1-134" value="0" />
+			<ResisRelation term1Id="XT1-132" term2Id="XT1-133" value="0" />
+			<ResisRelation term1Id="XT1-141" term2Id="XT1-144" value="0" />
+			<ResisRelation term1Id="XT1-142" term2Id="XT1-143" value="0" />
+			<ResisRelation term1Id="XT1-151" term2Id="XT1-154" value="0" />
+			<ResisRelation term1Id="XT1-152" term2Id="XT1-153" value="0" />
+			<ResisRelation term1Id="XT1-161" term2Id="XT1-164" value="0" />
+			<ResisRelation term1Id="XT1-162" term2Id="XT1-163" value="0" />
+			<ResisRelation term1Id="XT1-171" term2Id="XT1-174" value="0" />
+			<ResisRelation term1Id="XT1-172" term2Id="XT1-173" value="0" />
+			<ResisRelation term1Id="XT1-181" term2Id="XT1-184" value="0" />
+			<ResisRelation term1Id="XT1-182" term2Id="XT1-183" value="0" />
+			<ResisRelation term1Id="XT1-191" term2Id="XT1-194" value="0" />
+			<ResisRelation term1Id="XT1-192" term2Id="XT1-193" value="0" />
+			<ResisRelation term1Id="XT1-201" term2Id="XT1-204" value="0" />
+			<ResisRelation term1Id="XT1-202" term2Id="XT1-203" value="0" />
+
+			<ResisRelation term1Id="XT2-11" term2Id="XT2-14" value="0" />
+			<ResisRelation term1Id="XT2-12" term2Id="XT2-13" value="0" />
+			<ResisRelation term1Id="XT2-21" term2Id="XT2-24" value="0" />
+			<ResisRelation term1Id="XT2-22" term2Id="XT2-23" value="0" />
+			<ResisRelation term1Id="XT2-31" term2Id="XT2-34" value="0" />
+			<ResisRelation term1Id="XT2-32" term2Id="XT2-33" value="0" />
+			<ResisRelation term1Id="XT2-41" term2Id="XT2-44" value="0" />
+			<ResisRelation term1Id="XT2-42" term2Id="XT2-43" value="0" />
+			<ResisRelation term1Id="XT2-51" term2Id="XT2-54" value="0" />
+			<ResisRelation term1Id="XT2-52" term2Id="XT2-53" value="0" />
+			<ResisRelation term1Id="XT2-61" term2Id="XT2-64" value="0" />
+			<ResisRelation term1Id="XT2-62" term2Id="XT2-63" value="0" />
+			<ResisRelation term1Id="XT2-71" term2Id="XT2-74" value="0" />
+			<ResisRelation term1Id="XT2-72" term2Id="XT2-73" value="0" />
+			<ResisRelation term1Id="XT2-81" term2Id="XT2-84" value="0" />
+			<ResisRelation term1Id="XT2-82" term2Id="XT2-83" value="0" />
+			<ResisRelation term1Id="XT2-91" term2Id="XT2-94" value="0" />
+			<ResisRelation term1Id="XT2-92" term2Id="XT2-93" value="0" />
+			<ResisRelation term1Id="XT2-101" term2Id="XT2-104" value="0" />
+			<ResisRelation term1Id="XT2-102" term2Id="XT2-103" value="0" />
+			<ResisRelation term1Id="XT2-111" term2Id="XT2-114" value="0" />
+			<ResisRelation term1Id="XT2-112" term2Id="XT2-113" value="0" />
+			<ResisRelation term1Id="XT2-121" term2Id="XT2-124" value="0" />
+			<ResisRelation term1Id="XT2-122" term2Id="XT2-123" value="0" />
+			<ResisRelation term1Id="XT2-131" term2Id="XT2-134" value="0" />
+			<ResisRelation term1Id="XT2-132" term2Id="XT2-133" value="0" />
+			<ResisRelation term1Id="XT2-141" term2Id="XT2-144" value="0" />
+			<ResisRelation term1Id="XT2-142" term2Id="XT2-143" value="0" />
+			<ResisRelation term1Id="XT2-151" term2Id="XT2-154" value="0" />
+			<ResisRelation term1Id="XT2-152" term2Id="XT2-153" value="0" />
+			<ResisRelation term1Id="XT2-161" term2Id="XT2-164" value="0" />
+			<ResisRelation term1Id="XT2-162" term2Id="XT2-163" value="0" />
+			<ResisRelation term1Id="XT2-171" term2Id="XT2-174" value="0" />
+			<ResisRelation term1Id="XT2-172" term2Id="XT2-173" value="0" />
+			<ResisRelation term1Id="XT2-181" term2Id="XT2-184" value="0" />
+			<ResisRelation term1Id="XT2-182" term2Id="XT2-183" value="0" />
+			<ResisRelation term1Id="XT2-191" term2Id="XT2-194" value="0" />
+			<ResisRelation term1Id="XT2-192" term2Id="XT2-193" value="0" />
+			<ResisRelation term1Id="XT2-201" term2Id="XT2-204" value="0" />
+			<ResisRelation term1Id="XT2-202" term2Id="XT2-203" value="0" />
+
+			<ResisRelation term1Id="XT3-11" term2Id="XT3-14" value="0" />
+			<ResisRelation term1Id="XT3-12" term2Id="XT3-13" value="0" />
+			<ResisRelation term1Id="XT3-21" term2Id="XT3-24" value="0" />
+			<ResisRelation term1Id="XT3-22" term2Id="XT3-23" value="0" />
+			<ResisRelation term1Id="XT3-31" term2Id="XT3-34" value="0" />
+			<ResisRelation term1Id="XT3-32" term2Id="XT3-33" value="0" />
+			<ResisRelation term1Id="XT3-41" term2Id="XT3-44" value="0" />
+			<ResisRelation term1Id="XT3-42" term2Id="XT3-43" value="0" />
+			<ResisRelation term1Id="XT3-51" term2Id="XT3-54" value="0" />
+			<ResisRelation term1Id="XT3-52" term2Id="XT3-53" value="0" />
+			<ResisRelation term1Id="XT3-61" term2Id="XT3-64" value="0" />
+			<ResisRelation term1Id="XT3-62" term2Id="XT3-63" value="0" />
+			<ResisRelation term1Id="XT3-71" term2Id="XT3-74" value="0" />
+			<ResisRelation term1Id="XT3-72" term2Id="XT3-73" value="0" />
+			<ResisRelation term1Id="XT3-81" term2Id="XT3-84" value="0" />
+			<ResisRelation term1Id="XT3-82" term2Id="XT3-83" value="0" />
+			<ResisRelation term1Id="XT3-91" term2Id="XT3-94" value="0" />
+			<ResisRelation term1Id="XT3-92" term2Id="XT3-93" value="0" />
+			<ResisRelation term1Id="XT3-101" term2Id="XT3-104" value="0" />
+			<ResisRelation term1Id="XT3-102" term2Id="XT3-103" value="0" />
+
+
+			<!-- 被短1接的端子排 -->
+			<ResisRelation term1Id="XT3-11" term2Id="XT3-21" value="0" />
+			<ResisRelation term1Id="XT3-21" term2Id="XT3-31" value="0" />
+			<ResisRelation term1Id="XT3-31" term2Id="XT3-41" value="0" />
+			<ResisRelation term1Id="XT3-41" term2Id="XT3-51" value="0" />
+			<ResisRelation term1Id="XT3-51" term2Id="XT3-61" value="0" />
+			<ResisRelation term1Id="XT3-61" term2Id="XT3-71" value="0" />
+			<ResisRelation term1Id="XT3-71" term2Id="XT3-81" value="0" />
+			<ResisRelation term1Id="XT3-81" term2Id="XT3-91" value="0" />
+			<ResisRelation term1Id="XT3-91" term2Id="XT3-101" value="0" />
+			
+			<ResisRelation term1Id="XT3-12" term2Id="XT3-22" value="0" />
+			<ResisRelation term1Id="XT3-22" term2Id="XT3-32" value="0" />
+			<ResisRelation term1Id="XT3-32" term2Id="XT3-42" value="0" />
+			<ResisRelation term1Id="XT3-42" term2Id="XT3-52" value="0" />
+			<ResisRelation term1Id="XT3-52" term2Id="XT3-62" value="0" />
+			<ResisRelation term1Id="XT3-62" term2Id="XT3-72" value="0" />
+			<ResisRelation term1Id="XT3-72" term2Id="XT3-82" value="0" />
+			<ResisRelation term1Id="XT3-82" term2Id="XT3-92" value="0" />
+			<ResisRelation term1Id="XT3-92" term2Id="XT3-102" value="0" />
+
+			<!-- <ResisRelation term1Id="XT3-111" term2Id="XT3-114" value="0" /> -->
+			<!-- <ResisRelation term1Id="XT3-112" term2Id="XT3-113" value="0" /> -->
+			<!-- <ResisRelation term1Id="XT3-121" term2Id="XT3-124" value="0" /> -->
+			<!-- <ResisRelation term1Id="XT3-122" term2Id="XT3-123" value="0" /> -->
+		</ResisState>
+	</ElecCompDef>
+</Comps>

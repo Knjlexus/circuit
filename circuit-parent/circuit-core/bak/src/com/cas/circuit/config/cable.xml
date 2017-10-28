@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<item vo="Cable" keyProperty="id" qname="cable" lower="Wire" />
+	<item vo="Wire" qname="wire" />
+	<!-- 转接板电缆 -->
+	<cable id="15PIN" format="15PIN" desc="15芯转接板电缆" />
+	<cable id="25PIN" format="25PIN" desc="25芯转接板电缆" />
+
+	<!-- 电磁阀接线 -->
+	<cable id="YA" format="YA" desc="电磁阀线圈">
+		<wire stitch1="1" mark="红色" color="0.8,0.1,0.1,1" />
+		<wire stitch1="2" mark="蓝色" color="0,0,1,1" />
+	</cable>
+
+
+	<!-- N:N通讯电缆 -->
+	<!-- 伺服放大器电缆 -->
+	<!-- 伺服放大器电缆 -->
+	<!-- 伺服放大器电缆 -->
+	<!-- 伺服放大器电缆 -->
+	<!-- 变频器PU电缆 -->
+
+	<!-- 磁性开关模拟插头线缆 -->
+	<cable id="Magnetism" format="Magnetism" desc="磁性开关线缆">
+		<wire stitch1="1" mark="棕色" color="0.8,0.6,0.4,1" />
+		<wire stitch1="2" mark="蓝色" color="0,0,1,1" />
+	</cable>
+	<!-- 电感式接近开关模拟插头线缆 -->
+	<cable id="Inductance" format="Inductance" desc="电感式接近开关线缆">
+		<wire stitch1="1" mark="24V" color="0.8,0.6,0.4,1" />
+		<wire stitch1="2" mark="0V" color="0,0,1,1" />
+		<wire stitch1="3" mark="信号" color="0.1,0.1,0.1,1" />
+	</cable>
+	<!-- 漫射式光电开关模拟插头线缆 -->
+	<cable id="Diffuse" format="Diffuse" desc="漫射式光电开关线缆">
+		<wire stitch1="1" mark="24V" color="0.8,0.6,0.4,1" />
+		<wire stitch1="2" mark="0V" color="0,0,1,1" />
+		<wire stitch1="3" mark="信号" color="0.1,0.1,0.1,1" />
+	</cable>
+	<!-- 光纤传感器 -->
+	<cable id="Fiber" format="Fiber" desc="传感器线缆">
+		<wire stitch1="1" mark="棕色" color="0.8,0.6,0.4,1" />
+		<wire stitch1="2" mark="蓝色" color="0,0,1,1" />
+		<wire stitch1="3" mark="黑色" color="0.1,0.1,0.1,1" />
+		<!-- <wire stitch1="4" mark="黑色" color="0.1,0.1,0.1,1" /> -->
+		<!-- <wire stitch1="5" mark="黑色" color="0.1,0.1,0.1,1" /> -->
+	</cable>
+
+	<!-- 网线 -->
+	<cable id="NET-RS485" format="NET-RS485" desc="PLC的485端口与变频器PU端口之间连接">
+		<wire stitch1="1" mark="RDA" color="0.62,0.20,0.23,1" />
+		<wire stitch1="2" mark="RDB" color="0.11,0.43,0.36,1" />
+		<wire stitch1="3" mark="SDA" color="0.62,0.20,0.23,1" />
+		<wire stitch1="4" mark="SDB" color="0.11,0.43,0.36,1" />
+		<wire stitch1="5" mark="SG" color="0,0,1,1" />
+	</cable>
+
+	<cable id="NET" format="NET" desc="网线" />
+
+	<!-- 伺服电机电源线缆 -->
+	<cable id="Servo_Power" format="Servo_Power" desc="旋转编码器">
+		<wire stitch1="1" mark="U" color="0.62,0.20,0.23,1" />
+		<wire stitch1="2" mark="V" color="0.11,0.43,0.36,1" />
+		<wire stitch1="3" mark="W" color="0.62,0.20,0.23,1" />
+	</cable>
+
+	<!-- 编码器 -->
+	<cable id="Encoder" format="Encoder" desc="旋转编码器">
+		<wire stitch1="1" mark="24V" color="0.62,0.20,0.23,1" />
+		<wire stitch1="2" mark="0V" color="0.11,0.43,0.36,1" />
+		<wire stitch1="3" mark="A" color="1,1,1,1" />
+		<wire stitch1="4" mark="B" color="0,1,0,1" />
+		<wire stitch1="5" mark="Z" color="1,1,0,1" />
+	</cable>
+
+	<cable id="X4" format="X4" desc="电机控制线">
+		<wire stitch1="1" mark="OPC1" color="1,0.3,0,1" />
+		<wire stitch1="2" mark="PULS2" color="0,0,1,1" />
+		<wire stitch1="3" mark="OPC2" color="0,1,0.7,1" />
+		<wire stitch1="4" mark="SIGN2" color="0,1,0,1" />
+		<wire stitch1="5" mark="POT" color="1,1,0,1" />
+		<wire stitch1="6" mark="NOT" color="1,0,0,1" />
+		<wire stitch1="7" mark="ALM+" color="1,1,1,1" />
+		<wire stitch1="8" mark="COM-" color="0,0,0,1" />
+		<wire stitch1="9" mark="COM+" color="1,0,1,1" />
+	</cable>
+
+	<cable id="X6" format="X6" desc="旋转编码器" />
+
+	<!-- 行程开关 -->
+	<cable id="VS10N051C" format="VS10N051C" desc="行程开关线缆">
+		<wire stitch1="1" mark="COM" color="0,0,1,1" />
+		<wire stitch1="2" mark="NO" color="0,0,1,1" />
+		<wire stitch1="3" mark="NC" color="0,0,1,1" />
+	</cable>
+</root>

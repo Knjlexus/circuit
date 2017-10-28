@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<!-- <ElecCompDef name="双作用气缸" model="effect" desc="双作用气缸"> -->
+	<!-- <GasPort id="A" name="A" mdlName="01" direction="x+" /> -->
+	<!-- <GasPort id="B" name="B" mdlName="01" direction="x+" /> -->
+	<!-- <BlockState isDef="1"> -->
+	<!-- <BlockRelation portId1="A" portId2="B" /> -->
+	<!-- </BlockState> -->
+	<!-- </ElecCompDef> -->
+	<ElecCompDef name="过滤器" model="GFR300-08" desc="过滤器">
+		<GasPort id="A" name="A" mdlName="A" direction="y-" />
+		<GasPort id="B" name="B" mdlName="B" direction="y-" />
+		<BlockState isDef="1">
+			<BlockRelation portId1="A" portId2="B" />
+		</BlockState>
+	</ElecCompDef>
+
+	<ElecCompDef name="三通" model="Tee" desc="三通">
+		<GasPort id="A" name="A" mdlName="A" direction="x-" />
+		<GasPort id="B" name="B" mdlName="B" direction="y+" />
+		<GasPort id="C" name="C" mdlName="C" direction="x+" />
+
+		<BlockState isDef="1">
+			<BlockRelation portId1="A" portId2="B" />
+			<BlockRelation portId1="B" portId2="C" />
+			<BlockRelation portId1="A" portId2="C" />
+		</BlockState>
+	</ElecCompDef>
+
+	<ElecCompDef name="摆动气缸" model="MSQXB10A" desc="摆动气缸" appStateCls="SwingCylinderLogic">
+		<GasPort id="A" name="A" mdlName="A" direction="z-" />
+		<GasPort id="B" name="B" mdlName="B" direction="z-" />
+	</ElecCompDef>
+
+	<!-- 特殊的摆动气缸（带托盘） -->
+	<ElecCompDef name="摆动气缸" model="MSQXB10A_Salver" desc="摆动气缸" appStateCls="SwingCylinderLogicEx">
+		<GasPort id="A" name="A" mdlName="A" direction="z-" />
+		<GasPort id="B" name="B" mdlName="B" direction="z-" />
+	</ElecCompDef>
+
+	<!-- 装配站 -->
+	<ElecCompDef name="气动手指" model="MHZ2-20D" desc="气动手指" appStateCls="MHZ2_20DCylinderLogic">
+		<GasPort id="A" name="A" mdlName="A" direction="Z+" />
+		<GasPort id="B" name="B" mdlName="B" direction="Z+" />
+	</ElecCompDef>
+
+	<!-- 加工站 -->
+	<ElecCompDef name="气动手指" model="MHZ2-20D_Ext" desc="气动手指" appStateCls="MHZ2_20DCylinderLogicEx">
+		<GasPort id="A" name="A" mdlName="A" direction="Z+" />
+		<GasPort id="B" name="B" mdlName="B" direction="Z+" />
+	</ElecCompDef>
+
+	<ElecCompDef name="薄型气缸" model="CQ2B50-20" desc="薄型气缸" appStateCls="CJ2B16CylinderLogic">
+		<GasPort id="A" name="A" mdlName="A" direction="Y+" />
+		<GasPort id="B" name="B" mdlName="B" direction="Y+" />
+	</ElecCompDef>
+
+	<ElecCompDef name="气动手指" model="MHC2-20D" desc="气动手指" appStateCls="MHC2_20DCylinderLogic">
+		<GasPort id="A" name="A" mdlName="A" direction="Z+" />
+		<GasPort id="B" name="B" mdlName="B" direction="Z+" />
+	</ElecCompDef>
+
+	<ElecCompDef name="伸缩气缸" model="MGPM16-75" appStateCls="CJ2B16CylinderLogic">
+		<GasPort id="A" name="A" mdlName="A" direction="Z-" />
+		<GasPort id="B" name="B" mdlName="B" direction="Z-" />
+	</ElecCompDef>
+
+	<ElecCompDef name="双作用气缸" model="CJ2B16-60" appStateCls="CJ2B16CylinderLogic">
+		<GasPort id="A" name="A" mdlName="A" direction="X+" />
+		<GasPort id="B" name="B" mdlName="B" direction="X+" />
+	</ElecCompDef>
+
+	<ElecCompDef name="长双作用气缸" model="CJ2B16-75" appStateCls="CJ2B16CylinderLogic">
+		<GasPort id="A" name="A" mdlName="A" direction="X+" />
+		<GasPort id="B" name="B" mdlName="B" direction="X+" />
+	</ElecCompDef>
+
+	<ElecCompDef name="长双作用气缸" model="CJ2B16-100" appStateCls="CJ2B16CylinderLogic">
+		<GasPort id="A" name="A" mdlName="A" direction="X+" />
+		<GasPort id="B" name="B" mdlName="B" direction="X+" />
+	</ElecCompDef>
+
+	<ElecCompDef name="长双作用气缸" model="CJ2B16-125" appStateCls="CJ2B16CylinderLogic">
+		<GasPort id="A" name="A" mdlName="A" direction="X+" />
+		<GasPort id="B" name="B" mdlName="B" direction="X+" />
+	</ElecCompDef>
+	
+	<ElecCompDef name="长双作用气缸" model="CJ2B16-Short" appStateCls="CJ2B16ShortCylinderLogic">
+		<GasPort id="A" name="A" mdlName="A" direction="X-" />
+	</ElecCompDef>
+</Comps>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<item vo="ElecCompDef" keyProperty="model" qname="ElecCompDef" lower="Terminal,GasPort,Jack,Magnetism,ResisState,BlockState,LightIO" />
+	<item vo="Jack" keyProperty="name" qname="Jack" lower="Terminal" />
+	<item vo="Terminal" keyProperty="id" qname="Terminal" />
+	<item vo="GasPort" keyProperty="id" qname="GasPort" />
+	<item vo="Magnetism" qname="Magnetism" lower="ControlIO,VoltageIO,LightIO,SensorIO" />
+	<item vo="ControlIO" qname="ControlIO" />
+	<item vo="LightIO" qname="LightIO" />
+	<item vo="VoltageIO" qname="VoltageIO" />
+	<item vo="SensorIO" qname="SensorIO" />
+	<item vo="ResisState" qname="ResisState" lower="ResisRelation" />
+	<item vo="ResisRelation" qname="ResisRelation" />
+	<item vo="BlockState" qname="BlockState" lower="BlockRelation" />
+	<item vo="BlockRelation" qname="BlockRelation" />
+
+	<!-- 基本元器件 -->
+	<!-- 交流接触器 -->
+	<link file="components/Accontactor.xml" />
+	<!-- 断路器 -->
+	<link file="components/Breaker.xml" />
+	<!-- 保险丝 -->
+	<link file="components/Fuse.xml" />
+	<!-- 灯 -->
+	<link file="components/Light.xml" />
+	<!-- 电阻 -->
+	<link file="components/Reactance.xml" />
+	<!-- 继电器 -->
+	<link file="components/Relay.xml" />
+	<!-- 继电器板 -->
+	<link file="components/RelayBoard.xml" />
+	<!-- 信号转接板 -->
+	<link file="components/SignalBoard.xml" />
+	<!-- 开关电源 -->
+	<link file="components/SwitchPower.xml" />
+	<!-- 端子排 -->
+	<link file="components/TerminalBlock.xml" />
+	<!-- 变压器 -->
+	<link file="components/Transformer.xml" />
+	<!-- 气缸 -->
+	<link file="components/Cylinder.xml" />
+	<!-- 传感器 -->
+	<link file="components/Switch.xml" />
+	<!-- 气泵 -->
+	<link file="components/AirPump.xml" />
+	<!-- 电机 -->
+	<link file="components/Motor.xml" />
+	<!-- 电机编码器 -->
+	<link file="components/Encoder.xml" />
+
+	<!-- (((松下 -->
+	<!-- 伺服放大器 -->
+	<link file="components/panasonic/ServoMotor.xml" />
+	<link file="components/panasonic/ServoDrive.xml" />
+	<!-- 松下))) -->
+
+	<!-- (((三菱PLC -->
+	<link file="components/mitsubishi/PLC.xml" />
+	<link file="components/mitsubishi/EXT.xml" />
+	<!-- 变频器 -->
+	<link file="components/mitsubishi/Inverter.xml" />
+	<!-- 三菱PLC))) -->
+
+	<!-- 生产线元器件配置文件 -->
+	<!-- 按钮面板 -->
+	<link file="components/pl/ButtonBorad.xml" />
+	<link file="components/pl/ThroughBoard.xml" />
+	<link file="components/pl/Valve.xml" />
+
+	<!-- 机器人元器件配置文件 -->
+	<link file="components/robot/DC ADJ.xml" />
+	<link file="components/robot/Mode-Exchange.xml" />
+	<link file="components/robot/Route.xml" />
+</root>

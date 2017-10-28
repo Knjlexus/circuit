@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<!-- X轴电机 -->
+	<ElecCompDef name="β 8B/3000i" model="BetaiS_8_3000" appStateCls="BetaiS_8_3000">
+		VOLT=143
+		AMPVOLT=200
+		AMPVOLT DEVIATION=20
+
+		RATEDCURRENT=3.2
+		SPEED=3000
+		FREQ=200
+		OUTPUT=0.75
+		RESOLUTION=360
+
+		<Jack id="Power" name="Power" format="CZR" mdlName="jiek001" direction="x-" jackDirection="x" rotation="0,-90,-90">
+			<Terminal id="Power_1" index="1" mark="UL" type="input" team="βiS_Power" />
+			<Terminal id="Power_2" index="2" mark="VL" type="input" team="βiS_Power" />
+			<Terminal id="Power_3" index="3" mark="WL" type="input" team="βiS_Power" />
+			<Terminal id="Power_4" index="4" mark="GL" type="input" />
+		</Jack>
+		<Jack id="FeedBack" name="FeedBack" format="JFR1" mdlName="jiek002" direction="x-" jackDirection="x" rotation="0,-90,-90">
+			<Terminal id="FeedBack_1" index="1" mark="PCA" type="output" />
+			<Terminal id="FeedBack_3" index="3" mark="PCB" type="output" />
+			<Terminal id="FeedBack_5" index="5" mark="PCZ" type="output" />
+			<Terminal id="FeedBack_11" index="11" mark="0" />
+			<Terminal id="FeedBack_13" index="13" mark="0" />
+			<Terminal id="FeedBack_15" index="15" mark="0" />
+		</Jack>
+	</ElecCompDef>
+
+	<!-- Z轴电机 -->
+	<ElecCompDef name="β 8/3000i" model="BetaiS_8_3001" mdlRef="BetaiS_8_3001" appStateCls="BetaiS_8_3000">
+		<Jack id="Power" name="Power" format="CZR" mdlName="jiek006" direction="x+" jackDirection="x" rotation="0,0,-90">
+			<Terminal id="Power_1" index="1" mark="UL" type="input" team="βiS_Power" />
+			<Terminal id="Power_2" index="2" mark="VL" type="input" team="βiS_Power" />
+			<Terminal id="Power_3" index="3" mark="WL" type="input" team="βiS_Power" />
+			<Terminal id="Power_4" index="4" mark="GL" type="input" />
+		</Jack>
+		<Jack id="FeedBack" name="FeedBack" format="JFR1" mdlName="jiek005" direction="x+" jackDirection="x" rotation="0,0,-90">
+			<Terminal id="FeedBack_1" index="1" mark="PCA" type="output" />
+			<Terminal id="FeedBack_3" index="3" mark="PCB" type="output" />
+			<Terminal id="FeedBack_5" index="5" mark="PCZ" type="output" />
+
+			<Terminal id="FeedBack_11" index="11" mark="0" />
+			<Terminal id="FeedBack_13" index="13" mark="0" />
+			<Terminal id="FeedBack_15" index="15" mark="0" />
+		</Jack>
+	</ElecCompDef>
+
+	<ElecCompDef name="β 8/8000i" model="ServoMotor_S" mdlRef="ServoMotor_S" appStateCls="BetaiS_Spindle">
+		<Terminal id="TB2_U" mark="U" name="U" type="input" mdlName="luosi020" team="ServoMotor_TB2" />
+		<Terminal id="TB2_V" mark="V" name="V" type="input" mdlName="luosi018" team="ServoMotor_TB2" />
+		<Terminal id="TB2_W" mark="W" name="W" type="input" mdlName="luosi" team="ServoMotor_TB2" />
+		<Terminal id="TB2_PE" mark="PE" name="PE" type="input" mdlName="luosi027" />
+
+		<Terminal id="FAN_U" mark="U" name="FAN_U" type="input" mdlName="luosi022" team="ServoMotor_FAN" />
+		<Terminal id="FAN_V" mark="V" name="FAN_V" type="input" mdlName="luosi021" team="ServoMotor_FAN" />
+		<Terminal id="FAN_W" mark="W" name="FAN_W" type="input" mdlName="luosi021" team="ServoMotor_FAN" />
+		<Terminal id="FAN_PE" mark="PE" name="FAN_PE" type="input" mdlName="luosi029" />
+		<Jack id="FeedBack" name="FeedBack" format="JFR2" mdlName="Box259" direction="" jackDirection="x">
+			<!-- <Terminal id="FeedBack_1" index="1" mark="PCA" type="output" /> -->
+			<!-- <Terminal id="FeedBack_5" index="5" mark="PCB" type="output" /> -->
+			<!-- <Terminal id="FeedBack_7" index="7" mark="PCZ" type="output" /> -->
+			<Terminal id="FeedBack_1" index="1" mark="PCA" type="output" />
+			<Terminal id="FeedBack_3" index="3" mark="PCB" type="output" />
+			<Terminal id="FeedBack_5" index="5" mark="PCZ" type="output" />
+
+			<Terminal id="FeedBack_11" index="11" mark="0" />
+			<Terminal id="FeedBack_13" index="13" mark="0" />
+			<Terminal id="FeedBack_15" index="15" mark="0" />
+		</Jack>
+		<!-- <Magnetism> -->
+		<!-- <ControlIO type="input" interact="click" name="电机接线门" mdlName="_2531" motion="rotate" switchIn="" motionParams="0|180" axis="x" /> -->
+		<!-- </Magnetism> -->
+	</ElecCompDef>
+</Comps>

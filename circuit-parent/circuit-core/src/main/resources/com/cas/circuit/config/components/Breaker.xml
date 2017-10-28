@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef model="DZ47-63C16" name="自动空气断路器" desc="自动空气断路器集控制和多种保护功能于一身，一般由触头系统、灭弧系统、操作机构、脱扣器、外壳等构成，除了能完成接触和分断电路外，尚能对电路或电气设备发生的短路、严重过载及欠电压等进行保护，同时也可以用于不频繁地启动电动机。">
+		<Terminal id="r0" name="1L1" mdlName="1" direction="y+" team="in" />
+		<Terminal id="s0" name="3L2" mdlName="2" direction="y+" team="in" />
+		<Terminal id="t0" name="5L3" mdlName="3" direction="y+" team="in" />
+		<Terminal id="r1" name="2T1" mdlName="4" direction="y-" team="out" />
+		<Terminal id="s1" name="4T2" mdlName="5" direction="y-" team="out" />
+		<Terminal id="t1" name="6T3" mdlName="6" direction="y-" team="out" />
+		<Magnetism>
+			<ControlIO type="input" interact="click" name="开关" mdlName="SanJ06" motion="rotate" switchIn="off|on" motionParams="0|-120" axis="z">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="off" isDef="1">
+		</ResisState>
+		<ResisState id="on">
+			<ResisRelation term1Id="r0" term2Id="r1" value="0" />
+			<ResisRelation term1Id="s0" term2Id="s1" value="0" />
+			<ResisRelation term1Id="t0" term2Id="t1" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef model="DZ47-63C5" name="自动空气断路器" desc="自动空气断路器集控制和多种保护功能于一身，一般由触头系统、灭弧系统、操作机构、脱扣器、外壳等构成，除了能完成接触和分断电路外，尚能对电路或电气设备发生的短路、严重过载及欠电压等进行保护，同时也可以用于不频繁地启动电动机。">
+		<Terminal id="L0" name="L0" mdlName="1" direction="y+" team="in" />
+		<Terminal id="N0" name="N0" mdlName="2" direction="y+" team="in" />
+		<Terminal id="L1" name="L1" mdlName="3" direction="y-" team="out" />
+		<Terminal id="N1" name="N1" mdlName="4" direction="y-" team="out" />
+		<Magnetism>
+			<ControlIO type="input" interact="click" name="开关" mdlName="Shj04" motion="rotate" switchIn="off|on" motionParams="0|-120" axis="z">
+				sound=me/Interface/sound/control/press.wav
+			</ControlIO>
+		</Magnetism>
+		<ResisState id="off" isDef="1">
+		</ResisState>
+		<ResisState id="on">
+			<ResisRelation term1Id="L0" term2Id="L1" value="0" />
+			<ResisRelation term1Id="N0" term2Id="N1" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef model="DZ47LEC32" name="断路器" desc="GV2系列电动机保护断路器主要用于交流50HZ或60HZ，额定工作电压660V，额定工作电流0.1A-63A 的电路中，作为三相电动机的过载、短路、断相、堵转和三相不平衡保护及其不频繁起动之用，也可在配电网络中作为线路的电源开关、在电气设备中用作过载和短路保护。">
+		<Terminal id="r0" name="1L1" mdlName="1" direction="y+" team="in" />
+		<Terminal id="s0" name="3L2" mdlName="2" direction="y+" team="in" />
+		<Terminal id="t0" name="5L3" mdlName="3" direction="y+" team="in" />
+		<Terminal id="n1" name="N1" mdlName="4" direction="y+" team="in" />
+
+		<Terminal id="r1" name="2T1" mdlName="8" direction="y-" team="out" />
+		<Terminal id="s1" name="4T2" mdlName="9" direction="y-" team="out" />
+		<Terminal id="t1" name="6T3" mdlName="10" direction="y-" team="out" />
+		<Terminal id="n2" name="N2" mdlName="11" direction="y-" team="out" />
+		<ResisState id="off" isDef="1">
+		</ResisState>
+		<ResisState id="on">
+			<ResisRelation term1Id="r0" term2Id="r1" value="0" />
+			<ResisRelation term1Id="s0" term2Id="s1" value="0" />
+			<ResisRelation term1Id="t0" term2Id="t1" value="0" />
+			<ResisRelation term1Id="n1" term2Id="n2" value="0" />
+		</ResisState>
+		<Magnetism>
+			<!-- defSwitch="1" -->
+			<ControlIO type="input|output" interact="click" name="开关" mdlName="SanJ1_11" switchIn="off|on" motion="rotate" motionParams="0|-120" axis="z" />
+		</Magnetism>
+	</ElecCompDef>
+	<!-- <ElecCompDef name="高分辨率单极断路器" model="OSMC32N1C2" desc="OSM系列高分辨率单极断路器适用于交流50HZ或60HZ，工作电压至660V，工作电流95A，供远距离接通与分段电路，此型号为1极配电保护型断路器，其额定电流为2A。"> -->
+	<!-- <Terminal id="1no" name="1 NO" mdlName="B1" direction="y+" /> -->
+	<!-- <Terminal id="3no" name="3 NO" mdlName="B2" direction="y-" /> -->
+	<!-- <Magnetism> -->
+	<!-- <ControlIO type="input" interact="click" name="开关" mdlName="2471" switchIn="off|on" motion="rotate" motionParams="0|70" axis="x"> -->
+	<!-- sound=me/Interface/sound/control/press.wav -->
+	<!-- </ControlIO> -->
+	<!-- </Magnetism> -->
+	<!-- <ResisState id="off" isDef="1"> -->
+	<!-- </ResisState> -->
+	<!-- <ResisState id="on"> -->
+	<!-- <ResisRelation term1Id="1no" term2Id="3no" value="0" /> -->
+	<!-- </ResisState> -->
+	<!-- </ElecCompDef> -->
+	<!-- <ElecCompDef name="高分辨率单极断路器" model="OSMC32N1C3" desc="OSM系列高分辨率单极断路器适用于交流50HZ或60HZ，工作电压至660V，工作电流95A，供远距离接通与分段电路，此型号为1极配电保护型断路器，其额定电流为3A。"> -->
+	<!-- <Terminal id="1no" name="1 NO" mdlName="B1" direction="y+" /> -->
+	<!-- <Terminal id="3no" name="3 NO" mdlName="B2" direction="y-" /> -->
+	<!-- <Magnetism> -->
+	<!-- <ControlIO type="input" interact="click" name="开关" mdlName="2471" switchIn="off|on" motion="rotate" motionParams="0|70" axis="x"> -->
+	<!-- sound=me/Interface/sound/control/press.wav -->
+	<!-- </ControlIO> -->
+	<!-- </Magnetism> -->
+	<!-- <ResisState id="off" isDef="1"> -->
+	<!-- </ResisState> -->
+	<!-- <ResisState id="on"> -->
+	<!-- <ResisRelation term1Id="1no" term2Id="3no" value="0" /> -->
+	<!-- </ResisState> -->
+	<!-- </ElecCompDef> -->
+	<!-- <ElecCompDef name="高分辨率单极断路器" model="OSMC32N1C1" desc="OSM系列高分辨率单极断路器适用于交流50HZ或60HZ，工作电压至660V，工作电流95A，供远距离接通与分段电路，此型号为1极配电保护型断路器，其额定电流为1A。"> -->
+	<!-- <Terminal id="1no" name="1 NO" mdlName="B1" direction="y+" /> -->
+	<!-- <Terminal id="3no" name="3 NO" mdlName="B2" direction="y-" /> -->
+	<!-- <Magnetism> -->
+	<!-- <ControlIO type="input" interact="click" name="开关" mdlName="2471" switchIn="off|on" motion="rotate" motionParams="0|70" axis="x"> -->
+	<!-- sound=me/Interface/sound/control/press.wav -->
+	<!-- </ControlIO> -->
+	<!-- </Magnetism> -->
+	<!-- <ResisState id="off" isDef="1"> -->
+	<!-- </ResisState> -->
+	<!-- <ResisState id="on"> -->
+	<!-- <ResisRelation term1Id="1no" term2Id="3no" value="0" /> -->
+	<!-- </ResisState> -->
+	<!-- </ElecCompDef> -->
+</Comps>

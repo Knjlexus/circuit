@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="控制变压器" model="JBK3-630VA" desc="此型号机床控制变压器适用于交流50～60Hz,输入电压不超过660V，输出额定电压不超过380V，在额定负载下可连续长期工作，通常用于机床、机械设备中作为电器的控制照明及指示灯电源。">
+		<Terminal id="0" name="0" mdlName="0" direction="x-" team="group1" />
+		<Terminal id="1" name="1" mdlName="1" direction="x-" team="group1" />
+		<Terminal id="2" name="2" mdlName="2" direction="x-" team="group1" />
+		<Terminal id="3" name="3" mdlName="3" direction="x-" />
+		<Terminal id="4" name="4" mdlName="4" direction="x-" />
+		<Terminal id="5" name="5" mdlName="5" direction="x-" />
+		<Terminal id="6" name="6" mdlName="6" direction="x-" />
+		<Terminal id="7" name="7" mdlName="7" direction="x-" />
+		<Terminal id="8" name="8" mdlName="8" direction="x-" />
+		<Terminal id="9" name="9" mdlName="9" direction="x-" />
+		<Terminal id="10" name="10" mdlName="10" direction="x-" />
+
+		<Terminal id="11" name="11" mdlName="11" direction="x+" team="group2" />
+		<Terminal id="12" name="12" mdlName="12" direction="x+" team="group2" />
+		<Terminal id="13" name="13" mdlName="13" direction="x+" team="group2" />
+		<Terminal id="14" name="14" mdlName="14" direction="x+" team="group3" />
+		<Terminal id="15" name="15" mdlName="15" direction="x+" team="group3" />
+		<Terminal id="16" name="16" mdlName="16" direction="x+" team="group3" />
+		<Terminal id="17" name="17" mdlName="17" direction="x+" team="group3" />
+		<Terminal id="18" name="18" mdlName="18" direction="x+" />
+		<Terminal id="19" name="19" mdlName="19" direction="x+" />
+		<Terminal id="20" name="20" mdlName="20" direction="x+" />
+		<Terminal id="21" name="21" mdlName="21" direction="x+" />
+		<Magnetism>
+			<VoltageIO type="input|output" term1Id="0" term2Id="2" value="380" deviation="20" />
+			<VoltageIO type="input|output" term1Id="11" term2Id="13" value="220" deviation="10" />
+			<VoltageIO type="input|output" term1Id="14" term2Id="17" value="36" deviation="2" />
+			<VoltageIO type="input|output" term1Id="18" term2Id="19" value="6" deviation="1" />
+		</Magnetism>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="0" term2Id="1" value="0.0220" />
+			<ResisRelation term1Id="1" term2Id="2" value="0.0160" />
+
+			<ResisRelation term1Id="11" term2Id="12" value="0.0110" />
+			<ResisRelation term1Id="12" term2Id="13" value="0.0110" />
+
+			<ResisRelation term1Id="14" term2Id="15" value="0.0012" />
+			<ResisRelation term1Id="15" term2Id="16" value="0.0012" />
+			<ResisRelation term1Id="16" term2Id="17" value="0.0012" />
+
+			<ResisRelation term1Id="18" term2Id="19" value="0.0006" />
+		</ResisState>
+	</ElecCompDef>
+	<ElecCompDef name="三相隔离变压器" model="GSG-15KVA" desc="">
+		<Terminal id="L1" name="L11" mdlName="L1" direction="y-" team="input" />
+		<Terminal id="L2" name="L12" mdlName="L2" direction="y-" team="input" />
+		<Terminal id="L3" name="L13" mdlName="L3" direction="y-" team="input" />
+		<Terminal id="R" name="R" mdlName="L4" direction="y-" />
+		<Terminal id="S" name="S" mdlName="L5" direction="y-" />
+		<Terminal id="T" name="T" mdlName="L6" direction="y-" />
+		<!-- <Terminal id="PE" name="PE" mdlName="L7" direction="y-" /> -->
+		<Terminal id="PE" name="PE" mdlName="L8" direction="y-" />
+		<Magnetism>
+			<ControlIO type="input" interact="click" name="变压器门" mdlName="Box122" motion="rotate" switchIn="" motionParams="0|-180" axis="y" smooth="1" />
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="L1" term2Id="L2" value="380" deviation="20" />
+			<VoltageIO type="input" term1Id="L1" term2Id="L3" value="380" deviation="20" />
+			<VoltageIO type="input" term1Id="L2" term2Id="L3" value="380" deviation="20" />
+			<VoltageIO type="output" term1Id="R" term2Id="S" value="220" deviation="10" />
+			<VoltageIO type="output" term1Id="R" term2Id="T" value="220" deviation="10" />
+			<VoltageIO type="output" term1Id="S" term2Id="T" value="220" deviation="10" />
+		</Magnetism>
+	</ElecCompDef>
+</Comps>

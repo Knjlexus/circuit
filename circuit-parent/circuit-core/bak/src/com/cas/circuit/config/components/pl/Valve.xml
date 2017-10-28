@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roots>
+	<!-- 供料站 -->
+	<ElecCompDef name="两位五通单电控电磁阀组" model="4V110-M5-2" appStateCls="ValveLogic">
+		<Jack id="YA1_C" format="YA" cable="YA" mdlName="YA1_Jack" name="YA1线圈" direction="X" core="2">
+			<Terminal id="YA1_C_01" name="YA1_Coil1" index="1" mark="24V" team="YA1_C" />
+			<Terminal id="YA1_C_02" name="YA1_Coil2" index="2" mark="0V" team="YA1_C" />
+		</Jack>
+		<Jack id="YA2_C" format="YA" cable="YA" mdlName="YA2_Jack" name="YA2线圈" direction="X" core="2">
+			<Terminal id="YA2_C_01" name="YA2_Coil1" index="1" mark="24V" team="YA2_C" />
+			<Terminal id="YA2_C_02" name="YA2_Coil2" index="2" mark="0V" team="YA2_C" />
+		</Jack>
+
+		<!-- 汇流板 -->
+		<GasPort id="P" name="P" mdlName="P" direction="X+" />
+		<GasPort id="T1" name="T1" mdlName="R" type="OUT" />
+		<GasPort id="T2" name="T2" mdlName="S" type="OUT" />
+
+		<GasPort id="YA1_A" name="YA1_A" mdlName="YA1_A" direction="Y+" />
+		<GasPort id="YA1_B" name="YA1_B" mdlName="YA1_B" direction="Y+" />
+		<GasPort id="YA2_A" name="YA2_A" mdlName="YA2_A" direction="Y+" />
+		<GasPort id="YA2_B" name="YA2_B" mdlName="YA2_B" direction="Y+" />
+
+		<!-- 端口状态 -->
+		<BlockState id="YA1_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA1_A" />
+			<BlockRelation portId1="T1" portId2="YA1_B" />
+		</BlockState>
+		<BlockState id="YA1_Break">
+			<BlockRelation portId1="P" portId2="YA1_B" />
+			<BlockRelation portId1="T2" portId2="YA1_A" />
+		</BlockState>
+
+		<BlockState id="YA2_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA2_A" />
+			<BlockRelation portId1="T1" portId2="YA2_B" />
+		</BlockState>
+		<BlockState id="YA2_Break">
+			<BlockRelation portId1="P" portId2="YA2_B" />
+			<BlockRelation portId1="T2" portId2="YA2_A" />
+		</BlockState>
+		<!-- 通电状态切换 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA1_C_01" term2Id="YA1_C_02" value="+24" deviation="2" switchIn="YA1_Link|YA1_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA1_Btn" type="input|output" interact="press" motion="move" motionParams="0|-0.0005" axis="Y">
+				switchFrom=YA1_Link
+				switchTo=YA1_Break
+				jackName=YA1_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA2_C_01" term2Id="YA2_C_02" value="+24" deviation="2" switchIn="YA2_Link|YA2_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA2_Btn" type="input|output" interact="press" motion="move" motionParams="0|-0.0005" axis="Y">
+				switchFrom=YA2_Link
+				switchTo=YA2_Break
+				jackName=YA2_C
+			</ControlIO>
+		</Magnetism>
+		<!-- 手动按钮 待完成 -->
+	</ElecCompDef>
+
+	<!-- 装配 -->
+	<ElecCompDef name="两位五通单电控电磁阀组" model="4V110-M5-6" appStateCls="ValveLogic">
+		<Jack id="YA1_C" format="YA" cable="YA" mdlName="YA1_Jack" name="YA1线圈" direction="Z" core="2" rotation="-90,0,0">
+			<Terminal id="YA1_C_01" name="YA1_Coil1" index="1" mark="24V" team="YA1_C" />
+			<Terminal id="YA1_C_02" name="YA1_Coil2" index="2" mark="0V" team="YA1_C" />
+		</Jack>
+		<Jack id="YA2_C" format="YA" cable="YA" mdlName="YA2_Jack" name="YA2线圈" direction="Y" core="2" rotation="-90,0,0">
+			<Terminal id="YA2_C_01" name="YA2_Coil1" index="1" mark="24V" team="YA2_C" />
+			<Terminal id="YA2_C_02" name="YA2_Coil2" index="2" mark="0V" team="YA2_C" />
+		</Jack>
+		<Jack id="YA3_C" format="YA" cable="YA" mdlName="YA3_Jack" name="YA3线圈" direction="X" core="2" rotation="-90,0,0">
+			<Terminal id="YA3_C_01" name="YA3_Coil1" index="1" mark="24V" team="YA3_C" />
+			<Terminal id="YA3_C_02" name="YA3_Coil2" index="2" mark="0V" team="YA3_C" />
+		</Jack>
+		<Jack id="YA4_C" format="YA" cable="YA" mdlName="YA4_Jack" name="YA4线圈" direction="X" core="2" rotation="-90,0,0">
+			<Terminal id="YA4_C_01" name="YA4_Coil1" index="1" mark="24V" team="YA4_C" />
+			<Terminal id="YA4_C_02" name="YA4_Coil2" index="2" mark="0V" team="YA4_C" />
+		</Jack>
+		<Jack id="YA5_C" format="YA" cable="YA" mdlName="YA5_Jack" name="YA5线圈" direction="X" core="2" rotation="-90,0,0">
+			<Terminal id="YA5_C_01" name="YA5_Coil1" index="1" mark="24V" team="YA5_C" />
+			<Terminal id="YA5_C_02" name="YA5_Coil2" index="2" mark="0V" team="YA5_C" />
+		</Jack>
+		<Jack id="YA6_C" format="YA" cable="YA" mdlName="YA6_Jack" name="YA6线圈" direction="X" core="2" rotation="-90,0,0">
+			<Terminal id="YA6_C_01" name="YA6_Coil1" index="1" mark="24V" team="YA6_C" />
+			<Terminal id="YA6_C_02" name="YA6_Coil2" index="2" mark="0V" team="YA6_C" />
+		</Jack>
+
+		<!-- 汇流板 -->
+		<GasPort id="P" name="P" mdlName="P" direction="X+" />
+		<GasPort id="T1" name="T1" mdlName="R" type="OUT" />
+		<GasPort id="T2" name="T2" mdlName="S" type="OUT" />
+
+		<GasPort id="YA1_A" name="YA1_A" mdlName="YA1_A" direction="Z-" />
+		<GasPort id="YA1_B" name="YA1_B" mdlName="YA1_B" direction="Z-" />
+		<GasPort id="YA2_A" name="YA2_A" mdlName="YA2_A" direction="Z-" />
+		<GasPort id="YA2_B" name="YA2_B" mdlName="YA2_B" direction="Z-" />
+		<GasPort id="YA3_A" name="YA3_A" mdlName="YA3_A" direction="Z-" />
+		<GasPort id="YA3_B" name="YA3_B" mdlName="YA3_B" direction="Z-" />
+		<GasPort id="YA4_A" name="YA4_A" mdlName="YA4_A" direction="Z-" />
+		<GasPort id="YA4_B" name="YA4_B" mdlName="YA4_B" direction="Z-" />
+		<GasPort id="YA5_A" name="YA5_A" mdlName="YA5_A" direction="Z-" />
+		<GasPort id="YA5_B" name="YA5_B" mdlName="YA5_B" direction="Z-" />
+		<GasPort id="YA6_A" name="YA6_A" mdlName="YA6_A" direction="Z-" />
+		<GasPort id="YA6_B" name="YA6_B" mdlName="YA6_B" direction="Z-" />
+
+		<!-- 端口状态 -->
+		<BlockState id="YA1_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA1_A" />
+			<BlockRelation portId1="T1" portId2="YA1_B" />
+		</BlockState>
+		<BlockState id="YA1_Break">
+			<BlockRelation portId1="P" portId2="YA1_B" />
+			<BlockRelation portId1="T2" portId2="YA1_A" />
+		</BlockState>
+
+		<BlockState id="YA2_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA2_A" />
+			<BlockRelation portId1="T1" portId2="YA2_B" />
+		</BlockState>
+		<BlockState id="YA2_Break">
+			<BlockRelation portId1="P" portId2="YA2_B" />
+			<BlockRelation portId1="T2" portId2="YA2_A" />
+		</BlockState>
+
+		<BlockState id="YA3_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA3_A" />
+			<BlockRelation portId1="T1" portId2="YA3_B" />
+		</BlockState>
+		<BlockState id="YA3_Break">
+			<BlockRelation portId1="P" portId2="YA3_B" />
+			<BlockRelation portId1="T2" portId2="YA3_A" />
+		</BlockState>
+
+		<BlockState id="YA4_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA4_A" />
+			<BlockRelation portId1="T1" portId2="YA4_B" />
+		</BlockState>
+		<BlockState id="YA4_Break">
+			<BlockRelation portId1="P" portId2="YA4_B" />
+			<BlockRelation portId1="T2" portId2="YA4_A" />
+		</BlockState>
+
+		<BlockState id="YA5_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA5_A" />
+			<BlockRelation portId1="T1" portId2="YA5_B" />
+		</BlockState>
+		<BlockState id="YA5_Break">
+			<BlockRelation portId1="P" portId2="YA5_B" />
+			<BlockRelation portId1="T2" portId2="YA5_A" />
+		</BlockState>
+
+		<BlockState id="YA6_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA6_A" />
+			<BlockRelation portId1="T1" portId2="YA6_B" />
+		</BlockState>
+		<BlockState id="YA6_Break">
+			<BlockRelation portId1="P" portId2="YA6_B" />
+			<BlockRelation portId1="T2" portId2="YA6_A" />
+		</BlockState>
+		<!-- 通电状态切换 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA1_C_01" term2Id="YA1_C_02" value="+24" deviation="2" switchIn="YA1_Link|YA1_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA1_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA1_Link
+				switchTo=YA1_Break
+				jackName=YA1_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA2_C_01" term2Id="YA2_C_02" value="+24" deviation="2" switchIn="YA2_Link|YA2_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA2_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA2_Link
+				switchTo=YA2_Break
+				jackName=YA2_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA3_C_01" term2Id="YA3_C_02" value="+24" deviation="2" switchIn="YA3_Link|YA3_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA3_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA3_Link
+				switchTo=YA3_Break
+				jackName=YA3_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA4_C_01" term2Id="YA4_C_02" value="+24" deviation="2" switchIn="YA4_Link|YA4_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA4_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA4_Link
+				switchTo=YA4_Break
+				jackName=YA4_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA5_C_01" term2Id="YA5_C_02" value="+24" deviation="2" switchIn="YA5_Link|YA5_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA5_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA5_Link
+				switchTo=YA5_Break
+				jackName=YA5_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA6_C_01" term2Id="YA6_C_02" value="+24" deviation="2" switchIn="YA6_Link|YA6_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA6_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA6_Link
+				switchTo=YA6_Break
+				jackName=YA6_C
+			</ControlIO>
+		</Magnetism>
+		<!-- 手动按钮 待完成 -->
+	</ElecCompDef>
+
+
+
+	<!-- 加工 -->
+	<ElecCompDef name="两位五通单电控电磁阀组" model="4V110-M5-3" appStateCls="ValveLogic">
+		<Jack id="YA1_C" format="YA" cable="YA" mdlName="YA1_Jack" name="YA1线圈" direction="X" core="2">
+			<Terminal id="YA1_C_01" name="YA1_Coil1" index="1" mark="24V" team="YA1_C" />
+			<Terminal id="YA1_C_02" name="YA1_Coil2" index="2" mark="0V" team="YA1_C" />
+		</Jack>
+		<Jack id="YA2_C" format="YA" cable="YA" mdlName="YA2_Jack" name="YA2线圈" direction="X" core="2">
+			<Terminal id="YA2_C_01" name="YA2_Coil1" index="1" mark="24V" team="YA2_C" />
+			<Terminal id="YA2_C_02" name="YA2_Coil2" index="2" mark="0V" team="YA2_C" />
+		</Jack>
+		<Jack id="YA3_C" format="YA" cable="YA" mdlName="YA3_Jack" name="YA3线圈" direction="X" core="2">
+			<Terminal id="YA3_C_01" name="YA3_Coil1" index="1" mark="24V" team="YA3_C" />
+			<Terminal id="YA3_C_02" name="YA3_Coil2" index="2" mark="0V" team="YA3_C" />
+		</Jack>
+
+		<!-- 汇流板 -->
+		<GasPort id="P" name="P" mdlName="P" direction="Y+" />
+		<GasPort id="T1" name="T1" mdlName="R" type="OUT" />
+		<GasPort id="T2" name="T2" mdlName="S" type="OUT" />
+
+		<GasPort id="YA1_A" name="YA1_A" mdlName="YA1_A" direction="Y+" />
+		<GasPort id="YA1_B" name="YA1_B" mdlName="YA1_B" direction="Y+" />
+		<GasPort id="YA2_A" name="YA2_A" mdlName="YA2_A" direction="Y+" />
+		<GasPort id="YA2_B" name="YA2_B" mdlName="YA2_B" direction="Y+" />
+		<GasPort id="YA3_A" name="YA3_A" mdlName="YA3_A" direction="Y+" />
+		<GasPort id="YA3_B" name="YA3_B" mdlName="YA3_B" direction="Y+" />
+
+		<!-- 端口状态 -->
+		<BlockState id="YA1_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA1_A" />
+			<BlockRelation portId1="T1" portId2="YA1_B" />
+		</BlockState>
+		<BlockState id="YA1_Break">
+			<BlockRelation portId1="P" portId2="YA1_B" />
+			<BlockRelation portId1="T2" portId2="YA1_A" />
+		</BlockState>
+
+		<BlockState id="YA2_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA2_A" />
+			<BlockRelation portId1="T1" portId2="YA2_B" />
+		</BlockState>
+		<BlockState id="YA2_Break">
+			<BlockRelation portId1="P" portId2="YA2_B" />
+			<BlockRelation portId1="T2" portId2="YA2_A" />
+		</BlockState>
+
+		<BlockState id="YA3_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA3_A" />
+			<BlockRelation portId1="T1" portId2="YA3_B" />
+		</BlockState>
+		<BlockState id="YA3_Break">
+			<BlockRelation portId1="P" portId2="YA3_B" />
+			<BlockRelation portId1="T2" portId2="YA3_A" />
+		</BlockState>
+
+		<!-- 通电状态切换 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA1_C_01" term2Id="YA1_C_02" value="+24" deviation="2" switchIn="YA1_Link|YA1_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA1_Btn" type="input|output" interact="press" motion="move" motionParams="0|-0.0005" axis="Y">
+				switchFrom=YA1_Link
+				switchTo=YA1_Break
+				jackName=YA1_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA2_C_01" term2Id="YA2_C_02" value="+24" deviation="2" switchIn="YA2_Link|YA2_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA2_Btn" type="input|output" interact="press" motion="move" motionParams="0|-0.0005" axis="Y">
+				switchFrom=YA2_Link
+				switchTo=YA2_Break
+				jackName=YA2_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA3_C_01" term2Id="YA3_C_02" value="+24" deviation="2" switchIn="YA3_Link|YA3_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA3_Btn" type="input|output" interact="press" motion="move" motionParams="0|-0.0005" axis="Y">
+				switchFrom=YA3_Link
+				switchTo=YA3_Break
+				jackName=YA3_C
+			</ControlIO>
+		</Magnetism>
+		<!-- 手动按钮 待完成 -->
+	</ElecCompDef>
+
+
+
+
+	<!--!!!!!!! 标记 重新处理 !!!!!!!!!!!!! -->
+	<ElecCompDef name="两位五通单电控电磁阀组" model="4V110-M5-4" appStateCls="ValveLogicEx">
+		<Jack id="YA1_C" format="YA" cable="YA" mdlName="YA1_Jack" name="YA1线圈" direction="X" core="2">
+			<Terminal id="YA1_C_01" name="YA1_Coil1" index="1" mark="24V" team="YA1_C" />
+			<Terminal id="YA1_C_02" name="YA1_Coil2" index="2" mark="0V" team="YA1_C" />
+		</Jack>
+
+		<Jack id="YA2_C1" format="YA" cable="YA" mdlName="YA2_Jack_A" name="YA2线圈" direction="X" core="2">
+			<Terminal id="YA2_C1_01" name="YA2_Coil1" index="1" mark="24V" team="YA2_C1" />
+			<Terminal id="YA2_C1_02" name="YA2_Coil2" index="2" mark="0V" team="YA2_C1" />
+		</Jack>
+		<Jack id="YA2_C2" format="YA" cable="YA" mdlName="YA2_Jack_B" name="YA2线圈" direction="X" core="2" rotation="0,180,0">
+			<Terminal id="YA2_C2_01" name="YA2_Coil1" index="1" mark="24V" team="YA2_C2" />
+			<Terminal id="YA2_C2_02" name="YA2_Coil2" index="2" mark="0V" team="YA2_C2" />
+		</Jack>
+
+		<Jack id="YA3_C" format="YA" cable="YA" mdlName="YA3_Jack" name="YA3线圈" direction="X" core="2">
+			<Terminal id="YA3_C_01" name="YA3_Coil1" index="1" mark="24V" team="YA3_C" />
+			<Terminal id="YA3_C_02" name="YA3_Coil2" index="2" mark="0V" team="YA3_C" />
+		</Jack>
+
+		<Jack id="YA4_C1" format="YA" cable="YA" mdlName="YA4_Jack_A" name="YA4线圈" direction="X" core="2">
+			<Terminal id="YA4_C1_01" name="YA4_Coil1" index="1" mark="24V" team="YA4_C1" />
+			<Terminal id="YA4_C1_02" name="YA4_Coil2" index="2" mark="0V" team="YA4_C1" />
+		</Jack>
+		<Jack id="YA4_C2" format="YA" cable="YA" mdlName="YA4_Jack_B" name="YA4线圈" direction="X" core="2" rotation="0,180,0">
+			<Terminal id="YA4_C2_01" name="YA4_Coil1" index="1" mark="24V" team="YA4_C2" />
+			<Terminal id="YA4_C2_02" name="YA4_Coil2" index="2" mark="0V" team="YA4_C2" />
+		</Jack>
+
+		<!-- 汇流板 -->
+		<GasPort id="P" name="P" mdlName="P" direction="Y+" />
+		<GasPort id="T1" name="T1" mdlName="R" type="OUT" />
+		<GasPort id="T2" name="T2" mdlName="S" type="OUT" />
+
+		<GasPort id="YA1_A" name="YA1_A" mdlName="YA1_A" direction="Y+" />
+		<GasPort id="YA1_B" name="YA1_B" mdlName="YA1_B" direction="Y+" />
+		<GasPort id="YA2_A" name="YA2_A" mdlName="YA2_A" direction="Y+" />
+		<GasPort id="YA2_B" name="YA2_B" mdlName="YA2_B" direction="Y+" />
+		<GasPort id="YA3_A" name="YA3_A" mdlName="YA3_A" direction="Y+" />
+		<GasPort id="YA3_B" name="YA3_B" mdlName="YA3_B" direction="Y+" />
+		<GasPort id="YA4_A" name="YA4_A" mdlName="YA4_A" direction="Y+" />
+		<GasPort id="YA4_B" name="YA4_B" mdlName="YA4_B" direction="Y+" />
+
+		<!-- 端口状态 -->
+		<BlockState id="YA1_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA1_A" />
+			<BlockRelation portId1="T1" portId2="YA1_B" />
+		</BlockState>
+		<BlockState id="YA1_Break">
+			<BlockRelation portId1="P" portId2="YA1_B" />
+			<BlockRelation portId1="T2" portId2="YA1_A" />
+		</BlockState>
+
+		<BlockState id="YA2_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA2_A" />
+			<BlockRelation portId1="T1" portId2="YA2_B" />
+		</BlockState>
+		<BlockState id="YA2_Break">
+			<BlockRelation portId1="P" portId2="YA2_B" />
+			<BlockRelation portId1="T2" portId2="YA2_A" />
+		</BlockState>
+
+		<BlockState id="YA3_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA3_A" />
+			<BlockRelation portId1="T1" portId2="YA3_B" />
+		</BlockState>
+		<BlockState id="YA3_Break">
+			<BlockRelation portId1="P" portId2="YA3_B" />
+			<BlockRelation portId1="T2" portId2="YA3_A" />
+		</BlockState>
+
+		<BlockState id="YA4_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA4_A" />
+			<BlockRelation portId1="T1" portId2="YA4_B" />
+		</BlockState>
+		<BlockState id="YA4_Break">
+			<BlockRelation portId1="P" portId2="YA4_B" />
+			<BlockRelation portId1="T2" portId2="YA4_A" />
+		</BlockState>
+
+		<!-- 通电状态切换 -->
+		<!-- YA1 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA1_C_01" term2Id="YA1_C_02" value="+24" deviation="2" switchIn="YA1_Link|YA1_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA1_Btn" type="input|output" interact="press" motion="move" motionParams="0|-0.0005" axis="Y">
+				switchFrom=YA1_Link
+				switchTo=YA1_Break
+				jackName=YA1_C
+			</ControlIO>
+		</Magnetism>
+
+		<!-- YA2 -->
+		<!-- YA2_Btn_A -->
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA2_Btn_A" type="input|output" interact="press" motion="move" motionParams="0|-0.0005" axis="Y">
+				param=ya2_c2_effect,ya2_c1_effect
+				switchFrom=YA2_Break
+				switchTo=YA2_Link
+			</ControlIO>
+		</Magnetism>
+		<!-- YA2_Btn_B -->
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA2_Btn_B" type="input|output" interact="press" motion="move" motionParams="0|-0.0005" axis="Y">
+				param=ya2_c1_effect,ya2_c2_effect
+				switchFrom=YA2_Link
+				switchTo=YA2_Break
+			</ControlIO>
+		</Magnetism>
+
+		<!-- YA3 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA3_C_01" term2Id="YA3_C_02" value="+24" deviation="2" switchIn="YA3_Link|YA3_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA3_Btn" type="input|output" interact="press" motion="move" motionParams="0|-0.0005" axis="Y">
+				switchFrom=YA3_Link
+				switchTo=YA3_Break
+				jackName=YA3_C
+			</ControlIO>
+		</Magnetism>
+
+		<!-- YA4 -->
+		<!-- YA4_Btn_A -->
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA4_Btn_A" type="input|output" interact="press" motion="move" motionParams="0|-0.0005" axis="Y">
+				param=ya4_c2_effect,ya4_c1_effect
+				switchFrom=YA4_Break
+				switchTo=YA4_Link
+			</ControlIO>
+		</Magnetism>
+		<!-- YA2_Btn_B -->
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA4_Btn_B" type="input|output" interact="press" motion="move" motionParams="0|-0.0005" axis="Y">
+				param=ya4_c1_effect,ya4_c2_effect
+				switchFrom=YA4_Link
+				switchTo=YA4_Break
+			</ControlIO>
+		</Magnetism>
+		<!-- 手动按钮 待完成 -->
+	</ElecCompDef>
+
+
+	<!-- 机器人 -->
+	<ElecCompDef name="两位五通单电控电磁阀组" model="4V110-M5-8" appStateCls="ValveLogic">
+		<Jack id="YA1_C" format="YA" cable="YA" mdlName="YA1_Jack" name="YA1线圈" direction="Z" core="2" rotation="-90,0,0">
+			<Terminal id="YA1_C_01" name="YA1_Coil1" index="1" mark="24V" team="YA1_C" />
+			<Terminal id="YA1_C_02" name="YA1_Coil2" index="2" mark="0V" team="YA1_C" />
+		</Jack>
+		<Jack id="YA2_C" format="YA" cable="YA" mdlName="YA2_Jack" name="YA2线圈" direction="Y" core="2" rotation="-90,0,0">
+			<Terminal id="YA2_C_01" name="YA2_Coil1" index="1" mark="24V" team="YA2_C" />
+			<Terminal id="YA2_C_02" name="YA2_Coil2" index="2" mark="0V" team="YA2_C" />
+		</Jack>
+		<Jack id="YA3_C" format="YA" cable="YA" mdlName="YA3_Jack" name="YA3线圈" direction="X" core="2" rotation="-90,0,0">
+			<Terminal id="YA3_C_01" name="YA3_Coil1" index="1" mark="24V" team="YA3_C" />
+			<Terminal id="YA3_C_02" name="YA3_Coil2" index="2" mark="0V" team="YA3_C" />
+		</Jack>
+		<Jack id="YA4_C" format="YA" cable="YA" mdlName="YA4_Jack" name="YA4线圈" direction="X" core="2" rotation="-90,0,0">
+			<Terminal id="YA4_C_01" name="YA4_Coil1" index="1" mark="24V" team="YA4_C" />
+			<Terminal id="YA4_C_02" name="YA4_Coil2" index="2" mark="0V" team="YA4_C" />
+		</Jack>
+		<Jack id="YA5_C" format="YA" cable="YA" mdlName="YA5_Jack" name="YA5线圈" direction="X" core="2" rotation="-90,0,0">
+			<Terminal id="YA5_C_01" name="YA5_Coil1" index="1" mark="24V" team="YA5_C" />
+			<Terminal id="YA5_C_02" name="YA5_Coil2" index="2" mark="0V" team="YA5_C" />
+		</Jack>
+		<Jack id="YA6_C" format="YA" cable="YA" mdlName="YA6_Jack" name="YA6线圈" direction="X" core="2" rotation="-90,0,0">
+			<Terminal id="YA6_C_01" name="YA6_Coil1" index="1" mark="24V" team="YA6_C" />
+			<Terminal id="YA6_C_02" name="YA6_Coil2" index="2" mark="0V" team="YA6_C" />
+		</Jack>
+		<Jack id="YA7_C" format="YA" cable="YA" mdlName="YA7_Jack" name="YA7线圈" direction="X" core="2" rotation="-90,0,0">
+			<Terminal id="YA7_C_01" name="YA7_Coil1" index="1" mark="24V" team="YA7_C" />
+			<Terminal id="YA7_C_02" name="YA7_Coil2" index="2" mark="0V" team="YA7_C" />
+		</Jack>
+		<Jack id="YA8_C" format="YA" cable="YA" mdlName="YA8_Jack" name="YA8线圈" direction="X" core="2" rotation="-90,0,0">
+			<Terminal id="YA8_C_01" name="YA8_Coil1" index="1" mark="24V" team="YA8_C" />
+			<Terminal id="YA8_C_02" name="YA8_Coil2" index="2" mark="0V" team="YA8_C" />
+		</Jack>
+
+		<!-- 汇流板 -->
+		<GasPort id="P" name="P" mdlName="P" direction="X+" />
+		<GasPort id="T1" name="T1" mdlName="R" type="OUT" />
+		<GasPort id="T2" name="T2" mdlName="S" type="OUT" />
+
+		<GasPort id="YA1_A" name="YA1_A" mdlName="YA1_A" direction="Z-" />
+		<GasPort id="YA1_B" name="YA1_B" mdlName="YA1_B" direction="Z-" />
+		<GasPort id="YA2_A" name="YA2_A" mdlName="YA2_A" direction="Z-" />
+		<GasPort id="YA2_B" name="YA2_B" mdlName="YA2_B" direction="Z-" />
+		<GasPort id="YA3_A" name="YA3_A" mdlName="YA3_A" direction="Z-" />
+		<GasPort id="YA3_B" name="YA3_B" mdlName="YA3_B" direction="Z-" />
+		<GasPort id="YA4_A" name="YA4_A" mdlName="YA4_A" direction="Z-" />
+		<GasPort id="YA4_B" name="YA4_B" mdlName="YA4_B" direction="Z-" />
+		<GasPort id="YA5_A" name="YA5_A" mdlName="YA5_A" direction="Z-" />
+		<GasPort id="YA5_B" name="YA5_B" mdlName="YA5_B" direction="Z-" />
+		<GasPort id="YA6_A" name="YA6_A" mdlName="YA6_A" direction="Z-" />
+		<GasPort id="YA6_B" name="YA6_B" mdlName="YA6_B" direction="Z-" />
+		<GasPort id="YA7_A" name="YA7_A" mdlName="YA7_A" direction="Z-" />
+		<GasPort id="YA7_B" name="YA7_B" mdlName="YA7_B" direction="Z-" />
+		<GasPort id="YA8_A" name="YA8_A" mdlName="YA8_A" direction="Z-" />
+		<GasPort id="YA8_B" name="YA8_B" mdlName="YA8_B" direction="Z-" />
+
+		<!-- 端口状态 -->
+		<BlockState id="YA1_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA1_A" />
+			<BlockRelation portId1="T1" portId2="YA1_B" />
+		</BlockState>
+		<BlockState id="YA1_Break">
+			<BlockRelation portId1="P" portId2="YA1_B" />
+			<BlockRelation portId1="T2" portId2="YA1_A" />
+		</BlockState>
+
+		<BlockState id="YA2_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA2_A" />
+			<BlockRelation portId1="T1" portId2="YA2_B" />
+		</BlockState>
+		<BlockState id="YA2_Break">
+			<BlockRelation portId1="P" portId2="YA2_B" />
+			<BlockRelation portId1="T2" portId2="YA2_A" />
+		</BlockState>
+
+		<BlockState id="YA3_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA3_A" />
+			<BlockRelation portId1="T1" portId2="YA3_B" />
+		</BlockState>
+		<BlockState id="YA3_Break">
+			<BlockRelation portId1="P" portId2="YA3_B" />
+			<BlockRelation portId1="T2" portId2="YA3_A" />
+		</BlockState>
+
+		<BlockState id="YA4_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA4_A" />
+			<BlockRelation portId1="T1" portId2="YA4_B" />
+		</BlockState>
+		<BlockState id="YA4_Break">
+			<BlockRelation portId1="P" portId2="YA4_B" />
+			<BlockRelation portId1="T2" portId2="YA4_A" />
+		</BlockState>
+
+		<BlockState id="YA5_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA5_A" />
+			<BlockRelation portId1="T1" portId2="YA5_B" />
+		</BlockState>
+		<BlockState id="YA5_Break">
+			<BlockRelation portId1="P" portId2="YA5_B" />
+			<BlockRelation portId1="T2" portId2="YA5_A" />
+		</BlockState>
+
+		<BlockState id="YA6_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA6_A" />
+			<BlockRelation portId1="T1" portId2="YA6_B" />
+		</BlockState>
+		<BlockState id="YA6_Break">
+			<BlockRelation portId1="P" portId2="YA6_B" />
+			<BlockRelation portId1="T2" portId2="YA6_A" />
+		</BlockState>
+
+		<BlockState id="YA7_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA7_A" />
+			<BlockRelation portId1="T1" portId2="YA7_B" />
+		</BlockState>
+		<BlockState id="YA7_Break">
+			<BlockRelation portId1="P" portId2="YA7_B" />
+			<BlockRelation portId1="T2" portId2="YA7_A" />
+		</BlockState>
+
+		<BlockState id="YA8_Link" isDef="1">
+			<BlockRelation portId1="P" portId2="YA8_A" />
+			<BlockRelation portId1="T1" portId2="YA8_B" />
+		</BlockState>
+		<BlockState id="YA8_Break">
+			<BlockRelation portId1="P" portId2="YA8_B" />
+			<BlockRelation portId1="T2" portId2="YA8_A" />
+		</BlockState>
+
+		<!-- 通电状态切换 -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA1_C_01" term2Id="YA1_C_02" value="+24" deviation="2" switchIn="YA1_Link|YA1_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA1_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA1_Link
+				switchTo=YA1_Break
+				jackName=YA1_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA2_C_01" term2Id="YA2_C_02" value="+24" deviation="2" switchIn="YA2_Link|YA2_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA2_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA2_Link
+				switchTo=YA2_Break
+				jackName=YA2_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA3_C_01" term2Id="YA3_C_02" value="+24" deviation="2" switchIn="YA3_Link|YA3_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA3_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA3_Link
+				switchTo=YA3_Break
+				jackName=YA3_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA4_C_01" term2Id="YA4_C_02" value="+24" deviation="2" switchIn="YA4_Link|YA4_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA4_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA4_Link
+				switchTo=YA4_Break
+				jackName=YA4_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA5_C_01" term2Id="YA5_C_02" value="+24" deviation="2" switchIn="YA5_Link|YA5_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA5_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA5_Link
+				switchTo=YA5_Break
+				jackName=YA5_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA6_C_01" term2Id="YA6_C_02" value="+24" deviation="2" switchIn="YA6_Link|YA6_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA6_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA6_Link
+				switchTo=YA6_Break
+				jackName=YA6_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA7_C_01" term2Id="YA7_C_02" value="+24" deviation="2" switchIn="YA7_Link|YA7_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA7_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA7_Link
+				switchTo=YA7_Break
+				jackName=YA7_C
+			</ControlIO>
+		</Magnetism>
+		<Magnetism>
+			<VoltageIO type="input" term1Id="YA8_C_01" term2Id="YA8_C_02" value="+24" deviation="2" switchIn="YA8_Link|YA8_Break" />
+		</Magnetism>
+		<Magnetism>
+			<ControlIO name="开关" mdlName="YA8_Btn" type="input|output" interact="press" motion="move" motionParams="0|0.0005" axis="z">
+				switchFrom=YA8_Link
+				switchTo=YA8_Break
+				jackName=YA8_C
+			</ControlIO>
+		</Magnetism>
+		<!-- 手动按钮 待完成 -->
+	</ElecCompDef>
+</roots>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roots>
+	<ElecCompDef name="变频器" model="FR-E740" appStateCls="Inverter">
+		<Terminal id="AM" name="AM" mdlName="AM" direction="X+" />
+		<Terminal id="RL" name="RL" mdlName="RL" direction="X+" />
+		<Terminal id="RM" name="RM" mdlName="RM" direction="X+" />
+		<Terminal id="RH" name="RH" mdlName="RH" direction="X+" />
+		<Terminal id="MRS" name="MRS" mdlName="MRS" direction="X+" />
+		<Terminal id="RES" name="RES" mdlName="RES" direction="X+" />
+		<Terminal id="SD1" name="SD" mdlName="SD" direction="X+" />
+		<Terminal id="PC" name="PC" mdlName="PC" direction="X+" />
+		<Terminal id="STF" name="STF" mdlName="STF" direction="X+" />
+		<Terminal id="STR" name="STR" mdlName="STR" direction="X+" />
+		<Terminal id="SD2" name="SD" mdlName="SD" direction="X+" />
+		<Terminal id="SD3" name="SD" mdlName="SD" direction="X+" />
+
+		<Terminal id="10" name="10" mdlName="10" direction="X+" />
+		<Terminal id="2" name="2" mdlName="2" direction="X+" />
+		<Terminal id="5" name="5" mdlName="5" direction="X+" />
+		<Terminal id="4" name="4" mdlName="4" direction="X+" />
+		<Terminal id="RUN" name="RUN" mdlName="RUN" direction="X+" />
+		<Terminal id="FU" name="FU" mdlName="FU" direction="X+" />
+		<Terminal id="SE" name="SE" mdlName="SE" direction="X+" />
+
+		<Terminal id="A" name="A" mdlName="A" direction="Z+" />
+		<Terminal id="B" name="B" mdlName="B" direction="Z+" />
+		<Terminal id="C" name="C" mdlName="C" direction="Z+" />
+
+		<Terminal id="R" name="R" mdlName="L1" direction="Z+" />
+		<Terminal id="S" name="S" mdlName="L2" direction="Z+" />
+		<Terminal id="T" name="T" mdlName="L3" direction="Z+" />
+
+		<Terminal id="U" name="U" mdlName="U" direction="Z+" />
+		<Terminal id="V" name="V" mdlName="V" direction="Z+" />
+		<Terminal id="W" name="W" mdlName="W" direction="Z+" />
+
+		<Jack id="PU" mdlName="PU" name="PU" direction="X" core="8" cable="NET-RS485" format="NET-RS485">
+			<Terminal id="RDA" name="RDA" index="3" mark="ReceiveData+" team="RD" />
+			<Terminal id="RDB" name="RDB" index="4" mark="ReceiveData-" team="RD" />
+
+			<Terminal id="SDA" name="SDA" index="1" mark="SendData+" team="SD" />
+			<Terminal id="SDB" name="SDB" index="2" mark="SendData-" team="SD" />
+
+			<Terminal id="SG" name="SG" index="5" mark="SG" />
+		</Jack>
+		<ResisState isDef="1">
+			<ResisRelation term1Id="SD1" term2Id="SD2" value="0" />
+			<ResisRelation term1Id="SD2" term2Id="SD3" value="0" />
+		</ResisState>
+	</ElecCompDef>
+
+	<ElecCompDef name="变频器" model="FR-D720S" appStateCls="FR_D720SInverter">
+		<Terminal id="RUN" name="RUN" mdlName="6" direction="Y+" />
+		<Terminal id="SE" name="SE" mdlName="7" direction="Y+" />
+		<Terminal id="SO" name="SO" mdlName="8" direction="Y+" />
+		<Terminal id="S1" name="S1" mdlName="9" direction="Y+" />
+		<Terminal id="S2" name="S2" mdlName="10" direction="Y+" />
+		<Terminal id="SC" name="SC" mdlName="11" direction="Y+" />
+		<Terminal id="SD1" name="SD" mdlName="12" direction="Y+" />
+
+		<Terminal id="RL" name="RL" mdlName="18" direction="Y+" />
+		<Terminal id="RM" name="RM" mdlName="17" direction="Y+" />
+		<Terminal id="RH" name="RH" mdlName="16" direction="Y+" />
+		<Terminal id="SD2" name="SD" mdlName="15" direction="Y+" />
+		<Terminal id="PC" name="PC" mdlName="14" direction="Y+" />
+		<Terminal id="STF" name="STF" mdlName="13" direction="Y+" />
+		<Terminal id="STR" name="STR" mdlName="22" direction="Y+" />
+
+		<Terminal id="10" name="10" mdlName="1" direction="Y+" />
+		<Terminal id="2" name="2" mdlName="2" direction="Y+" />
+		<Terminal id="5" name="5" mdlName="3" direction="Y+" />
+		<Terminal id="4" name="4" mdlName="4" direction="Y+" />
+		<Terminal id="AM" name="AM" mdlName="5" direction="Y+" />
+
+		<Terminal id="A" name="A" mdlName="21" direction="Y+" />
+		<Terminal id="B" name="B" mdlName="20" direction="Y+" />
+		<Terminal id="C" name="C" mdlName="19" direction="Y+" />
+
+		<Terminal id="L" name="L1" mdlName="55" direction="Z+" />
+		<Terminal id="N" name="N" mdlName="56" direction="Z+" />
+		<Terminal id="-" name="-" mdlName="50" direction="Z+" />
+		<Terminal id="P1" name="P1" mdlName="52" direction="Z+" />
+		<Terminal id="+" name="+" mdlName="53" direction="Z+" />
+		<Terminal id="PR" name="PR" mdlName="54" direction="Z+" />
+		<!-- <Terminal id="R" name="R" mdlName="R" direction="Z+" /> -->
+		<!-- <Terminal id="S" name="S" mdlName="S" direction="Z+" /> -->
+		<!-- <Terminal id="T" name="T" mdlName="T" direction="Z+" /> -->
+
+		<Terminal id="U" name="U" mdlName="58" direction="Z+" />
+		<Terminal id="V" name="V" mdlName="59" direction="Z+" />
+		<Terminal id="W" name="W" mdlName="60" direction="Z+" />
+
+		<ResisState isDef="1">
+			<ResisRelation term1Id="SD1" term2Id="SD2" value="0" />
+			<ResisRelation term1Id="P1" term2Id="+" value="0" />
+		</ResisState>
+		<Jack id="PU" mdlName="" name="PU" direction="X" core="8" cable="PU" format="PU">
+			<Terminal id="SG1" name="SG1" index="1" mark="" />
+			<Terminal id="POW1" name="POW1" index="2" mark="" />
+			<Terminal id="RDA" name="RDA" index="3" mark="" />
+			<Terminal id="SDB" name="SDB" index="4" mark="" />
+			<Terminal id="SDA" name="SDA" index="5" mark="" />
+			<Terminal id="RDB" name="RDB" index="6" mark="" />
+			<Terminal id="SG2" name="SG2" index="7" mark="" />
+			<Terminal id="POW2" name="POW2" index="8" mark="" />
+		</Jack>
+	</ElecCompDef>
+</roots>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="八工位刀架" model="_8PosTool" appStateCls="PosTool" desc="八工位刀架">
+		<Terminal id="luosi15" name="24N" mdlName="luosi015" direction="x-" />
+		<Terminal id="luosi16" name="1" mdlName="luosi016" direction="x-" />
+
+		<Terminal id="luosi17" name="6A10" mdlName="luosi017" direction="x-" />
+		<Terminal id="luosi18" name="6B10" mdlName="luosi018" direction="x-" />
+		<Terminal id="luosi19" name="6A11" mdlName="luosi019" direction="x-" />
+		<Terminal id="luosi20" name="6B11" mdlName="luosi020" direction="x-" />
+
+		<Terminal id="luosi21" name="6A12" mdlName="luosi021" direction="x-" />
+		<Terminal id="luosi22" name="6B12" mdlName="luosi022" direction="x-" />
+		<Terminal id="luosi23" name="6A13" mdlName="luosi023" direction="x-" />
+		<Terminal id="luosi24" name="6B13" mdlName="luosi024" direction="x-" />
+		<Terminal id="luosi25" name="luosi25" mdlName="luosi025" direction="x-" />
+		<Terminal id="luosi26" name="luosi26" mdlName="luosi026" direction="x-" />
+		<Magnetism>
+			<ControlIO type="" name="刀架" mdlName="Cylinder001" switchIn="tool1|tool2|tool3|tool4|tool5|tool6|tool7|tool8" motion="circle" motionParams="0|45|90|135|180|225|270|315" axis="x" smooth="1" />
+		</Magnetism>
+		<ResisState id="tool1" isDef="1">
+			<ResisRelation term1Id="luosi18" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi21" term2Id="luosi15" value="0" />
+		</ResisState>
+		<ResisState id="tool2">
+			<ResisRelation term1Id="luosi20" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi21" term2Id="luosi15" value="0" />
+		</ResisState>
+		<ResisState id="tool3">
+			<ResisRelation term1Id="luosi17" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi21" term2Id="luosi15" value="0" />
+		</ResisState>
+		<ResisState id="tool4">
+			<ResisRelation term1Id="luosi19" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi21" term2Id="luosi15" value="0" />
+		</ResisState>
+		<ResisState id="tool5">
+			<ResisRelation term1Id="luosi19" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi18" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi17" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi21" term2Id="luosi15" value="0" />
+		</ResisState>
+		<ResisState id="tool6">
+			<ResisRelation term1Id="luosi20" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi19" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi17" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi21" term2Id="luosi15" value="0" />
+		</ResisState>
+		<ResisState id="tool7">
+			<ResisRelation term1Id="luosi20" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi18" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi17" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi21" term2Id="luosi15" value="0" />
+		</ResisState>
+		<ResisState id="tool8">
+			<ResisRelation term1Id="luosi20" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi19" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi18" term2Id="luosi15" value="0" />
+			<ResisRelation term1Id="luosi21" term2Id="luosi15" value="0" />
+		</ResisState>
+		<Jack id="yg_1" name="刀架锁紧" format="YG" mdlName="yg_1" jackDirection="z-" rotation="0,0,180" direction="x">
+			<Terminal id="yg_1" index="1" name="刀架锁紧" />
+		</Jack>
+		<Jack id="yg_2" name="刀架正转" format="YG" mdlName="yg_2" jackDirection="z-" rotation="0,0,180" direction="x">
+			<Terminal id="yg_2" index="1" name="刀架正转" />
+		</Jack>
+		<Jack id="yg_3" name="刀架反转" format="YG" mdlName="yg_3" jackDirection="z-" rotation="0,0,180" direction="x">
+			<Terminal id="yg_3" index="1" name="刀架反转" />
+		</Jack>
+		<Jack id="yg_4" name="刀架松开" format="YG" mdlName="yg_4" jackDirection="z-" rotation="0,0,180" direction="x">
+			<Terminal id="yg_4" index="1" name="刀架松开" />
+		</Jack>
+		<Magnetism>
+			<ControlIO type="input" interact="click" name="" mdlName="gai005" motion="rotate" switchIn="" motionParams="0|-180" axis="z" smooth="1" />
+		</Magnetism>
+		<!-- <Magnetism> -->
+		<!-- <VoltageIO type="input" term1Id="yg_1" term2Id="yg_4" switchIn="sj_on|sj_off" value="+24" deviation="1" /> -->
+		<!-- </Magnetism> -->
+		<!-- <ResisState id="sj_on" isDef="1"> -->
+		<!-- <ResisRelation term1Id="luosi22" term2Id="luosi15" value="0" /> -->
+		<!-- </ResisState> -->
+		<!-- <ResisState id="sj_off"> -->
+		<!-- <ResisRelation term1Id="luosi23" term2Id="luosi15" value="0" /> -->
+		<!-- </ResisState> -->
+		<Magnetism>
+			<VoltageIO type="input" term1Id="yg_4" term2Id="yg_1" switchIn="sk_off|sk_on" value="+24" deviation="1" />
+		</Magnetism>
+		<ResisState id="sk_on">
+			<ResisRelation term1Id="luosi23" term2Id="luosi15" value="0" />
+		</ResisState>
+		<ResisState id="sk_off" isDef="1">
+			<ResisRelation term1Id="luosi22" term2Id="luosi15" value="0" />
+		</ResisState>
+	</ElecCompDef>
+</Comps>

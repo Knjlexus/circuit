@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Comps SYSTEM "http://com.cas.me/dtds/components.dtd">
+<Comps>
+	<ElecCompDef name="永磁同步交流伺服电机" model="MHMD022P1U" appStateCls="ServoMotor" isCable="1" desc="MHMD表示电机类型为大惯量，02表示电机的额定功率为200W，2表示电压规格为200V，P表示编码器为增量式编码器，脉冲数为2500p/r，分辨率10000，输出信号线数为5根线。">
+		<Jack id="Power" name="电机插座" format="Servo_Power" cable="Servo_Power" direction="x-" jackDirection="x" rotation="0,-90,-90">
+			<Terminal index="1" mark="UL" type="input" team="βiS_Power" />
+			<Terminal index="2" mark="VL" type="input" team="βiS_Power" />
+			<Terminal index="3" mark="WL" type="input" team="βiS_Power" />
+			<Terminal index="4" mark="GL" type="input" />
+		</Jack>
+	</ElecCompDef>
+</Comps>
